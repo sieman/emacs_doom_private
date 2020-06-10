@@ -1,4 +1,4 @@
-;;; ~/.e/sim/doom.d/+org.el -*- lexical-binding: t; -*-
+;;; ~/.e/sieman/doom.d/+org.el -*- lexical-binding: t; -*-
 
 ;; Quickly insert a block of elisp:
 (after! org

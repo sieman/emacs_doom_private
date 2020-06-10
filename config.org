@@ -20,14 +20,14 @@
 
 (setq display-line-numbers-type nil)
 
-(load! "~/.e/sim/neo-layout/neo-layout.el")
-(load! "~/.e/sim/neo-layout/neo-function.el")
-(load! "~/.e/sim/neo-layout/bindings.el")
-(load! "~/.e/sim/neo-layout/neo-keybindings.el")
-(load! "~/.e/sim/sim-calendar")
+(load! "~/.e/sieman/neo-layout/neo-layout.el")
+(load! "~/.e/sieman/neo-layout/neo-function.el")
+(load! "~/.e/sieman/neo-layout/bindings.el")
+(load! "~/.e/sieman/neo-layout/neo-keybindings.el")
+(load! "~/.e/sieman/sim-calendar")
 (load! "~/.emacs.secrets")
 
-(load! "~/.e/sim/neo-layout/neo-modifier.el")
+(load! "~/.e/sieman/neo-layout/neo-modifier.el")
 
 (after! ivy
   (ido-mode -1)

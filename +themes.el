@@ -1,4 +1,4 @@
-;;; ~/.e/sim/doom.d/+org.el/+themes.el -*- lexical-binding: t; -*-
+;;; ~/.e/sieman/doom.d/+org.el/+themes.el -*- lexical-binding: t; -*-
 
 ;; Main theme
 ;; (setq doom-theme 'doom-dracula)
