@@ -29,12 +29,6 @@
 ;;       ;doom-variable-pitch-font (font-spec :family "Fira Sans")
 ;;       ;doom-unicode-font (font-spec :family "DejaVu Sans Mono")
 ;;       )
-
-;; Better fuzzy matching support in Ivy
-;; https://oremacs.com/2016/01/06/ivy-flx/
-(setq ivy-re-builders-alist '((ivy-switch-buffer . ivy--regex-plus) (t . ivy--regex-fuzzy))
-      ivy-initial-inputs-alist nil)
-
 ;; Prevents the unstyled mode-line flash at startup
 (setq-default mode-line-format nil)
 
@@ -95,7 +89,7 @@
        (window-select    ; visually switch windows
         +switch-window)
        workspaces        ; tab emulation, persistence & separate workspaces
-       ;;zen               ; distraction-free coding or writing
+       zen               ; distraction-free coding or writing
 
        :editor
        ;;(evil +everywhere) ; come to the dark side, we have cookies
@@ -149,7 +143,7 @@
        magit             ; a git porcelain for Emacs
        make              ; run make tasks from Emacs
        ;;pass              ; password manager for nerds
-       pdf               ; pdf enhancements
+       ;;pdf               ; pdf enhancements
        ;;prodigy           ; FIXME managing external services & code builders
        ;;rgb               ; creating color strings
        ;;terraform         ; infrastructure as code
@@ -187,15 +181,15 @@
        ;;factor
        ;;ledger            ; an accounting system in Emacs
        ;;lua               ; one-based indices? one-based indices
-       markdown          ; writing docs for people to ignore
+       ;;markdown          ; writing docs for people to ignore
        ;;nim               ; python + lisp at the speed of c
        ;;nix               ; I hereby declare "nix geht mehr!"
        ;;ocaml             ; an objective camel
        (org              ; organize your plain life in plain text
         +dragndrop       ; drag & drop files/images into org buffers
         ;;+hugo            ; use Emacs for hugo blogging
-        +jupyter           ; ipython/jupyter support for babel
-        +pandoc            ; export-with-pandoc support
+        ;;+jupyter           ; ipython/jupyter support for babel
+        ;;+pandoc            ; export-with-pandoc support
         ;;+pomodoro        ; be fruitful with the tomato technique
         +present)        ; using org-mode for presentations
        ;;perl              ; write code no one else can comprehend

@@ -50,23 +50,5 @@
 ;; our package manager can't deal with; see raxod502/straight.el#279)
 ;(package! builtin-package :recipe (:branch "develop"))
 
-
-(package! dash)
-(package! flx)
-;; (package! flx-ido)
-;; (package! ido-at-point)
-;; (package! ido-completing-read+)
-;; (package! ido-vertical-mode)
-;; (package! ido-sort-mtime)
 (package! move-text)
-(package! color-theme-sanityinc-solarized)
-
 (package! beacon)
-;; (use-package beacon
-;;      :init (beacon-mode 1)
-;;      :config (setq beacon-color "#9a37ff"))
-(package! olivetti)
-;; (use-package olivetti
-;;         :init
-;;         (setq olivetti-body-width (+ sim-hard-wrap-at 10))
-;;         (fringe-mode 2))
