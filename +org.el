@@ -1,0 +1,6 @@
+;;; ~/.e/sim/doom.d/+org.el -*- lexical-binding: t; -*-
+
+;; Quickly insert a block of elisp:
+(after! org
+      (add-to-list 'org-structure-template-alist
+                    '("el" . "src emacs-lisp")))

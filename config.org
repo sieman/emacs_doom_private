@@ -1,0 +1,62 @@
+#+TITLE: Config
+#+begin_src emacs-lisp
+;;; $DOOMDIR/config.el -*- lexical-binding: t; -*-
+(display-time-mode t)
+(setq display-time-24hr-format t)
+;; Better fuzzy matching support in Ivy
+;; https://oremacs.com/2016/01/06/ivy-flx/
+(defun sim/setup-ivy-fuzzy ()
+  (setq! ivy-re-builders-alist '((ivy-switch-buffer . ivy--regex-plus) (t . ivy--regex-fuzzy)))
+  (setq! ivy-initial-inputs-alist nil)
+  )
+(sim/setup-ivy-fuzzy)
+
+;; Theme related things
+(load! "+themes")
+(load! "+org")
+(load! "+spell")
+
+;;(use-package sim-ido :load-path "~/.e/sim")
+
+(setq display-line-numbers-type nil)
+
+(load! "~/.e/sim/neo-layout/neo-layout.el")
+(load! "~/.e/sim/neo-layout/neo-function.el")
+(load! "~/.e/sim/neo-layout/bindings.el")
+(load! "~/.e/sim/neo-layout/neo-keybindings.el")
+(load! "~/.e/sim/sim-calendar")
+(load! "~/.emacs.secrets")
+
+(load! "~/.e/sim/neo-layout/neo-modifier.el")
+
+(after! ivy
+  (ido-mode -1)
+  (global-unset-key (kbd "s-x"))
+  (general-define-key "s-x" 'kill-region))
+
+
+;; (use-package olivetti
+;;   :diminish
+;;   :bind ("<f7>" . olivetti-mode)
+;;   :hook (olivetti-mode . (lambda () (text-scale-set (if olivetti-mode +2 0))))
+;;   :init (setq olivetti-body-width 0.618))
+
+(after! olivetti
+  (setq olivetti-body-width (+ sim-hard-wrap-at 10))
+  ;;(setq olivetti-body-width 0.618)
+  (fringe-mode 2)
+  (add-hook 'olivetti-mode
+            (lambda () (text-scale-set (if olivetti-mode +2 0))))
+  )
+
+(custom-set-faces!
+  '(fringe :background "#FFFFFF")
+  '(solaire-fringe-face :background "#FFFFFF"))
+
+(after! beacon
+  (setq beacon-color "#9a37ff"))
+
+;;(add-hook! 'after-init-hook
+;;  (lambda ()
+;;  (message "Neo after-init-hook")))
+#+end_src
