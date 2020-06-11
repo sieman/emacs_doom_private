@@ -3,6 +3,13 @@
 #+begin_src emacs-lisp
 ;;; $DOOMDIR/config.el -*- lexical-binding: t; -*-
 (display-time-mode t)
+
+(with-eval-after-load 'org
+  (add-to-list 'sp-ignore-modes-list #'org-mode))
+
+(with-eval-after-load 'org-agenda
+  (add-to-list 'sp-ignore-modes-list #'org-agenda-mode))
+
 (setq display-time-24hr-format t)
 ;; Theme related things
 (load! "+themes")
@@ -694,16 +701,11 @@ Idea:
 ** o O
 #+begin_src emacs-lisp
 (global-unset-key (kbd "s-o"))
-;;(general-define-key "s-o" 'counsel-find-file)
+;;((general-define-key "s-o" 'counsel-find-file)
 
 (general-define-key :prefix "s-O"
                     "p" 'ns-open-file-using-panel
                     "m" 'execute-extended-command)
-
-(general-def ido-mode-map
-  :prefix "s-O"
-  "r" 'recentf-ido-find-file
-  "f" 'find-file)
 
 (general-def ivy-mode-map
   :prefix "s-O"
@@ -711,7 +713,7 @@ Idea:
   "f" 'counsel-find-file)
 
 (general-def org-mode-map
-  "s-o" 'counsel-imenu)
+  "s-o" 'counsel-org-goto)
 
 (general-def org-mode-map
   :prefix "s-O"
