@@ -32,14 +32,6 @@
   (global-unset-key (kbd "s-x"))
   (general-define-key "s-x" 'kill-region))
 
-(after! olivetti
-  (setq olivetti-body-width (+ sim-hard-wrap-at 10))
-  ;;(setq olivetti-body-width 0.618)
-  (fringe-mode 2)
-  (add-hook 'olivetti-mode
-            (lambda () (text-scale-set (if olivetti-mode +2 0))))
-  )
-
 (custom-set-faces!
   '(fringe :background "#FFFFFF")
   '(solaire-fringe-face :background "#FFFFFF"))
@@ -141,7 +133,7 @@
               (call-interactively 'goto-line))
           (linum-mode -1)))
     #+end_src
-* Tastenkürzel
+* Tastenkürzel Control Meta
   - =C      = Shorthand for the ctrl-key
   - =M      = Shorthand for the meta-key (bound to cmd on my mac settings)
   - =S      = Shorthand for the shift-key
@@ -520,8 +512,7 @@
 
 
 
-
-* Keybinding on Neo-Layout
+* Super (or Hyper) Keybinding
 ** Default super binding to rethinking
 
 |            |                                         |                         |
@@ -575,33 +566,33 @@
 | s-y        | ns-paste-secondary                      |                         |
 | s-z        | undo                                    |                         |
 | s-Z        | undo-tree-redo                          |                         |
-* Function Keys Row
-** <f1>
+** Function Keys Row
+*** <f1>
 Idea:
 - <f1> view *Quick Documentation*
 - S-<f1> view *External Documentation*
 - s-<f1> view *error description*
 - A-<f1> navigate *select in*
-** <f2>
+*** <f2>
 Idea:
 - <f2> navigate to *next highlighted error*
 - s-<f2> run *stop*
 
-** <f3>
+*** <f3>
 Idea:
 - <f3> navigate *toggle bookmarks*
 - s-<f3> navigate *show bookmarks*
   -
-** <f4>
+*** <f4>
 Idea: view *jump to source*
-** <f5>
+*** <f5>
 Idea: refactor *copy*
-** <f6>
-** <f7>
-** <f8>
-** <f9>
-** <f10>
-** <f11>
+*** <f6>
+*** <f7>
+*** <f8>
+*** <f9>
+*** <f10>
+*** <f11>
 If you search with none alpha numerics signs like (
 #+begin_src emacs-lisp
 (general-define-key
@@ -609,29 +600,29 @@ If you search with none alpha numerics signs like (
  "s-<f11>" '(lambda () (interactive)(setq mac-option-modifier 'alt) (message "Modifier Option set to alt"))
  )
 #+end_src
-** <f12>
-* Number Row
-** 1 °
+*** <f12>
+** Number Row
+*** 1 °
 #+begin_src emacs-lisp
 (general-define-key "s-1" '+treemacs/toggle)
 #+end_src
-** 2 §
-** 3 ℓ
-** 4 »
-** 5 «
-** 6 $
-** 7 €
-** 8 „
-** 9 “
+*** 2 §
+*** 3 ℓ
+*** 4 »
+*** 5 «
+*** 6 $
+*** 7 €
+*** 8 „
+*** 9 “
 #+begin_src emacs-lisp
 (general-define-key
  "s-9" 'magit-status)
 #+end_src
-** 0 ”
-** - —
-* Upper Row
-** x X
-** v V                                              :paste:history:clipboard:
+*** 0 ”
+*** - —
+** Upper Row
+*** x X
+*** v V :paste:history:clipboard:
 Shows a popup menu with a history kills, it's like a clipboard history.
 #+begin_src emacs-lisp
 (if (require 'browse-kill-ring nil 'noerror)
@@ -641,15 +632,15 @@ Shows a popup menu with a history kills, it's like a clipboard history.
                                (popup-menu 'yank-menu))))
 #+end_src
 
-** l L
-** c C
+*** l L
+*** c C
 Comment or uncomment a line or region.
 #+begin_src emacs-lisp
 (global-unset-key (kbd "s-C"))
 (general-define-key "s-C" 'comment-line
                     "M-s-c" 'comment-or-uncomment-region)
 #+end_src
-** w W                                                               :buffer:
+*** w W :buffer:
 #+begin_src emacs-lisp
 (global-unset-key (kbd "s-w"))
 (general-define-key "s-w" 'kill-current-buffer)
@@ -657,16 +648,16 @@ Comment or uncomment a line or region.
 (general-def org-src-mode-map
   "s-w" 'org-edit-src-exit)
 #+end_src
-** k K
+*** k K
 #+begin_src emacs-lisp
 (global-unset-key (kbd "s-k"))
 #+end_src
-** h H
-** g G                                                               :search:
+*** h H
+*** g G :search:
 #+begin_src emacs-lisp
 (general-define-key "s-G" 'isearch-repeat-backward)
 #+end_src
-** f F                                                           :search:org:
+*** f F :search:org:
 Remaping for org-mode. The meta key is maped to fn-key, with cursor it behaves diffrent.
 #+begin_src emacs-lisp
 (general-define-key
@@ -693,16 +684,16 @@ Remaping for org-mode. The meta key is maped to fn-key, with cursor it behaves d
        "s-F a" 'ace-jump-char-mode)
     (message "neo-keybinding missing package: avy or ace-jump-mode")))
 #+end_src
-** q Q
-** ß ẞ
-* Center Row
-** u U
+*** q Q
+*** ß ẞ
+** Center Row
+*** u U
 Idea:
 - s-U *Main menu | Navigate | Go to Super Method*
-** i I
-** a A
-** e E
-** o O
+*** i I
+*** a A
+*** e E
+*** o O
 #+begin_src emacs-lisp
 (global-unset-key (kbd "s-o"))
 ;;((general-define-key "s-o" 'counsel-find-file)
@@ -723,8 +714,8 @@ Idea:
   "o" 'org-open-at-point
   "s" 'org-edit-special)
 #+end_src
-** s S
-** n N                                                                  :org:
+*** s S
+*** n N :org:
 #+begin_src emacs-lisp
 (global-unset-key (kbd "s-n"))
 #+end_src
@@ -735,18 +726,18 @@ Idea:
  "C-n" 'org-metadown
  )
 #+end_src
-** r R
-** t T
-** d D
+*** r R
+*** t T
+*** d D
 #+begin_src emacs-lisp
 (global-unset-key (kbd "s-d"))
 (general-define-key "s-d" 'duplicate-line-or-region)
 #+end_src
-** y Y
-* Lower Row
-** ü Ü
-** ö Ö
-** ä Ä
+*** y Y
+** Lower Row
+*** ü Ü
+*** ö Ö
+*** ä Ä
 Cursor Jumps [[https://github.com/abo-abo/avy][Avy-Mode]] like [[https://github.com/winterTTr/ace-jump-mode][Ace-Jump-Mode]]
 #+begin_src emacs-lisp
 (general-define-key
@@ -757,7 +748,7 @@ Cursor Jumps [[https://github.com/abo-abo/avy][Avy-Mode]] like [[https://github.
  "s-Ä o" 'avy-org-goto-heading-timer
  )
 #+end_src
-** p P                                                                  :org:
+*** p P :org:
 #+begin_src emacs-lisp
 (general-define-key
  :keymaps 'org-mode-map
@@ -765,7 +756,7 @@ Cursor Jumps [[https://github.com/abo-abo/avy][Avy-Mode]] like [[https://github.
  "C-p" 'org-metaup
  )
 #+end_src
-** z Z                                                            :undo:redo:
+*** z Z :undo:redo:
   - =C-z   = undo
   - =C-S-z = redo
   - =C-x u = Show the undo-tree
@@ -779,7 +770,7 @@ Cursor Jumps [[https://github.com/abo-abo/avy][Avy-Mode]] like [[https://github.
                                         "s-Z" 'undo-tree-redo)))
     #+end_src
 
-** b B                                                                  :org:
+*** b B :org:
 #+begin_src emacs-lisp
 (general-define-key
  :keymaps 'org-mode-map
@@ -787,15 +778,15 @@ Cursor Jumps [[https://github.com/abo-abo/avy][Avy-Mode]] like [[https://github.
  "C-b" 'org-metaleft
  )
 #+end_src
-** m M
+*** m M
 The keybinding =C-m= effects a =return=, and I think that's a bug.
 #+begin_src emacs-lisp
 (define-key input-decode-map [?\C-m] [C-m])
 ;;(general-define-key "<C-m>" '(lambda () (interactive) (message "C-m is not the same as RET any more!")))
 #+end_src
-** , –
-** . •
-** j J                                                            :join:line:
+*** , –
+*** . •
+*** j J :join:line:
 *C-S-j*
 Join this line to previous and fix up whitespace at join.
 #+begin_src emacs-lisp
@@ -803,9 +794,8 @@ Join this line to previous and fix up whitespace at join.
                     "s-J" 'join-line)
 #+end_src
 
-
-* Space Return Backspace Delete Up Down Right Left
-** return
+** Space Return Backspace Delete Up Down Right Left
+*** return
 #+begin_src emacs-lisp
 (general-define-key
  ;; NOTE: keymaps specified with :keymaps must be quoted
@@ -813,7 +803,7 @@ Join this line to previous and fix up whitespace at join.
  "s-<return>" 'org-meta-return
  )
 #+end_src
-** Cursor up down                                                 :text:move:
+*** Cursor up down :text:move:
 #+begin_src emacs-lisp
 (nk/check-package 'move-text (lambda () (general-define-key
                                          "s-S-<up>"  'move-text-up
