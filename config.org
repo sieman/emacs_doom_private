@@ -623,6 +623,10 @@ If you search with none alpha numerics signs like (
 ** 7 €
 ** 8 „
 ** 9 “
+#+begin_src emacs-lisp
+(general-define-key
+ "s-9" 'magit-status)
+#+end_src
 ** 0 ”
 ** - —
 * Upper Row
@@ -707,10 +711,9 @@ Idea:
                     "p" 'ns-open-file-using-panel
                     "m" 'execute-extended-command)
 
-(general-def ivy-mode-map
-  :prefix "s-O"
-  "r" 'counsel-recentf
-  "f" 'counsel-find-file)
+(map! :after ivy :map ivy-mode-map :prefix "s-O"
+      :desc "recent files" "r" #'counsel-recentf
+      :desc "open file" "f" #'counsel-find-file)
 
 (general-def org-mode-map
   "s-o" 'counsel-org-goto)
