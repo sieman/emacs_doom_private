@@ -32,12 +32,16 @@
   (global-unset-key (kbd "s-x"))
   (general-define-key "s-x" 'kill-region))
 
-(custom-set-faces!
-  '(fringe :background "#FFFFFF")
-  '(solaire-fringe-face :background "#FFFFFF"))
+;; (custom-set-faces!
+;;   '(fringe :background "#FFFFFF")
+;;   '(solaire-fringe-face :background "#FFFFFF"))
 
 (after! beacon
+  (beacon-mode t)
   (setq beacon-color "#9a37ff"))
+
+(after! smartparens
+  (smartparens-global-mode -1))
 
 ;;(add-hook! 'after-init-hook
 ;;  (lambda ()
