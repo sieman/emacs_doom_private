@@ -43,9 +43,12 @@
 (after! smartparens
   (smartparens-global-mode -1))
 
+(after! multiple-cursors
+  (setq! mc/list-file "~/.e/sieman/mc-lists.el")
+  )
 ;;(add-hook! 'after-init-hook
 ;;  (lambda ()
-;;  (message "Neo after-init-hook")))
+;;  (message "Neo after-init-hook")))
 #+end_src
 * Funktionen
   Hier stehen Funktionen, die für die Tastenkürzel verwendet werden.
