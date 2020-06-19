@@ -4,10 +4,6 @@
 ;; [[https://jblevins.org/log/kbd][Keyboard Shortcuts for Editing Text Fields in OS X]]
 ;; [[https://ergoemacs.github.io/index.html][Ergo Emacs - Mode]] für Ideen
 
-(when (eq system-type 'darwin)
-  (setq mac-option-modifier 'alt)
-  )
-
 (define-key key-translation-map (kbd "A-^") (kbd "↻"))
 (define-key key-translation-map (kbd "A-1") (kbd "¹"))
 (define-key key-translation-map (kbd "A-2") (kbd "²"))

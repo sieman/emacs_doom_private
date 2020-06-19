@@ -8,7 +8,7 @@
 (load! "sim-calendar")
 (load! "~/.emacs.secrets")
 ;; Theme related things
-(load1! "+themes")
+(load! "+themes")
 ;; (custom-set-faces!
 ;;   '(fringe :background "#FFFFFF")
 ;;   '(solaire-fringe-face :background "#FFFFFF"))

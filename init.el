@@ -16,19 +16,7 @@
 
 
 ;; Start emacs maximized
-(add-to-list 'default-frame-alist '(fullscreen . maximized))
-
-;; Font setup
-;; (setq
-;; ;      doom-font (font-spec :family "JetBrains Mono" :size 14)
-;;       doom-big-font (font-spec :family "LFBONovelNetz" :size 28)
-;;       ;(setq ivy-re-builders-alist '((t . ivy--regex-plus)))
-;;       ;doom-font (font-spec :family "Fira Mono" :size 14)
-;;       doom-font (font-spec :family "Iosevka" :size 18)
-;;       ;doom-big-font (font-spec :family "Fira Mono" :size 19)
-;;       ;doom-variable-pitch-font (font-spec :family "Fira Sans")
-;;       ;doom-unicode-font (font-spec :family "DejaVu Sans Mono")
-;;       )
+;(add-to-list 'default-frame-alist '(fullscreen . maximized))
 ;; Prevents the unstyled mode-line flash at startup
 (setq-default mode-line-format nil)
 

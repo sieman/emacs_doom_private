@@ -7,12 +7,13 @@
              mac-function-modifier 'meta
 
              mac-control-modifier 'control
-             mac-option-modifier 'none
+             mac-option-modifier 'alt
              mac-command-modifier 'super
 
              mac-right-command-modifier 'super
-             mac-right-option-modifier 'none
+             mac-right-option-modifier 'alt
              mac-right-control-modifier 'control
+
        ))
 
 (provide 'neo-modifier)
