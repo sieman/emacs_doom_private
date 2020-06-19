@@ -1,55 +1,72 @@
-#+TITLE: Config
-* doomisch
+#+TITLE: Einstellungen Configuration
+* Einstellungen :settings:
+** Darstellung :appearance:
 #+begin_src emacs-lisp
-;;; $DOOMDIR/config.el -*- lexical-binding: t; -*-
 (display-time-mode t)
+(setq display-time-24hr-format t)
+(setq display-line-numbers-type nil)
+(load! "sim-calendar")
+(load! "~/.emacs.secrets")
+;; Theme related things
+(load! "+themes")
+;; (custom-set-faces!
+;;   '(fringe :background "#FFFFFF")
+;;   '(solaire-fringe-face :background "#FFFFFF"))
+(after! beacon
+  (beacon-mode t)
+  (setq beacon-color "#9a37ff"))
 
+#+end_src
+** Editor Erweiterungen :editor:
+*** Rechtschreibprüfung :spell:checking:
+#+begin_src emacs-lisp
+(setq ispell-dictionary "de_DE")
+(setq ispell-hunspell-dict-paths-alist
+     '(("de_DE" "~/Library/Spelling/de_DE.aff")))
+#+end_src
+*** Tastaturlayout :keyboard:layout:
+#+begin_src emacs-lisp
+(load! "+neo-layout.el")
+(load! "+modifier.el")
+#+end_src
+
+*** Smartparent
+#+begin_src emacs-lisp
+(after! smartparens
+  (smartparens-global-mode -1))
+#+end_src
+*** Multiple Cursors
+#+begin_src emacs-lisp
+(after! multiple-cursors
+  (setq! mc/list-file "~/.e/sieman/mc-lists.el")
+  )
+#+end_src
+*** Ivy is a generic completion mechanism for Emacs.
+#+begin_src emacs-lisp
+(after! ivy
+  (ido-mode -1)
+  (global-unset-key (kbd "s-x"))
+  (general-define-key "s-x" 'kill-region))
+  #+end_src
+** Modus Anwendungen :settings:modes:
+*** org-mode :org:
+#+begin_src emacs-lisp
 (with-eval-after-load 'org
   (add-to-list 'sp-ignore-modes-list #'org-mode))
 
 (with-eval-after-load 'org-agenda
   (add-to-list 'sp-ignore-modes-list #'org-agenda-mode))
-
-(setq display-time-24hr-format t)
-;; Theme related things
-(load! "+themes")
 (load! "+org")
-(load! "+spell")
-(setq display-line-numbers-type nil)
 
-(load! "sim-calendar")
-(load! "~/.emacs.secrets")
-(load! "+neo-layout.el")
-(load! "+modifier.el")
+#+end_src
 
+*** dired
+#+begin_src emacs-lisp
 (after! dired
   (add-hook 'dired-mode-hook (lambda () (dired-hide-details-mode 1)))
   (put 'dired-find-alternate-file 'disabled nil))
-
-
-(after! ivy
-  (ido-mode -1)
-  (global-unset-key (kbd "s-x"))
-  (general-define-key "s-x" 'kill-region))
-
-;; (custom-set-faces!
-;;   '(fringe :background "#FFFFFF")
-;;   '(solaire-fringe-face :background "#FFFFFF"))
-
-(after! beacon
-  (beacon-mode t)
-  (setq beacon-color "#9a37ff"))
-
-(after! smartparens
-  (smartparens-global-mode -1))
-
-(after! multiple-cursors
-  (setq! mc/list-file "~/.e/sieman/mc-lists.el")
-  )
-;;(add-hook! 'after-init-hook
-;;  (lambda ()
-;;  (message "Neo after-init-hook")))
 #+end_src
+
 * Funktionen
   Hier stehen Funktionen, die für die Tastenkürzel verwendet werden.
 ** Ist das Packet das, das ich gebrauche?
