@@ -8,7 +8,7 @@
 (load! "sim-calendar")
 (load! "~/.emacs.secrets")
 ;; Theme related things
-(load! "+themes")
+(load1! "+themes")
 ;; (custom-set-faces!
 ;;   '(fringe :background "#FFFFFF")
 ;;   '(solaire-fringe-face :background "#FFFFFF"))
@@ -518,23 +518,6 @@
     -  =C-x 2  = Split window horizontally
     -  =C-x 3  = Split window vertically
     -  =S-arrow= Jump to window to the left/right/up/down
-
-** TODO Ido Preview
-
-   (use-package ido-preview       :defer t  :load-path "site-lisp"
-   :config
-   (add-hook 'ido-setup-hook
-   (lambda()
-   (define-key ido-completion-map (kbd "C-M-p") (lookup-key ido-completion-map (kbd "C-p")))
-   ; currently, this makes nothing. Maybe they'll make C-n key lately.
-   (define-key ido-completion-map (kbd "C-M-n") (lookup-key ido-completion-map (kbd "C-n")))
-   (define-key ido-completion-map (kbd "C-p") 'ido-preview-backward)
-   (define-key ido-completion-map (kbd "C-n") 'ido-preview-forward)))
-
-   )
-
-
-
 
 * Super (or Hyper) Keybinding
 ** Default super binding to rethinking
