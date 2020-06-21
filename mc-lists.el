@@ -3,6 +3,7 @@
 
 (setq mc/cmds-to-run-for-all
       '(
+        TeX-insert-backslash
         kill-region
         ns-paste-secondary
         org-self-insert-command

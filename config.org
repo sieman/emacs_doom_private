@@ -33,7 +33,10 @@
 *** Smartparent
 #+begin_src emacs-lisp
 (after! smartparens
-  (smartparens-global-mode -1))
+  (smartparens-global-mode -1)
+  ;; (smartparens-mode -1)
+  (turn-off-smartparens-mode)
+  )
 #+end_src
 *** Multiple Cursors
 #+begin_src emacs-lisp
@@ -51,11 +54,11 @@
 ** Modus Anwendungen :settings:modes:
 *** org-mode :org:
 #+begin_src emacs-lisp
-(with-eval-after-load 'org
-  (add-to-list 'sp-ignore-modes-list #'org-mode))
+;; (with-eval-after-load 'org
+  ;; (add-to-list 'sp-ignore-modes-list #'org-mode))
 
-(with-eval-after-load 'org-agenda
-  (add-to-list 'sp-ignore-modes-list #'org-agenda-mode))
+;; (with-eval-after-load 'org-agenda
+  ;; (add-to-list 'sp-ignore-modes-list #'org-agenda-mode))
 (load! "+org")
 
 #+end_src
