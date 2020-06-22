@@ -22,7 +22,7 @@
 #+begin_src emacs-lisp
 (setq ispell-dictionary "de_DE")
 (setq ispell-hunspell-dict-paths-alist
-     '(("de_DE" "~/Library/Spelling/de_DE.aff")))
+      '(("de_DE" "~/Library/Spelling/de_DE.aff")))
 #+end_src
 *** Tastaturlayout :keyboard:layout:
 #+begin_src emacs-lisp
@@ -50,15 +50,15 @@
   (ido-mode -1)
   (global-unset-key (kbd "s-x"))
   (general-define-key "s-x" 'kill-region))
-  #+end_src
+#+end_src
 ** Modus Anwendungen :settings:modes:
 *** org-mode :org:
 #+begin_src emacs-lisp
 ;; (with-eval-after-load 'org
-  ;; (add-to-list 'sp-ignore-modes-list #'org-mode))
+;; (add-to-list 'sp-ignore-modes-list #'org-mode))
 
 ;; (with-eval-after-load 'org-agenda
-  ;; (add-to-list 'sp-ignore-modes-list #'org-agenda-mode))
+;; (add-to-list 'sp-ignore-modes-list #'org-agenda-mode))
 (load! "+org")
 
 #+end_src
@@ -71,95 +71,122 @@
 #+end_src
 
 * Funktionen
-  Hier stehen Funktionen, die für die Tastenkürzel verwendet werden.
+Hier stehen Funktionen, die für die Tastenkürzel verwendet werden.
 ** Ist das Packet das, das ich gebrauche?
-  (if (require 'tee nil 'noerror)
-  (message "Ja ist installiert")
-  (message "Nein ist nicht installiert"))
+(if (require 'tee nil 'noerror)
+(message "Ja ist installiert")
+(message "Nein ist nicht installiert"))
 
-  #+begin_src emacs-lisp
-    (if (require 'general nil 'noerror)
-        (message "neo-keybinding")
-      (package-install 'general))
+#+begin_src emacs-lisp
+(if (require 'general nil 'noerror)
+    (message "neo-keybinding")
+  (package-install 'general))
 
-    (defun nk/check-package (name fct)
-      "Is package installed then executes fct otherwise give a message."
-      (interactive)
+(defun nk/check-package (name fct)
+  "Is package installed then executes fct otherwise give a message."
+  (interactive)
 
-      (if (require  name nil 'noerror)
-          (funcall-interactively fct)
-        (message (concat "neo-keybinding missing package: " (symbol-name name)))))
-  #+end_src
+  (if (require  name nil 'noerror)
+      (funcall-interactively fct)
+    (message (concat "neo-keybinding missing package: " (symbol-name name)))))
+#+end_src
 
 ** Upper Lower Case Toggle
-   Toggle case for word at caret or selected block
-   [[https://www.gnu.org/software/emacs/manual/html_node/emacs/Case.html][Toggle Case Description]]
+Toggle case for word at caret or selected block
+[[https://www.gnu.org/software/emacs/manual/html_node/emacs/Case.html][Toggle Case Description]]
 
-   #+Begin_src emacs-lisp
-     (defun xah-toggle-letter-case ()
-       "Toggle the letter case of current word or text selection.
+#+Begin_src emacs-lisp
+(defun xah-toggle-letter-case ()
+  "Toggle the letter case of current word or text selection.
      Always cycle in this order: Init Caps, ALL CAPS, all lower.
      URL `http://ergoemacs.org/emacs/modernization_upcase-word.html'
      Version 2019-11-24"
-       (interactive)
-       (let (
-             (deactivate-mark nil)
-             $p1 $p2)
-         (if (use-region-p)
-             (setq $p1 (region-beginning) $p2 (region-end))
-           (save-excursion
-             (skip-chars-backward "0-9A-Za-z")
-             (setq $p1 (point))
-             (skip-chars-forward "0-9A-Za-z")
-             (setq $p2 (point))))
-         (when (not (eq last-command this-command))
-           (put this-command 'state 0))
-         (cond
-          ((equal 0 (get this-command 'state))
-           (upcase-initials-region $p1 $p2)
-           (put this-command 'state 1))
-          ((equal 1 (get this-command 'state))
-           (upcase-region $p1 $p2)
-           (put this-command 'state 2))
-          ((equal 2 (get this-command 'state))
-           (downcase-region $p1 $p2)
-           (put this-command 'state 0)))))
-   #+end_src
-** Color Themes
-   #+begin_src emacs-lisp
-     (defun nk/after-theme-changed ()
-       "Custom face settings after theme changed."
-       (interactive)
-       (org-bullets-mode nil)
-       (org-bullets-mode t)
-       (set-face-attribute 'mode-line nil :font "JetBrains Mono 12")
-       (custom-set-faces
-        '(show-paren-match ((t (:background "red" :foreground "blue" :inverse-video t :weight bold))))
-        '(region ((t (:foreground "#f1c40f" :background "#2c3e50" :inverse-video t))))
-        `(cursor ((t (:foreground "white" :background "red"))))
-        )
-       (setq doom-modeline-height 20)
-       (message "nk/after-theme-changed done")
-       )
+  (interactive)
+  (let (
+        (deactivate-mark nil)
+        $p1 $p2)
+    (if (use-region-p)
+        (setq $p1 (region-beginning) $p2 (region-end))
+      (save-excursion
+        (skip-chars-backward "0-9A-Za-z")
+        (setq $p1 (point))
+        (skip-chars-forward "0-9A-Za-z")
+        (setq $p2 (point))))
+    (when (not (eq last-command this-command))
+      (put this-command 'state 0))
+    (cond
+     ((equal 0 (get this-command 'state))
+      (upcase-initials-region $p1 $p2)
+      (put this-command 'state 1))
+     ((equal 1 (get this-command 'state))
+      (upcase-region $p1 $p2)
+      (put this-command 'state 2))
+     ((equal 2 (get this-command 'state))
+      (downcase-region $p1 $p2)
+      (put this-command 'state 0)))))
+#+end_src
+** Duplicate Line Or Region
 
-     (defun disable-all-custom-themes ()
-       "Disable all themes and then load a single theme interactively."
-       (interactive)
-       (while custom-enabled-themes
-         (disable-theme (car custom-enabled-themes))) )
-   #+end_src
+#+begin_src emacs-lisp
+(defun duplicate-line-or-region (&optional n)
+  "Duplicate current line, or region if active.
+      With argument N, make N copies.
+      With negative N, comment out original line and use the absolute value."
+  (interactive "*p")
+  (let ((use-region (use-region-p)))
+    (save-excursion
+      (let ((text (if use-region        ;Get region if active, otherwise line
+                      (buffer-substring (region-beginning) (region-end))
+                    (prog1 (thing-at-point 'line)
+                      (end-of-line)
+                      (if (< 0 (forward-line 1)) ;Go to beginning of next line, or make a new one
+                          (newline))))))
+        (dotimes (i (abs (or n 1)))     ;Insert N times, or once if not specified
+          (insert text))))
+    (if use-region nil                  ;Only if we're working with a line (not a region)
+      (let ((pos (- (point) (line-beginning-position)))) ;Save column
+        (if (> 0 n)                             ;Comment out original with negative arg
+            (comment-region (line-beginning-position) (line-end-position)))
+        (forward-line 1)
+        (forward-char pos)))))
+
+#+end_src
+
+** Color Themes
+#+begin_src emacs-lisp
+(defun nk/after-theme-changed ()
+  "Custom face settings after theme changed."
+  (interactive)
+  (org-bullets-mode nil)
+  (org-bullets-mode t)
+  (set-face-attribute 'mode-line nil :font "JetBrains Mono 12")
+  (custom-set-faces
+   '(show-paren-match ((t (:background "red" :foreground "blue" :inverse-video t :weight bold))))
+   '(region ((t (:foreground "#f1c40f" :background "#2c3e50" :inverse-video t))))
+   `(cursor ((t (:foreground "white" :background "red"))))
+   )
+  (setq doom-modeline-height 20)
+  (message "nk/after-theme-changed done")
+  )
+
+(defun disable-all-custom-themes ()
+  "Disable all themes and then load a single theme interactively."
+  (interactive)
+  (while custom-enabled-themes
+    (disable-theme (car custom-enabled-themes))) )
+#+end_src
 ** Goto Line
-    - =M-g M-g   = goto line number and shows line numbers
-    #+begin_src emacs-lisp
-      (defun goto-line-with-feedback ()
-        "Show line numbers temporarily, while prompting for the line number input"
-        (interactive)
-        (unwind-protect
-            (progn
-              (linum-mode 1)
-              (call-interactively 'goto-line))
-          (linum-mode -1)))
-    #+end_src
+- =M-g M-g   = goto line number and shows line numbers
+  #+begin_src emacs-lisp
+(defun goto-line-with-feedback ()
+  "Show line numbers temporarily, while prompting for the line number input"
+  (interactive)
+  (unwind-protect
+      (progn
+        (linum-mode 1)
+        (call-interactively 'goto-line))
+    (linum-mode -1)))
+  #+end_src
 ** TODO Zentrierter Schreiben
 #+begin_src emacs-lisp
 ;; (defun nk/centered
@@ -169,310 +196,215 @@
 ;;   )
 #+end_src
 * Tastenkürzel Control Meta
-  - =C      = Shorthand for the ctrl-key
-  - =M      = Shorthand for the meta-key (bound to cmd on my mac settings)
-  - =S      = Shorthand for the shift-key
-  - =H      = Shorthand for the fn-key
-  - =A      = Shorthand for the alt(option)-key
-  - =s      = Shorthand for the super-key
-
-    #+begin_src emacs-lisp
-      (general-define-key
-       "C-<f11>" '(lambda () (interactive)(setq mac-option-modifier 'none) (message "Modifier Option set to none"))
-       "s-<f11>" '(lambda () (interactive)(setq mac-option-modifier 'alt) (message "Modifier Option set to alt"))
-      )
-    #+end_src
 
 ** Editing
-*** Select Text and Fast
-    - =C-A-u   = Set mark at where point is, clear mark, or jump to mark.
-    - =A-up    = Increase selected region by semantic units.
-    - =A-down  = Contract the selected region to its previous size.
-    - =A-C-g   = Mark next like this
-    - =A-C-h   = Mark previous like this
-    - =C-c m c = Add one cursor to each line of the active region.
-    - =C-c m a = Find and mark all the parts of the buffer matching the currently active region
-    - =M-S-f   = Marks one word forward
-    - =M-S-b   = Marks one word backward
-    - =M-h     = Move point to the beginning of the current *paragraph*, and set mark at the end.
-
-    #+begin_src emacs-lisp
-      (global-unset-key (kbd "A-<tab>"))
-      (global-unset-key (kbd "C-@"))
-      (global-unset-key (kbd "M-SPC"))
-      (global-unset-key (kbd "M-@"))
-
-      (general-define-key  "A-C-u" 'set-mark-command)
-      (general-define-key  "M-SPC" 'set-mark-command)
-      (general-define-key  "s-SPC" 'set-mark-command)
-
-
-      (nk/check-package 'expand-region
-                        (lambda () (general-define-key
-                                    "A-<up>"  'er/expand-region
-                                    "A-<down>" 'er/contract-region))
-                        )
-
-      (nk/check-package 'multiple-cursors
-                        (lambda () (general-define-key
-                                    "C-c m c" 'mc/edit-lines
-                                    "A-C-g" 'mc/mark-next-like-this
-                                    "A-C-h" 'mc/mark-previous-like-this
-                                    "C-c m a" 'mc/mark-all-like-this)))
-
-      (general-define-key "s-<right>" 'move-end-of-line
-                          "s-<left>" 'move-beginning-of-line)
-    #+end_src
-*** Duplicate Line or Region
-    *C-c d*
-    Duplicate current line or selected block
-    #+begin_src emacs-lisp
-      (defun duplicate-line-or-region (&optional n)
-        "Duplicate current line, or region if active.
-      With argument N, make N copies.
-      With negative N, comment out original line and use the absolute value."
-        (interactive "*p")
-        (let ((use-region (use-region-p)))
-          (save-excursion
-            (let ((text (if use-region        ;Get region if active, otherwise line
-                            (buffer-substring (region-beginning) (region-end))
-                          (prog1 (thing-at-point 'line)
-                            (end-of-line)
-                            (if (< 0 (forward-line 1)) ;Go to beginning of next line, or make a new one
-                                (newline))))))
-              (dotimes (i (abs (or n 1)))     ;Insert N times, or once if not specified
-                (insert text))))
-          (if use-region nil                  ;Only if we're working with a line (not a region)
-            (let ((pos (- (point) (line-beginning-position)))) ;Save column
-              (if (> 0 n)                             ;Comment out original with negative arg
-                  (comment-region (line-beginning-position) (line-end-position)))
-              (forward-line 1)
-              (forward-char pos)))))
-
-    #+end_src
-    #+begin_src emacs-lisp
-      (general-define-key "C-c d" 'duplicate-line-or-region)
-    #+end_src
-
-*** Upper Lower Case Toggle
-    #+begin_src emacs-lisp
-      ;; (nk/check-package 'xah-fly-keys
-      ;;                   (lambda () (general-define-key "C-S-u" 'xah-toggle-letter-case)))
-      (global-unset-key (kbd "s-u"))
-      (general-define-key
-       "C-S-u" 'xah-toggle-letter-case
-       "s-U" 'xah-toggle-letter-case)
-    #+end_src
-*** Quit Exit
-    - =C-g    = Quit out of whatever mess you've gotten yourself into
-
 *** TODO Auto Complete
-    #+BEGIN_SRC emacs-lisp
-      ;; (global-unset-key (kbd "M-SPC")) ; now used as set-mark-command
-    #+end_src
+#+BEGIN_SRC emacs-lisp
+;; (global-unset-key (kbd "M-SPC")) ; now used as set-mark-command
+#+end_src
 *** Move Text
-    #+begin_src emacs-lisp
-      (nk/check-package 'move-text (lambda () (general-define-key
-                                               "M-S-<up>"  'move-text-up
-                                               "M-S-<down>"  'move-text-down)))
-    #+end_src
+#+begin_src emacs-lisp
+(nk/check-package 'move-text (lambda () (general-define-key
+                                         "M-S-<up>"  'move-text-up
+                                         "M-S-<down>"  'move-text-down)))
+#+end_src
 *** Comment line and region
-    - =C-S-c = Comment or uncomment current line.
-    - =C-A-c = Comment or uncomment each line in the region.
-    #+begin_src emacs-lisp
-      (global-unset-key (kbd "C-x C-;"))
+- =C-S-c = Comment or uncomment current line.
+- =C-A-c = Comment or uncomment each line in the region.
+  #+begin_src emacs-lisp
+(global-unset-key (kbd "C-x C-;"))
 
-      (general-define-key
-       "C-S-c" 'comment-line
-       "C-A-c" 'comment-or-uncomment-region)
-    #+end_src
+(general-define-key
+ "C-S-c" 'comment-line
+ "C-A-c" 'comment-or-uncomment-region)
+  #+end_src
 *** Spell Checking
-    #+begin_src emacs-lisp
-      (nk/check-package 'flyspell-correct
-                        (lambda () (general-define-key "C-M-," 'flyspell-correct-wrapper)))
-    #+end_src
+#+begin_src emacs-lisp
+(nk/check-package 'flyspell-correct
+                  (lambda () (general-define-key "C-M-," 'flyspell-correct-wrapper)))
+#+end_src
 ** General
 *** Run A Command By Name
-    - =M-x     =
-    - =C-xm    =
-    - =C-x C-m =
-    #+begin_src emacs-lisp
-      ;; Smart M-x
-      ;; (nk/check-package 'smex (lambda ()  (general-define-key "M-x" 'smex
-      ;;                                                        "\C-xm" 'smex
-      ;;                                                        "M-X" 'smex-major-mode-commands
-      ;;                                                        "\C-x\C-m" 'smex-major-mode-commands
-      ;;                                                        "C-c C-c M-x" 'execute-extended-command)))
-      (general-define-key "M-x" 'smex
-                          "\C-xm" 'execute-extended-command
-                          "M-X" 'execute-extended-command
-                          "\C-x\C-m" 'execute-extended-command
-                          "s-A" 'execute-extended-command
-                          )
-    #+end_src
+- =M-x     =
+- =C-xm    =
+- =C-x C-m =
+  #+begin_src emacs-lisp
+;; Smart M-x
+;; (nk/check-package 'smex (lambda ()  (general-define-key "M-x" 'smex
+;;                                                        "\C-xm" 'smex
+;;                                                        "M-X" 'smex-major-mode-commands
+;;                                                        "\C-x\C-m" 'smex-major-mode-commands
+;;                                                        "C-c C-c M-x" 'execute-extended-command)))
+(general-define-key "M-x" 'smex
+                    "\C-xm" 'execute-extended-command
+                    "M-X" 'execute-extended-command
+                    "\C-x\C-m" 'execute-extended-command
+                    "s-A" 'execute-extended-command
+                    )
+  #+end_src
 *** TODO Recenter
 *** Open Files in Buffer and Project Management
-    #+begin_src emacs-lisp
-      (general-define-key
-       "C-x f" 'recentf-ido-find-file
-       "C-x F r" 'recentf-ido-find-file
-       "C-x F w" 'ido-find-file-other-window
-       )
+#+begin_src emacs-lisp
+(general-define-key
+ "C-x f" 'recentf-ido-find-file
+ "C-x F r" 'recentf-ido-find-file
+ "C-x F w" 'ido-find-file-other-window
+ )
 
-      (general-define-key
-       "C-x F p" 'projectile-command-map
-       "C-c p" 'projectile-command-map)
-    #+end_src
+(general-define-key
+ "C-x F p" 'projectile-command-map
+ "C-c p" 'projectile-command-map)
+#+end_src
 *** Relly Quite
-    #+begin_src emacs-lisp
-      (global-unset-key (kbd "C-x C-c"))
-      (general-define-key  "C-x r q" 'save-buffers-kill-terminal)
-    #+end_src
+#+begin_src emacs-lisp
+(global-unset-key (kbd "C-x C-c"))
+(general-define-key  "C-x r q" 'save-buffers-kill-terminal)
+#+end_src
 ** Appearance
 *** Text Scale remapping keybindings
-    #+BEGIN_SRC emacs-lisp
-      (general-define-key "C-x C-A-b" 'text-scale-increase
-                          "C-x C-A-t" 'text-scale-decrease)
-    #+END_SRC
+#+BEGIN_SRC emacs-lisp
+(general-define-key "C-x C-A-b" 'text-scale-increase
+                    "C-x C-A-t" 'text-scale-decrease)
+#+END_SRC
 *** View Mode
-    #+begin_src emacs-lisp
-      (nk/check-package 'olivetti (lambda () (general-define-key "<f7>" 'olivetti-mode)))
-    #+end_src
+#+begin_src emacs-lisp
+(nk/check-package 'olivetti (lambda () (general-define-key "<f7>" 'olivetti-mode)))
+#+end_src
 ** TODO Usage Search
 ** Navigation
 *** Move more quickly
-    #+begin_src emacs-lisp
-      (global-set-key (kbd "C-S-<down>")
-                      (lambda ()
-                        (interactive)
-                        (ignore-errors (next-line 5))))
+#+begin_src emacs-lisp
+(global-set-key (kbd "C-S-<down>")
+                (lambda ()
+                  (interactive)
+                  (ignore-errors (next-line 5))))
 
 
-      (global-set-key (kbd "C-S-<up>")
-                      (lambda ()
-                        (interactive)
-                        (ignore-errors (previous-line 5))))
+(global-set-key (kbd "C-S-<up>")
+                (lambda ()
+                  (interactive)
+                  (ignore-errors (previous-line 5))))
 
-      (global-set-key (kbd "C-S-<right>")
-                      (lambda ()
-                        (interactive)
-                        (ignore-errors (forward-char 5))))
+(global-set-key (kbd "C-S-<right>")
+                (lambda ()
+                  (interactive)
+                  (ignore-errors (forward-char 5))))
 
-      (global-set-key (kbd "C-S-<left>")
-                      (lambda ()
-                        (interactive)
-                        (ignore-errors (backward-char 5))))
+(global-set-key (kbd "C-S-<left>")
+                (lambda ()
+                  (interactive)
+                  (ignore-errors (backward-char 5))))
 
-      (global-set-key (kbd "C-S-a")
-                      (lambda ()
-                        (interactive)
-                        (ignore-errors (next-line 5))))
+(global-set-key (kbd "C-S-a")
+                (lambda ()
+                  (interactive)
+                  (ignore-errors (next-line 5))))
 
-      (global-set-key (kbd "C-S-l")
-                      (lambda ()
-                        (interactive)
-                        (ignore-errors (previous-line 5))))
+(global-set-key (kbd "C-S-l")
+                (lambda ()
+                  (interactive)
+                  (ignore-errors (previous-line 5))))
 
-      (global-set-key (kbd "C-S-e")
-                      (lambda ()
-                        (interactive)
-                        (ignore-errors (forward-char 5))))
+(global-set-key (kbd "C-S-e")
+                (lambda ()
+                  (interactive)
+                  (ignore-errors (forward-char 5))))
 
-      (global-set-key (kbd "C-S-i")
-                      (lambda ()
-                        (interactive)
-                        (ignore-errors (backward-char 5))))
+(global-set-key (kbd "C-S-i")
+                (lambda ()
+                  (interactive)
+                  (ignore-errors (backward-char 5))))
 
 
-    #+end_src
+#+end_src
 
 
 *** File Structure
-    =C-<F12>  =
-    Shows quick jumping points of the structure in the file.
-    #+begin_src emacs-lisp
-      (general-define-key "C-<f12>" 'imenu)
-      (general-define-key "C-S-<f12>" 'imenu-anywhere)
-    #+end_src
+=C-<F12>  =
+Shows quick jumping points of the structure in the file.
+#+begin_src emacs-lisp
+(general-define-key "C-<f12>" 'imenu)
+(general-define-key "C-S-<f12>" 'imenu-anywhere)
+#+end_src
 *** Switch buffer
-    - =s-e     =
-    - =C-x C-b =
-    - =C-x b   =
-    Switch to another buffer.
-    #+begin_src emacs-lisp
-      (global-unset-key (kbd "s-e"))
-      (general-define-key "s-e" 'ido-switch-buffer
-                          "C-x C-b" 'ibuffer
-                          "C-x b" 'ido-switch-buffer)
-    #+end_src
+- =s-e     =
+- =C-x C-b =
+- =C-x b   =
+  Switch to another buffer.
+  #+begin_src emacs-lisp
+(global-unset-key (kbd "s-e"))
+(general-define-key "s-e" 'ido-switch-buffer
+                    "C-x C-b" 'ibuffer
+                    "C-x b" 'ido-switch-buffer)
+  #+end_src
 *** Next highlighted error
-    #+begin_src emacs-lisp
-      (general-define-key "<f5>" 'next-error)
-    #+end_src
+#+begin_src emacs-lisp
+(general-define-key "<f5>" 'next-error)
+#+end_src
 *** Go Back/Foward
-    - =C-x <left>    = Go Back current buffer
-    - =C-x <right>   = Go Forward current buffer
-    - =C-x C-<left>  = Go Back over buffers
-    - =C-x C-<right> = Go Forward over buffers
+- =C-x <left>    = Go Back current buffer
+- =C-x <right>   = Go Forward current buffer
+- =C-x C-<left>  = Go Back over buffers
+- =C-x C-<right> = Go Forward over buffers
 
 *** Jump to other Window
-    - =A-S-<up>    = jump a window up
-    - =A-S-<down>  = jump a window down
-    - =A-S-<left>  = jump a window left
-    - =A-S-<right> = jump a window right
-    #+begin_src emacs-lisp
-      (nk/check-package 'windmove (lambda ()
-                                    (general-define-key "<A-S-right>" 'windmove-right
-                                                        "<A-S-left>" 'windmove-left
-                                                        "<A-S-up>" 'windmove-up
-                                                        "<A-S-down>" 'windmove-down) ))
-    #+end_src
+- =A-S-<up>    = jump a window up
+- =A-S-<down>  = jump a window down
+- =A-S-<left>  = jump a window left
+- =A-S-<right> = jump a window right
+  #+begin_src emacs-lisp
+(nk/check-package 'windmove (lambda ()
+                              (general-define-key "<A-S-right>" 'windmove-right
+                                                  "<A-S-left>" 'windmove-left
+                                                  "<A-S-up>" 'windmove-up
+                                                  "<A-S-down>" 'windmove-down) ))
+  #+end_src
 
 *** New Window
-    #+begin_src emacs-lisp
-      (defun split-window-right-and-move-there-dammit ()
-        (interactive)
-        (split-window-right)
-        (windmove-right))
+#+begin_src emacs-lisp
+(defun split-window-right-and-move-there-dammit ()
+  (interactive)
+  (split-window-right)
+  (windmove-right))
 
-      (global-set-key (kbd "C-x 3") 'split-window-right-and-move-there-dammit)
-    #+end_src
+(global-set-key (kbd "C-x 3") 'split-window-right-and-move-there-dammit)
+#+end_src
 *** Macro Step jumps into source code (lisp)
-    Zeigt den Inhalt von elip Funktionen.
-    #+BEGIN_SRC emacs-lisp
-      (if (require 'macrostep nil 'noerror)
-          (require 'macrostep)
-        (message "neo-keybinding missing package: macrostep"))
-    #+END_SRC
+Zeigt den Inhalt von elip Funktionen.
+#+BEGIN_SRC emacs-lisp
+(if (require 'macrostep nil 'noerror)
+    (require 'macrostep)
+  (message "neo-keybinding missing package: macrostep"))
+#+END_SRC
 *** Tool Windows
 **** Neo Tree lists files
-     See documentation and [[https://github.com/jaypei/emacs-neotree][key-bindings]].
-     #+BEGIN_SRC emacs-lisp
-       (nk/check-package 'neotree (lambda ()
-                                    (general-define-key "s-1" 'neotree-toggle)))
-     #+END_SRC
+See documentation and [[https://github.com/jaypei/emacs-neotree][key-bindings]].
+#+BEGIN_SRC emacs-lisp
+(nk/check-package 'neotree (lambda ()
+                             (general-define-key "s-1" 'neotree-toggle)))
+#+END_SRC
 *** Goto Line
-    - =M-g M-g   = goto line number and shows line numbers
-    #+begin_src emacs-lisp
-      (global-set-key [remap goto-line] 'goto-line-with-feedback)
-    #+end_src
+- =M-g M-g   = goto line number and shows line numbers
+  #+begin_src emacs-lisp
+(global-set-key [remap goto-line] 'goto-line-with-feedback)
+  #+end_src
 
 ** Search Replace Highlight
 *** Highlight Symbols Phrases ...
-    - =F6   = Highlight a Symbol under the cursor
-    - =C-F6 = Highlight a Search Pattern with custome color
-    #+begin_src emacs-lisp
-      (general-define-key "<f10>" 'highlight-symbol-at-point
-                          "C-<f10>" 'highlight-phrase)
-    #+end_src
+- =F6   = Highlight a Symbol under the cursor
+- =C-F6 = Highlight a Search Pattern with custome color
+  #+begin_src emacs-lisp
+(general-define-key "<f10>" 'highlight-symbol-at-point
+                    "C-<f10>" 'highlight-phrase)
+  #+end_src
 *** Searching
-    - =C-S   =
-    #+begin_src emacs-lisp
-      (nk/check-package 'swiper (lambda ()(general-define-key
-                                           "C-S-s" 'swiper-isearch
-                                           "C-S-r" 'swiper-isearch-backward
-                                           "C-7" 'swiper-mc) ))
-    #+end_src
+- =C-S   =
+  #+begin_src emacs-lisp
+(nk/check-package 'swiper (lambda ()(general-define-key
+                                     "C-S-s" 'swiper-isearch
+                                     "C-S-r" 'swiper-isearch-backward
+                                     "C-7" 'swiper-mc) ))
+  #+end_src
 ** Live Templates
 ** Version Control System
 ** Refactoring
@@ -482,53 +414,53 @@
 ** Magnars
 *** Files
 
-    -  =C-x C-f= Open a file. Starts in the current directory
-    -  =C-x f  = Open a recently visited file
-    -  =C-x o  = Open a file in the current project (based on .git ++)
-    -  =C-x C-s= Save this file
-    -  =C-x C-w= Save as ...
-    -  =C-x C-j= Jump to this files' current directory
-    -  =C-x b  = Switch to another open file (buffer)
-    -  =C-x C-b= List all open files (buffers)
+-  =C-x C-f= Open a file. Starts in the current directory
+-  =C-x f  = Open a recently visited file
+-  =C-x o  = Open a file in the current project (based on .git ++)
+-  =C-x C-s= Save this file
+-  =C-x C-w= Save as ...
+-  =C-x C-j= Jump to this files' current directory
+-  =C-x b  = Switch to another open file (buffer)
+-  =C-x C-b= List all open files (buffers)
 
 *** Cut copy and paste
 
-    - =C-space= Start marking stuff. C-g to cancel.
-    - =C-w    = Cut (aka kill)
-    - =C-k    = Cut till end of line
-    - =M-w    = Copy
-    - =C-y    = Paste (aka yank)
-    - =M-y    = Cycle last paste through previous kills
-    - =C-x C-y= Choose what to paste from previous kills
-    - =C-@    = Mark stuff quickly. Press multiple times
+- =C-space= Start marking stuff. C-g to cancel.
+- =C-w    = Cut (aka kill)
+- =C-k    = Cut till end of line
+- =M-w    = Copy
+- =C-y    = Paste (aka yank)
+- =M-y    = Cycle last paste through previous kills
+- =C-x C-y= Choose what to paste from previous kills
+- =C-@    = Mark stuff quickly. Press multiple times
 
 *** General
 
-    -  =C-g    = Quit out of whatever mess you've gotten yourself into
-    -  =M-x    = Run a command by name
-    -  =C-.    = Autocomplete
-    -  =C-_    = Undo
-    -  =M-_    = Redo
-    -  =C-x u  = Show the undo-tree
-    -  =C-x m  = Open magit. It's a magical git interface for emacs
+-  =C-g    = Quit out of whatever mess you've gotten yourself into
+-  =M-x    = Run a command by name
+-  =C-.    = Autocomplete
+-  =C-_    = Undo
+-  =M-_    = Redo
+-  =C-x u  = Show the undo-tree
+-  =C-x m  = Open magit. It's a magical git interface for emacs
 
 *** Navigation
 
-    -  =C-arrow= Move past words/paragraphs
-    -  =C-a    = Go to start of line
-    -  =C-e    = Go to end of line
-    -  =M-g M-g= Go to line number
-    -  =C-x C-i= Go to symbol
-    -  =C-s    = Search forward. Press =C-s= again to go further.
-    -  =C-r    = Search backward. Press =C-r= again to go further.
+-  =C-arrow= Move past words/paragraphs
+-  =C-a    = Go to start of line
+-  =C-e    = Go to end of line
+-  =M-g M-g= Go to line number
+-  =C-x C-i= Go to symbol
+-  =C-s    = Search forward. Press =C-s= again to go further.
+-  =C-r    = Search backward. Press =C-r= again to go further.
 
 *** Window management
 
-    -  =C-x 0  = Close this window
-    -  =C-x 1  = Close other windows
-    -  =C-x 2  = Split window horizontally
-    -  =C-x 3  = Split window vertically
-    -  =S-arrow= Jump to window to the left/right/up/down
+-  =C-x 0  = Close this window
+-  =C-x 1  = Close other windows
+-  =C-x 2  = Split window horizontally
+-  =C-x 3  = Split window vertically
+-  =S-arrow= Jump to window to the left/right/up/down
 
 * Super (or Hyper) Keybinding
 ** Default super binding to rethinking
@@ -670,10 +602,17 @@ Comment or uncomment a line or region.
 #+begin_src emacs-lisp
 (global-unset-key (kbd "s-k"))
 #+end_src
-*** h H
-*** g G :search:
+*** h H < :multiple:cursors:
+#+begin_src emacs-lisp
+(general-define-key
+ "A-s-<" 'mc/mark-previous-like-this)
+#+end_src
+*** g G > :search:multiple:cursors:
 #+begin_src emacs-lisp
 (general-define-key "s-G" 'isearch-repeat-backward)
+
+(general-define-key
+ "A-s->" 'mc/mark-next-like-this)
 #+end_src
 *** f F :search:org:
 Remaping for org-mode. The meta key is maped to fn-key, with cursor it behaves diffrent.
@@ -708,6 +647,17 @@ Remaping for org-mode. The meta key is maped to fn-key, with cursor it behaves d
 *** u U
 Idea:
 - s-U *Main menu | Navigate | Go to Super Method*
+
+upper Lower Case Toggle
+
+#+begin_src emacs-lisp
+;; (nk/check-package 'xah-fly-keys
+;;                   (lambda () (general-define-key "C-S-u" 'xah-toggle-letter-case)))
+(global-unset-key (kbd "s-u"))
+(general-define-key
+ "s-U" 'xah-toggle-letter-case)
+#+end_src
+
 *** i I
 *** a A
 *** e E
@@ -755,12 +705,12 @@ Idea:
 ** Lower Row
 *** ü Ü
 *** ö Ö
-*** ä Ä
+*** ä Ä :cursor:jump:
 Cursor Jumps [[https://github.com/abo-abo/avy][Avy-Mode]] like [[https://github.com/winterTTr/ace-jump-mode][Ace-Jump-Mode]]
 #+begin_src emacs-lisp
 (general-define-key
- "s-ä" 'avy-goto-char
- "s-Ä n" 'avy-goto-char-2
+ "s-ä" 'avy-goto-char-2
+ "s-Ä c" 'avy-goto-char
  "s-Ä l" 'avy-goto-line
  "s-Ä w" 'avy-goto-word-1
  "s-Ä o" 'avy-org-goto-heading-timer
@@ -775,18 +725,18 @@ Cursor Jumps [[https://github.com/abo-abo/avy][Avy-Mode]] like [[https://github.
  )
 #+end_src
 *** z Z :undo:redo:
-  - =C-z   = undo
-  - =C-S-z = redo
-  - =C-x u = Show the undo-tree
+- =C-z   = undo
+- =C-S-z = redo
+- =C-x u = Show the undo-tree
 
-    #+begin_src emacs-lisp
+  #+begin_src emacs-lisp
 (nk/check-package 'undo-tree
                   (lambda () (global-unset-key (kbd "C-/"))
                     (global-unset-key (kbd "C-_"))
                     (general-define-key "C-z" 'undo-tree-undo
                                         "C-Z" 'undo-tree-redo
                                         "s-Z" 'undo-tree-redo)))
-    #+end_src
+  #+end_src
 
 *** b B :org:
 #+begin_src emacs-lisp
@@ -812,7 +762,7 @@ Join this line to previous and fix up whitespace at join.
                     "s-J" 'join-line)
 #+end_src
 
-** Space Return Backspace Delete Up Down Right Left
+** Space Return Backspace Delete Up Down Right Left Tab
 *** return
 #+begin_src emacs-lisp
 (general-define-key
@@ -821,9 +771,60 @@ Join this line to previous and fix up whitespace at join.
  "s-<return>" 'org-meta-return
  )
 #+end_src
-*** Cursor up down :text:move:
+*** Cursor up down :text:move:select:
 #+begin_src emacs-lisp
 (nk/check-package 'move-text (lambda () (general-define-key
                                          "s-S-<up>"  'move-text-up
                                          "s-S-<down>"  'move-text-down)))
+#+end_src
+
+
+Erweitere und schrumpfe den selektierten Text.
+
+#+begin_src emacs-lisp
+(nk/check-package 'expand-region
+                  (lambda () (general-define-key
+                              "A-<up>"  'er/expand-region
+                              "A-<down>" 'er/contract-region))
+                  )
+#+end_src
+
+*** Cursor links und rechts :cursor:move:
+
+#+begin_src emacs-lisp
+(general-define-key "s-<right>" 'move-end-of-line
+                    "s-<left>" 'move-beginning-of-line)
+#+end_src
+
+*** Leertaste Space Key :multiple:cursors:
+
+#+begin_src emacs-lisp
+(global-unset-key (kbd "A-<tab>"))
+(global-unset-key (kbd "C-@"))
+(global-unset-key (kbd "M-SPC"))
+(global-unset-key (kbd "M-@"))
+
+(general-define-key  "M-SPC" 'set-mark-command)
+(general-define-key  "s-SPC" 'set-mark-command)
+#+end_src
+
+Select Text and Fast
+
+- =C-c m c = Add one cursor to each line of the active region.
+- =C-c m a = Find and mark all the parts of the buffer matching the currently active region
+
+  #+begin_src emacs-lisp
+(general-define-key
+ "S-s-SPC c" 'mc/edit-lines
+ "S-s-SPC a" 'mc/mark-all-like-this
+ "S-s-SPC p" 'mark-paragraph
+ )
+  #+end_src
+
+
+*** Tab
+Manchmal kommen snippets in den Weg und ich möchte nur einrücken.
+#+begin_src emacs-lisp
+(general-define-key
+ "C-<tab>" 'indent-for-tab-command)
 #+end_src
