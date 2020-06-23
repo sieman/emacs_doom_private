@@ -796,6 +796,18 @@ Erweitere und schrumpfe den selektierten Text.
                     "s-<left>" 'move-beginning-of-line)
 #+end_src
 
+
+**** Smatparam Bug
+Normalerweise springt man mit c-right oder c-left über Wörter hinweg, die Tasten
+werden smartparens überschrieben. Wenn ich mit dem Mode umgehen kann, kann ich
+mir überlegen, ob ich eine andere Zuordnung bevorzuge.
+
+#+begin_src emacs-lisp
+(general-define-key
+ "A-<left>" 'left-word
+ "A-<right>" 'right-word)
+#+end_src
+
 *** Leertaste Space Key :multiple:cursors:
 
 #+begin_src emacs-lisp

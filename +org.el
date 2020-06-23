@@ -3,4 +3,6 @@
 ;; Quickly insert a block of elisp:
 (after! org
       (add-to-list 'org-structure-template-alist
-                    '("el" . "src emacs-lisp")))
+                   '("el" . "src emacs-lisp"))
+      (setq org-use-speed-commands t)
+      )
