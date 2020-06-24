@@ -6,3 +6,5 @@
                    '("el" . "src emacs-lisp"))
       (setq org-use-speed-commands t)
       )
+
+(add-hook! 'org-log-buffer-setup-hook '(require 'org-keys))
