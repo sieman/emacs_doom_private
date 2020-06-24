@@ -639,7 +639,8 @@ Comment or uncomment a line or region.
 *** h H < :multiple:cursors:
 #+begin_src emacs-lisp
 (general-define-key
- "A-s-<" 'mc/mark-previous-like-this)
+ "A-s-<" 'mc/mark-previous-like-this
+ "A-s-h" 'mc/mark-previous-like-this)
 #+end_src
 *** g G > :search:multiple:cursors:
 #+begin_src emacs-lisp
