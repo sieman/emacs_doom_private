@@ -826,12 +826,17 @@ Erweitere und schrumpfe den selektierten Text.
 #+end_src
 
 *** Cursor links und rechts :cursor:move:
-
+Ich habe mich schon so an den Mac Standard gewöhnt, das ich ihn auch bei Emacs haben möchte.
 #+begin_src emacs-lisp
 (general-define-key "s-<right>" 'move-end-of-line
                     "s-<left>" 'move-beginning-of-line)
 #+end_src
 
+Springt zu den letzten Punktion, wo sich der Cursor befand.
+#+begin_src emacs-lisp
+(general-define-key "A-s-<left>" 'better-jumper-jump-backward
+                    "A-s-<right>" 'better-jumper-jump-forward)
+#+end_src
 
 **** Smatparam Bug
 Normalerweise springt man mit c-right oder c-left über Wörter hinweg, die Tasten
