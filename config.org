@@ -51,6 +51,14 @@
   (global-unset-key (kbd "s-x"))
   (general-define-key "s-x" 'kill-region))
 #+end_src
+*** Navigate Back and Forward, the Better Jump
+Ich mag in einem Buffer herumspringen.
+#+begin_src emacs-lisp
+(after! better-jumper
+  (setq! better-jumper-context 'buffer)
+  (setq! better-jumper-use-savehist t)
+  (setq! better-jumper-use-evil-jump-advice nil))
+#+end_src
 ** Modus Anwendungen :settings:modes:
 *** dired
 #+begin_src emacs-lisp
