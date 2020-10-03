@@ -16,6 +16,7 @@
   (beacon-mode t)
   (setq beacon-color "#9a37ff"))
 
+(global-prettify-symbols-mode -1)
 #+end_src
 ** Editor Erweiterungen :editor:
 *** Rechtschreibprüfung :spell:checking:
@@ -71,11 +72,16 @@ Ich mag in einem Buffer herumspringen.
 #+begin_src emacs-lisp
 ;; (with-eval-after-load 'org
 ;; (add-to-list 'sp-ignore-modes-list #'org-mode))
-
 ;; (with-eval-after-load 'org-agenda
 ;; (add-to-list 'sp-ignore-modes-list #'org-agenda-mode))
-(load! "+org")
 
+(after! org
+  (add-to-list 'org-structure-template-alist
+               '("el" . "src emacs-lisp"))
+  (setq org-use-speed-commands t)
+)
+
+(add-hook! 'org-log-buffer-setup-hook '(require 'org-keys))
 #+end_src
 *** smartparens
 #+begin_src emacs-lisp
