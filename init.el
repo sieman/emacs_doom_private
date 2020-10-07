@@ -21,14 +21,14 @@
 
        :completion
        (company           ; the ultimate code completion backend
-         +childframe)
+        +childframe)
        ;;helm              ; the *other* search engine for love and life
        ;;ido               ; the other *other* search engine...
        (ivy              ; a search engine for love and life
-               +childframe
-               +prescient
-               +fuzzy
-               +icons)
+        +childframe
+        +prescient
+        +fuzzy
+        +icons)
 
        :ui
        ;;deft              ; notational velocity for Emacs
@@ -41,7 +41,7 @@
        hydra
        ;;indent-guides     ; highlighted indent columns
        (ligatures         ; ligatures and symbols to make your code pretty again
-         +iosevka)
+        +iosevka)
 
        ;;minimap           ; show a map of the code on the side
        modeline          ; snazzy, Atom-inspired modeline, plus API
@@ -55,7 +55,7 @@
        vc-gutter         ; vcs diff in the fringe
        vi-tilde-fringe   ; fringe tildes to mark beyond EOB
        (window-select     ; visually switch windows
-         +switch-window)
+        +switch-window)
        workspaces        ; tab emulation, persistence & separate workspaces
        zen               ; distraction-free coding or writing
 
@@ -76,7 +76,6 @@
 
        :emacs
        (dired             ; making dired pretty [functional]
-        +ranger
         +icons)
        electric          ; smarter, keyword-based electric-indent
        ibuffer           ; interactive buffer management
@@ -107,7 +106,7 @@
        (eval +overlay)     ; run code, run (also, repls)
        ;;gist              ; interacting with github gists
        (lookup           ; navigate your code and its documentation
-         +docsets)
+        +docsets)
        ;;lsp
        magit             ; a git porcelain for Emacs
        ;;make              ; run make tasks from Emacs
@@ -198,4 +197,4 @@
        :config
        literate
        (default
-        +bindings))
+         +bindings))
