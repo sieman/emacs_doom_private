@@ -16,8 +16,6 @@
   (beacon-mode t)
   (setq beacon-color "#9a37ff"))
 
-(global-prettify-symbols-mode -1)
-
 ;; Start emacs maximized
 ;;(add-to-list 'default-frame-alist '(fullscreen . maximized))
 ;; Prevents the unstyled mode-line flash at startup
@@ -35,6 +33,14 @@
         :select t
         :ttl    5))
 
+#+end_src
+*** Prety Symbol Mode Disable
+https://github.com/hlissner/doom-emacs/issues/1807
+
+#+begin_src emacs-lisp
+(setq +pretty-code-enabled-modes nil)
+;; or
+(remove-hook 'after-change-major-mode-hook #'+pretty-code-init-pretty-symbols-h)
 #+end_src
 ** Editor Erweiterungen :editor:
 *** Rechtschreibprüfung :spell:checking:
@@ -101,6 +107,16 @@ Ich mag in einem Buffer herumspringen.
 
 (add-hook! 'org-log-buffer-setup-hook '(require 'org-keys))
 #+end_src
+
+*** Deft for org-mode
+
+#+begin_src emacs-lisp
+(setq deft-extensions '("txt" "tex" "org"))
+(setq deft-directory "~/Documents/orgs")
+(setq deft-recursive t)
+(global-set-key [f8] 'deft)
+#+end_src
+
 *** smartparens
 #+begin_src emacs-lisp
 ;; ;; (after! 'smartparens-mode
