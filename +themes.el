@@ -5,6 +5,7 @@
 (setq doom-theme 'doom-solarized-light)
 
 (setq display-line-numbers-type nil)
+(setq doom-font (font-spec :family "Fira Code" :size 12 :weight 'regular))
 
 (custom-set-faces
              '(show-paren-match ((t (:background "red" :foreground "blue" :inverse-video t :weight bold))))
@@ -55,9 +56,9 @@
   ;; Document title font
   (set-face-attribute 'org-document-title nil :height 2.0)
   ;; Face of keyword DONE (Green like strings)
-  (set-face-attribute 'org-done nil :foreground "#98be65")
+  ;; (set-face-attribute 'org-done nil :foreground "#98be65")
   ;; Face of keyword TODO or [ ] (Purple like keywords)
-  (set-face-attribute 'org-todo nil :foreground "#c678dd")
+  ;; (set-face-attribute 'org-todo nil :foreground "#c678dd")
   ;; Face of ellipsis symbol (Purple like keywords)
   (set-face-attribute 'org-ellipsis nil :foreground "#c678dd")
   ;; Face of the entire headline of a DONE line

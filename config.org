@@ -12,9 +12,12 @@
 ;; (custom-set-faces!
 ;;   '(fringe :background "#FFFFFF")
 ;;   '(solaire-fringe-face :background "#FFFFFF"))
-(after! beacon
+
+(use-package! beacon
+  :diminish
+  :config (setq beacon-color "#9a37ff")
   (beacon-mode t)
-  (setq beacon-color "#9a37ff"))
+  )
 
 ;; Start emacs maximized
 ;;(add-to-list 'default-frame-alist '(fullscreen . maximized))
@@ -26,21 +29,22 @@
 
 ;; Select popup buffers by default
 (setq +popup-defaults
-  (list :side   'bottom
-        :height 0.16
-        :width  40
-        :quit   t
-        :select t
-        :ttl    5))
+      (list :side   'bottom
+            :height 0.16
+            :width  40
+            :quit   t
+            :select t
+            :ttl    5))
 
 #+end_src
 *** Prety Symbol Mode Disable
 https://github.com/hlissner/doom-emacs/issues/1807
 
 #+begin_src emacs-lisp
-(setq +pretty-code-enabled-modes nil)
+                                        ;(setq +pretty-code-enabled-modes nil)
 ;; or
-(remove-hook 'after-change-major-mode-hook #'+pretty-code-init-pretty-symbols-h)
+                                        ;(remove-hook 'after-change-major-mode-hook #'+pretty-code-init-pretty-symbols-h)
+;; (setq! +ligatures-composition-alist nil)
 #+end_src
 ** Editor Erweiterungen :editor:
 *** Rechtschreibprüfung :spell:checking:
@@ -103,7 +107,7 @@ Ich mag in einem Buffer herumspringen.
   (add-to-list 'org-structure-template-alist
                '("el" . "src emacs-lisp"))
   (setq org-use-speed-commands t)
-)
+  )
 
 (add-hook! 'org-log-buffer-setup-hook '(require 'org-keys))
 #+end_src
@@ -235,12 +239,13 @@ Toggle case for word at caret or selected block
 #+end_src
 
 ** Color Themes
+
 #+begin_src emacs-lisp
 (defun nk/after-theme-changed ()
   "Custom face settings after theme changed."
   (interactive)
-  (org-bullets-mode nil)
-  (org-bullets-mode t)
+                                        ;(org-bullets-mode nil)
+                                        ;(org-bullets-mode t)
   (set-face-attribute 'mode-line nil :font "JetBrains Mono 12")
   (custom-set-faces
    '(show-paren-match ((t (:background "red" :foreground "blue" :inverse-video t :weight bold))))
