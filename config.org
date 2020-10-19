@@ -241,7 +241,7 @@ Toggle case for word at caret or selected block
 ** Color Themes
 
 #+begin_src emacs-lisp
-(defun nk/after-theme-changed ()
+(defun sim/after-theme-changed ()
   "Custom face settings after theme changed."
   (interactive)
                                         ;(org-bullets-mode nil)
@@ -253,10 +253,10 @@ Toggle case for word at caret or selected block
    `(cursor ((t (:foreground "white" :background "red"))))
    )
   (setq doom-modeline-height 20)
-  (message "nk/after-theme-changed done")
+  (message "sim/after-theme-changed done")
   )
 
-(defun disable-all-custom-themes ()
+(defun sim/disable-all-custom-themes ()
   "Disable all themes and then load a single theme interactively."
   (interactive)
   (while custom-enabled-themes
