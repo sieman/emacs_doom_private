@@ -52,3 +52,4 @@
 
 (package! move-text)
 (package! beacon)
+(package! rg)
