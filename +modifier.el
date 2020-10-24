@@ -19,7 +19,7 @@
 
              mac-right-command-modifier 'super
              mac-right-option-modifier 'alt
-             mac-right-control-modifier 'control
+             mac-right-control-modifier 'meta
 
        ))
 
