@@ -7,6 +7,7 @@
 (setq display-line-numbers-type nil)
 (load! "sim-calendar")
 (load! "~/.emacs.secrets")
+(setq fill-column sim-hard-wrap-at)
 ;; Theme related things
 (load! "+themes")
 ;; (custom-set-faces!
@@ -155,7 +156,40 @@ Ich mag in einem Buffer herumspringen.
 (custom-set-variables
  '(sp-override-key-bindings (quote (("C-<right>") ("C-<left>")))))
 #+end_src
+*** Terminals
 
+**** Ansi-Terminal
+
+C-c C-j (term-line-mode) das Terminal verhält sich wie ein Text-Buffer.
+C-c C-k (term-char-mode) das Terminal verhält fixirt den Cursor auf den Eingabe-Promt.
+
+C-c C-q (term-pager-toggle)
+
+C-c C-c (term-send-raw)
+C-c C-x (term-send-raw)
+
+
+https://echosa.github.io/blog/2012/06/06/improving-ansi-term/
+Wenn man =exit= ins Terminal eingibt beendet sich das Terminal und der Buffer soll sich dabei auch schießen.
+
+#+begin_src emacs-lisp
+(defadvice term-sentinel (around my-advice-term-sentinel (proc msg))
+  (if (memq (process-status proc) '(signal exit))
+      (let ((buffer (process-buffer proc)))
+        ad-do-it
+        (kill-buffer buffer))
+    ad-do-it))
+(ad-activate 'term-sentinel)
+#+end_src
+
+Ich benutze die Z-Shell und ich möchte auch nicht mehr nach einer anderen Shell gefragt werden.
+
+#+begin_src emacs-lisp
+(defvar my-term-shell "/bin/zsh")
+(defadvice ansi-term (before force-bash)
+  (interactive (list my-term-shell)))
+(ad-activate 'ansi-term)
+#+end_src
 * Funktionen
 Hier stehen Funktionen, die für die Tastenkürzel verwendet werden.
 ** Ist das Packet das, das ich gebrauche?
