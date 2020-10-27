@@ -387,10 +387,6 @@ Toggle case for word at caret or selected block
 (general-define-key "C-x C-A-b" 'text-scale-increase
                     "C-x C-A-t" 'text-scale-decrease)
 #+END_SRC
-*** View Mode
-#+begin_src emacs-lisp
-(nk/check-package 'olivetti (lambda () (general-define-key "<f7>" 'olivetti-mode)))
-#+end_src
 ** TODO Usage Search
 ** Navigation
 *** Move more quickly
