@@ -494,12 +494,7 @@ Zeigt den Inhalt von elip Funktionen.
   (message "neo-keybinding missing package: macrostep"))
 #+END_SRC
 *** Tool Windows
-**** Neo Tree lists files
-See documentation and [[https://github.com/jaypei/emacs-neotree][key-bindings]].
-#+BEGIN_SRC emacs-lisp
-(nk/check-package 'neotree (lambda ()
-                             (general-define-key "s-1" 'neotree-toggle)))
-#+END_SRC
+
 *** Goto Line
 - =M-g M-g   = goto line number and shows line numbers
   #+begin_src emacs-lisp
