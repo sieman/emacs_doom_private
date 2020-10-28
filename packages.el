@@ -53,3 +53,5 @@
 (package! move-text)
 (package! beacon)
 (package! rg)
+(package! rainbow-mode)
+(package! sublimity)

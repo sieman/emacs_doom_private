@@ -89,6 +89,13 @@ Ich mag in einem Buffer herumspringen.
   (setq! better-jumper-use-savehist t)
   (setq! better-jumper-use-evil-jump-advice nil))
 #+end_src
+
+*** Show Keys
+Dies ist ein Minor-Mode und zeigt die gedrückten Tasten an.
+#+begin_src emacs-lisp
+(load! "+show-keys.el")
+#+end_src
+
 ** Modus Anwendungen :settings:modes:
 *** dired
 #+begin_src emacs-lisp
@@ -190,6 +197,19 @@ Ich benutze die Z-Shell und ich möchte auch nicht mehr nach einer anderen Shell
   (interactive (list my-term-shell)))
 (ad-activate 'ansi-term)
 #+end_src
+
+
+*** Sublimity
+Die Sublimity-Erweiterung bietet Sublime ähnliches weiches scolling und experimentelle Minimap.
+
+You can also require sublimity-attractive if you want to center everything for a distraction-free mode.  I do not use this extension, hence the reason I have sublimity-mode set to 0.  Set this to 1 to enable it.
+#+begin_src emacs-lisp
+(require 'sublimity-scroll)
+(require 'sublimity-map)
+(require 'sublimity-attractive)
+(sublimity-mode 0)
+#+end_src
+
 * Funktionen
 Hier stehen Funktionen, die für die Tastenkürzel verwendet werden.
 ** Ist das Packet das, das ich gebrauche?
