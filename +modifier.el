@@ -11,6 +11,17 @@
 
 (when (eq system-type 'darwin)
        (setq
+
+             ns-function-modifier nil
+
+             ns-control-modifier nil
+             ns-option-modifier nil
+             ns-command-modifier nil
+
+             ns-right-command-modifier nil
+             ns-right-option-modifier nil
+             ns-right-control-modifier nil
+
              mac-function-modifier 'meta
 
              mac-control-modifier 'control
