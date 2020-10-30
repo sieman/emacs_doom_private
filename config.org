@@ -60,14 +60,6 @@ https://github.com/hlissner/doom-emacs/issues/1807
 (load! "+modifier.el")
 #+end_src
 
-*** Smartparent
-#+begin_src emacs-lisp
-(after! smartparens
-  (smartparens-global-mode -1)
-  ;; (smartparens-mode -1)
-  (turn-off-smartparens-mode)
-  )
-#+end_src
 *** Multiple Cursors
 #+begin_src emacs-lisp
 (after! multiple-cursors
@@ -160,8 +152,16 @@ Dies ist ein Minor-Mode und zeigt die gedrückten Tasten an.
 ;;   (global-unset-key (kbd "M-F")) ; . sp-forward-symbol)
 ;;   (global-unset-key (kbd "M-B")) ; . sp-backward-symbol)
 ;; ;; )
-(custom-set-variables
- '(sp-override-key-bindings (quote (("C-<right>") ("C-<left>")))))
+;; (custom-set-variables
+ ;; '(sp-override-key-bindings (quote (("C-<right>") ("C-<left>")))))
+
+(defun sim/disable-smartparens ()
+  "Disable smartparens mode globaly."
+  (interactive)
+  (turn-off-smartparens-mode)
+  (turn-off-smartparens-strict-mode)
+  (smartparens-global-mode -1)
+  )
 #+end_src
 *** Terminals
 
@@ -198,7 +198,6 @@ Ich benutze die Z-Shell und ich möchte auch nicht mehr nach einer anderen Shell
 (ad-activate 'ansi-term)
 #+end_src
 
-
 *** Sublimity
 Die Sublimity-Erweiterung bietet Sublime ähnliches weiches scolling und experimentelle Minimap.
 
@@ -209,7 +208,19 @@ You can also require sublimity-attractive if you want to center everything for a
 (require 'sublimity-attractive)
 (sublimity-mode 0)
 #+end_src
+*** Cider Clojure Enviroment
+Ich möchte gerne eine Historie für die REPL haben.
 
+#+begin_src emacs-lisp
+;; (after! cider-repl-mode
+;;   (setq cider-repl-history-size 100000
+;;         cider-repl-history-file "~/.organisation/snippedlab/clojure-repl-history"
+;;         ))
+(add-hook! 'cider-mode-hook
+  (setq cider-repl-history-size 10000
+        cider-repl-history-file "~/.organisation/snippedlab/clojure-repl-history"
+        ))
+#+end_src
 * Funktionen
 Hier stehen Funktionen, die für die Tastenkürzel verwendet werden.
 ** Ist das Packet das, das ich gebrauche?
@@ -827,8 +838,16 @@ upper Lower Case Toggle
   :prefix "s-O"
   "o" 'org-open-at-point
   "s" 'org-edit-special)
+
+(general-def cider-repl-mode-map
+  "s-o" 'cider-repl-history)
 #+end_src
 *** s S
+
+#+begin_src emacs-lisp
+(general-def cider-repl-mode-map
+  "s-s" 'cider-repl-history-save)
+#+end_src
 *** n N :org:
 #+begin_src emacs-lisp
 (global-unset-key (kbd "s-n"))
