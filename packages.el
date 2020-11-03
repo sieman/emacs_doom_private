@@ -55,3 +55,4 @@
 (package! rg)
 (package! rainbow-mode)
 (package! sublimity)
+(package! xah-fly-keys)

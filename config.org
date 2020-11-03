@@ -359,6 +359,20 @@ Ein nützliches Schnippel zum Beschreiben von einzelnen Keymaps von [[https://st
     (with-current-buffer standard-output ;; temp buffer
       (setq help-xref-stack-item (list #'my-describe-keymap keymap)))))
 #+end_src
+
+** (de)activate Fly Keys by Xah Lee
+
+#+begin_src emacs-lisp
+(defun sim/turn-on-fly-keys
+    (interactive)
+  (require 'xah-fly-keys)
+  (xah-fly-keys-set-layout "neo2") ; required
+  (xah-fly-keys 1))
+
+(defun sim/turn-off-fly-keys
+    (interactive)
+  (xah-fly-keys-off))
+#+end_src
 * Tastenkürzel Control Meta
 
 ** Editing
