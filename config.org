@@ -216,10 +216,10 @@ Ich möchte gerne eine Historie für die REPL haben.
 ;;   (setq cider-repl-history-size 100000
 ;;         cider-repl-history-file "~/.organisation/snippedlab/clojure-repl-history"
 ;;         ))
-(add-hook! 'cider-mode-hook
-  (setq cider-repl-history-size 10000
-        cider-repl-history-file "~/.organisation/snippedlab/clojure-repl-history"
-        ))
+;; (add-hook! 'cider-mode-hook
+  ;; (setq cider-repl-history-size 10000
+;;        cider-repl-history-file "~/.organisation/snippedlab/clojure-repl-history"
+        ;; ))
 #+end_src
 * Funktionen
 Hier stehen Funktionen, die für die Tastenkürzel verwendet werden.
@@ -701,7 +701,7 @@ Idea: refactor *copy*
 If you search with none alpha numerics signs like (
 #+begin_src emacs-lisp
 (general-define-key
- "C-<f11>" '(lambda () (interactive)(setq mac-option-modifier 'none) (message "Modifier Option set to none"))
+ "C-<f11>" '(lambda () (interactive)(setq mac-option-modifier nil) (message "Modifier Option set to nil"))
  "s-<f11>" '(lambda () (interactive)(setq mac-option-modifier 'alt) (message "Modifier Option set to alt"))
  )
 #+end_src
