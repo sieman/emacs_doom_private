@@ -363,15 +363,23 @@ Ein nützliches Schnippel zum Beschreiben von einzelnen Keymaps von [[https://st
 ** (de)activate Fly Keys by Xah Lee
 
 #+begin_src emacs-lisp
-(defun sim/turn-on-fly-keys
+(defun sim/fly-keys-on ()
     (interactive)
   (require 'xah-fly-keys)
-  (xah-fly-keys-set-layout "neo2") ; required
-  (xah-fly-keys 1))
+  (xah-fly-keys-set-layout "neo2")
+  (xah-fly-keys 1)
+  ;; (setq mac-command-modifier 'hyper)
+  ;; (setq mac-command-modifier (lambda ()
+                                ;; (interactive) (message "xah-fly-command-mode-activate"))
+  ;; (general-define-key "<hyper>" 'xah-fly-command-mode-activate)
+  ;;(global-set-key [(hyper)] 'xah-fly-command-mode-activate)
+  )
 
-(defun sim/turn-off-fly-keys
+(defun sim/fly-keys-off ()
     (interactive)
-  (xah-fly-keys-off))
+  (xah-fly-keys-off)
+  (setq mac-command-modifier 'super)
+  )
 #+end_src
 * Tastenkürzel Control Meta
 

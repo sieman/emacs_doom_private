@@ -60,6 +60,15 @@ function edoomStandard {
   ln -s ~/.e/others/standard.doom ~/.e/doom
 }
 
+function edoomWhatDothLife {
+  rm ~/.doom.d
+  ln -s ~/.e/others/WhatDothLife ~/.doom.d
+  rm ~/.emacs.d
+  ln -s ~/.e/others/WhatDothLife.doom ~/.emacs.d
+  rm ~/.e/doom
+  ln -s ~/.e/others/WhatDothLife.doom ~/.e/doom
+}
+
 function edoomTecosaur {
   # git clone --depth 1 https://github.com/tecosaur/emacs-config.git tecosaur
   # git clone --depth 1 https://github.com/hlissner/doom-emacs tecosaur.doom
