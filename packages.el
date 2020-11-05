@@ -55,4 +55,4 @@
 (package! rg)
 (package! rainbow-mode)
 (package! sublimity)
-(package! xah-fly-keys)
+(package! xah-fly-keys :recipe (:host github :repo "sieman/xah-fly-keys"))
