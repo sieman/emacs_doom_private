@@ -381,6 +381,20 @@ Ein nützliches Schnippel zum Beschreiben von einzelnen Keymaps von [[https://st
   (setq mac-command-modifier 'super)
   )
 #+end_src
+** (de)activate Alt Modifier
+#+begin_src emacs-lisp
+(defun sim/disable-alt-modifier ()
+  (interactive)
+  (setq mac-option-modifier 'none
+        mac-right-option-modifier 'none)
+  (message "Modifier Option set to none"))
+
+(defun sim/enable-alt-modifier ()
+  (interactive)
+  (setq mac-option-modifier 'alt
+        mac-right-option-modifier 'alt)
+  (message "Modifier Option set to alt"))
+#+end_src
 * Tastenkürzel Control Meta
 
 ** Editing
@@ -722,9 +736,9 @@ Idea: refactor *copy*
 *** <f11>
 If you search with none alpha numerics signs like (
 #+begin_src emacs-lisp
-(general-define-key
- "C-<f11>" '(lambda () (interactive)(setq mac-option-modifier nil) (message "Modifier Option set to nil"))
- "s-<f11>" '(lambda () (interactive)(setq mac-option-modifier 'alt) (message "Modifier Option set to alt"))
+(general-def    ine-key
+ "C-<f11>" 'sim/disable-alt-modifier
+ "s-<f11>" 'sim/enable-alt-modifier
  )
 #+end_src
 *** <f12>
