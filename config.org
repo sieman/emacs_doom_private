@@ -360,27 +360,6 @@ Ein nützliches Schnippel zum Beschreiben von einzelnen Keymaps von [[https://st
       (setq help-xref-stack-item (list #'my-describe-keymap keymap)))))
 #+end_src
 
-** (de)activate Fly Keys by Xah Lee
-
-#+begin_src emacs-lisp
-(defun sim/fly-keys-on ()
-    (interactive)
-  (require 'xah-fly-keys)
-  (xah-fly-keys-set-layout "neo2")
-  (xah-fly-keys 1)
-  ;; (setq mac-command-modifier 'hyper)
-  ;; (setq mac-command-modifier (lambda ()
-                                ;; (interactive) (message "xah-fly-command-mode-activate"))
-  ;; (general-define-key "<hyper>" 'xah-fly-command-mode-activate)
-  ;;(global-set-key [(hyper)] 'xah-fly-command-mode-activate)
-  )
-
-(defun sim/fly-keys-off ()
-    (interactive)
-  (xah-fly-keys-off)
-  (setq mac-command-modifier 'super)
-  )
-#+end_src
 ** (de)activate Alt Modifier
 #+begin_src emacs-lisp
 (defun sim/disable-alt-modifier ()
@@ -394,6 +373,28 @@ Ein nützliches Schnippel zum Beschreiben von einzelnen Keymaps von [[https://st
   (setq mac-option-modifier 'alt
         mac-right-option-modifier 'alt)
   (message "Modifier Option set to alt"))
+#+end_src
+** (de)activate Fly Keys by Xah Lee
+
+#+begin_src emacs-lisp
+(defun sim/fly-keys-on ()
+    (interactive)
+  (require 'xah-fly-keys)
+  (xah-fly-keys-set-layout "neo2")
+  (xah-fly-keys 1)
+  ;; (setq mac-command-modifier 'hyper)
+  ;; (setq mac-command-modifier (lambda ()
+                                ;; (interactive) (message "xah-fly-command-mode-activate"))
+  ;; (general-define-key "<hyper>" 'xah-fly-command-mode-activate)
+  ;;(global-set-key [(hyper)] 'xah-fly-command-mode-activate)
+  (define-key xah-fly-key-map (kbd "<home>") 'xah-fly-mode-toggle)
+  )
+
+(defun sim/fly-keys-off ()
+    (interactive)
+  (xah-fly-keys-off)
+  (setq mac-command-modifier 'super)
+  )
 #+end_src
 * Keybinding
 ** Function Keys Row
