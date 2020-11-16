@@ -107,11 +107,17 @@ Dies ist ein Minor-Mode und zeigt die gedrückten Tasten an.
   (add-to-list 'org-structure-template-alist
                '("el" . "src emacs-lisp"))
   (setq org-use-speed-commands t)
+  ;(require 'ob-clojure)
+  (setq org-babel-clojure-backend 'cider)
+
   )
 
 (add-hook! 'org-log-buffer-setup-hook '(require 'org-keys))
 #+end_src
 
+*Babel Support*
+Ich möchte gerne Ergebnisse aus Clojures Code mit in org-Dateien einfügen.
+[[https://www.orgmode.org/worg/org-contrib/babel/languages/ob-doc-clojure.html][Org-babel support for Clojure]]
 *** Deft for org-mode
 
 #+begin_src emacs-lisp
@@ -313,10 +319,11 @@ Toggle case for word at caret or selected block
                                         ;(org-bullets-mode t)
   (set-face-attribute 'mode-line nil :font "JetBrains Mono 12")
   (custom-set-faces
-   '(show-paren-match ((t (:background "red" :foreground "blue" :inverse-video t :weight bold))))
+   '(show-paren-match ((t (:background "black" :foreground "yellow" :inverse-video t :weight bold))))
    '(region ((t (:foreground "#f1c40f" :background "#2c3e50" :inverse-video t))))
    `(cursor ((t (:foreground "white" :background "red"))))
    )
+  (custom-set-variables '(cursor-type 'bar))
   (setq doom-modeline-height 20)
   (message "sim/after-theme-changed done")
   )
@@ -380,7 +387,8 @@ Ein nützliches Schnippel zum Beschreiben von einzelnen Keymaps von [[https://st
 (defun sim/fly-keys-on ()
     (interactive)
   (require 'xah-fly-keys)
-  (xah-fly-keys-set-layout "neo2")
+  ;(xah-fly-keys-set-layout "neo2")
+  (xah-fly-keys-set-layout "qwerty")
   (xah-fly-keys 1)
   ;; (setq mac-command-modifier 'hyper)
   ;; (setq mac-command-modifier (lambda ()
@@ -439,7 +447,7 @@ Idea: refactor *copy*
 *** <f11>
 If you search with none alpha numerics signs like (
 #+begin_src emacs-lisp
-(general-def    ine-key
+(general-define-key
  "C-<f11>" 'sim/disable-alt-modifier
  "s-<f11>" 'sim/enable-alt-modifier
  )
