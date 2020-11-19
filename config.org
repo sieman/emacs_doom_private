@@ -491,6 +491,9 @@ Shows a popup menu with a history kills, it's like a clipboard history.
   (general-define-key "s-V" '(lambda ()
                                (interactive)
                                (popup-menu 'yank-menu))))
+(after! term
+  '(general-def term-raw-map
+     "s-v" 'term-paste))
 #+end_src
 
 *** l L
@@ -682,6 +685,7 @@ Cursor Jumps [[https://github.com/abo-abo/avy][Avy-Mode]] like [[https://github.
 - =C-z   = undo
 - =C-S-z = redo
 - =C-x u = Show the undo-tree
+
 
   #+begin_src emacs-lisp
 (nk/check-package 'undo-tree
