@@ -104,8 +104,9 @@ Dies ist ein Minor-Mode und zeigt die gedrückten Tasten an.
 ;; (add-to-list 'sp-ignore-modes-list #'org-agenda-mode))
 
 (after! org
-  (add-to-list 'org-structure-template-alist
-               '("el" . "src emacs-lisp"))
+  (add-to-list 'org-structure-template-alist '("se" . "src emacs-lisp"))
+  (add-to-list 'org-structure-template-alist '("sc" . "src clojure"))
+
   (setq org-use-speed-commands t)
   ;(require 'ob-clojure)
   (setq org-babel-clojure-backend 'cider)
