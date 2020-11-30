@@ -502,7 +502,7 @@ Shows a popup menu with a history kills, it's like a clipboard history.
                                (interactive)
                                (popup-menu 'yank-menu))))
 (after! term
-  '(general-def term-raw-map
+  (general-def term-raw-map
      "s-v" 'term-paste))
 #+end_src
 
