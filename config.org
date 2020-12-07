@@ -64,6 +64,7 @@ https://github.com/hlissner/doom-emacs/issues/1807
 #+begin_src emacs-lisp
 (after! multiple-cursors
   (setq! mc/list-file "~/.e/sieman/mc-lists.el")
+  (define-key mc/keymap (kbd "<return>") nil)
   )
 #+end_src
 *** Ivy is a generic completion mechanism for Emacs.
