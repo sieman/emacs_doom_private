@@ -394,13 +394,13 @@ Ein nützliches Schnippel zum Beschreiben von einzelnen Keymaps von [[https://st
 
 ** (de)activate Alt Modifier
 #+begin_src emacs-lisp
-(defun sim/set-none-alt-modifier ()
+(defun sim/disable-alt-modifier ()
   (interactive)
   (setq mac-option-modifier 'none
         mac-right-option-modifier 'none)
   (message "Modifier Option set to none"))
 
-(defun sim/set-alt-modifier ()
+(defun sim/enable-alt-modifier ()
   (interactive)
   (setq mac-option-modifier 'alt
         mac-right-option-modifier 'alt)
