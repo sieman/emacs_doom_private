@@ -29,14 +29,13 @@
 (select-frame-set-input-focus (selected-frame))
 
 ;; Select popup buffers by default
-(setq +popup-defaults
-      (list :side   'bottom
-            :height 0.16
-            :width  40
-            :quit   t
-            :select t
-            :ttl    5))
-
+;; (setq +popup-defaults
+;;       (list :side   'bottom
+;;             :height 0.16
+;;             :width  40
+;;             :quit   t
+;;             :select t
+;;             :ttl    5))
 #+end_src
 *** Prety Symbol Mode Disable
 https://github.com/hlissner/doom-emacs/issues/1807
