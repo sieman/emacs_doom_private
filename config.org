@@ -220,6 +220,9 @@ You can also require sublimity-attractive if you want to center everything for a
 Ich möchte gerne eine Historie für die REPL haben.
 
 #+begin_src emacs-lisp
+;; (after! cider
+(set-popup-rule! "^\\*cider-clojuredocs\\*" :side 'right :size 0.5)
+  ;; )
 ;; (after! cider-repl-mode
 ;;   (setq cider-repl-history-size 100000
 ;;         cider-repl-history-file "~/.organisation/snippedlab/clojure-repl-history"
