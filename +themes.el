@@ -11,7 +11,7 @@
  '(show-paren-match ((t (:background "black" :foreground "yellow" :inverse-video t :weight bold))))
  '(region ((t (:foreground "#f1c40f" :background "#2c3e50" :inverse-video t))))
  `(cursor ((t (:foreground "white" :background "red")))))
-(custom-set-variables '(cursor-type 'bar))
+(custom-set-variables '(cursor-type 'box))
 ;; All themes are safe to load
 (setq custom-safe-themes t)
 
