@@ -10,9 +10,6 @@
 (setq fill-column sim-hard-wrap-at)
 ;; Theme related things
 (load! "+themes")
-;; (custom-set-faces!
-;;   '(fringe :background "#FFFFFF")
-;;   '(solaire-fringe-face :background "#FFFFFF"))
 
 (use-package! beacon
   :diminish
@@ -20,10 +17,7 @@
   (beacon-mode t)
   )
 
-;; Start emacs maximized
-;;(add-to-list 'default-frame-alist '(fullscreen . maximized))
-;; Prevents the unstyled mode-line flash at startup
-(setq-default mode-line-format nil)
+(setq doom-modeline-modal-icon t)
 
 ;; Select and raise the frame, always
 (select-frame-set-input-focus (selected-frame))
