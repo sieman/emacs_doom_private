@@ -1,6 +1,9 @@
 #+TITLE: Einstellungen Configuration
 * Einstellungen :settings:
 ** Darstellung :appearance:
+
+#224FBC Blauer Hintergrund wie Ocean
+
 #+begin_src emacs-lisp
 (display-time-mode t)
 (setq display-time-24hr-format t)
