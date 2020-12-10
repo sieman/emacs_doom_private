@@ -94,7 +94,7 @@ Dies ist ein Minor-Mode und zeigt die gedrückten Tasten an.
 #+end_src
 
 ** Modus Anwendungen :settings:modes:
-*** dired
+*** dired - file manager
 #+begin_src emacs-lisp
 (after! dired
   (add-hook 'dired-mode-hook (lambda () (dired-hide-details-mode 1)))
@@ -236,6 +236,13 @@ Ich möchte gerne eine Historie für die REPL haben.
 ;;        cider-repl-history-file "~/.organisation/snippedlab/clojure-repl-history"
         ;; ))
 #+end_src
+
+#+begin_src emacs-lisp
+(after! clojure-mode
+  (add-hook 'clojure-mode-hook #'aggressive-indent-mode)
+  (message "My Clojure config"))
+#+end_src
+
 *** Fly Keys by Xah Lee
  #+begin_src emacs-lisp
 (after! xah-fly-keys
