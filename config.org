@@ -229,8 +229,9 @@ Ich möchte gerne eine Historie für die REPL haben.
 (after! xah-fly-keys
   (defun sim/flykeys-indicate-command-mode () (interactive)
          (custom-set-faces
-          `(cursor ((t (:background "black"))))
+          `(cursor ((t (:background "blue"))))
           )
+         ;; (face-attribute 'default :background) ; get current background color
          (set-frame-parameter (selected-frame) 'alpha '(92 . 90))
          (custom-set-variables '(cursor-type 'hollow)))
 
