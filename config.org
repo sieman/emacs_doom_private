@@ -546,6 +546,13 @@ Comment or uncomment a line or region.
                     "M-s-c" 'comment-or-uncomment-region)
 #+end_src
 
+Öffne ein Terminal in Emacs.
+#+begin_src emacs-lisp
+(map! :prefix "C-c o"
+      :desc "open a ansi Terminal" "t" #'ansi-term)
+#+end_src
+
+
 *** w W :buffer:
 #+begin_src emacs-lisp
 (global-unset-key (kbd "s-w"))
