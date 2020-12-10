@@ -45,8 +45,9 @@ https://github.com/hlissner/doom-emacs/issues/1807
 #+begin_src emacs-lisp
 (after! which-key-mode
   (setq which-key-side-window-max-width 0.44
-        which-key-max-display-columns 1
-        which-key-max-description-length 100)
+        which-key-max-display-columns 2
+        which-key-side-window-max-height 0.26
+        which-key-max-description-length 90)
   (which-key-setup-side-window-right-bottom))
 #+end_src
 ** Editor Erweiterungen :editor:
