@@ -371,7 +371,13 @@ Toggle case for word at caret or selected block
   "Disable all themes and then load a single theme interactively."
   (interactive)
   (while custom-enabled-themes
-    (disable-theme (car custom-enabled-themes))) )
+    (disable-theme (car custom-enabled-themes))))
+
+(defun sim/theme-blue ()
+  (interactive)
+  (load-theme 'deeper-blue t)
+  (set-background-color "#224FBC")
+  (set-frame-parameter (selected-frame) 'alpha '(88 . 88)))
 #+end_src
 ** Goto Line
 - =M-g M-g   = goto line number and shows line numbers
@@ -476,8 +482,8 @@ Idea: refactor *copy*
 *** <f9>
 *** <f10>
 **** Highlight Symbols Phrases ...
-- =F6   = Highlight a Symbol under the cursor
-- =C-F6 = Highlight a Search Pattern with custome color
+- =F10   = Highlight a Symbol under the cursor
+- =C-F10 = Highlight a Search Pattern with custome color
   #+begin_src emacs-lisp
 (general-define-key "<f10>" 'highlight-symbol-at-point
                     "C-<f10>" 'highlight-phrase)
