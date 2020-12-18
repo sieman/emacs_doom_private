@@ -581,14 +581,22 @@ Comment or uncomment a line or region.
 *** h H < :multiple:cursors:
 #+begin_src emacs-lisp
 (map!
- :desc "Unmark previous" "A-s h" #'mc/unmark-previous-like-this)
+ :desc "Mark previous" "A-s-h" #'mc/mark-previous-like-this
+ :desc "Mark previous" "s-<" #'mc/mark-previous-like-this
+ :desc "Unmark previous" "A-C-h" #'mc/unmark-previous-like-this
+ :desc "Unmark previous" "C-<" #'mc/unmark-previous-like-this
+ )
 #+end_src
 *** g G > :search:multiple:cursors:
 #+begin_src emacs-lisp
 (general-define-key "s-G" 'isearch-repeat-backward)
 
 (map!
- :desc "Unmark next" "A-s g" #'mc/unmark-next-like-this)
+ :desc "Mark next" "A-s-g" #'mc/mark-next-like-this
+ :desc "Mark next" "s->" #'mc/mark-next-like-this
+ :desc "Unmark next" "A-C-g" #'mc/unmark-next-like-this
+ :desc "Unmark next" "C->" #'mc/unmark-next-like-this
+ )
 #+end_src
 **** Goto Line
 - =M-g M-g   = goto line number and shows line numbers
