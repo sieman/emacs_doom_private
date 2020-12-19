@@ -274,10 +274,6 @@ Hier stehen Funktionen, die für die Tastenkürzel verwendet werden.
 (message "Nein ist nicht installiert"))
 
 #+begin_src emacs-lisp
-(if (require 'general nil 'noerror)
-    (message "neo-keybinding")
-  (package-install 'general))
-
 (defun nk/check-package (name fct)
   "Is package installed then executes fct otherwise give a message."
   (interactive)
@@ -378,6 +374,21 @@ Toggle case for word at caret or selected block
   (load-theme 'deeper-blue t)
   (set-background-color "#224FBC")
   (set-frame-parameter (selected-frame) 'alpha '(88 . 88)))
+
+(defun sim/elegant-theme ()
+  (interactive)
+  (sim/disable-all-custom-themes)
+  (if doom-modeline-mode
+      (doom-modeline-mode))
+  ;; (provide 'elegance)
+  (if (require 'elegance nil 'noerror)
+      (message "elegance is loaded")
+    (progn
+      (load "./.local/straight/build-27.1/elegant-emacs/sanity.elc")
+      (load "./.local/straight/build-27.1/elegant-emacs/elegance.elc"))
+    )
+  (sim/after-theme-changed)
+  )
 #+end_src
 ** Goto Line
 - =M-g M-g   = goto line number and shows line numbers

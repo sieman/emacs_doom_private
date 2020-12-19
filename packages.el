@@ -56,4 +56,5 @@
 (package! rainbow-mode)
 (package! sublimity)
 (package! xah-fly-keys :recipe (:host github :repo "sieman/xah-fly-keys"))
+(package! elegant-emacs :recipe (:host github :repo "rougier/elegant-emacs"))
 (package! aggressive-indent-mode)
