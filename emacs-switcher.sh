@@ -1,29 +1,26 @@
 #!/usr/bin/env bash
-EMACSZ_HOME="~/.e/others"
+
+function e {
+  ARGS="--debug-init $@"
+  EMACS_BIN="/usr/local/Cellar/emacs-plus@27/27.1/Emacs.app"
+  cmd="open -a $EMACS_BIN --args $ARGS"
+  eval $cmd
+  unset EMACS_BIN ARGS cmd
+}
 
 function emacsdlinker {
   rm ~/.emacs.d
-  cmd="ln -s $EMACSZ_HOME/$1 ~/.emacs.d"
+  EMACS_DISTRO_DIR="~/.e/others"
+  cmd="ln -s $EMACS_DISTRO_DIR/$1 ~/.emacs.d"
   eval $cmd
+  unset EMACS_DISTRO_DIR cmd
 }
 
 function emacsSwitcher {
   emacsdlinker $1
-  emacsLaunch $2
+  e $2
 }
 
-function emacsLaunch {
-  ARGS="--debug-init"
-  ARGS="$ARGS --font \"JetBrains Mono 12\""
-  if [[ $1 == "e" ]]
-	then
-    cmd="open -a $APP_EMACS --args $ARGS"
-  else
-    cmd="open -a $APP_EMACS_VINCENT --args $ARGS"
-  fi
-
-  eval $cmd
-}
 
 function edoom {
   rm ~/.doom.d
@@ -80,8 +77,11 @@ function edoomTecosaur {
   ln -s ~/.e/others/tecosaur.doom ~/.e/doom
 }
 
+function eelegant {
+  emacsdlinker elegant
+  e -q -l ~/.e/others/elegant/sanity.el -l ~/.e/others/elegant/elegance.el ~/.e/others/elegant/Splash.org &
+}
 
-alias e="open -a $APP_EMACS"
 alias eo="emacsSwitcher sim.d"
 alias ep="emacsSwitcher prelude"
 alias em="emacsSwitcher magnars e"
