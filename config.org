@@ -52,10 +52,16 @@ https://github.com/hlissner/doom-emacs/issues/1807
 #+end_src
 ** Editor Erweiterungen :editor:
 *** Rechtschreibprüfung :spell:checking:
+
+npm install dictionary-en-gb
+
 #+begin_src emacs-lisp
 (setq ispell-dictionary "de_DE")
 (setq ispell-hunspell-dict-paths-alist
-      '(("de_DE" "~/Library/Spelling/de_DE.aff")))
+      '(
+        ("de_DE" "~/Library/Spelling/de_DE.aff")
+        ("en_GB" "~/Library/Spelling/en_GB.aff")
+        ))
 #+end_src
 *** Tastaturlayout :keyboard:layout:
 #+begin_src emacs-lisp
@@ -352,7 +358,7 @@ Toggle case for word at caret or selected block
   (interactive)
                                         ;(org-bullets-mode nil)
                                         ;(org-bullets-mode t)
-  (set-face-attribute 'mode-line nil :font "JetBrains Mono 12")
+  ;(set-face-attribute 'mode-line nil :font "JetBrains Mono 12")
   (custom-set-faces
    '(show-paren-match ((t (:background "black" :foreground "yellow" :inverse-video t :weight bold))))
    '(region ((t (:foreground "#f1c40f" :background "#2c3e50" :inverse-video t))))
@@ -360,6 +366,7 @@ Toggle case for word at caret or selected block
    )
   (custom-set-variables '(cursor-type 'box))
   (setq doom-modeline-height 20)
+  (set-frame-parameter (selected-frame) 'alpha '(100 . 100))
   (message "sim/after-theme-changed done")
   )
 
@@ -443,7 +450,7 @@ Ein nützliches Schnippel zum Beschreiben von einzelnen Keymaps von [[https://st
 (defun sim/flykeys-on ()
     (interactive)
   (require 'xah-fly-keys)
-  (xah-fly-keys-set-layout "neo2")
+  (xah-fly-keys-set-layout 'neo2)
   ;; (xah-fly-keys-set-layout "qwerty")
   (xah-fly-keys 1)
   ;; (setq mac-command-modifier 'hyper)
@@ -458,7 +465,7 @@ Ein nützliches Schnippel zum Beschreiben von einzelnen Keymaps von [[https://st
     (interactive)
   (xah-fly-keys-off)
   (setq mac-command-modifier 'super)
-  )
+  (set-frame-parameter (selected-frame) 'alpha '(100 . 100)))
 #+end_src
 * Keybinding
 ** Function Keys Row
