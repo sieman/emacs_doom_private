@@ -76,12 +76,7 @@ function edoomTecosaur {
   rm ~/.e/doom
   ln -s ~/.e/others/tecosaur.doom ~/.e/doom
 }
-
-function eelegant {
-  emacsdlinker elegant
-  e -q -l ~/.e/others/elegant/sanity.el -l ~/.e/others/elegant/elegance.el ~/.e/others/elegant/Splash.org &
-}
-
+alias eelegant="emacsSwitcher elegant"
 alias eo="emacsSwitcher sim.d"
 alias ep="emacsSwitcher prelude"
 alias em="emacsSwitcher magnars e"
