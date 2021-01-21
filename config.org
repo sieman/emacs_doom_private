@@ -73,6 +73,7 @@ npm install dictionary-en-gb
 #+begin_src emacs-lisp
 (after! mc-mark-more
   (setq! mc/list-file "~/.e/sieman/mc-lists.el")
+  (setq! mc/match-cursor-style t)
   (define-key mc/keymap (kbd "<return>") nil)
   (message "mc-mark-more loaded")
   )
@@ -448,21 +449,15 @@ Ein nützliches Schnippel zum Beschreiben von einzelnen Keymaps von [[https://st
 
 #+begin_src emacs-lisp
 (defun sim/flykeys-on ()
-    (interactive)
+  (interactive)
   (require 'xah-fly-keys)
   (xah-fly-keys-set-layout 'neo2)
-  ;; (xah-fly-keys-set-layout "qwerty")
   (xah-fly-keys 1)
-  ;; (setq mac-command-modifier 'hyper)
-  ;; (setq mac-command-modifier (lambda ()
-                                ;; (interactive) (message "xah-fly-command-mode-activate"))
-  ;; (general-define-key "<hyper>" 'xah-fly-command-mode-activate)
-  ;;(global-set-key [(hyper)] 'xah-fly-command-mode-activate)
   (define-key xah-fly-key-map (kbd "<home>") 'xah-fly-mode-toggle)
   )
 
 (defun sim/flykeys-off ()
-    (interactive)
+  (interactive)
   (xah-fly-keys-off)
   (setq mac-command-modifier 'super)
   (set-frame-parameter (selected-frame) 'alpha '(100 . 100)))
