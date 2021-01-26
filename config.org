@@ -120,7 +120,7 @@ Dies ist ein Minor-Mode und zeigt die gedrückten Tasten an.
   (add-to-list 'org-structure-template-alist '("sc" . "src clojure"))
 
   (setq org-use-speed-commands t)
-  ;(require 'ob-clojure)
+                                        ;(require 'ob-clojure)
   (setq org-babel-clojure-backend 'cider)
 
   )
@@ -172,7 +172,7 @@ Ich möchte gerne Ergebnisse aus Clojures Code mit in org-Dateien einfügen.
 ;;   (global-unset-key (kbd "M-B")) ; . sp-backward-symbol)
 ;; ;; )
 ;; (custom-set-variables
- ;; '(sp-override-key-bindings (quote (("C-<right>") ("C-<left>")))))
+;; '(sp-override-key-bindings (quote (("C-<right>") ("C-<left>")))))
 
 (defun sim/disable-smartparens ()
   "Disable smartparens mode globaly."
@@ -233,15 +233,15 @@ Ich möchte gerne eine Historie für die REPL haben.
 #+begin_src emacs-lisp
 ;; (after! cider
 (set-popup-rule! "^\\*cider-clojuredocs\\*" :side 'right :size 0.5)
-  ;; )
+;; )
 ;; (after! cider-repl-mode
 ;;   (setq cider-repl-history-size 100000
 ;;         cider-repl-history-file "~/.organisation/snippedlab/clojure-repl-history"
 ;;         ))
 ;; (add-hook! 'cider-mode-hook
-  ;; (setq cider-repl-history-size 10000
+;; (setq cider-repl-history-size 10000
 ;;        cider-repl-history-file "~/.organisation/snippedlab/clojure-repl-history"
-        ;; ))
+;; ))
 #+end_src
 
 #+begin_src emacs-lisp
@@ -251,7 +251,7 @@ Ich möchte gerne eine Historie für die REPL haben.
 #+end_src
 
 *** Fly Keys by Xah Lee
- #+begin_src emacs-lisp
+#+begin_src emacs-lisp
 (after! xah-fly-keys
   (defun sim/flykeys-indicate-command-mode () (interactive)
          (custom-set-faces
@@ -271,7 +271,7 @@ Ich möchte gerne eine Historie für die REPL haben.
   (add-hook 'xah-fly-command-mode-activate-hook 'sim/flykeys-indicate-command-mode)
   (add-hook 'xah-fly-insert-mode-activate-hook  'sim/flykeys-indicate-insert-mode)
   (message "xah-fly-keys custom settings loaded"))
- #+end_src
+#+end_src
 
 * Funktionen
 Hier stehen Funktionen, die für die Tastenkürzel verwendet werden.
@@ -359,7 +359,7 @@ Toggle case for word at caret or selected block
   (interactive)
                                         ;(org-bullets-mode nil)
                                         ;(org-bullets-mode t)
-  ;(set-face-attribute 'mode-line nil :font "JetBrains Mono 12")
+                                        ;(set-face-attribute 'mode-line nil :font "JetBrains Mono 12")
   (custom-set-faces
    '(show-paren-match ((t (:background "black" :foreground "yellow" :inverse-video t :weight bold))))
    '(region ((t (:foreground "#f1c40f" :background "#2c3e50" :inverse-video t))))
@@ -446,21 +446,66 @@ Ein nützliches Schnippel zum Beschreiben von einzelnen Keymaps von [[https://st
   (message "Modifier Option set to alt"))
 #+end_src
 ** (de)activate Fly Keys by Xah Lee
+http://ergoemacs.org/misc/xah-fly-keys_russian.html 
+http://ergoemacs.org/misc/xah-fly-keys_customization.html
+https://github.com/GTrunSec/my-profile/blob/master/dotfiles/doom-emacs/xah-fly-keys.org
+
+
+| neo2 | command                                  | dvorak |
+|      | nil                                      | "~"    |
+|      | nil                                      | ":"    |
+|      | nil                                      | ":"    |
+| spc  | xah-fly-leader-key-map                   | "SPC"  |
+| del  | xah-fly-leader-key-map                   | "DEL"  |
+| x    | xah-reformat-lines                       | "'"    |
+| v    | xah-shrink-whitespaces                   | ","    |
+| y    | xah-cycle-hyphen-underscore-space        | "-"    |
+| l    | xah-backward-kill-word                   | "."    |
+| ü    | xah-comment-dwim                         | ";"    |
+| ß    | hippie-expand                            | "/"    |
+| \\   | nil                                      | "\\"   |
+| [    | xah-backward-punct                       | "["    |
+| ]    | xah-forward-punct                        | "]"    |
+| "    | other-frame                              | "`"    |
+| 1    | xah-extend-selection                     | "1"    |
+| 2    | xah-select-line                          | "2"    |
+| 3    | delete-other-windows                     | "3"    |
+| 4    | split-window-below                       | "4"    |
+| 5    | delete-char                              | "5"    |
+| 6    | xah-select-block                         | "6"    |
+| 7    | xah-select-line                          | "7"    |
+| 8    | xah-extend-selection                     | "8"    |
+| 9    | xah-select-text-in-quote                 | "9"    |
+| 0    | xah-pop-local-mark-ring                  | "0"    |
+| u    | xah-fly-M-x                              | "a"    |
+| b    | isearch-forward                          | "b"    |
+| g    | previous-line                            | "c"    |
+| s    | xah-beginning-of-line-or-block           | "d"    |
+| a    | xah-delete-backward-char-or-bracket-text | "e"    |
+| k    | undo                                     | "f"    |
+| h    | backward-word                            | "g"    |
+| n    | backward-char                            | "h"    |
+| o    | xah-delete-current-text-block            | "i"    |
+| ä    | xah-copy-line-or-region                  | "j"    |
+| p    | xah-paste-or-paste-previous              | "k"    |
+| q    | xah-insert-space-before                  | "l"    |
+| m    | xah-backward-left-bracket                | "m"    |
+| t    | forward-char                             | "n"    |
+| i    | open-line                                | "o"    |
+| c    | xah-kill-word                            | "p"    |
+| ö    | xah-cut-line-or-region                   | "q"    |
+| f    | forward-word                             | "r"    |
+| d    | xah-end-of-line-or-block                 | "s"    |
+| r    | next-line                                | "t"    |
+| e    | xah-fly-insert-mode-activate             | "u"    |
+| .    | xah-forward-right-bracket                | "v"    |
+| ,    | xah-next-window-or-frame                 | "w"    |
+| z    | xah-toggle-letter-case                   | "x"    |
+| w    | set-mark-command                         | "y"    |
+| j    | xah-goto-matching-bracket                | "z"    |
 
 #+begin_src emacs-lisp
-(defun sim/flykeys-on ()
-  (interactive)
-  (require 'xah-fly-keys)
-  (xah-fly-keys-set-layout 'neo2)
-  (xah-fly-keys 1)
-  (define-key xah-fly-key-map (kbd "<home>") 'xah-fly-mode-toggle)
-  )
-
-(defun sim/flykeys-off ()
-  (interactive)
-  (xah-fly-keys-off)
-  (setq mac-command-modifier 'super)
-  (set-frame-parameter (selected-frame) 'alpha '(100 . 100)))
+(load! "+neo-fly-keys")
 #+end_src
 * Keybinding
 ** Function Keys Row
@@ -560,7 +605,7 @@ Shows a popup menu with a history kills, it's like a clipboard history.
                                (popup-menu 'yank-menu))))
 (after! term
   (general-def term-raw-map
-     "s-v" 'term-paste))
+    "s-v" 'term-paste))
 #+end_src
 
 *** l L
@@ -771,14 +816,14 @@ Cursor Jumps [[https://github.com/abo-abo/avy][Avy-Mode]] like [[https://github.
 - =C-x u = Show the undo-tree
 
 
-  #+begin_src emacs-lisp
+#+begin_src emacs-lisp
 (nk/check-package 'undo-tree
                   (lambda () (global-unset-key (kbd "C-/"))
                     (global-unset-key (kbd "C-_"))
                     (general-define-key "C-z" 'undo-tree-undo
                                         "C-Z" 'undo-tree-redo
                                         "s-Z" 'undo-tree-redo)))
-  #+end_src
+#+end_src
 
 *** b B :org:
 #+begin_src emacs-lisp

@@ -6,16 +6,21 @@
         TeX-insert-backslash
         beginning-of-visual-line
         copy-region-as-kill
+        counsel-M-x
         doom/forward-to-last-non-comment-or-eol
         end-of-visual-line
         kill-region
+        ns-do-hide-others
         ns-paste-secondary
         org-cycle
         org-edit-special
         org-force-self-insert
+        org-return
         org-self-insert-command
         org-yank
         undo-fu-only-undo
+        xah-fly-command-mode-activate
+        xah-fly-insert-mode-activate
         ))
 
 (setq mc/cmds-to-run-once
