@@ -1,5 +1,7 @@
 ;;; ../.e/sieman/+neo-fly-keys.el -*- lexical-binding: t; -*-
 
+(global-set-key (kbd "<f19>") 'xah-fly-command-mode-activate)
+
 (defun neo2/flykeys-on ()
   (interactive)
   (require 'xah-fly-keys)
