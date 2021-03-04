@@ -1,5 +1,7 @@
 ;;; ../.e/sieman/+neo-fly-keys.el -*- lexical-binding: t; -*-
 
+(global-set-key (kbd "<f19>") 'xah-fly-command-mode-activate)
+
 (defvar xah--dvorak-to-neo2-kmap
   '(("." . "l") ; e
     ("," . "v") ; w
@@ -42,7 +44,6 @@
 (defun neo2/flykeys-on ()
   (interactive)
   (require 'xah-fly-keys)
-  (xah-fly-keys-set-layout 'neo2)
   (xah-fly-keys 1)
 
   (define-key xah-fly-key-map (kbd "1") 'xah-extend-selection)
@@ -95,10 +96,9 @@
   (define-key xah-fly-key-map (kbd ".")  'xahforward-right-bracket)
   (define-key xah-fly-key-map (kbd "j") 'xah-goto-matching-bracket))
 
-(defun neo2/neo-flykeys-on ()
+(defun neo2/sim-flykeys-on ()
   (interactive)
   (require 'xah-fly-keys)
-  (xah-fly-keys-set-layout 'neo2)
   (xah-fly-keys 1)
 
   (define-key xah-fly-key-map (kbd "1") 'xah-extend-selection)
@@ -153,6 +153,8 @@
 
 (defun neo2/flykeys-off ()
   (interactive)
-  (xah-fly-keys-off))
+  (xah-fly-keys-off)
+  (setq mac-command-modifier 'super)
+  (set-frame-parameter (selected-frame) 'alpha '(100 . 100)))
 
 (provide 'neo2-fly-keys)
