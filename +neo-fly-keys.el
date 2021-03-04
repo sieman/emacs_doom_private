@@ -1,5 +1,7 @@
 ;;; ../.e/sieman/+neo-fly-keys.el -*- lexical-binding: t; -*-
 
+;; see some doc http://ergoemacs.org/misc/xah-fly-keys_customization.html
+
 (defvar xah--dvorak-to-neo2-kmap
   '(("." . "l") ; e
     ("," . "v") ; w
