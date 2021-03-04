@@ -253,24 +253,26 @@ Ich möchte gerne eine Historie für die REPL haben.
 *** Fly Keys by Xah Lee
 #+begin_src emacs-lisp
 (after! xah-fly-keys
-  (defun sim/flykeys-indicate-command-mode () (interactive)
-         (custom-set-faces
-          `(cursor ((t (:background "slateblue2"))))
-          )
-         ;; (face-attribute 'default :background) ; get current background color
-         (set-frame-parameter (selected-frame) 'alpha '(92 . 90))
-         (custom-set-variables '(cursor-type 'hollow)))
+  ;; (defun sim/flykeys-indicate-command-mode () (interactive)
+  (custom-set-faces
+   `(cursor ((t (:background "slateblue2"))))
+   )
+  ;; (face-attribute 'default :background) ; get current background color
+  (set-frame-parameter (selected-frame) 'alpha '(92 . 90))
+  ;; (custom-set-variables '(cursor-type 'hollow))
+  (custom-set-variables '(cursor-type 'box))
+  )
 
-  (defun sim/flykeys-indicate-insert-mode () (interactive)
-         (custom-set-faces
-          `(cursor ((t (:background "red"))))
-          )
-         (set-frame-parameter (selected-frame) 'alpha '(100 . 100))
-         (custom-set-variables '(cursor-type 'box)))
+(defun sim/flykeys-indicate-insert-mode () (interactive)
+       (custom-set-faces
+        `(cursor ((t (:background "red"))))
+        )
+       (set-frame-parameter (selected-frame) 'alpha '(100 . 100))
+       (custom-set-variables '(cursor-type 'box)))
 
-  (add-hook 'xah-fly-command-mode-activate-hook 'sim/flykeys-indicate-command-mode)
-  (add-hook 'xah-fly-insert-mode-activate-hook  'sim/flykeys-indicate-insert-mode)
-  (message "xah-fly-keys custom settings loaded"))
+(add-hook 'xah-fly-command-mode-activate-hook 'sim/flykeys-indicate-command-mode)
+(add-hook 'xah-fly-insert-mode-activate-hook  'sim/flykeys-indicate-insert-mode)
+(message "xah-fly-keys custom settings loaded")
 #+end_src
 
 * Funktionen
