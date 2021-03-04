@@ -1,8 +1,48 @@
 ;;; ../.e/sieman/+neo-fly-keys.el -*- lexical-binding: t; -*-
 
+(defvar xah--dvorak-to-neo2-kmap
+  '(("." . "l") ; e
+    ("," . "v") ; w
+    ("'" . "x") ; q
+    (";" . "ü") ; y
+    ("/" . "ß") ; ü
+    ("[" . "-") ; - ; ß
+    ("]" . "]") ; diacritic glyph ` ; ´
+    ("=" . "=") ; diacritic glyph ´ ; +
+    ("-" . "y") ; ä
+    ("a" . "u") ; a
+    ("b" . "b") ; n
+    ("c" . "g") ; i
+    ("d" . "s") ; h
+    ("e" . "a") ; d
+    ("f" . "k") ; z
+    ("g" . "h") ; u
+    ("h" . "n") ; j
+    ("i" . "o") ; g
+    ("j" . "ä") ; c
+    ("k" . "p") ; v
+    ("l" . "q") ; p
+    ("m" . "m") ; m
+    ("n" . "t") ; l
+    ("o" . "i") ; s
+    ("p" . "c") ; r
+    ("q" . "ö") ; x
+    ("r" . "f") ; o
+    ("s" . "d") ; ö
+    ("t" . "r") ; k
+    ("u" . "e") ; f
+    ("v" . ".") ; .
+    ("w" . ",") ; ,
+    ("x" . "z") ; b
+    ("y" . "w") ; t
+    ("z" . "j")) ; -
+  "A alist, each element is of the form(\"e\" . \"d\"). First char is Dvorak, second is corresponding NEO2. Not all chars are in the list, such as digits. When not in this alist, they are assumed to be the same.")
+
+
 (defun neo2/flykeys-on ()
   (interactive)
   (require 'xah-fly-keys)
+  (xah-fly-keys-set-layout 'neo2)
   (xah-fly-keys 1)
 
   (define-key xah-fly-key-map (kbd "1") 'xah-extend-selection)
@@ -55,9 +95,10 @@
   (define-key xah-fly-key-map (kbd ".")  'xahforward-right-bracket)
   (define-key xah-fly-key-map (kbd "j") 'xah-goto-matching-bracket))
 
-(defun neo2/sim-flykeys-on ()
+(defun neo2/neo-flykeys-on ()
   (interactive)
   (require 'xah-fly-keys)
+  (xah-fly-keys-set-layout 'neo2)
   (xah-fly-keys 1)
 
   (define-key xah-fly-key-map (kbd "1") 'xah-extend-selection)
@@ -112,8 +153,6 @@
 
 (defun neo2/flykeys-off ()
   (interactive)
-  (xah-fly-keys-off)
-  (setq mac-command-modifier 'super)
-  (set-frame-parameter (selected-frame) 'alpha '(100 . 100)))
+  (xah-fly-keys-off))
 
 (provide 'neo2-fly-keys)

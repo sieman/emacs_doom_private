@@ -4,6 +4,7 @@
 (setq mc/cmds-to-run-for-all
       '(
         TeX-insert-backslash
+        TeX-newline
         beginning-of-visual-line
         copy-region-as-kill
         counsel-M-x
@@ -21,6 +22,7 @@
         undo-fu-only-undo
         xah-fly-command-mode-activate
         xah-fly-insert-mode-activate
+        xah-shrink-whitespaces
         ))
 
 (setq mc/cmds-to-run-once
