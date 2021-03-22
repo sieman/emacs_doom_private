@@ -24,7 +24,7 @@
 
              mac-function-modifier 'meta
 
-             mac-control-modifier 'control
+             mac-control-modifier 'meta
              mac-option-modifier 'alt
              mac-command-modifier 'super
 
