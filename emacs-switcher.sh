@@ -83,6 +83,15 @@ function edoomGtrunsec {
   ln -s ~/.e/others/gtrunsec.doom ~/.e/doom
 }
 
+function edoomMeow {
+  rm ~/.doom.d
+  ln -s ~/.e/others/meow ~/.doom.d
+  rm ~/.emacs.d
+  ln -s ~/.e/others/meow.doom ~/.emacs.d
+  rm ~/.e/doom
+  ln -s ~/.e/others/meow.doom ~/.e/doom
+}
+
 function edoomTecosaur {
   # git clone --depth 1 https://github.com/tecosaur/emacs-config.git tecosaur
   # git clone --depth 1 https://github.com/hlissner/doom-emacs tecosaur.doom
