@@ -28,4 +28,5 @@
 (setq mc/cmds-to-run-once
       '(
         counsel-grep-or-swiper
+        indent-for-tab-command
         ))

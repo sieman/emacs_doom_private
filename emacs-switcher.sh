@@ -75,6 +75,14 @@ function edoomAloisJanicek {
   rm ~/.e/doom
   ln -s ~/.e/others/AloisJanicek.doom ~/.e/doom
 }
+function edoomGtrunsec {
+  rm ~/.doom.d
+  ln -s ~/.e/others/gtrunsec ~/.doom.d
+  rm ~/.emacs.d
+  ln -s ~/.e/others/gtrunsec.doom ~/.emacs.d
+  rm ~/.e/doom
+  ln -s ~/.e/others/gtrunsec.doom ~/.e/doom
+}
 
 function edoomTecosaur {
   # git clone --depth 1 https://github.com/tecosaur/emacs-config.git tecosaur
@@ -95,7 +103,7 @@ alias eianpan="emacsSwitcher ianpan"
 alias eianpan2="emacsSwitcher ianpan2"
 alias ec="emacsSwitcher centaur e"
 alias emakuto="emacsSwitcher makuto/Emacs"
-alias ehs="emacsSwitcher harry-schwartz e"
+alias ehs="emacsSwitc her harry-schwartz e"
 alias efly="emacsSwitcher flyingmachine"
 alias doup='doom upgrade'
 export PATH="$PATH:$HOME/.e/doom/bin"
