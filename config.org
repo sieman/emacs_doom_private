@@ -508,9 +508,8 @@ https://github.com/GTrunSec/my-profile/blob/master/dotfiles/doom-emacs/xah-fly-k
 | z    | xah-toggle-letter-case                   | "x"    |
 | w    | set-mark-command                         | "y"    |
 | j    | xah-goto-matching-bracket                | "z"    |
-
 #+begin_src emacs-lisp
-(load! "+neo-fly-keys")
+;; (require 'neo2-fly-keys)
 #+end_src
 * Keybinding
 ** Function Keys Row
