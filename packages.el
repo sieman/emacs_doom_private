@@ -58,4 +58,5 @@
 (package! xah-fly-keys)
 (package! neo-layout-fly-keys :recipe (:host github :repo "sieman/neo-layout-fly-keys"))
 (package! elegant-emacs :recipe (:host github :repo "rougier/elegant-emacs"))
+(package! meow)
 (package! aggressive-indent-mode)

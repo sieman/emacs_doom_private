@@ -11,7 +11,7 @@ function e {
 function emacsdlinker {
   rm ~/.emacs.d
   EMACS_DISTRO_DIR="~/.e/others"
-  cmd="ln -s $EMACS_DISTRO_DIR/$1 ~/.emacs.d"
+  cmd="ln -s $EMACS_DISTRO_DIR/$1 $HOME/.emacs.d"
   eval $cmd
   unset EMACS_DISTRO_DIR cmd
 }
@@ -21,98 +21,73 @@ function emacsSwitcher {
   e $2
 }
 
+function doomLinker {
 
-function edoom {
   rm ~/.doom.d
-  ln -s ~/.e/sieman ~/.doom.d
+
+  cmd="ln -s $HOME/.e/$1.doom.d $HOME/.doom.d"
+  echo $cmd
+  eval $cmd
+
   rm ~/.emacs.d
-  ln -s ~/.e/sieman.doom ~/.emacs.d
-  rm ~/.e/doom
-  ln -s ~/.e/sieman.doom ~/.e/doom
-}
-function edoomUndeadkernel {
-  rm ~/.doom.d
-  ln -s ~/.e/others/undeadkernel ~/.doom.d
-  rm ~/.emacs.d
-  ln -s ~/.e/others/undeadkernel.doom ~/.emacs.d
-  rm ~/.e/doom
-  ln -s ~/.e/others/undeadkernel.doom ~/.e/doom
+
+  cmd="ln -s $HOME/.e/$1.emacs.d $HOME/.emacs.d"
+  echo $cmd
+  eval $cmd
+  unset cmd
 }
 
-function edoomHlissner {
-  rm ~/.doom.d
-  ln -s ~/.e/others/hlissner ~/.doom.d
-  rm ~/.emacs.d
-  ln -s ~/.e/others/hlissner.doom ~/.emacs.d
-  rm ~/.e/doom
-  ln -s ~/.e/others/hlissner.doom ~/.e/doom
-}
+# AloisJanicek https://github.com/AloisJanicek/.doom.d-2nd.git
+alias edoomAloisJanicek="doomLinker others/AloisJanicek.doom"
 
-function edoomStandard {
-  rm ~/.doom.d
-  ln -s ~/.e/others/standard ~/.doom.d
-  rm ~/.emacs.d
-  ln -s ~/.e/others/standard.doom ~/.emacs.d
-  rm ~/.e/doom
-  ln -s ~/.e/others/standard.doom ~/.e/doom
-}
+alias edoom="doomLinker sieman"
 
-function edoomWhatDothLife {
-  rm ~/.doom.d
-  ln -s ~/.e/others/WhatDothLife ~/.doom.d
-  rm ~/.emacs.d
-  ln -s ~/.e/others/WhatDothLife.doom ~/.emacs.d
-  rm ~/.e/doom
-  ln -s ~/.e/others/WhatDothLife.doom ~/.e/doom
-}
+# undeadkernel https://github.com/UndeadKernel/emacs_doom_private.git
+alias edoomUndeadkernel="others/undeadkernel"
 
-function edoomAloisJanicek {
-  # https://github.com/AloisJanicek/.doom.d-2nd.git
-  rm ~/.doom.d
-  ln -s ~/.e/others/AloisJanicek ~/.doom.d
-  rm ~/.emacs.d
-  ln -s ~/.e/others/AloisJanicek.doom ~/.emacs.d
-  rm ~/.e/doom
-  ln -s ~/.e/others/AloisJanicek.doom ~/.e/doom
-}
-function edoomGtrunsec {
-  rm ~/.doom.d
-  ln -s ~/.e/others/gtrunsec ~/.doom.d
-  rm ~/.emacs.d
-  ln -s ~/.e/others/gtrunsec.doom ~/.emacs.d
-  rm ~/.e/doom
-  ln -s ~/.e/others/gtrunsec.doom ~/.e/doom
-}
+# hlissner https://github.com/hlissner/doom-emacs
+alias edoomHlissner="doomLinker others/hlissner"
 
-function edoomMeow {
-  rm ~/.doom.d
-  ln -s ~/.e/others/meow ~/.doom.d
-  rm ~/.emacs.d
-  ln -s ~/.e/others/meow.doom ~/.emacs.d
-  rm ~/.e/doom
-  ln -s ~/.e/others/meow.doom ~/.e/doom
-}
+alias edoomWhatDothLife="doomLinker others/WhatDothLife"
 
-function edoomTecosaur {
-  # git clone --depth 1 https://github.com/tecosaur/emacs-config.git tecosaur
-  rm ~/.doom.d
-  ln -s ~/.e/others/tecosaur ~/.doom.d
-  rm ~/.emacs.d
-  ln -s ~/.e/others/tecosaur.doom ~/.emacs.d
-  rm ~/.e/doom
-  ln -s ~/.e/others/tecosaur.doom ~/.e/doom
-}
-alias eelegant="emacsSwitcher elegant"
-alias eo="emacsSwitcher sim.d"
-alias ep="emacsSwitcher prelude"
-alias em="emacsSwitcher magnars e"
-alias esacha="emacsSwitcher sachachua e"
-alias scimax="emacsSwitcher scimax e"
-alias eianpan="emacsSwitcher ianpan"
-alias eianpan2="emacsSwitcher ianpan2"
-alias ec="emacsSwitcher centaur e"
-alias emakuto="emacsSwitcher makuto/Emacs"
-alias ehs="emacsSwitc her harry-schwartz e"
-alias efly="emacsSwitcher flyingmachine"
+alias edoomGtrunsec="doomLinker others/gtrunsec.doom"
+
+alias edoomMeow="doomLinker others/meow"
+
+# tecosaur https://github.com/tecosaur/emacs-config.git
+alias edoomTecosaur="doomLinker others/tecosaur.doom"
+
+alias eelegant="emacsSwitcher elegant.vanilla"
+
+# prelude.distro https://github.com/bbatsov/prelude.git
+alias ep="emacsSwitcher prelude.distro"
+
+# magnars.vanilla https://github.com/magnars/.emacs.d.git
+alias em="emacsSwitcher magnars.vanilla"
+
+# sachachua https://github.com/sachac/.emacs.d.git
+alias esacha="emacsSwitcher sachachua.vanilla"
+
+alias scimax="emacsSwitcher scimax.distro"
+alias eianpan="emacsSwitcher ianpan.vanilla"
+alias eianpan2="emacsSwitcher ianpan2.vanilla"
+
+# centaur.distro https://github.com/seagle0128/.emacs.d.git
+alias ec="emacsSwitcher centaur.distro"
+
+# makuto.vanilla https://github.com/makuto/editorPreferences.git
+alias emakuto="emacsSwitcher makuto.vanilla/Emacs"
+
+alias ehs="emacsSwitcher harry-schwartz.vanilla"
+
+# flyingmachine https://github.com/flyingmachine/emacs-for-clojure.git
+alias efly="emacsSwitcher flyingmachine.vanilla"
+
+# countvajhula.vanilla https://github.com/countvajhula/.emacs.d.git
+alias eCountvajhula="emacsSwitcher countvajhula.vanilla"
+
+# nasymoa https://github.com/nasyxx/emacs.d.git
+alias eNasymoa='emacsSwitcher nasymoa.vanilla'
+
 alias doup='doom upgrade'
-export PATH="$PATH:$HOME/.e/doom/bin"
+export PATH="$PATH:$HOME/.emacs.d/bin"
