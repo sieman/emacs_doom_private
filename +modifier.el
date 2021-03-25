@@ -5,33 +5,33 @@
 ;; =C      = Shorthand for the ctrl-key
 ;; =M      = Shorthand for the meta-key 
 ;; =S      = Shorthand for the shift-key
-;; =H      = Shorthand for the fn-key
+;; =H      = Shorthand for the hyper (fn-key)
 ;; =A      = Shorthand for the alt-key
 ;; =s      = Shorthand for the super-key
 
 (when (eq system-type 'darwin)
-       (setq
+  (setq
 
-             ns-function-modifier 'none
+   ns-function-modifier 'none
 
-             ns-control-modifier 'none
-             ns-option-modifier 'none
-             ns-command-modifier 'none
+   ns-control-modifier 'none
+   ns-option-modifier 'none
+   ns-command-modifier 'none
 
-             ns-right-command-modifier 'none
-             ns-right-option-modifier 'none
-             ns-right-control-modifier 'none
+   ns-right-command-modifier 'none
+   ns-right-option-modifier 'none
+   ns-right-control-modifier 'none
 
-             mac-function-modifier 'meta
+   mac-function-modifier 'hyper
 
-             mac-control-modifier 'meta
-             mac-option-modifier 'alt
-             mac-command-modifier 'super
+   mac-control-modifier 'meta
+   mac-option-modifier 'alt
+   mac-command-modifier 'super
 
-             mac-right-command-modifier 'super
-             mac-right-option-modifier 'alt
-             mac-right-control-modifier 'control
+   mac-right-command-modifier 'super
+   mac-right-option-modifier 'alt
+   mac-right-control-modifier 'control
 
-       ))
+   ))
 
-(provide 'neo-modifier)
+(provide '+modifier)
