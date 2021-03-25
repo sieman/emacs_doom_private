@@ -50,6 +50,55 @@ https://github.com/hlissner/doom-emacs/issues/1807
         which-key-max-description-length 90)
   (which-key-setup-side-window-right-bottom))
 #+end_src
+*** Modeline
+#+begin_src emacs-lisp
+(after! doom-modeline
+  (require 'doom-modeline)
+
+  (defun doom-modeline--neo2-fly-keys ()
+    "The current `xah-fly-keys' state."
+    (when (bound-and-true-p xah-fly-keys)
+      (if xah-fly-insert-state-q
+          (doom-modeline--modal-icon "Insert"
+                                     ;; 'doom-modeline-evil-insert-state
+                                     '(face ((:background "red" :foreground "white")))
+                                     (format "Xah-fly insert mode"))
+        (doom-modeline--modal-icon "Command"
+                                   ;; 'doom-modeline-evil-normal-state
+                                   '(face ((:background "green" :foreground "black")))
+                                   (format "Xah-fly command mode")))))
+
+  (doom-modeline-def-segment evil-state
+    "The current evil state.  Requires `evil-mode' to be enabled."
+    (when (bound-and-true-p evil-local-mode)
+      (s-trim-right (evil-state-property evil-state :tag t))))
+
+  (doom-modeline-def-segment modals
+    "Displays modal editing states, including `evil', `overwrite', `god', `ryo'
+     and `xha-fly-kyes', etc."
+    (let* ((evil (doom-modeline--evil))
+           (ow (doom-modeline--overwrite))
+           (god (doom-modeline--god))
+           (ryo (doom-modeline--ryo))
+           (xf (doom-modeline--neo2-fly-keys))
+           (boon (doom-modeline--boon))
+           (vsep (doom-modeline-vspc))
+           (meow (doom-modeline--meow))
+           (sep (and (or evil ow god ryo xf boon) (doom-modeline-spc))))
+      (concat sep
+              (and evil (concat evil (and (or ow god ryo xf boon meow) vsep)))
+              (and ow (concat ow (and (or god ryo xf boon meow) vsep)))
+              (and god (concat god (and (or ryo xf boon meow) vsep)))
+              (and ryo (concat ryo (and (or xf boon meow) vsep)))
+              (and xf (concat xf (and (or boon meow) vsep)))
+              (and boon (concat boon (and meow vsep)))
+              meow
+              sep)))
+  (setq doom-modeline-modal-icon nil)
+  (message "doom-modeline is loaded. :-)")
+  )
+#+end_src
+
 ** Editor Erweiterungen :editor:
 *** Rechtschreibprüfung :spell:checking:
 

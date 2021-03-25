@@ -51,6 +51,7 @@
 ;(package! builtin-package :recipe (:branch "develop"))
 
 (package! move-text)
+(package! multiple-cursors)
 (package! beacon)
 (package! rg)
 (package! rainbow-mode)

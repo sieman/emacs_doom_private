@@ -11,6 +11,7 @@
         doom/forward-to-last-non-comment-or-eol
         end-of-visual-line
         kill-region
+        mouse-drag-mode-line
         ns-do-hide-others
         ns-paste-secondary
         org-cycle
@@ -29,4 +30,5 @@
       '(
         counsel-grep-or-swiper
         indent-for-tab-command
+        mode-line-previous-buffer
         ))
