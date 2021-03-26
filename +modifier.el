@@ -24,13 +24,13 @@
 
    mac-function-modifier 'hyper
 
-   mac-control-modifier 'meta
+   mac-control-modifier 'control
    mac-option-modifier 'alt
    mac-command-modifier 'super
 
    mac-right-command-modifier 'super
    mac-right-option-modifier 'alt
-   mac-right-control-modifier 'control
+   mac-right-control-modifier 'meta
 
    ))
 
