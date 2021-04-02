@@ -48,15 +48,18 @@ alias edoomUndeadkernel="others/undeadkernel"
 # hlissner https://github.com/hlissner/doom-emacs
 alias edoomHlissner="doomLinker others/hlissner"
 
+# WhatDothLife https://github.com/WhatDothLife/doom-config.git
 alias edoomWhatDothLife="doomLinker others/WhatDothLife"
 
 alias edoomGtrunsec="doomLinker others/gtrunsec.doom"
 
+# local test settup
 alias edoomMeow="doomLinker others/meow"
 
 # tecosaur https://github.com/tecosaur/emacs-config.git
 alias edoomTecosaur="doomLinker others/tecosaur.doom"
 
+# local test settup
 alias eelegant="emacsSwitcher elegant.vanilla"
 
 # prelude.distro https://github.com/bbatsov/prelude.git
@@ -68,9 +71,8 @@ alias em="emacsSwitcher magnars.vanilla"
 # sachachua https://github.com/sachac/.emacs.d.git
 alias esacha="emacsSwitcher sachachua.vanilla"
 
+# https://github.com/jkitchin/scimax.git
 alias scimax="emacsSwitcher scimax.distro"
-alias eianpan="emacsSwitcher ianpan.vanilla"
-alias eianpan2="emacsSwitcher ianpan2.vanilla"
 
 # centaur.distro https://github.com/seagle0128/.emacs.d.git
 alias ec="emacsSwitcher centaur.distro"
@@ -78,6 +80,7 @@ alias ec="emacsSwitcher centaur.distro"
 # makuto.vanilla https://github.com/makuto/editorPreferences.git
 alias emakuto="emacsSwitcher makuto.vanilla/Emacs"
 
+# delete
 alias ehs="emacsSwitcher harry-schwartz.vanilla"
 
 # flyingmachine https://github.com/flyingmachine/emacs-for-clojure.git
