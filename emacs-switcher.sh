@@ -2,7 +2,7 @@
 
 function e {
   ARGS="--debug-init $@"
-  EMACS_BIN="/usr/local/Cellar/emacs-plus@27/27.1/Emacs.app"
+  EMACS_BIN="/usr/local/bin/emacs"
   cmd="open -a $EMACS_BIN --args $ARGS"
   eval $cmd
   unset EMACS_BIN ARGS cmd

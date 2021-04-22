@@ -10,6 +10,7 @@
         counsel-M-x
         doom/forward-to-last-non-comment-or-eol
         end-of-visual-line
+        ibuffer-mark-for-delete
         kill-region
         mouse-drag-mode-line
         ns-do-hide-others
