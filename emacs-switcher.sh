@@ -89,5 +89,7 @@ alias eCountvajhula="emacsSwitcher countvajhula.vanilla"
 # nasymoa https://github.com/nasyxx/emacs.d.git
 alias eNasymoa='emacsSwitcher nasymoa.vanilla'
 
+alias eSandbox='emacsSwitcher sandbox'
+
 alias doup='doom upgrade'
 export PATH="$PATH:$HOME/.emacs.d/bin"

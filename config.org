@@ -673,8 +673,8 @@ Comment or uncomment a line or region.
 
 Öffne ein Terminal in Emacs.
 #+begin_src emacs-lisp
-(map! :prefix "C-c o"
-      :desc "open a ansi Terminal" "t" #'ansi-term)
+ (map! :prefix "C-c o"
+       :desc "open a ansi Terminal" "t" #'ansi-term)
 #+end_src
 
 
@@ -897,9 +897,9 @@ Cursor Jumps [[https://github.com/abo-abo/avy][Avy-Mode]] like [[https://github.
 *** m M
 The keybinding =C-m= effects a =return=, and I think that's a bug.
 #+begin_src emacs-lisp
-(define-key input-decode-map [?\C-m] [C-m])
+;;(define-key input-decode-map [?\C-m] [C-m])
 ;;(general-define-key "<C-m>" '(lambda () (interactive) (message "C-m is not the same as RET any more!")))
-(map! :prefix "C-c m"
+(map! :prefix "H-m"
       :desc "Marks in region"   "r"     #'mc/mark-all-in-region)
 #+end_src
 *** , –
@@ -910,6 +910,9 @@ The keybinding =C-m= effects a =return=, and I think that's a bug.
 #+end_src
 
 *** . •
+#+begin_src emacs-lisp
+(map! :desc "Jumps to next error" "C-•" #'next-error)
+#+end_src
 *** j J :join:line:
 *C-S-j*
 Join this line to previous and fix up whitespace at join.
