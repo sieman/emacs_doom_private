@@ -57,6 +57,7 @@
 (package! rainbow-mode)
 (package! sublimity)
 (package! xah-fly-keys)
+(package! four-modifier :recipe (:host github :repo "sieman/four-modifier"))
 (package! neo-layout-fly-keys :recipe (:host github :repo "sieman/neo-layout-fly-keys"))
 (package! elegant-emacs :recipe (:host github :repo "rougier/elegant-emacs"))
 (package! meow)

@@ -114,8 +114,8 @@ npm install dictionary-en-gb
 #+end_src
 *** Tastaturlayout :keyboard:layout:
 #+begin_src emacs-lisp
+(require 'four-modifier)
 (load! "+neo-layout.el")
-(load! "+modifier.el")
 #+end_src
 
 *** Multiple Cursors
