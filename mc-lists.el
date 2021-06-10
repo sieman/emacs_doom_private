@@ -22,8 +22,10 @@
         org-self-insert-command
         org-yank
         undo-fu-only-undo
+        xah-cycle-hyphen-underscore-space
         xah-fly-command-mode-activate
         xah-fly-insert-mode-activate
+        xah-forward-right-bracket
         xah-shrink-whitespaces
         ))
 

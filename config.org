@@ -1,4 +1,29 @@
 #+TITLE: Einstellungen Configuration
+* Package loading
+:PROPERTIES:
+:header-args:emacs-lisp: :tangle "packages.el" :comments link
+:END:
+This file shouldn't be byte compiled.
+#+begin_src emacs-lisp :tangle "packages.el" :comments no
+;; -*- no-byte-compile: t; -*-
+;;; $DOOMDIR/packages.el
+#+end_src
+
+#+begin_src emacs-lisp
+(Package! move-text)
+(package! multiple-cursors)
+(package! beacon)
+(package! rg)
+(package! rainbow-mode)
+(package! sublimity)
+(package! xah-fly-keys)
+(package! four-modifier :recipe (:host github :repo "sieman/four-modifier"))
+(package! neo-layout-fly-keys :recipe (:host github :repo "sieman/neo-layout-fly-keys"))
+(package! elegant-emacs :recipe (:host github :repo "rougier/elegant-emacs"))
+(package! meow)
+(package! aggressive-indent-mode)
+#+end_src
+
 * Einstellungen :settings:
 ** Darstellung :appearance:
 
@@ -13,7 +38,6 @@
 (setq fill-column sim-hard-wrap-at)
 ;; Theme related things
 (load! "+themes")
-
 (use-package! beacon
   :diminish
   :config (setq beacon-color "#9a37ff")
@@ -328,7 +352,8 @@ Ich möchte gerne eine Historie für die REPL haben.
   (message "xah-fly-keys custom settings loaded")
   )
 
-(after! neo-layout-fly-keys)
+(after! neo-layout-fly-keys
+  (neo2/flykeys-on))
 #+End_src
 
 * Funktionen
@@ -600,7 +625,7 @@ Idea: refactor *copy*
 - =F10   = Highlight a Symbol under the cursor
 - =C-F10 = Highlight a Search Pattern with custome color
   #+begin_src emacs-lisp
-(general-define-key "<f10>" 'highlight-symbol-at-point
+(general-define-key "S-<f10>" 'highlight-symbol-at-point
                     "C-<f10>" 'highlight-phrase)
   #+end_src
 
@@ -937,10 +962,17 @@ Join this line to previous and fix up whitespace at join.
 - =A-S-<right> = jump a window right
   #+begin_src emacs-lisp
 (nk/check-package 'windmove (lambda ()
-                              (general-define-key "<A-S-right>" 'windmove-right
-                                                  "<A-S-left>" 'windmove-left
-                                                  "<A-S-up>" 'windmove-up
-                                                  "<A-S-down>" 'windmove-down) ))
+                              (general-define-key
+                               "<A-S-right>" 'windmove-right
+                               "<A-S-left>" 'windmove-left
+                               "<A-S-up>" 'windmove-up
+                               "<A-S-down>" 'windmove-down
+
+                               "H-e" 'windmove-right
+                               "H-i" 'windmove-left
+                               "H-l" 'windmove-up
+                               "H-a" 'windmove-down
+                               ) ))
   #+end_src
 
 *** Cursor hoch runter :text:move:select:

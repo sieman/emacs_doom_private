@@ -199,4 +199,5 @@
        :config
        literate
        (default
-         +bindings))
+         +bindings)
+       )
