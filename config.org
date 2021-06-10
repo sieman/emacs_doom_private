@@ -349,6 +349,9 @@ Ich möchte gerne eine Historie für die REPL haben.
   (add-hook 'xah-fly-command-mode-activate-hook 'sim/flykeys-indicate-command-mode)
   (add-hook 'xah-fly-insert-mode-activate-hook  'sim/flykeys-indicate-insert-mode)
   (global-set-key (kbd "<f19>") 'xah-fly-command-mode-activate)
+  ;; (define-key key-translation-map (kbd "ESC") (kbd "C-g")) (global-set-key (kbd "ESC") 'xah-fly-command-mode-activate)
+  (global-set-key (kbd "ESC ESC") 'xah-fly-command-mode-activate)
+
   (message "xah-fly-keys custom settings loaded")
   )
 
