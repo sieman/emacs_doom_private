@@ -1,4 +1,2 @@
-/neo-layout/bindings.el
-/neo-layout/neo-function.el
-/neo-layout/neo-keybindings.el
 /config.el
+/packages.el
