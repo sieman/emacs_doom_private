@@ -65,7 +65,7 @@
        ;;(format +onsave)  ; automated prettiness
        ;;god               ; run Emacs commands without modifier keys
        ;;lispy             ; vim for lisp, for people who don't like vim
-       ;; multiple-cursors  ; editing in many places at once
+       multiple-cursors  ; editing in many places at once
        ;; (objed            ; text object editing for the innocent
         ;; +manual)
        ;;parinfer          ; turn lisp into python, sort of
@@ -198,6 +198,5 @@
 
        :config
        literate
-       (default
-         +bindings)
+       (default +bindings +emacs +emacs-bindings)
        )

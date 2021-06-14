@@ -10,8 +10,8 @@ This file shouldn't be byte compiled.
 #+end_src
 
 #+begin_src emacs-lisp
-(package! move-text)
-(package! multiple-cursors)
+;; (package! move-text)
+;; (package! multiple-cursors)
 (package! beacon)
 (package! rg)
 (package! rainbow-mode)
