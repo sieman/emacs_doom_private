@@ -981,9 +981,12 @@ Join this line to previous and fix up whitespace at join.
 *** Cursor hoch runter :text:move:select:
 
 #+begin_src emacs-lisp
-(nk/check-package 'move-text (lambda () (general-define-key
+(nk/check-package 'drag-stuff (lambda () (general-define-key
                                          "s-S-<up>"  'drag-stuff-up
-                                         "s-S-<down>"  'drag-stuff-down)))
+                                         "s-S-<down>"  'drag-stuff-down
+                                         "s-S-<left>"  'drag-stuff-left
+                                         "s-S-<right>"  'drag-stuff-right
+                                         )))
 #+end_src
 
 
