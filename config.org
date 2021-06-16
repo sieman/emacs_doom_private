@@ -595,481 +595,201 @@ https://github.com/GTrunSec/my-profile/blob/master/dotfiles/doom-emacs/xah-fly-k
 ;; (require 'neo2-fly-keys)
 #+end_src
 * Keybinding
-** Function Keys Row
-*** <f1>
-Idea:
-- <f1> view *Quick Documentation*
-- S-<f1> view *External Documentation*
-- s-<f1> view *error description*
-- A-<f1> navigate *select in*
-*** <f2>
-Idea:
-- <f2> navigate to *next highlighted error*
-- s-<f2> run *stop*
+#+begin_src emacs-lisp
+;; (defadvice split-window (after move-point-to-new-window activate)
+  ;; "Moves the point to the newly created window after splitting."
+  ;; (other-window 1))
 
-*** <f3>
-Idea:
-- <f3> navigate *toggle bookmarks*
-- s-<f3> navigate *show bookmarks*
-  -
-*** <f4>
-Idea: view *jump to source*
-*** <f5>
-Idea: refactor *copy*
-**** Next highlighted error
-#+begin_src emacs-lisp
-(general-define-key "<f5>" 'next-error)
-#+end_src
+(defun split-window-right-and-move-there-dammit ()
+  (interactive)
+  (split-window-right)
+  (windmove-right))
 
-*** <f6>
-*** <f7>
-*** <f8>
-*** <f9>
-*** <f10>
-**** Highlight Symbols Phrases ...
-- =F10   = Highlight a Symbol under the cursor
-- =C-F10 = Highlight a Search Pattern with custome color
-  #+begin_src emacs-lisp
-(general-define-key "S-<f10>" 'highlight-symbol-at-point
-                    "C-<f10>" 'highlight-phrase)
-  #+end_src
+(global-set-key (kbd "C-x 3") 'split-window-right-and-move-there-dammit)
 
-*** <f11>
-If you search with none alpha numerics signs like (
-#+begin_src emacs-lisp
-(general-define-key
- "C-<f11>" 'sim/disable-alt-modifier
- "s-<f11>" 'sim/enable-alt-modifier
- )
-#+end_src
-*** <f12>
-**** File Structure
-=C-<F12>  =
-Shows quick jumping points of the structure in the file.
-#+begin_src emacs-lisp
-(general-define-key "C-<f12>" 'imenu)
-(general-define-key "C-S-<f12>" 'imenu-anywhere)
-#+end_src
+(defun split-window-below-and-move-there-dammit ()
+  (interactive)
+  (split-window-below)
+  (windmove-down))
 
-** Number Row
-*** 1 °
-#+begin_src emacs-lisp
-(general-define-key "s-1" '+treemacs/toggle)
-#+end_src
-*** 2 §
-*** 3 ℓ
-**** New Window
-#+begin_src emacs-lisp
-(defadvice split-window (after move-point-to-new-window activate)
-  "Moves the point to the newly created window after splitting."
-  (other-window 1))
-#+end_src
+(global-set-key (kbd "C-x 2") 'split-window-below-and-move-there-dammit)
 
-*** 4 »
-*** 5 «
-*** 6 $
-*** 7 €
-*** 8 „
-*** 9 “
-#+begin_src emacs-lisp
-(general-define-key
- "s-9" 'magit-status)
-#+end_src
-*** 0 ”
-*** - —
-** Upper Row
-*** x X
-*** v V :paste:history:clipboard:
-Shows a popup menu with a history kills, it's like a clipboard history.
-#+begin_src emacs-lisp
-(if (require 'browse-kill-ring nil 'noerror)
-    (general-define-key "s-V" 'browse-kill-ring)
-  (general-define-key "s-V" '(lambda ()
-                               (interactive)
-                               (popup-menu 'yank-menu))))
+(global-unset-key (kbd "s-C"))
+(global-unset-key (kbd "s-w"))
+(global-unset-key (kbd "s-k"))
+(global-unset-key (kbd "s-e"))
+(global-unset-key (kbd "s-o"))
+(global-unset-key (kbd "s-d"))
+(global-unset-key (kbd "A-<tab>"))
+(global-unset-key (kbd "C-@"))
+(global-unset-key (kbd "M-SPC"))
+(global-unset-key (kbd "M-@"))
+(global-unset-key (kbd "s-n"))
+(global-set-key [remap goto-line] 'goto-line-with-feedback)
+
 (after! term
   (general-def term-raw-map
     "s-v" 'term-paste))
-#+end_src
 
-*** l L
-*** c C
-Comment or uncomment a line or region.
-#+begin_src emacs-lisp
-(global-unset-key (kbd "s-C"))
-(general-define-key "s-C" 'comment-line
-                    "M-s-c" 'comment-or-uncomment-region)
-#+end_src
+(map! :prefix "C-c o"
+      :desc "open a ansi Terminal" "t" #'ansi-term)
 
-Öffne ein Terminal in Emacs.
-#+begin_src emacs-lisp
- (map! :prefix "C-c o"
-       :desc "open a ansi Terminal" "t" #'ansi-term)
-#+end_src
-
-
-*** w W :buffer:
-#+begin_src emacs-lisp
-(global-unset-key (kbd "s-w"))
-(general-define-key "s-w" 'kill-current-buffer)
-
-(general-def org-src-mode-map
-  "s-w" 'org-edit-src-exit)
-#+end_src
-*** k K
-#+begin_src emacs-lisp
-(global-unset-key (kbd "s-k"))
-#+end_src
-*** h H < :multiple:cursors:
-#+begin_src emacs-lisp
-(map!
- :desc "Mark previous" "A-s-h" #'mc/mark-previous-like-this
- :desc "Mark previous" "s-<" #'mc/mark-previous-like-this
- :desc "Unmark previous" "A-C-h" #'mc/unmark-previous-like-this
- :desc "Unmark previous" "C-<" #'mc/unmark-previous-like-this
- )
-#+end_src
-*** g G > :search:multiple:cursors:
-#+begin_src emacs-lisp
-(general-define-key "s-G" 'isearch-repeat-backward)
-
-(map!
- :desc "Mark next" "A-s-g" #'mc/mark-next-like-this
- :desc "Mark next" "s->" #'mc/mark-next-like-this
- :desc "Unmark next" "A-C-g" #'mc/unmark-next-like-this
- :desc "Unmark next" "C->" #'mc/unmark-next-like-this
- )
-#+end_src
-**** Goto Line
-- =M-g M-g   = goto line number and shows line numbers
-  #+begin_src emacs-lisp
-(global-set-key [remap goto-line] 'goto-line-with-feedback)
-  #+end_src
-
-
-*** f F :search:org:
-Remaping for org-mode. The meta key is maped to fn-key, with cursor it behaves diffrent.
-#+begin_src emacs-lisp
-(general-define-key
- :keymaps 'org-mode-map
- ;; forword right
- "C-f" 'org-metaright
- )
-#+end_src
-
-#+begin_src emacs-lisp
-(general-define-key  "s-F r" 'isearch-forward-regexp)
-;; (nk/check-package 'swiper (lambda ()(general-define-key
-;;                                      "s-F s" 'swiper-isearch
-;;                                      "s-F S" 'swiper-isearch-backward
-;;                                      "s-F 7" 'swiper-mc) ))
-
-(if (require  'avy
-              nil 'noerror)
-    (general-define-key
-     "s-F a" 'avy-goto-char)
-
-  (if (require  'ace-jump-mode nil 'noerror)
-      (general-define-key
-       "s-F a" 'ace-jump-char-mode)
-    (message "neo-keybinding missing package: avy or ace-jump-mode")))
-#+end_src
-*** q Q
-*** ß ẞ
-** Center Row
-*** u U
-Idea:
-- s-U *Main menu | Navigate | Go to Super Method*
-
-upper Lower Case Toggle
-
-#+begin_src emacs-lisp
-;; (nk/check-package 'xah-fly-keys
-;;                   (lambda () (general-define-key "C-S-u" 'xah-toggle-letter-case)))
-(global-unset-key (kbd "s-u"))
-(general-define-key
- "s-U" 'xah-toggle-letter-case)
-#+end_src
-
-*** i I
-Indent region - reformat source code
-#+begin_src emacs-lisp
-(map! :desc "Reformat Source Code" "s-i" #'indent-region)
-#+end_src
-*** a A
-#+begin_src emacs-lisp
-(general-define-key
- "\C-xm" 'execute-extended-command
- "M-X" 'execute-extended-command
- "\C-x\C-m" 'execute-extended-command
- "s-A" 'execute-extended-command)
-#+end_src
-*** e E
-**** Switch buffer
-- =s-e     =
-- =C-x C-b =
-- =C-x b   =
-  Switch to another buffer.
-  #+begin_src emacs-lisp
-(global-unset-key (kbd "s-e"))
-(general-define-key "s-e" 'ido-switch-buffer
-                    "C-x C-b" 'ibuffer
-                    "C-x b" 'ido-switch-buffer)
-  #+end_src
-
-*** o O
-#+begin_src emacs-lisp
-(global-unset-key (kbd "s-o"))
-;;((general-define-key "s-o" 'counsel-find-file)
-
-(general-define-key :prefix "s-O"
-                    "p" 'ns-open-file-using-panel
-                    "m" 'execute-extended-command)
 
 (map! :after ivy :map ivy-mode-map :prefix "s-O"
       :desc "recent files" "r" #'counsel-recentf
-      :desc "open file" "f" #'counsel-find-file)
-
-(general-def org-mode-map
-  "s-o" 'counsel-org-goto)
+      :desc "open file" "f" #'counsel-find-file
+      "p" #'ns-open-file-using-panel
+      )
 
 (general-def org-mode-map
   :prefix "s-O"
   "o" 'org-open-at-point
   "s" 'org-edit-special)
 
-(general-def cider-repl-mode-map
-  "s-o" 'cider-repl-history)
-#+end_src
-*** s S
+(general-def org-src-mode-map
+  "s-w" 'org-edit-src-exit)
 
-#+begin_src emacs-lisp
-(general-def cider-repl-mode-map
-  "s-s" 'cider-repl-history-save)
-#+end_src
-*** n N :org:
-#+begin_src emacs-lisp
-(global-unset-key (kbd "s-n"))
-#+end_src
-#+begin_src emacs-lisp
+
 (general-define-key
  :keymaps 'org-mode-map
- ;; next down
- "C-n" 'org-metadown
- )
-#+end_src
-*** r R
-*** t T
-**** Appearance Text Scale remapping keybindings
-#+BEGIN_SRC emacs-lisp
-(general-define-key "C-x C-A-t" 'text-scale-decrease)
-#+END_SRC
-
-
-*** d D
-#+begin_src emacs-lisp
-(global-unset-key (kbd "s-d"))
-(general-define-key "s-d" 'duplicate-line-or-region)
-#+end_src
-*** y Y
-** Lower Row
-*** ü Ü
-*** ö Ö
-*** ä Ä :cursor:jump:
-Cursor Jumps [[https://github.com/abo-abo/avy][Avy-Mode]] like [[https://github.com/winterTTr/ace-jump-mode][Ace-Jump-Mode]]
-#+begin_src emacs-lisp
-(general-define-key
- "s-ä" 'avy-goto-char-2
- "s-Ä c" 'avy-goto-char
- "s-Ä l" 'avy-goto-line
- "s-Ä w" 'avy-goto-word-1
- "s-Ä o" 'avy-org-goto-heading-timer
- )
-#+end_src
-*** p P :org:
-#+begin_src emacs-lisp
-(general-define-key
- :keymaps 'org-mode-map
- ;; previous up
- "C-p" 'org-metaup
- )
-#+end_src
-*** z Z :undo:redo:
-- =C-z   = undo
-- =C-S-z = redo
-- =C-x u = Show the undo-tree
-
-
-#+begin_src emacs-lisp
-(nk/check-package 'undo-tree
-                  (lambda () (global-unset-key (kbd "C-/"))
-                    (global-unset-key (kbd "C-_"))
-                    (general-define-key "C-z" 'undo-tree-undo
-                                        "C-Z" 'undo-tree-redo
-                                        "s-Z" 'undo-tree-redo)))
-#+end_src
-
-*** b B :org:
-#+begin_src emacs-lisp
-(general-define-key
- :keymaps 'org-mode-map
- ;; backward left
- "C-b" 'org-metaleft
- )
-#+end_src
-**** Appearance Text Scale remapping keybindings
-#+BEGIN_SRC emacs-lisp
-(general-define-key "C-x C-A-b" 'text-scale-increase
-                    "C-x C-A-t" 'text-scale-decrease)
-#+END_SRC
-
-
-*** m M
-The keybinding =C-m= effects a =return=, and I think that's a bug.
-#+begin_src emacs-lisp
-;;(define-key input-decode-map [?\C-m] [C-m])
-;;(general-define-key "<C-m>" '(lambda () (interactive) (message "C-m is not the same as RET any more!")))
-(map! :prefix "H-m"
-      :desc "Marks in region"   "r"     #'mc/mark-all-in-region)
-#+end_src
-*** , –
-**** Spell Checking
-#+begin_src emacs-lisp
-(nk/check-package 'flyspell-correct
-                  (lambda () (general-define-key "C-M-," 'flyspell-correct-wrapper)))
-#+end_src
-
-*** . •
-#+begin_src emacs-lisp
-(map! :desc "Jumps to next error" "C-•" #'next-error)
-#+end_src
-*** j J :join:line:
-*C-S-j*
-Join this line to previous and fix up whitespace at join.
-#+begin_src emacs-lisp
-(general-define-key "C-S-j" 'join-line
-                    "s-J" 'join-line)
-#+end_src
-
-** Space Return Backspace Delete Up Down Right Left Tab
-*** return
-#+begin_src emacs-lisp
-(general-define-key
- ;; NOTE: keymaps specified with :keymaps must be quoted
- :keymaps 'org-mode-map
+ "s-o" 'counsel-org-goto
+ "C-p" 'org-metaup ; previous up
+ "C-n" 'org-metadown ; next down
+ "C-b" 'org-metaleft ; backward left
  "s-<return>" 'org-meta-return
  )
-#+end_src
-*** Cursor Jump to other Buffer
-- =A-S-<up>    = jump a window up
-- =A-S-<down>  = jump a window down
-- =A-S-<left>  = jump a window left
-- =A-S-<right> = jump a window right
-  #+begin_src emacs-lisp
-(nk/check-package 'windmove (lambda ()
-                              (general-define-key
-                               "<A-S-right>" 'windmove-right
-                               "<A-S-left>" 'windmove-left
-                               "<A-S-up>" 'windmove-up
-                               "<A-S-down>" 'windmove-down
 
-                               "H-e" 'windmove-right
-                               "H-i" 'windmove-left
-                               "H-l" 'windmove-up
-                               "H-a" 'windmove-down
-                               ) ))
-  #+end_src
+(general-def cider-repl-mode-map
+  "s-o" 'cider-repl-history
+  "s-s" 'cider-repl-history-save
+  )
 
-*** Cursor hoch runter :text:move:select:
+(map! :prefix "H-m"
+      :desc "Marks in region"   "r"     #'mc/mark-all-in-region)
 
-#+begin_src emacs-lisp
-(nk/check-package 'drag-stuff (lambda () (general-define-key
-                                         "s-S-<up>"  'drag-stuff-up
-                                         "s-S-<down>"  'drag-stuff-down
-                                         "s-S-<left>"  'drag-stuff-left
-                                         "s-S-<right>"  'drag-stuff-right
-                                         )))
-#+end_src
+(nk/check-package 'flyspell-correct
+                  (lambda () (general-define-key "C-M-," 'flyspell-correct-wrapper)))
+
+(map!
 
 
-Erweitere und schrumpfe den selektierten Text.
+ ;; Buffer-local font scaling
+ "s-+" #'doom/reset-font-size
+ ;; "s-=" #'doom/increase-font-size
+ "s--" #'doom/decrease-font-size
+ ;; Conventional text-editing keys & motions
+ "s-/" (cmd! (save-excursion (comment-line 1)))
 
-#+begin_src emacs-lisp
-(nk/check-package 'expand-region
-                  (lambda () (general-define-key
-                              "A-<up>"  'er/expand-region
-                              "A-<down>" 'er/contract-region))
-                  )
-#+end_src
 
-*** Cursor links und rechts :cursor:move:
-Ich habe mich schon so an den Mac Standard gewöhnt, das ich ihn auch bei Emacs haben möchte.
-#+begin_src emacs-lisp
-(general-define-key "s-<right>" 'move-end-of-line
-                    "s-<left>" 'move-beginning-of-line)
-#+end_src
+ ;; f1
+ ;; f2
+ ;; f3
+ ;; f4
+ "<f5>" #'next-error
+ ;; f6
+ ;; f7
+ ;; f8
+ ;; f9
+ "S-<f10>" #'highlight-symbol-at-point
+ "C-<f10>" #'highlight-phrase
+ "C-<f11>" #'sim/disable-alt-modifier
+ "s-<f11>" #'sim/enable-alt-modifier
+ "C-<f12>" #'imenu
+ "C-S-<f12>" #'imenu-anywhere
 
-Springt zu den letzten Punktion, wo sich der Cursor befand.
-#+begin_src emacs-lisp
-(general-define-key "A-s-<left>" 'better-jumper-jump-backward
-                    "A-s-<right>" 'better-jumper-jump-forward)
-#+end_src
+ "s-1" #'+treemacs/toggle
+ ;; 2
+ ;; 3
+ ;; 4
+ ;; 5
+ ;; 6
+ ;; 7
+ ;; 8
+ "s-9" #'magit-status
+ ;; 0
 
-**** Smatparam Bug
-Normalerweise springt man mit c-right oder c-left über Wörter hinweg, die Tasten
-werden smartparens überschrieben. Wenn ich mit dem Mode umgehen kann, kann ich
-mir überlegen, ob ich eine andere Zuordnung bevorzuge.
+ ;; x
+ "s-x" #'execute-extended-command
+ "s-V" #'(lambda () (interactive) (popup-menu 'yank-menu))
+ "s-v" #'yank
+ ;; l
+ "s-l" #'goto-line
+ "s-C" #'comment-line
+ "s-c" (if (featurep 'evil) #'evil-yank #'copy-region-as-kill)
+ "M-s-c" #'comment-or-uncomment-region
+ "s-w" #'kill-current-buffer
+ "s-W" #'delete-frame
+ ;; k
+ :desc "Mark previous" "A-s-h" #'mc/mark-previous-like-this
+ :desc "Mark previous" "s-<" #'mc/mark-previous-like-this
+ :desc "Unmark previous" "A-C-h" #'mc/unmark-previous-like-this
+ :desc "Unmark previous" "C-<" #'mc/unmark-previous-like-this
+ "s-G" #'isearch-repeat-backward
+ "s-f" #'swiper
+ ;; q
+ "s-q" (if (daemonp) #'delete-frame #'save-buffers-kill-terminal)
+ ;; ß
 
-#+begin_src emacs-lisp
-(general-define-key
- "A-<left>" 'left-word
- "A-<right>" 'right-word)
-#+end_src
+ ;; u
+ :desc "Reformat Source Code" "s-i" #'indent-region
+ "s-a" #'mark-whole-buffer
+ "s-A" #'execute-extended-command
+ "s-e" #'counsel-switch-buffer
+ ;; o
+ ;; s
+ "s-s" #'save-buffer
+ ;; n
+ "s-n" #'+default/new-buffer
+ "s-N" #'make-frame
+ ;; r
+ ;; t
+ "C-x C-A-t" #'text-scale-decrease
+ ;; d
+ "s-d" #'duplicate-line-or-region
+ "s-y" #'other-frame  ; fix frame-switching
 
-*** Leertaste Space Key :multiple:cursors:
+ ;; ü
+ ;; ö
+ ;; ä
+ "s-ä" #'avy-goto-char-2
+ "s-Ä c" #'avy-goto-char
+ "s-Ä l" #'avy-goto-line
+ "s-Ä w" #'avy-goto-word-1
+ "s-Ä o" #'avy-org-goto-heading-timer
+ ;; p
+ ;; z
+ "s-z" #'undo
+ "s-Z" #'redo
+ ;; b
+ "C-x C-b" #'ibuffer
+ "C-x b" #'counsel-switch-buffer
+ "C-x C-A-b" #'text-scale-increase
+ ;; m
+ ;; ,
+ ;; .
+ :desc "Jumps to next error" "C-•" #'next-error
+ ;; j
+ "C-S-j" #'join-line
+ "s-J" #'join-line
 
-#+begin_src emacs-lisp
-(global-unset-key (kbd "A-<tab>"))
-(global-unset-key (kbd "C-@"))
-(global-unset-key (kbd "M-SPC"))
-(global-unset-key (kbd "M-@"))
+ "s-<up>" #'windmove-up
+ "s-<down>" #'windmove-down
+ "s-<left>" #'windmove-left
+ "s-<right>" #'windmove-right
 
-(general-define-key  "M-SPC" 'set-mark-command)
-(general-define-key  "s-SPC" 'set-mark-command)
-#+end_src
+ "s-S-<up>"  #'drag-stuff-up
+ "s-S-<down>"  #'drag-stuff-down
+ "s-S-<left>"  #'drag-stuff-left
+ "s-S-<right>"  #'drag-stuff-right
 
-Select Text and Fast
-
-- =C-c m c = Add one cursor to each line of the active region.
-- =C-c m a = Find and mark all the parts of the buffer matching the currently active region
-
-  #+begin_src emacs-lisp
-(general-define-key
- "S-s-SPC c" 'mc/edit-lines
- "S-s-SPC a" 'mc/mark-all-like-this
- "S-s-SPC p" 'mark-paragraph
+ "A-<up>"  #'er/expand-region
+ "A-<down>" #'er/contract-region
+ "<A-s-left>" #'better-jumper-jump-backward
+ "<A-s-right>" #'better-jumper-jump-forward
+ "A-<left>" #'left-word
+ "A-<right>" #'right-word
+ "S-s-SPC c" #'mc/edit-lines
+ "S-s-SPC a" #'mc/mark-all-like-this
+ "S-s-SPC p" #'mark-paragraph
  )
-  #+end_src
-
-*** Tab
-Manchmal kommen snippets in den Weg und ich möchte nur einrücken.
-#+begin_src emacs-lisp
-(general-define-key
- "C-<tab>" 'indent-for-tab-command)
 #+end_src
-** TODO Macro Step jumps into source code (lisp)
-Zeigt den Inhalt von elip Funktionen.
-#+BEGIN_SRC emacs-lisp
-(if (require 'macrostep nil 'noerror)
-    (require 'macrostep)
-  (message "neo-keybinding missing package: macrostep"))
-#+END_SRC
-
-** TODO Searching
-- =C-S   =
-  #+begin_src emacs-lisp
-(nk/check-package 'swiper (lambda ()(general-define-key
-                                     "C-S-s" 'swiper-isearch
-                                     "C-S-r" 'swiper-isearch-backward
-                                     "C-7" 'swiper-mc) ))
-  #+end_src
