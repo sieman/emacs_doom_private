@@ -722,8 +722,12 @@ https://github.com/GTrunSec/my-profile/blob/master/dotfiles/doom-emacs/xah-fly-k
  ;; k
  :desc "Mark previous" "A-s-h" #'mc/mark-previous-like-this
  :desc "Mark previous" "s-<" #'mc/mark-previous-like-this
+ :desc "Mark next" "s->" #'mc/mark-next-like-this
+ :desc "Mark next" "A-s-g" #'mc/mark-next-like-this
  :desc "Unmark previous" "A-C-h" #'mc/unmark-previous-like-this
  :desc "Unmark previous" "C-<" #'mc/unmark-previous-like-this
+ :desc "Unmark next" "C->" #'mc/unmark-next-like-this
+ :desc "Unmark next" "A-C-g" #'mc/unmark-next-like-this
  "s-G" #'isearch-repeat-backward
  "s-f" #'swiper
  ;; q
@@ -788,8 +792,20 @@ https://github.com/GTrunSec/my-profile/blob/master/dotfiles/doom-emacs/xah-fly-k
  "<A-s-right>" #'better-jumper-jump-forward
  "A-<left>" #'left-word
  "A-<right>" #'right-word
- "S-s-SPC c" #'mc/edit-lines
+
  "S-s-SPC a" #'mc/mark-all-like-this
- "S-s-SPC p" #'mark-paragraph
- )
+ "S-s-SPC l" #'mc/edit-lines
+ :desc "Mark Paragraph"   "S-s-SPC p" #'mark-paragraph
+ :desc "Mark Symbol"   "S-s-SPC s" #'er/mark-symbol
+ :desc "Mark Prefix S."   "S-s-SPC S" #'er/mark-symbol-with-prefix
+ :desc "Mark Word"   "S-s-SPC w" #'er/mark-word
+ :desc "Mark Function"   "S-s-SPC f" #'er/mark-defun
+ :desc "Mark Comment"   "S-s-SPC c" #'er/mark-comment
+ :desc "Mark URL"   "S-s-SPC u" #'er/mark-url
+ :desc "Mark ins Pairs"   "S-s-SPC i" #'er/mark-inside-pairs
+ :desc "Mark ins Quotes"   "S-s-SPC I" #'er/mark-inside-quotes
+ :desc "Mark out Pairs"   "S-s-SPC o" #'er/mark-outside-pairs
+ :desc "Mark out Quotes"   "S-s-SPC O" #'er/mark-outside-quotes
+ :desc "Mark Email"   "S-s-SPC e" #'er/mark-email
+  )
 #+end_src
