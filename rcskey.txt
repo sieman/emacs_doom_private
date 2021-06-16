@@ -1,0 +1,9 @@
+site-lisp/expand-region/features/support/env.el: (global-set-key (kbd "C-@") 'er/expand-region)
+site-lisp/expand-region/features/support/env.el: (global-set-key (kbd "C-S-@") 'er/contract-region)
+site-lisp/expand-region/README.md:    (global-set-key (kbd "C-=") 'er/expand-region)
+site-lisp/expand-region/expand-region.el:;;     (global-set-key (kbd "C-=") 'er/expand-region)
+settings/key-bindings.el:(global-set-key (if is-mac (kbd "C-@") (kbd "C-'")) 'er/expand-region)
+modules/config/default/+emacs-bindings.el:      "C-="  #'er/expand-region
+modules/config/default/+emacs-bindings.el:      "C--"  #'er/contract-region
+docs/faq.org:(map! :nv "C-=" #'er/contract-region
+docs/faq.org:      :nv "C-+" #'er/expand-region)
