@@ -33,5 +33,6 @@
       '(
         counsel-grep-or-swiper
         indent-for-tab-command
+        isearch-repeat-forward
         mode-line-previous-buffer
         ))
