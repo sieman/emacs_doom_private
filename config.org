@@ -20,7 +20,7 @@ This file shouldn't be byte compiled.
 (package! four-modifier :recipe (:host github :repo "sieman/four-modifier"))
 (package! neo-layout-fly-keys :recipe (:host github :repo "sieman/neo-layout-fly-keys"))
 (package! elegant-emacs :recipe (:host github :repo "rougier/elegant-emacs"))
-(package! meow)
+;; (package! meow)
 (package! aggressive-indent-mode)
 #+end_src
 
@@ -155,8 +155,9 @@ npm install dictionary-en-gb
 #+begin_src emacs-lisp
 (after! ivy
   (ido-mode -1)
-  (global-unset-key (kbd "s-x"))
-  (general-define-key "s-x" 'kill-region))
+  ;; (global-unset-key (kbd "s-x"))
+  ;; (general-define-key "s-x" 'kill-region)
+  )
 #+end_src
 *** Navigate Back and Forward, the Better Jump
 Ich mag in einem Buffer herumspringen.
@@ -355,7 +356,7 @@ Ich möchte gerne eine Historie für die REPL haben.
 
   (global-set-key (kbd "<f19>") 'xah-fly-command-mode-activate)
   (global-set-key (kbd "ESC ESC") 'xah-fly-command-mode-activate) ;; (define-key key-translation-map (kbd "ESC") (kbd "C-g")) (add-hook 'doom-escape-hook 'sim/flykeys-indicate-command-mode)
-  (define-key xah-fly-key-map (kbd "SPC") doom/leader)
+
   (message "xah-fly-keys custom settings loaded")
   )
 
@@ -599,8 +600,8 @@ https://github.com/GTrunSec/my-profile/blob/master/dotfiles/doom-emacs/xah-fly-k
 * Keybinding
 #+begin_src emacs-lisp
 ;; (defadvice split-window (after move-point-to-new-window activate)
-  ;; "Moves the point to the newly created window after splitting."
-  ;; (other-window 1))
+;; "Moves the point to the newly created window after splitting."
+;; (other-window 1))
 
 (defun split-window-right-and-move-there-dammit ()
   (interactive)
@@ -616,6 +617,7 @@ https://github.com/GTrunSec/my-profile/blob/master/dotfiles/doom-emacs/xah-fly-k
 
 (global-set-key (kbd "C-x 2") 'split-window-below-and-move-there-dammit)
 
+(global-unset-key (kbd "s-x"))
 (global-unset-key (kbd "s-C"))
 (global-unset-key (kbd "s-w"))
 (global-unset-key (kbd "s-k"))
@@ -673,15 +675,12 @@ https://github.com/GTrunSec/my-profile/blob/master/dotfiles/doom-emacs/xah-fly-k
                   (lambda () (general-define-key "C-M-," 'flyspell-correct-wrapper)))
 
 (map!
-
-
  ;; Buffer-local font scaling
  "s-+" #'doom/reset-font-size
  ;; "s-=" #'doom/increase-font-size
  "s--" #'doom/decrease-font-size
  ;; Conventional text-editing keys & motions
  "s-/" (cmd! (save-excursion (comment-line 1)))
-
 
  ;; f1
  ;; f2
@@ -711,13 +710,13 @@ https://github.com/GTrunSec/my-profile/blob/master/dotfiles/doom-emacs/xah-fly-k
  ;; 0
 
  ;; x
- "s-x" #'execute-extended-command
- "s-V" #'counsel-yank-pop
+ "  s-x" #'kill-region
  "s-v" #'yank
+ "s-V" #'counsel-yank-pop
  ;; l
  "s-l" #'goto-line
- "s-C" #'comment-line
  "s-c" (if (featurep 'evil) #'evil-yank #'copy-region-as-kill)
+ "s-C" #'comment-line
  "M-s-c" #'comment-or-uncomment-region
  "s-w" #'kill-current-buffer
  "s-W" #'delete-frame
@@ -778,10 +777,15 @@ https://github.com/GTrunSec/my-profile/blob/master/dotfiles/doom-emacs/xah-fly-k
  "C-S-j" #'join-line
  "s-J" #'join-line
 
- "s-<up>" #'windmove-up
- "s-<down>" #'windmove-down
- "s-<left>" #'windmove-left
- "s-<right>" #'windmove-right
+ "s-<up>" #'better-jumper-jump-backward
+ "s-<down>" #'better-jumper-jump-forward
+ "s-<left>" #'doom/backward-to-bol-or-indent
+ "s-<right>" #'doom/forward-to-last-non-comment-or-eol
+
+ "C-s-<up>" #'windmove-up
+ "C-s-<down>" #'windmove-down
+ "C-s-<left>" #'windmove-left
+ "C-s-<right>" #'windmove-right
 
  "s-S-<up>"  #'drag-stuff-up
  "s-S-<down>"  #'drag-stuff-down
@@ -790,8 +794,6 @@ https://github.com/GTrunSec/my-profile/blob/master/dotfiles/doom-emacs/xah-fly-k
 
  "A-<up>"  #'er/expand-region
  "A-<down>" #'er/contract-region
- "<A-s-left>" #'better-jumper-jump-backward
- "<A-s-right>" #'better-jumper-jump-forward
  "A-<left>" #'left-word
  "A-<right>" #'right-word
 
@@ -809,5 +811,5 @@ https://github.com/GTrunSec/my-profile/blob/master/dotfiles/doom-emacs/xah-fly-k
  :desc "Mark out Pairs"   "S-s-SPC o" #'er/mark-outside-pairs
  :desc "Mark out Quotes"   "S-s-SPC O" #'er/mark-outside-quotes
  :desc "Mark Email"   "S-s-SPC e" #'er/mark-email
-  )
+ )
 #+end_src
