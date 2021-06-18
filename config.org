@@ -327,7 +327,7 @@ Ich möchte gerne eine Historie für die REPL haben.
 *** Fly Keys by Xah Lee
 #+begin_src emacs-lisp
 (after! xah-fly-keys
-  ;;
+
   (defun sim/flykeys-indicate-command-mode () (interactive)
          (custom-set-faces
           ;; `(cursor ((t (:background "slateblue2"))))
@@ -360,8 +360,11 @@ Ich möchte gerne eine Historie für die REPL haben.
   (message "xah-fly-keys custom settings loaded")
   )
 
-(after! neo-layout-fly-keys
-  (neo2/flykeys-on))
+(defun sim/flykeys-on ()
+  (interactive)
+  (neo2/flykeys-on)
+  (define-key xah-fly-key-map (kbd "SPC") nil)
+  (define-key xah-fly-key-map (kbd "SPC") (kbd! "C-c")))
 #+End_src
 
 * Funktionen
