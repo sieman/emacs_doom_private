@@ -26,6 +26,7 @@
         xah-fly-command-mode-activate
         xah-fly-insert-mode-activate
         xah-forward-right-bracket
+        xah-paste-or-paste-previous
         xah-shrink-whitespaces
         ))
 
@@ -35,4 +36,6 @@
         indent-for-tab-command
         isearch-repeat-forward
         mode-line-previous-buffer
+        sim/enable-alt-modifier
+        toggle-frame-fullscreen
         ))

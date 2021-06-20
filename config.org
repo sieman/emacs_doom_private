@@ -13,9 +13,9 @@ This file shouldn't be byte compiled.
 ;; (package! move-text)
 ;; (package! multiple-cursors)
 (package! beacon)
-(package! rg)
-(package! rainbow-mode)
-(package! sublimity)
+;; (package! rg) ; not using it at the moment
+;; (package! rainbow-mode) ; should be package by doom now
+(package! sublimity) ; check the benefits
 (package! xah-fly-keys)
 (package! four-modifier :recipe (:host github :repo "sieman/four-modifier"))
 (package! neo-layout-fly-keys :recipe (:host github :repo "sieman/neo-layout-fly-keys"))
@@ -345,20 +345,18 @@ Ich möchte gerne eine Historie für die REPL haben.
           `(cursor ((t (:background "red"))))
           )
          (set-frame-parameter (selected-frame) 'alpha '(100 . 100))
-         (custom-set-variables '(cursor-type 'box))
-         )
+         (custom-set-variables '(cursor-type 'box)))
 
   (add-hook! 'xah-fly-command-mode-activate-hook 'sim/flykeys-indicate-command-mode)
   (add-hook! 'xah-fly-insert-mode-activate-hook  'sim/flykeys-indicate-insert-mode)
-  (add-hook! 'magit-mode-hook 'sim/flykeys-indicate-insert-mode)
-  (add-hook! 'dired-hook 'sim/flykeys-indicate-insert-mode)
-  (add-hook! 'color-rg-mode-hook 'sim/flykeys-indicate-insert-mode)
+  (add-hook! 'magit-mode-hook 'xah-fly-insert-mode-activate)
+  (add-hook! 'dired-hook 'xah-fly-insert-mode-activate)
+  (add-hook! 'color-rg-mode-hook 'xah-fly-insert-mode-activate)
 
   (global-set-key (kbd "<f19>") 'xah-fly-command-mode-activate)
   (global-set-key (kbd "ESC ESC") 'xah-fly-command-mode-activate) ;; (define-key key-translation-map (kbd "ESC") (kbd "C-g")) (add-hook 'doom-escape-hook 'sim/flykeys-indicate-command-mode)
 
-  (message "xah-fly-keys custom settings loaded")
-  )
+  (message "xah-fly-keys custom settings loaded"))
 
 (defun sim/flykeys-on ()
   (interactive)
