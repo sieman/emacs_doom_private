@@ -98,4 +98,5 @@ alias eNasymoa='emacsSwitcher nasymoa.vanilla'
 alias eSandbox='emacsSwitcher sandbox'
 
 alias doup='doom upgrade'
+alias dose='doom sync && e'
 export PATH="$PATH:$HOME/.emacs.d/bin"
