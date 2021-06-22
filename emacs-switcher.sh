@@ -45,7 +45,10 @@ alias edoom="doomLinker sieman"
 # undeadkernel https://github.com/UndeadKernel/emacs_doom_private.git
 alias edoomUndeadkernel="others/undeadkernel"
 
-# hlissner https://github.com/hlissner/doom-emacs
+# doom https://github.com/hlissner/doom-emacs
+alias edoomDoom="doomLinker others/doom"
+
+# hlissner https://github.com/hlissner/doom-emacs-private
 alias edoomHlissner="doomLinker others/hlissner"
 
 # WhatDothLife https://github.com/WhatDothLife/doom-config.git
