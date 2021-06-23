@@ -370,8 +370,8 @@ Ich möchte gerne eine Historie für die REPL haben.
 (defun sim/flykeys-on ()
   (interactive)
   (neo2/flykeys-on)
-  (define-key xah-fly-key-map (kbd "SPC") nil)
-  (define-key xah-fly-key-map (kbd "SPC") (kbd! "C-c")))
+  (define-key xah-fly-command-map (kbd "SPC") nil)
+  (define-key xah-fly-command-map (kbd "SPC") (kbd! "C-c")))
 #+End_src
 
 * Funktionen
