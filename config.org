@@ -822,4 +822,5 @@ https://github.com/GTrunSec/my-profile/blob/master/dotfiles/doom-emacs/xah-fly-k
  :desc "Mark out Quotes"   "S-s-SPC O" #'er/mark-outside-quotes
  :desc "Mark Email"   "S-s-SPC e" #'er/mark-email
  )
+(sim/flykeys-on)
 #+end_src
