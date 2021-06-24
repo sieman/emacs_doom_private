@@ -343,7 +343,7 @@ Ich möchte gerne eine Historie für die REPL haben.
           `(cursor ((t (:background "green"))))
           )
          ;; (face-attribute 'default :background) ; get current background color
-         (set-frame-parameter (selected-frame) 'alpha '(92 . 90))
+         ;; (set-frame-parameter (selected-frame) 'alpha '(92 . 90))
          ;; (custom-set-variables '(cursor-type 'hollow))
          (custom-set-variables '(cursor-type 'box))
          (xah-fly-save-buffer-if-file)
@@ -353,7 +353,7 @@ Ich möchte gerne eine Historie für die REPL haben.
          (custom-set-faces
           `(cursor ((t (:background "red"))))
           )
-         (set-frame-parameter (selected-frame) 'alpha '(100 . 100))
+         ;; (set-frame-parameter (selected-frame) 'alpha '(100 . 100))
          (custom-set-variables '(cursor-type 'box)))
 
   (add-hook! 'xah-fly-command-mode-activate-hook 'sim/flykeys-indicate-command-mode)
