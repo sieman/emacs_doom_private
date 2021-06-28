@@ -22,6 +22,7 @@ This file shouldn't be byte compiled.
 (package! elegant-emacs :recipe (:host github :repo "rougier/elegant-emacs"))
 ;; (package! meow)
 (package! aggressive-indent-mode)
+(package! ox-jira :recipe (:host github :repo "stig/ox-jira.el"))
 #+end_src
 
 * Einstellungen :settings:
@@ -209,6 +210,8 @@ Dies ist ein Minor-Mode und zeigt die gedrückten Tasten an.
   )
 
 (add-hook! 'org-log-buffer-setup-hook '(require 'org-keys))
+
+(use-package! ox-jira)
 #+end_src
 
 *Babel Support*
