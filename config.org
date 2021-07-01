@@ -41,30 +41,16 @@ This file shouldn't be byte compiled.
 (load! "+themes")
 (use-package! beacon
   :diminish
-  :config (setq beacon-color "#9a37ff")
+  :config
+  (setq beacon-color "#9a37ff")
   (beacon-mode t)
   )
 
 ;; Select and raise the frame, always
 (select-frame-set-input-focus (selected-frame))
 
-;; Select popup buffers by default
-;; (setq +popup-defaults
-;;       (list :side   'bottom
-;;             :height 0.16
-;;             :width  40
-;;             :quit   t
-;;             :select t
-;;             :ttl    5))
-;; Semi-center it over the target window, rather than at the cursor position
-  ;; (which could be anywhere).
-  (defadvice! center-emacs-everywhere-in-origin-window (frame window-info)
-    :override #'emacs-everywhere-set-frame-position
-    (cl-destructuring-bind (x y width height)
-        (emacs-everywhere-window-geometry window-info)
-      (set-frame-position frame
-                          (+ x (/ width 2) (- (/ width 2)))
-                          (+ y (/ height 2)))))
+;; Hide the menu for as minimalistic a startup screen as possible.
+(remove-hook '+doom-dashboard-functions #'doom-dashboard-widget-shortmenu)
 #+end_src
 *** Prety Symbol Mode Disable
 https://github.com/hlissner/doom-emacs/issues/1807
