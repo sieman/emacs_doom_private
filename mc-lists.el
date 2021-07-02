@@ -17,6 +17,7 @@
         ns-paste-secondary
         org-cycle
         org-edit-special
+        org-end-of-line
         org-force-self-insert
         org-return
         org-self-insert-command
