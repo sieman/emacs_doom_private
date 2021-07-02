@@ -705,8 +705,7 @@ https://github.com/GTrunSec/my-profile/blob/master/dotfiles/doom-emacs/xah-fly-k
  "C-<f10>" #'highlight-phrase
  "C-<f11>" #'sim/disable-alt-modifier
  "s-<f11>" #'sim/enable-alt-modifier
- "C-<f12>" #'imenu
- "C-S-<f12>" #'imenu-anywhere
+ "C-<f12>" #'counsel-imenu
 
  "s-1" #'+treemacs/toggle
  ;; 2
