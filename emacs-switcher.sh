@@ -21,6 +21,16 @@ function emacsSwitcher {
   e $2
 }
 
+function emacsChemacs {
+  rm $HOME/.emacs.d $HOME/.doom.d
+  mv $HOME/.emacs.d.chemacs $HOME/.emacs.d
+}
+
+function emacsChemacsOff {
+  mv $HOME/.emacs.d. $HOME/.emacs.d.chemacs
+  edoom
+}
+
 function doomLinker {
 
   rm ~/.doom.d
