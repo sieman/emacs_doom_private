@@ -10,6 +10,8 @@ function e {
 
 function emacsdlinker {
   rm ~/.emacs.d
+  rm ~/.doom.d
+
   EMACS_DISTRO_DIR="~/.e/others"
   cmd="ln -s $EMACS_DISTRO_DIR/$1 $HOME/.emacs.d"
   eval $cmd
@@ -55,6 +57,9 @@ alias edoomHlissner="doomLinker others/hlissner"
 alias edoomWhatDothLife="doomLinker others/WhatDothLife"
 
 alias edoomGtrunsec="doomLinker others/gtrunsec.doom"
+
+# change emacs, emacs profile switcher https://github.com/plexus/chemacs2
+alias chemacs="emacsdlinker change-emacs-profile"
 
 # local test settup
 alias edoomMeow="doomLinker others/meow"

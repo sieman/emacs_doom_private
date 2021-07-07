@@ -15,6 +15,7 @@
         mouse-drag-mode-line
         ns-do-hide-others
         ns-paste-secondary
+        org-beginning-of-line
         org-cycle
         org-edit-special
         org-end-of-line
@@ -23,11 +24,14 @@
         org-self-insert-command
         org-yank
         undo-fu-only-undo
+        xah-cut-line-or-region
         xah-cycle-hyphen-underscore-space
+        xah-extend-selection
         xah-fly-command-mode-activate
         xah-fly-insert-mode-activate
         xah-forward-right-bracket
         xah-paste-or-paste-previous
+        xah-select-line
         xah-shrink-whitespaces
         ))
 
