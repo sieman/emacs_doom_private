@@ -549,9 +549,7 @@ Ein nützliches Schnippel zum Beschreiben von einzelnen Keymaps von [[https://st
 (general-define-key
  :keymaps 'org-mode-map
  "s-o" 'counsel-org-goto
- "C-p" 'org-metaup ; previous up
- "C-n" 'org-metadown ; next down
- "C-b" 'org-metaleft ; backward left
+ "s-b" 'org-emphasize
  "s-<return>" 'org-meta-return
  )
 
