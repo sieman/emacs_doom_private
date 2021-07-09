@@ -315,12 +315,13 @@ Ich möchte gerne eine Historie für die REPL haben.
   (defun sim/flykeys-indicate-command-mode () (interactive)
          (custom-set-faces
           ;; `(cursor ((t (:background "slateblue2"))))
-          `(cursor ((t (:background "green"))))
+          `(cursor ((t (:background "#d87a00"))))
           )
          ;; (face-attribute 'default :background) ; get current background color
          ;; (set-frame-parameter (selected-frame) 'alpha '(92 . 90))
-         ;; (custom-set-variables '(cursor-type 'hollow))
-         (custom-set-variables '(cursor-type 'box))
+         ;; (custom-set-variables '(cursor-type 'bar))
+         (custom-set-variables '(cursor-type 'hollow))
+         ;; (custom-set-variables '(cursor-type 'box))
          (xah-fly-save-buffer-if-file)
          )
 
@@ -487,67 +488,7 @@ Ein nützliches Schnippel zum Beschreiben von einzelnen Keymaps von [[https://st
         mac-right-option-modifier 'alt)
   (message "Modifier Option set to alt"))
 #+end_src
-** (de)activate Fly Keys by Xah Lee
-http://ergoemacs.org/misc/xah-fly-keys_russian.html 
-http://ergoemacs.org/misc/xah-fly-keys_customization.html
-https://github.com/GTrunSec/my-profile/blob/master/dotfiles/doom-emacs/xah-fly-keys.org
 
-
-| neo2 | command                                  | dvorak |
-|      | nil                                      | "~"    |
-|      | nil                                      | ":"    |
-|      | nil                                      | ":"    |
-| spc  | xah-fly-leader-key-map                   | "SPC"  |
-| del  | xah-fly-leader-key-map                   | "DEL"  |
-| x    | xah-reformat-lines                       | "'"    |
-| v    | xah-shrink-whitespaces                   | ","    |
-| y    | xah-cycle-hyphen-underscore-space        | "-"    |
-| l    | xah-backward-kill-word                   | "."    |
-| ü    | xah-comment-dwim                         | ";"    |
-| ß    | hippie-expand                            | "/"    |
-| \\   | nil                                      | "\\"   |
-| [    | xah-backward-punct                       | "["    |
-| ]    | xah-forward-punct                        | "]"    |
-| "    | other-frame                              | "`"    |
-| 1    | xah-extend-selection                     | "1"    |
-| 2    | xah-select-line                          | "2"    |
-| 3    | delete-other-windows                     | "3"    |
-| 4    | split-window-below                       | "4"    |
-| 5    | delete-char                              | "5"    |
-| 6    | xah-select-block                         | "6"    |
-| 7    | xah-select-line                          | "7"    |
-| 8    | xah-extend-selection                     | "8"    |
-| 9    | xah-select-text-in-quote                 | "9"    |
-| 0    | xah-pop-local-mark-ring                  | "0"    |
-| u    | xah-fly-M-x                              | "a"    |
-| b    | isearch-forward                          | "b"    |
-| g    | previous-line                            | "c"    |
-| s    | xah-beginning-of-line-or-block           | "d"    |
-| a    | xah-delete-backward-char-or-bracket-text | "e"    |
-| k    | undo                                     | "f"    |
-| h    | backward-word                            | "g"    |
-| n    | backward-char                            | "h"    |
-| o    | xah-delete-current-text-block            | "i"    |
-| ä    | xah-copy-line-or-region                  | "j"    |
-| p    | xah-paste-or-paste-previous              | "k"    |
-| q    | xah-insert-space-before                  | "l"    |
-| m    | xah-backward-left-bracket                | "m"    |
-| t    | forward-char                             | "n"    |
-| i    | open-line                                | "o"    |
-| c    | xah-kill-word                            | "p"    |
-| ö    | xah-cut-line-or-region                   | "q"    |
-| f    | forward-word                             | "r"    |
-| d    | xah-end-of-line-or-block                 | "s"    |
-| r    | next-line                                | "t"    |
-| e    | xah-fly-insert-mode-activate             | "u"    |
-| .    | xah-forward-right-bracket                | "v"    |
-| ,    | xah-next-window-or-frame                 | "w"    |
-| z    | xah-toggle-letter-case                   | "x"    |
-| w    | set-mark-command                         | "y"    |
-| j    | xah-goto-matching-bracket                | "z"    |
-#+begin_src emacs-lisp
-;; (require 'neo2-fly-keys)
-#+end_src
 * Keybinding
 #+begin_src emacs-lisp
 ;; (defadvice split-window (after move-point-to-new-window activate)
