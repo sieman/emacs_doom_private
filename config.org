@@ -558,8 +558,40 @@ Ein nützliches Schnippel zum Beschreiben von einzelnen Keymaps von [[https://st
   "s-s" 'cider-repl-history-save
   )
 
-(map! :prefix "H-m"
-      :desc "Marks in region"   "r"     #'mc/mark-all-in-region)
+
+(map!
+
+ "H-<mouse-1>" #'mc/add-cursor-on-click
+
+ ;;"" #'mc/add-cursors-to-all-matches
+
+ "H-s" #'mc/edit-beginnings-of-lines
+ "H-y" #'mc/edit-ends-of-lines
+ "H-l" #'mc/edit-lines
+ "H-0" #'mc/insert-numbers
+ "H-i" #'mc/insert-letters
+ "H-m" #'mc/mark-all-dwim
+ "H-," #'mc/mark-all-in-region
+ "H-M" #'mc/mark-all-like-this-dwim ; doom default
+ "H-d" #'mc/mark-all-like-this-in-defun ; doom default
+ "H-b" #'mc/mark-all-symbols-like-this
+ "H-w" #'mc/mark-all-words-like-this
+ "H-e" #'mc/mark-more-like-this-extended
+
+ "H-t" #'mc/mark-next-like-this
+ "H-T" #'mc/unmark-next-like-this ; doom default
+
+ "H-f" #'mc/mark-next-symbol-like-this
+ "H-r" #'mc/mark-next-word-like-this
+
+ "H-n" #'mc/mark-previous-like-this
+ "H-N" #'mc/unmark-previous-like-this ; doom default
+
+ "H-h" #'mc/mark-previous-symbol-like-this
+ "H-g" #'mc/mark-previous-word-like-this
+
+ "H-z" #'mc/reverse-regions
+ "H-a" #'mc/sort-regions)
 
 (nk/check-package 'flyspell-correct
                   (lambda () (general-define-key "C-M-," 'flyspell-correct-wrapper)))
