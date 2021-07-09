@@ -1,10 +1,5 @@
 #+TITLE:A emacs doom configuration
 #+DATE:    Juli 9, 2021
-#+SINCE:   <replace with next tagged release version>
-#+STARTUP: inlineimages nofold
-
-* Table of Contents :TOC_3:noexport:
-- [[#description][Description]]
 
 * Description
 # A summary of what this module does.
@@ -15,3 +10,36 @@
 
 This configuration is without evil keybindings. The keybinding is a mix standard (doom) emacs and xah-fly-keys, some ideas inspired from Intellij Idea, Firefox  emacs-rocks.
 I like to switch emacs profiles to try other configurations, therefore a shell script ~emacs-switcher.sh~ exists. It works well together with [[https://github.com/plexus/chemacs][change emacs]].
+
+ todo:
+ - describe ~emacs-switcher.sh~
+ - secret file
+ - git clones ...
+ - chemacs
+
+#+begin_src emacs-lisp :tangle ~/.emacs-profiles.el
+(
+ ("default" . ((user-emacs-directory . "~/.e/sieman.emacs.d")
+               (env . (("DOOMDIR" . "~/.e/sieman.doom.d")))))
+
+ ("hlissner" . ((user-emacs-directory . "~/.e/others/hlissner.emacs.d")
+               (env . (("DOOMDIR" . "~/.e/others/hlissner.doom.d")))))
+
+ ("doom" . ((user-emacs-directory . "~/.e/others/doom.emacs.d")
+               (env . (("DOOMDIR" . "~/.e/others/doom.doom.d")))))
+
+ ("magnars" . ((user-emacs-directory . "~/.e/others/magnars.vanilla")))
+ ("prelude" . ((user-emacs-directory . "~/.e/others/prelude.distro")))
+ )
+#+end_src
+#+begin_src emacs-lisp
+(setq user-full-name "<first name> <last name>")
+(setq user-mail-address "")
+(setq calendar-latitude 53.57532)
+(setq calendar-longitude 10.01534)
+(setq calendar-location-name "")
+
+(setq projectile-project-search-path '(
+       "~/development/projects"
+       ))
+#+end_src
