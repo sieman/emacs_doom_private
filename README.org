@@ -13,5 +13,5 @@
 + Like code completion, syntax checking or available snippets
 + Include links to packages & external things where possible
 
-This configuration is without evil keybindings. The keybinding is a mix standard (doom) emacs and xah-fly-keys, some ideas inspired from intellij idea, firefox  emacs-rocks.
-I like to switch emacs profiles to try other configurations, therefore a shell script ~emacs-switcher.sh~ exists.
+This configuration is without evil keybindings. The keybinding is a mix standard (doom) emacs and xah-fly-keys, some ideas inspired from Intellij Idea, Firefox  emacs-rocks.
+I like to switch emacs profiles to try other configurations, therefore a shell script ~emacs-switcher.sh~ exists. It works well together with [[https://github.com/plexus/chemacs][change emacs]].
