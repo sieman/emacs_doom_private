@@ -1,26 +1,22 @@
 #+TITLE: Einstellungen Configuration
-* Package loading
+* package.el
 :PROPERTIES:
 :header-args:emacs-lisp: :tangle "packages.el" :comments link
 :END:
-This file shouldn't be byte compiled.
+Package loading
 #+begin_src emacs-lisp :tangle "packages.el" :comments no
 ;; -*- no-byte-compile: t; -*-
 ;;; $DOOMDIR/packages.el
 #+end_src
 
 #+begin_src emacs-lisp
-;; (package! move-text)
-;; (package! multiple-cursors)
 (package! beacon)
 ;; (package! rg) ; not using it at the moment
-;; (package! rainbow-mode) ; should be package by doom now
-(package! sublimity) ; check the benefits
 (package! xah-fly-keys)
 (package! four-modifier :recipe (:host github :repo "sieman/four-modifier"))
 (package! neo-layout-fly-keys :recipe (:host github :repo "sieman/neo-layout-fly-keys"))
 (package! elegant-emacs :recipe (:host github :repo "rougier/elegant-emacs"))
-;; (package! meow)
+;;(package! meow)                         ; is a modal keybinding system like xah-fly-keys and evil
 (package! aggressive-indent-mode)
 (package! ox-jira :recipe (:host github :repo "stig/ox-jira.el"))
 #+end_src
@@ -289,16 +285,6 @@ Ich benutze die Z-Shell und ich möchte auch nicht mehr nach einer anderen Shell
 (ad-activate 'ansi-term)
 #+end_src
 
-*** Sublimity
-Die Sublimity-Erweiterung bietet Sublime ähnliches weiches scolling und experimentelle Minimap.
-
-You can also require sublimity-attractive if you want to center everything for a distraction-free mode.  I do not use this extension, hence the reason I have sublimity-mode set to 0.  Set this to 1 to enable it.
-#+begin_src emacs-lisp
-(require 'sublimity-scroll)
-(require 'sublimity-map)
-(require 'sublimity-attractive)
-(sublimity-mode 0)
-#+end_src
 *** Cider Clojure Enviroment
 Ich möchte gerne eine Historie für die REPL haben.
 
