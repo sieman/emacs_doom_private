@@ -114,24 +114,25 @@ modules/config/default/+emacs-bindings.el:        :desc "Add cursor w/mouse" "<m
 'mc/sort-regions
 'mc/unmark-next-like-this
 'mc/unmark-previous-like-this
-
+(map!
 :prefix "H"
 
-"" #'mc/add-cursor-on-click
+"<mouse-1>" #'mc/add-cursor-on-click
 
 "" #'mc/add-cursors-to-all-matches
 
 "s" #'mc/edit-beginnings-of-lines
 "y" #'mc/edit-ends-of-lines
-"" #'mc/edit-lines
+"l" #'mc/edit-lines
 "0" #'mc/insert-numbers
-"" #'mc/mark-all-dwim
-"" #'mc/mark-all-in-region
-"" #'mc/mark-all-like-this-dwim ; doom default
-"" #'mc/mark-all-like-this-in-defun ; doom default
-"" #'mc/mark-all-symbols-like-this
-"" #'mc/mark-all-words-like-this
-"" #'mc/mark-more-like-this-extended
+"i " #'mc/insert-letters
+"m" #'mc/mark-all-dwim
+"," #'mc/mark-all-in-region
+"M" #'mc/mark-all-like-this-dwim ; doom default
+"d" #'mc/mark-all-like-this-in-defun ; doom default
+"b" #'mc/mark-all-symbols-like-this
+"w" #'mc/mark-all-words-like-this
+"e" #'mc/mark-more-like-this-extended
 
 "t" #'mc/mark-next-like-this
 "T" #'mc/unmark-next-like-this ; doom default
@@ -145,5 +146,6 @@ modules/config/default/+emacs-bindings.el:        :desc "Add cursor w/mouse" "<m
 "h" #'mc/mark-previous-symbol-like-this
 "g" #'mc/mark-previous-word-like-this
 
-"" #'mc/reverse-regions
-"" #'mc/sort-regions
+"z" #'mc/reverse-regions
+"a" #'mc/sort-regions
+)
