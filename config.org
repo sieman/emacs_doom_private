@@ -77,11 +77,11 @@ https://github.com/hlissner/doom-emacs/issues/1807
       (if xah-fly-insert-state-q
           (doom-modeline--modal-icon "Insert"
                                      ;; 'doom-modeline-evil-insert-state
-                                     '(face ((:background "red" :foreground "white")))
+                                     '(face ((:background "green" :foreground "black")))
                                      (format "Xah-fly insert mode"))
         (doom-modeline--modal-icon "Command"
                                    ;; 'doom-modeline-evil-normal-state
-                                   '(face ((:background "green" :foreground "black")))
+                                   '(face ((:background "red" :foreground "white")))
                                    (format "Xah-fly command mode")))))
 
   (doom-modeline-def-segment evil-state
