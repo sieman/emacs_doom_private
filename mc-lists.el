@@ -24,6 +24,7 @@
         org-self-insert-command
         org-yank
         undo-fu-only-undo
+        xah-copy-line-or-region
         xah-cut-line-or-region
         xah-cycle-hyphen-underscore-space
         xah-extend-selection

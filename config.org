@@ -10,7 +10,6 @@ Package loading
 #+end_src
 
 #+begin_src emacs-lisp
-(package! beacon)
 ;; (package! rg) ; not using it at the moment
 (package! xah-fly-keys)
 (package! four-modifier :recipe (:host github :repo "sieman/four-modifier"))
@@ -35,12 +34,6 @@ Package loading
 (setq fill-column sim-hard-wrap-at)
 ;; Theme related things
 (load! "+themes")
-(use-package! beacon
-  :diminish
-  :config
-  (setq beacon-color "#9a37ff")
-  (beacon-mode t)
-  )
 
 ;; Select and raise the frame, always
 (select-frame-set-input-focus (selected-frame))
@@ -350,6 +343,21 @@ Ich möchte gerne eine Historie für die REPL haben.
   (define-key xah-fly-command-map (kbd "SPC") (kbd! "C-c")))
 #+End_src
 
+*** Beacon
+#+begin_src emacs-lisp :tangle "packages.el" :comments no
+(package! beacon)
+#+end_src
+
+#+begin_src emacs-lisp
+(use-package! beacon
+  :diminish
+  :config
+  (setq beacon-color "#9a37ff")
+  (beacon-mode t)
+  )
+#+end_src
+
+
 * Funktionen
 Hier stehen Funktionen, die für die Tastenkürzel verwendet werden.
 ** Ist das Packet das, das ich gebrauche?
@@ -540,7 +548,10 @@ Ein nützliches Schnippel zum Beschreiben von einzelnen Keymaps von [[https://st
 (general-def org-mode-map
   :prefix "s-O"
   "o" 'org-open-at-point
-  "s" 'org-edit-special)
+  "s" 'org-edit-special
+  "e" 'org-babel-execute-src-block
+  "t" 'org-babel-tangle
+)
 
 (general-def org-src-mode-map
   "s-w" 'org-edit-src-exit)
@@ -734,3 +745,9 @@ Ein nützliches Schnippel zum Beschreiben von einzelnen Keymaps von [[https://st
  )
 (sim/flykeys-on)
 #+end_src
+
+
+* Neues
+Farbige ausgabe von Tastenkürzel.
+https://www.youtube.com/watch?v=QfN0gNaxE2U
+https://github.com/michael-heerdegen/interaction-log.el
