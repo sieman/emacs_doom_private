@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 function e {
-  ARGS="--debug-init $@"
+  ARGS=$@
   EMACS_BIN="/usr/local/bin/emacs"
   cmd="open -a $EMACS_BIN --args $ARGS"
   eval $cmd
