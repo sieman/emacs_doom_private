@@ -102,6 +102,6 @@ alias eNasymoa='emacsSwitcher nasymoa.vanilla'
 
 alias eSandbox='emacsSwitcher sandbox'
 
-alias doup='cd ~/.e/sieman.doom.d && git fetch && git pull && doom upgrade && cd -'
+alias doup='edoom && cd ~/.e/sieman.doom.d && git fetch && git pull && doom upgrade && cd -'
 alias dose='doom sync && e'
 export PATH="$PATH:$HOME/.emacs.d/bin"
