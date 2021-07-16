@@ -9,7 +9,7 @@
 + Include links to packages & external things where possible
 
 This configuration is without evil keybindings. The keybinding is a mix standard (doom) emacs and xah-fly-keys, some ideas inspired from Intellij Idea, Firefox  emacs-rocks.
-I like to switch emacs profiles to try other configurations, therefore a shell script ~emacs-switcher.sh~ exists. It works well together with [[https://github.com/plexus/chemacs][change emacs]].
+I like to switch emacs profiles to try other configurations, therefore a shell script ~emacs-switcher.sh~ exists. It works well together with [[https://github.com/plexus/chemacs2][change emacs]].
 
  todo:
  - describe ~emacs-switcher.sh~
@@ -32,9 +32,10 @@ I like to switch emacs profiles to try other configurations, therefore a shell s
  ("prelude" . ((user-emacs-directory . "~/.e/others/prelude.distro")))
  )
 #+end_src
-#+begin_src emacs-lisp
+
+#+begin_src emacs-lisp :tangle ~/.emacs.secrets
 (setq user-full-name "<first name> <last name>")
-(setq user-mail-address "")
+(setq calendar-location-name "Hamburg, Germany")
 (setq calendar-latitude 53.57532)
 (setq calendar-longitude 10.01534)
 (setq calendar-location-name "")

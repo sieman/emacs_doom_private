@@ -13,6 +13,7 @@
         ibuffer-mark-for-delete
         kill-region
         mouse-drag-mode-line
+        neo2/insert-mode
         ns-do-hide-others
         ns-paste-secondary
         org-beginning-of-line
@@ -24,13 +25,17 @@
         org-self-insert-command
         org-yank
         undo-fu-only-undo
+        xah-backward-punct
         xah-copy-line-or-region
         xah-cut-line-or-region
         xah-cycle-hyphen-underscore-space
         xah-extend-selection
         xah-fly-command-mode-activate
         xah-fly-insert-mode-activate
+        xah-forward-punct
         xah-forward-right-bracket
+        xah-insert-space-before
+        xah-kill-word
         xah-paste-or-paste-previous
         xah-select-line
         xah-shrink-whitespaces
@@ -42,6 +47,7 @@
         indent-for-tab-command
         isearch-repeat-forward
         mode-line-previous-buffer
+        org-open-line
         sim/enable-alt-modifier
         toggle-frame-fullscreen
         ))
