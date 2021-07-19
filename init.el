@@ -63,18 +63,19 @@
 
  (lookup           ; navigate your code and its documentation
   +docsets)
- lsp
+ (lsp
+  +peek)
  magit             ; a git porcelain for Emacs
 
  :os
  (:if IS-MAC macos)  ; improve compatibility with macOS
 
  :lang
- clojure           ; java with a lisp
+ (clojure +lsp)           ; java with a lisp
  data              ; config/data formats
  emacs-lisp        ; drown in parentheses
  json              ; At least it ain't XML
- javascript        ; all(hope(abandon(ye(who(enter(here))))))
+ (javascript +lsp)        ; all(hope(abandon(ye(who(enter(here))))))
  latex             ; writing papers in Emacs has never been so fun
  markdown          ; writing docs for people to ignore
  org               ; organize your plain life in plain text
