@@ -1,9 +1,15 @@
 #!/usr/bin/env bash
 
 function e {
-  ARGS=$@
-  EMACS_BIN="/usr/local/bin/emacs"
+  ARGS="$*"
+  # see https://support.apple.com/en-us/HT210595
+  # EMACS_BIN="/usr/local/Cellar/emacs-plus@27/27.2/Emacs.app"
+  # EMACS_BIN="/usr/local/Cellar/emacs-plus@27/27.2/bin/emacs"
+  # EMACS_BIN="/usr/local/bin/emacs"
+  # EMACS_BIN="/Users/sim/Applications/Emacs.app"
+  EMACS_BIN="/Users/sim/Applications/Emacs.app"
   cmd="open -a $EMACS_BIN --args $ARGS"
+  echo $cmd
   eval $cmd
   unset EMACS_BIN ARGS cmd
 }

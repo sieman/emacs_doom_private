@@ -8,8 +8,18 @@
 + Like code completion, syntax checking or available snippets
 + Include links to packages & external things where possible
 
-This configuration is without evil keybindings. The keybinding is a mix standard (doom) emacs and xah-fly-keys, some ideas inspired from Intellij Idea, Firefox  emacs-rocks.
+The ~sieman emacs~ configuration is without evil keybindings. The keybinding is a mix standard (doom) emacs and xah-fly-keys, some ideas inspired from Intellij Idea, Firefox  emacs-rocks.
 I like to switch emacs profiles to try other configurations, therefore a shell script ~emacs-switcher.sh~ exists. It works well together with [[https://github.com/plexus/chemacs2][change emacs]].
+
+With symbolic links it is easy to change a profile. Therfore all emacs configuration is under the =~/.e= folder.
+
+=~/.e/=:
+- =others=
+- =sieman.doom.d=
+- =sieman.emacs.d=
+
+=.emacs.d -> ~/.e/sieman.emacs.d=
+=.doom.d -> ~/.e/sieman.doom.d=
 
  todo:
  - describe ~emacs-switcher.sh~
@@ -17,7 +27,7 @@ I like to switch emacs profiles to try other configurations, therefore a shell s
  - git clones ...
  - chemacs
 
-#+begin_src emacs-lisp :tangle ~/.emacs-profiles.el
+#+begin_src emacs-lisp  :tangle ~/.emacs-profiles.el
 (
  ("default" . ((user-emacs-directory . "~/.e/sieman.emacs.d")
                (env . (("DOOMDIR" . "~/.e/sieman.doom.d")))))
@@ -27,9 +37,12 @@ I like to switch emacs profiles to try other configurations, therefore a shell s
 
  ("doom" . ((user-emacs-directory . "~/.e/others/doom.emacs.d")
                (env . (("DOOMDIR" . "~/.e/others/doom.doom.d")))))
-
+ ("spacemacs" . ((user-emacs-directory . "~/.e/others/spacemacs.emacs.d")
+               (env . (("SPACEMACSDIR" . "~/.e/others/spacemacs.spacemacs.d")))))
  ("magnars" . ((user-emacs-directory . "~/.e/others/magnars.vanilla")))
  ("prelude" . ((user-emacs-directory . "~/.e/others/prelude.distro")))
+ ("centaur" . ((user-emacs-directory . "~/.e/others/centaur.distro")))
+
  )
 #+end_src
 
@@ -44,3 +57,30 @@ I like to switch emacs profiles to try other configurations, therefore a shell s
        "~/development/projects"
        ))
 #+end_src
+
+* Programming languages installation
+Tools like [[https://brew.sh/][brew]] to install additional Software is required.
+** Clojure
+#+begin_src shell
+brew install clojure leiningen
+brew install clojure-lsp/brew/clojure-lsp-native
+brew install borkdude/brew/clj-kondo
+#+end_src
+** Javascript
+#+begin_src shell
+npm install -g typescript-language-server
+#+end_src
+* Emacs Distro
+** [[https://github.com/seagle0128/.emacs.d][Centaur Emacs]]
+#+begin_src shell
+git clone --depth 1 https://github.com/seagle0128/.emacs.d.git ~/.e/others/centaur.distro
+#+end_src
+
+** [[https://www.spacemacs.org][Spacemacs]]
+
+#+begin_src shell
+git clone --depth 1 https://github.com/syl20bnr/spacemacs ~/.e/others/spacemacs.emacs.d
+mkdir ~/.e/others/spacemacs.spacemacs.d
+#+end_src
+
+** [[https://github.com/purcell/emacs.d][Purcell]]
