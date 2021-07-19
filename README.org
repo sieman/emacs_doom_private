@@ -2,16 +2,12 @@
 #+DATE:    Juli 9, 2021
 
 * Description
-# A summary of what this module does.
+The ~sieman emacs doom~ configuration is without evil keybindings. The keybinding is a mix standard (doom) emacs and xah-fly-keys, some ideas inspired from Intellij Idea, Firefox and [[http://emacsrocks.com/][emacs-rocks]].
 
-+ If possible, include a brief list of feature highlights here
-+ Like code completion, syntax checking or available snippets
-+ Include links to packages & external things where possible
+* Switch Profiles
+I like to switch emacs profiles to try other configurations, therefore a shell script ~emacs-switcher.sh~ exists. It works well together with [[https://github.com/plexus/chemacs2][chemacs2]]. ~emacs-switcher.sh~ offers you to use one profile at time and ~chemacs2~ you can use multiply profiles at time.
 
-The ~sieman emacs~ configuration is without evil keybindings. The keybinding is a mix standard (doom) emacs and xah-fly-keys, some ideas inspired from Intellij Idea, Firefox  emacs-rocks.
-I like to switch emacs profiles to try other configurations, therefore a shell script ~emacs-switcher.sh~ exists. It works well together with [[https://github.com/plexus/chemacs2][change emacs]].
-
-With symbolic links it is easy to change a profile. Therfore all emacs configuration is under the =~/.e= folder.
+With symbolic links it is easy to change a profile. And ~emacs-switcher.sh~ do change symbolic links. Therfore all emacs configuration is under the =~/.e= folder.
 
 =~/.e/=:
 - =others=
@@ -19,9 +15,10 @@ With symbolic links it is easy to change a profile. Therfore all emacs configura
 - =sieman.emacs.d=
 
 =.emacs.d -> ~/.e/sieman.emacs.d=
+
 =.doom.d -> ~/.e/sieman.doom.d=
 
- todo:
+* todo:
  - describe ~emacs-switcher.sh~
  - secret file
  - git clones ...
