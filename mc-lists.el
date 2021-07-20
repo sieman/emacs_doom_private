@@ -8,10 +8,12 @@
         beginning-of-visual-line
         copy-region-as-kill
         counsel-M-x
+        doom/backward-to-bol-or-indent
         doom/forward-to-last-non-comment-or-eol
         end-of-visual-line
         ibuffer-mark-for-delete
         kill-region
+        mc/mark-all-in-region
         mouse-drag-mode-line
         neo2/insert-mode
         ns-do-hide-others
