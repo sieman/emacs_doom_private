@@ -74,14 +74,14 @@
  (clojure +lsp)           ; java with a lisp
  data              ; config/data formats
  emacs-lisp        ; drown in parentheses
- json              ; At least it ain't XML
+ (json +lsp)              ; At least it ain't XML
  (javascript +lsp)        ; all(hope(abandon(ye(who(enter(here))))))
  latex             ; writing papers in Emacs has never been so fun
  markdown          ; writing docs for people to ignore
  org               ; organize your plain life in plain text
  (sh               ; she sells {ba,z,fi}sh shells on the C xor
   +zsh)
- web               ; the tubes
+ (web +lsp)               ; the tubes
 
  :config
  literate

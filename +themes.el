@@ -9,16 +9,21 @@
 ;; "LFBONovelNetz"
 ;; "Iosevka" "Iosevka Fixed" "Iosevka Term"
 ;; "Source Code Variable"
+;; "Overpass Nerd Font"
 ;; https://github.com/Lindydancer/font-lock-studio debugging font
-(setq doom-font (font-spec :family "Fira Code" :size 13)
-      doom-variable-pitch-font (font-spec :family "Source Code Variable" :size 13)
-      ivy-posframe-font (font-spec :family "Iosevka" :size 11 ))
+;; (print (font-family-list))
+(setq doom-font (font-spec :family "Fira Code" :style "Retina" :size 13 :height 1.0)
+      doom-variable-pitch-font (font-spec :family "Source Code Variable" :style "Regular" :height 1.3)
+      ivy-posframe-font (font-spec :family "Iosevka" :size 11 )
+      doom-big-font (font-spec :family "Fira Code" :style "Retina" :size 24))
 
 (custom-set-faces
  '(show-paren-match ((t (:background "black" :foreground "yellow" :inverse-video t :weight bold))))
  '(region ((t (:foreground "#f1c40f" :background "#2c3e50" :inverse-video t))))
  `(cursor ((t (:foreground "white" :background "red")))))
+
 (custom-set-variables '(cursor-type 'box))
+
 ;; All themes are safe to load
 (setq custom-safe-themes t)
 

@@ -360,15 +360,20 @@ Ich möchte gerne eine Historie für die REPL haben.
 *** Mixed Font pitch
 [[https://www.dschapman.com/notes/33f4867d-dbe9-4c4d-8b0a-d28ad6376128][Mix Monospace and Variable Fonts in Doom Emacs]]
 
-#+begin_src emacs-lisp :tangle no
+#+begin_src emacs-lisp :tangle "packages.el"
 (package! mixed-pitch)
 #+end_src
 
-#+begin_src emacs-lisp :tangle no
-(use-package mixed-pitch
-  :hook
+#+begin_src emacs-lisp
+;;(use-package mixed-pitch
+ ;; :hook
   ;; If you want it in all text modes:
-  (text-mode . mixed-pitch-mode))
+  ;;(text-mode . mixed-pitch-mode))
+(use-package! mixed-pitch
+  :hook (org-mode . mixed-pitch-mode)
+  :config
+  (setq mixed-pitch-set-heigth t)
+  (set-face-attribute 'variable-pitch nil :height 1.3))
 #+end_src
 
 
