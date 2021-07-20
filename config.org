@@ -357,6 +357,20 @@ Ich möchte gerne eine Historie für die REPL haben.
   )
 #+end_src
 
+*** Mixed Font pitch
+[[https://www.dschapman.com/notes/33f4867d-dbe9-4c4d-8b0a-d28ad6376128][Mix Monospace and Variable Fonts in Doom Emacs]]
+
+#+begin_src emacs-lisp :tangle no
+(package! mixed-pitch)
+#+end_src
+
+#+begin_src emacs-lisp :tangle no
+(use-package mixed-pitch
+  :hook
+  ;; If you want it in all text modes:
+  (text-mode . mixed-pitch-mode))
+#+end_src
+
 
 * Funktionen
 Hier stehen Funktionen, die für die Tastenkürzel verwendet werden.

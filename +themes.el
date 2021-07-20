@@ -5,7 +5,14 @@
 (setq doom-theme 'doom-solarized-light)
 
 (setq display-line-numbers-type nil)
-(setq doom-font (font-spec :family "Fira Code" :size 12 :weight 'regular))
+;; "JetBrains Mono"
+;; "LFBONovelNetz"
+;; "Iosevka" "Iosevka Fixed" "Iosevka Term"
+;; "Source Code Variable"
+;; https://github.com/Lindydancer/font-lock-studio debugging font
+(setq doom-font (font-spec :family "Fira Code" :size 13)
+      doom-variable-pitch-font (font-spec :family "Source Code Variable" :size 13)
+      ivy-posframe-font (font-spec :family "Iosevka" :size 11 ))
 
 (custom-set-faces
  '(show-paren-match ((t (:background "black" :foreground "yellow" :inverse-video t :weight bold))))
