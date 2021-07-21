@@ -70,7 +70,7 @@ https://github.com/hlissner/doom-emacs/issues/1807
       (if xah-fly-insert-state-q
           (doom-modeline--modal-icon "Insert"
                                      ;; 'doom-modeline-evil-insert-state
-                                     '(face ((:background "green" :foreground "black")))
+                                     '(face ((:background "green" :foreground "white")))
                                      (format "Xah-fly insert mode"))
         (doom-modeline--modal-icon "Commant"
                                    ;; 'doom-modeline-evil-normal-state
@@ -103,20 +103,13 @@ https://github.com/hlissner/doom-emacs/issues/1807
               (and boon (concat boon (and meow vsep)))
               meow
               sep)))
-  (setq doom-modeline-modal-icon nil)
+
   ;; https://github.com/hlissner/doom-emacs/issues/2967
-(setq all-the-icons-scale-factor 1.1) ;; orignal val 1.2
-;;   (doom-modeline-def-modeline 'main
-;;     '(bar matches buffer-info remote-host buffer-position parrot selection-info)
-;;     '(misc-info minor-modes checker input-method buffer-encoding major-mode process vcs "  ")) ; <-- added padding here
-;;
-;;
-(doom-modeline-def-modeline 'main
-  '(bar workspace-name window-number matches buffer-info remote-host buffer-position word-count parrot selection-info)
-  '(objed-state misc-info persp-name battery grip irc mu4e gnus github debug repl lsp minor-modes input-method indent-info buffer-encoding major-mode process vcs checker modals "  "))
+  (setq all-the-icons-scale-factor 1.1) ;; orignal val 1.2
+
   (custom-set-faces!
-  '(mode-line :height 0.94)
-  '(mode-line-inactive :height 0.94))
+    '(mode-line :height 0.94)
+    '(mode-line-inactive :height 0.94))
 
   (message "doom-modeline is loaded. :-)")
   )
