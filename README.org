@@ -98,6 +98,8 @@ mkdir ~/.e/others/spacemacs.spacemacs.d
 #+begin_src shell
  brew tap homebrew/cask-fonts
  brew install --cask font-iosevka
+ brew install font-iosevka-ss04
+ brew install font-iosevka-aile
 #+end_src
 
 [[https://github.com/tonsky/FiraCode][Fira Code]] just download the zip file and for Mac Os us the _ttf_ folder. [[https://github.com/tonsky/FiraCode/wiki/Emacs-instructions][Emacs instructions]]
