@@ -7,14 +7,14 @@
 (setq display-line-numbers-type nil)
 ;; "JetBrains Mono"
 ;; "LFBONovelNetz"
-;; "Iosevka" "Iosevka Fixed" "Iosevka Term"
+;; "Iosevka" "Iosevka Fixed" "Iosevka Term" "Iosevka SS04"
 ;; "Source Code Variable"
 ;; "Overpass Nerd Font"
 ;; https://github.com/Lindydancer/font-lock-studio debugging font
 ;; (print (font-family-list))
 (setq doom-font (font-spec :family "Fira Code" :style "Retina" :size 13 :height 1.0)
       doom-variable-pitch-font (font-spec :family "Source Code Variable" :style "Regular" :height 1.3)
-      ivy-posframe-font (font-spec :family "Iosevka" :size 11 )
+      ivy-posframe-font (font-spec :family "Iosevka SS04" :size 11 )
       doom-big-font (font-spec :family "Fira Code" :style "Retina" :size 24))
 
 (custom-set-faces
