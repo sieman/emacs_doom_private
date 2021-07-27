@@ -18,11 +18,8 @@ With symbolic links it is easy to change a profile. And ~emacs-switcher.sh~ do c
 
 =.doom.d -> ~/.e/sieman.doom.d=
 
-* todo:
- - describe ~emacs-switcher.sh~
- - secret file
- - git clones ...
- - chemacs
+
+* chemacs
 
 #+begin_src emacs-lisp  :tangle ~/.emacs-profiles.el
 (
@@ -42,7 +39,7 @@ With symbolic links it is easy to change a profile. And ~emacs-switcher.sh~ do c
 
  )
 #+end_src
-
+* secret file
 #+begin_src emacs-lisp :tangle ~/.emacs.secrets
 (setq user-full-name "<first name> <last name>")
 (setq calendar-location-name "Hamburg, Germany")
@@ -107,3 +104,8 @@ Doom support ligatures see documantation.
 Overpass [[https://github.com/gitfool/nerd-fonts/tree/master/patched-fonts/Overpass][Nerd Font]]
 
 [[http://www.ligafaktur.de/Fontbild-novel.html][Fraktur font novella]]
+#+begin_src shell
+wget http://www.ligafaktur.de/LOB.Novellenschrift.ttf
+wget http://www.ligafaktur.de/LOV.Novellenschrift.ttf
+wget http://www.ligafaktur.de/LUC.NovellenschriftU1A.ttf
+#+end_src
