@@ -105,7 +105,5 @@ Overpass [[https://github.com/gitfool/nerd-fonts/tree/master/patched-fonts/Overp
 
 [[http://www.ligafaktur.de/Fontbild-novel.html][Fraktur font novella]]
 #+begin_src shell
-wget http://www.ligafaktur.de/LOB.Novellenschrift.ttf
 wget http://www.ligafaktur.de/LOV.Novellenschrift.ttf
-wget http://www.ligafaktur.de/LUC.NovellenschriftU1A.ttf
 #+end_src
