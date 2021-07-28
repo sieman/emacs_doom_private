@@ -13,7 +13,7 @@
 ;; https://github.com/Lindydancer/font-lock-studio debugging font
 ;; (print (font-family-list))
 
-(setq doom-font (font-spec :family "FiraCode Nerd Font" :style "Retina" :size 13 :height 1.0)
+(setq doom-font (font-spec :family "FiraCode Nerd Font" :style "Light" :size 13 :height 1.0)
       doom-variable-pitch-font (font-spec :family "LOV.Novellenschrift" :size 20)
       ivy-posframe-font (font-spec :family "Iosevka SS04" :size 12 )
       doom-big-font (font-spec :family "FiraCode Nerd Font" :style "Retina" :size 24))
@@ -68,15 +68,16 @@
 
 (add-hook! org-mode
            ;; Document title font
-           (set-face-attribute 'org-document-title nil :height 2.2)
-           (set-face-attribute 'org-level-1 nil :height 2.0)
-           (set-face-attribute 'org-level-2 nil :height 1.9)
-           (set-face-attribute 'org-level-3 nil :height 1.8)
-           (set-face-attribute 'org-level-4 nil :height 1.7)
-           (set-face-attribute 'org-level-5 nil :height 1.6)
-           (set-face-attribute 'org-level-6 nil :height 1.5)
-           (set-face-attribute 'org-level-7 nil :height 1.4)
-           (set-face-attribute 'org-level-8 nil :height 1.3)
+           (set-face-attribute 'org-document-title nil :height 2.0)
+           (set-face-attribute 'org-level-1 nil :height 1.1)
+           (set-face-attribute 'org-level-2 nil :height 1.1)
+           (set-face-attribute 'org-level-3 nil :height 1.1)
+           (set-face-attribute 'org-level-4 nil :height 1.1)
+           (set-face-attribute 'org-level-5 nil :height 1.1)
+           (set-face-attribute 'org-level-6 nil :height 1.1)
+           (set-face-attribute 'org-level-7 nil :height 1.1)
+           (set-face-attribute 'org-level-8 nil :height 1.1)
+           (set-face-attribute 'org-block nil :height 1.1)
            ;; Face of keyword DONE (Green like strings)
            ;; (set-face-attribute 'org-done nil :foreground "#98be65")
            ;; Face of keyword TODO or [ ] (Purple like keywords)
