@@ -18,11 +18,8 @@ With symbolic links it is easy to change a profile. And ~emacs-switcher.sh~ do c
 
 =.doom.d -> ~/.e/sieman.doom.d=
 
-* todo:
- - describe ~emacs-switcher.sh~
- - secret file
- - git clones ...
- - chemacs
+
+* chemacs
 
 #+begin_src emacs-lisp  :tangle ~/.emacs-profiles.el
 (
@@ -42,7 +39,7 @@ With symbolic links it is easy to change a profile. And ~emacs-switcher.sh~ do c
 
  )
 #+end_src
-
+* secret file
 #+begin_src emacs-lisp :tangle ~/.emacs.secrets
 (setq user-full-name "<first name> <last name>")
 (setq calendar-location-name "Hamburg, Germany")
@@ -97,9 +94,7 @@ mkdir ~/.e/others/spacemacs.spacemacs.d
 
 #+begin_src shell
  brew tap homebrew/cask-fonts
- brew install --cask font-iosevka
  brew install font-iosevka-ss04
- brew install font-iosevka-aile
 #+end_src
 
 [[https://github.com/tonsky/FiraCode][Fira Code]] just download the zip file and for Mac Os us the _ttf_ folder. [[https://github.com/tonsky/FiraCode/wiki/Emacs-instructions][Emacs instructions]]
@@ -107,3 +102,8 @@ mkdir ~/.e/others/spacemacs.spacemacs.d
 Doom support ligatures see documantation.
 
 Overpass [[https://github.com/gitfool/nerd-fonts/tree/master/patched-fonts/Overpass][Nerd Font]]
+
+[[http://www.ligafaktur.de/Fontbild-novel.html][Fraktur font novella]]
+#+begin_src shell
+wget http://www.ligafaktur.de/LOV.Novellenschrift.ttf
+#+end_src
