@@ -99,6 +99,24 @@ mkdir ~/.e/others/spacemacs.spacemacs.d
 
 [[https://github.com/tonsky/FiraCode][Fira Code]] just download the zip file and for Mac Os us the _ttf_ folder. [[https://github.com/tonsky/FiraCode/wiki/Emacs-instructions][Emacs instructions]]
 
+#+begin_src shell
+echo "Fira Code Bold Nerd Font Complete.ttf"
+wget https://github.com/ryanoasis/nerd-fonts/blob/master/patched-fonts/FiraCode/Bold/complete/Fira%20Code%20Bold%20Nerd%20Font%20Complete.ttf
+
+echo "Fira Code Light Nerd Font Complete.ttf"
+wget https://github.com/ryanoasis/nerd-fonts/blob/master/patched-fonts/FiraCode/Light/complete/Fira%20Code%20Light%20Nerd%20Font%20Complete.ttf
+
+echo "Fira Code Medium Nerd Font Complete.ttf"
+wget https://github.com/ryanoasis/nerd-fonts/blob/master/patched-fonts/FiraCode/Medium/complete/Fira%20Code%20Medium%20Nerd%20Font%20Complete.ttf
+
+echo "Fira Code Regular Nerd Font Complete.ttf"
+wget https://github.com/ryanoasis/nerd-fonts/blob/master/patched-fonts/FiraCode/Regular/complete/Fira%20Code%20Regular%20Nerd%20Font%20Complete.ttf
+
+echo "Fira Code Retina Nerd Font Complete.ttf"
+wget https://github.com/ryanoasis/nerd-fonts/blob/master/patched-fonts/FiraCode/Retina/complete/Fira%20Code%20Retina%20Nerd%20Font%20Complete.ttf
+
+#+end_src
+
 Doom support ligatures see documantation.
 
 Overpass [[https://github.com/gitfool/nerd-fonts/tree/master/patched-fonts/Overpass][Nerd Font]]
