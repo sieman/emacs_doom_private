@@ -338,8 +338,11 @@ Ich möchte gerne eine Historie für die REPL haben.
 (use-package! mixed-pitch
   :hook (org-mode . mixed-pitch-mode)
   :config
-  (setq mixed-pitch-set-heigth t)
-  (set-face-attribute 'variable-pitch nil :height 1.3))
+  (setq
+   mixed-pitch-set-heigth t
+   mixed-pitch-variable-pitch-cursor nil)
+  ;; (set-face-attribute 'variable-pitch nil :height 1.3)
+  )
 #+end_src
 
 
