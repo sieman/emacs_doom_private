@@ -16,7 +16,7 @@
 (setq doom-font (font-spec :family "FiraCode Nerd Font" :style "Light" :size 13 :height 1.0)
       doom-variable-pitch-font (font-spec :family "LOV.Novellenschrift" :size 20)
       ivy-posframe-font (font-spec :family "Iosevka SS04" :size 12 )
-      doom-big-font (font-spec :family "FiraCode Nerd Font" :style "Retina" :size 24))
+      doom-big-font (font-spec :family "Iosevka SS04" :size 20))
 
 (custom-set-faces
  '(show-paren-match ((t (:background "black" :foreground "yellow" :inverse-video t :weight bold))))
