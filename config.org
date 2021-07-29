@@ -29,6 +29,7 @@ Package loading
 (display-time-mode t)
 (setq display-time-24hr-format t)
 (setq display-line-numbers-type nil)
+(setq mixed-pitch-variable-pitch-cursor nil)
 (load! "sim-calendar")
 (load! "~/.emacs.secrets")
 (setq fill-column sim-hard-wrap-at)
@@ -289,6 +290,7 @@ Ich möchte gerne eine Historie für die REPL haben.
           `(cursor ((t (:background "red"))))
           )
          ;; (set-frame-parameter (selected-frame) 'alpha '(100 . 100))
+         (message "--Insert--")
          (custom-set-variables '(cursor-type 'box)))
 
   (add-hook! 'xah-fly-command-mode-activate-hook 'sim/flykeys-indicate-command-mode)
