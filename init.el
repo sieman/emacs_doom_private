@@ -5,11 +5,12 @@
  (company           ; the ultimate code completion backend
   +childframe)
 
- (ivy              ; a search engine for love and life
-  +childframe
-  +prescient
-  +fuzzy
-  +icons)
+ (vertico +icons)
+ ;; (ivy              ; a search engine for love and life
+  ;; +childframe
+  ;; +prescient
+  ;; +fuzzy
+  ;; +icons)
 
  :ui
  deft              ; notational velocity for Emacs
