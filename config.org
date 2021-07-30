@@ -593,7 +593,7 @@ Ein nützliches Schnippel zum Beschreiben von einzelnen Keymaps von [[https://st
  "C-<f10>" #'highlight-phrase
  "C-<f11>" #'sim/disable-alt-modifier
  "s-<f11>" #'sim/enable-alt-modifier
- "C-<f12>" #'counsel-imenu
+ "C-<f12>" #'imenu
 
  "s-1" #'+treemacs/toggle
  ;; 2
@@ -627,7 +627,7 @@ Ein nützliches Schnippel zum Beschreiben von einzelnen Keymaps von [[https://st
  :desc "Unmark next" "C->" #'mc/unmark-next-like-this
  :desc "Unmark next" "A-C-g" #'mc/unmark-next-like-this
  "s-G" #'isearch-repeat-backward
- "s-f" #'swiper
+ "s-f" #'consult-line
  ;; q
  "s-q" (if (daemonp) #'delete-frame #'save-buffers-kill-terminal)
  ;; ß
@@ -636,7 +636,7 @@ Ein nützliches Schnippel zum Beschreiben von einzelnen Keymaps von [[https://st
  :desc "Reformat Source Code" "s-i" #'indent-region
  "s-a" #'mark-whole-buffer
  "s-A" #'execute-extended-command
- "s-e" #'counsel-switch-buffer
+ "s-e" #'ido-switch-buffer
  ;; o
  ;; s
  "s-s" #'save-buffer
@@ -664,7 +664,7 @@ Ein nützliches Schnippel zum Beschreiben von einzelnen Keymaps von [[https://st
  "s-Z" #'redo
  ;; b
  "C-x C-b" #'ibuffer
- "C-x b" #'counsel-switch-buffer
+ "C-x b" #'ido-switch-buffer
  "C-x C-A-b" #'text-scale-increase
  ;; m
  ;; ,
