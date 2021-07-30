@@ -14,10 +14,10 @@ Package loading
 (package! xah-fly-keys)
 (package! four-modifier :recipe (:host github :repo "sieman/four-modifier"))
 (package! neo-layout-fly-keys :recipe (:host github :repo "sieman/neo-layout-fly-keys"))
-(package! elegant-emacs :recipe (:host github :repo "rougier/elegant-emacs"))
+;; https://github.com/rougier/elegant-emacs (package! elegant-emacs :recipe (:host github :repo "rougier/elegant-emacs"))
 ;;(package! meow)                         ; is a modal keybinding system like xah-fly-keys and evil
 (package! aggressive-indent-mode)
-(package! ox-jira :recipe (:host github :repo "stig/ox-jira.el"))
+
 #+end_src
 
 * Einstellungen :settings:
@@ -144,6 +144,7 @@ Dies ist ein Minor-Mode und zeigt die gedrückten Tasten an.
 (after! org
   (add-to-list 'org-structure-template-alist '("se" . "src emacs-lisp"))
   (add-to-list 'org-structure-template-alist '("sc" . "src clojure"))
+  (add-to-list 'org-structure-template-alist '("ss" . "src shell"))
 
   (setq org-use-speed-commands t)
                                         ;(require 'ob-clojure)
@@ -153,6 +154,15 @@ Dies ist ein Minor-Mode und zeigt die gedrückten Tasten an.
 
 (add-hook! 'org-log-buffer-setup-hook '(require 'org-keys))
 
+#+end_src
+
+*Jira Export*
+This litle packages provide a export to jira markup.
+
+#+begin_src emacs-lisp :tangle packages.el
+(package! ox-jira :recipe (:host github :repo "stig/ox-jira.el"))
+#+end_src
+#+begin_src emacs-lisp
 (use-package! ox-jira)
 #+end_src
 
@@ -168,48 +178,6 @@ Ich möchte gerne Ergebnisse aus Clojures Code mit in org-Dateien einfügen.
 (global-set-key [f8] 'deft)
 #+end_src
 
-*** smartparens
-#+begin_src emacs-lisp
-;; ;; (after! 'smartparens-mode
-;;   (global-unset-key (kbd "C-M-f") );)) ; . sp-forward-sexp)
-;;   (global-unset-key (kbd "C-M-b"));)) ; . sp-backward-sexp)
-;;   (global-unset-key (kbd "C-M-d")) ; . sp-down-sexp)
-;;   (global-unset-key (kbd "C-M-a")) ; . sp-backward-down-sexp)
-;;   (global-unset-key (kbd "C-S-d")) ; . sp-beginning-of-sexp)
-;;   (global-unset-key (kbd "C-S-a")) ; . sp-end-of-sexp)
-;;   (global-unset-key (kbd "C-M-e")) ; . sp-up-sexp)
-;;   (global-unset-key (kbd "C-M-u")) ; . sp-backward-up-sexp)
-;;   (global-unset-key (kbd "C-M-n")) ; . sp-next-sexp)
-;;   (global-unset-key (kbd "C-M-p")) ; . sp-previous-sexp)
-;;   (global-unset-key (kbd "C-M-k")) ; . sp-kill-sexp)
-;;   (global-unset-key (kbd "C-M-w")) ; . sp-copy-sexp)
-;;   (global-unset-key (kbd "M-<delete>")) ; . sp-unwrap-sexp)
-;;   (global-unset-key (kbd "M-<backspace>")) ; . sp-backward-unwrap-sexp)
-;;   (global-unset-key (kbd "C-<right>")) ; . sp-forward-slurp-sexp)
-;;   (global-unset-key (kbd "C-<left>")) ; . sp-forward-barf-sexp)
-;;   (global-unset-key (kbd "C-M-<left>")) ; . sp-backward-slurp-sexp)
-;;   (global-unset-key (kbd "C-M-<right>")) ; . sp-backward-barf-sexp)
-;;   (global-unset-key (kbd "M-D")) ; . sp-splice-sexp)
-;;   (global-unset-key (kbd "C-M-<delete>")) ; . sp-splice-sexp-killing-forward)
-;;   (global-unset-key (kbd "C-M-<backspace>")) ; . sp-splice-sexp-killing-backward)
-;;   (global-unset-key (kbd "C-S-<backspace>")) ; . sp-splice-sexp-killing-around)
-;;   (global-unset-key (kbd "C-]")) ; . sp-select-next-thing-exchange)
-;;   (global-unset-key (kbd "C-M-]")) ; . sp-select-next-thing)
-;;   (global-unset-key (kbd "C-M-SPC")) ; . sp-mark-sexp)
-;;   (global-unset-key (kbd "M-F")) ; . sp-forward-symbol)
-;;   (global-unset-key (kbd "M-B")) ; . sp-backward-symbol)
-;; ;; )
-;; (custom-set-variables
-;; '(sp-override-key-bindings (quote (("C-<right>") ("C-<left>")))))
-
-(defun sim/disable-smartparens ()
-  "Disable smartparens mode globaly."
-  (interactive)
-  (turn-off-smartparens-mode)
-  (turn-off-smartparens-strict-mode)
-  (smartparens-global-mode -1)
-  )
-#+end_src
 *** Terminals
 
 **** Ansi-Terminal
@@ -325,9 +293,9 @@ Ich möchte gerne eine Historie für die REPL haben.
   )
 #+end_src
 
-*** Funktionen
+* Funktionen
 Hier stehen Funktionen, die für die Tastenkürzel verwendet werden.
-** Ist das Packet das, das ich gebrauche?
+*** Ist das Packet das, das ich gebrauche?
 (if (require 'tee nil 'noerror)
 (message "Ja ist installiert")
 (message "Nein ist nicht installiert"))
@@ -342,7 +310,7 @@ Hier stehen Funktionen, die für die Tastenkürzel verwendet werden.
     (message (concat "neo-keybinding missing package: " (symbol-name name)))))
 #+end_src
 
-** Duplicate Line Or Region
+*** Duplicate Line Or Region
 
 #+begin_src emacs-lisp
 (defun duplicate-line-or-region (&optional n)
@@ -369,9 +337,9 @@ Hier stehen Funktionen, die für die Tastenkürzel verwendet werden.
 
 #+end_src
 
-** Color Themes
+*** Color Themes
 
-#+begin_src emacs-lisp
+#+begin_src emacs-lisp :tangle autoload.el
 (defun sim/after-theme-changed ()
   "Custom face settings after theme changed."
   (interactive)
@@ -415,9 +383,9 @@ Hier stehen Funktionen, die für die Tastenkürzel verwendet werden.
   (sim/after-theme-changed)
   )
 #+end_src
-** Goto Line
+*** Goto Line
 - =M-g M-g   = goto line number and shows line numbers
-  #+begin_src emacs-lisp
+  #+begin_src emacs-lisp :tangle autoload.el
 (defun goto-line-with-feedback ()
   "Show line numbers temporarily, while prompting for the line number input"
   (interactive)
@@ -427,9 +395,9 @@ Hier stehen Funktionen, die für die Tastenkürzel verwendet werden.
         (call-interactively 'goto-line))
     (linum-mode -1)))
   #+end_src
-** Beschreibe Tastenkürzeltabellen Describe Keymap
+*** Beschreibe Tastenkürzeltabellen Describe Keymap
 Ein nützliches Schnippel zum Beschreiben von einzelnen Keymaps von [[https://stackoverflow.com/questions/3480173/show-keys-in-emacs-keymap-value][stackoverflow]].
-#+begin_src emacs-lisp
+#+begin_src emacs-lisp :tangle autoload.el
 (defun sim/describe-keymap (keymap)
   "Describe a keymap using `substitute-command-keys'."
   (interactive
@@ -448,8 +416,8 @@ Ein nützliches Schnippel zum Beschreiben von einzelnen Keymaps von [[https://st
       (setq help-xref-stack-item (list #'my-describe-keymap keymap)))))
 #+end_src
 
-** (de)activate Alt Modifier
-#+begin_src emacs-lisp
+*** (de)activate Alt Modifier
+#+begin_src emacs-lisp :tangle autoload.el
 (defun sim/disable-alt-modifier ()
   (interactive)
   (setq mac-option-modifier 'none
@@ -463,6 +431,16 @@ Ein nützliches Schnippel zum Beschreiben von einzelnen Keymaps von [[https://st
   (message "Modifier Option set to alt"))
 #+end_src
 
+*** smartparens
+#+begin_src emacs-lisp :tangle autoload.el
+(defun sim/disable-smartparens ()
+  "Disable smartparens mode globaly."
+  (interactive)
+  (turn-off-smartparens-mode)
+  (turn-off-smartparens-strict-mode)
+  (smartparens-global-mode -1)
+  )
+#+end_src
 * Keybinding
 #+begin_src emacs-lisp
 ;; (defadvice split-window (after move-point-to-new-window activate)
