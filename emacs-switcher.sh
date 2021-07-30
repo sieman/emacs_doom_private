@@ -39,6 +39,11 @@ function eDoubleLinker {
   eLinker $2 "emacs.d"
 }
 
+function chemacs {
+  # change emacs, emacs profile switcher https://github.com/plexus/chemacs2
+  eRmLnS
+  eLinker others/change-emacs-profile emacs.d
+}
 # git clone --depth 1 https://github.com/syl20bnr/spacemacs ~/.e/others/spacemacs.emacs.d
 alias espacemacs="eDoubleLinker spacemacs.d others/spacemacs"
 
@@ -60,9 +65,6 @@ alias edoomHlissner="eDoubleLinker doom.d others/hlissner"
 alias edoomWhatDothLife="eDoubleLinker doom.d others/WhatDothLife"
 
 alias edoomGtrunsec="eDoubleLinker doom.d others/gtrunsec"
-
-# change emacs, emacs profile switcher https://github.com/plexus/chemacs2
-alias chemacs="eRmLnS && eLinker others/change-emacs-profile emacs.d"
 
 # local test settup
 alias edoomMeow="eDoubleLinker doom.d others/meow"
