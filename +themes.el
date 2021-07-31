@@ -5,18 +5,6 @@
 (setq doom-theme 'doom-solarized-light)
 
 (setq display-line-numbers-type nil)
-;; "JetBrains Mono"
-;; "LFBONovelNetz" "LOB.Novellenschrift" "LOV.Novellenschrift" "LUC.NovellenschriftU1A"
-;; "Iosevka" "Iosevka Fixed" "Iosevka Term" "Iosevka SS04"
-;; "Source Code Variable"
-;; "Overpass Nerd Font"
-;; https://github.com/Lindydancer/font-lock-studio debugging font
-;; (print (font-family-list))
-
-(setq doom-font (font-spec :family "FiraCode Nerd Font" :style "Light" :size 13 :height 1.0)
-      doom-variable-pitch-font (font-spec :family "LOV.Novellenschrift" :size 20)
-      ivy-posframe-font (font-spec :family "Iosevka SS04" :size 12 )
-      doom-big-font (font-spec :family "Iosevka SS04" :size 20))
 
 (custom-set-faces
  '(show-paren-match ((t (:background "black" :foreground "yellow" :inverse-video t :weight bold))))
