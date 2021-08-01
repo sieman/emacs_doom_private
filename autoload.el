@@ -1,17 +1,18 @@
 (defun sim/after-theme-changed ()
   "Custom face settings after theme changed."
   (interactive)
-                                        ;(org-bullets-mode nil)
-                                        ;(org-bullets-mode t)
-                                        ;(set-face-attribute 'mode-line n;; (package! rg) ; not using it at the moment
-(package! xah-fly-keys)
-(package! four-modifier :recipe (:host github :repo "sieman/four-modifier"))
-(package! neo-layout-fly-keys :recipe (:host github :repo "sieman/neo-layout-fly-keys"))
-;; https://github.com/rougier/elegant-emacs (package! elegant-emacs :recipe (:host github :repo "rougier/elegant-emacs"))
-;;(package! meow)                         ; is a modal keybinding system like xah-fly-keys and evil
-(package! aggressive-indent-mode)
+  (custom-set-faces
+   '(show-paren-match ((t (:background "black" :foreground "yellow" :inverse-video t :weight bold))))
+   '(region ((t (:foreground "#f1c40f" :background "#2c3e50" :inverse-video t))))
+   `(cursor ((t (:foreground "white" :background "red"))))
+   )
+  (custom-set-variables '(cursor-type 'box))
+  (set-frame-parameter (selected-frame) 'alpha '(100 . 100))
+  (message "sim/after-theme-changed done")
+  )
 
- "Disable all themes and then load a single theme interactively."
+(defun sim/disable-all-custom-themes ()
+  "Disable all themes and then load a single theme interactively."
   (interactive)
   (while custom-enabled-themes
     (disable-theme (car custom-enabled-themes))))
@@ -82,15 +83,3 @@
   (turn-off-smartparens-strict-mode)
   (smartparens-global-mode -1)
   )
-
-(defun sim/org-edit-special ()
-  "Edits org special blocks and maximize that buffer."
-  (interactive)
-  (org-edit-special)
-  (delete-other-windows))
-
-(defun sim/org-edit-src-exit ()
-  "Exits org special src buffer."
-  (interactive)
-  (org-edit-src-exit)
-  (delete-other-frames))
