@@ -1,3 +1,4 @@
+
 #+TITLE:A emacs doom configuration
 #+DATE:    Juli 9, 2021
 
@@ -89,44 +90,31 @@ mkdir ~/.e/others/spacemacs.spacemacs.d
 
 ** [[https://github.com/purcell/emacs.d][Purcell]]
 * Font
-
-[[https://typeof.net/Iosevka/][Iosevka]]
+** [[https://typeof.net/Iosevka/][Iosevka]]
 
 #+begin_src shell
  brew tap homebrew/cask-fonts
  brew install font-iosevka-ss04
 #+end_src
-
-[[https://github.com/tonsky/FiraCode][Fira Code]] just download the zip file and for Mac Os us the _ttf_ folder. [[https://github.com/tonsky/FiraCode/wiki/Emacs-instructions][Emacs instructions]]
+** [[https://github.com/tonsky/FiraCode][Fira Code]]
+just download the zip file and for Mac Os us the _ttf_ folder. [[https://github.com/tonsky/FiraCode/wiki/Emacs-instructions][Emacs instructions]]
 
 #+begin_src shell
-echo "Fira Code Bold Nerd Font Complete.ttf"
-wget https://github.com/ryanoasis/nerd-fonts/blob/master/patched-fonts/FiraCode/Bold/complete/Fira%20Code%20Bold%20Nerd%20Font%20Complete.ttf
-
-echo "Fira Code Light Nerd Font Complete.ttf"
-wget https://github.com/ryanoasis/nerd-fonts/blob/master/patched-fonts/FiraCode/Light/complete/Fira%20Code%20Light%20Nerd%20Font%20Complete.ttf
-
-echo "Fira Code Medium Nerd Font Complete.ttf"
-wget https://github.com/ryanoasis/nerd-fonts/blob/master/patched-fonts/FiraCode/Medium/complete/Fira%20Code%20Medium%20Nerd%20Font%20Complete.ttf
-
-echo "Fira Code Regular Nerd Font Complete.ttf"
-wget https://github.com/ryanoasis/nerd-fonts/blob/master/patched-fonts/FiraCode/Regular/complete/Fira%20Code%20Regular%20Nerd%20Font%20Complete.ttf
-
-echo "Fira Code Retina Nerd Font Complete.ttf"
-wget https://github.com/ryanoasis/nerd-fonts/blob/master/patched-fonts/FiraCode/Retina/complete/Fira%20Code%20Retina%20Nerd%20Font%20Complete.ttf
-
+wget https://github.com/ryanoasis/nerd-fonts/blob/master/patched-fonts/FiraCode/Bold/complete/Fira%20Code%20Bold%20Nerd%20Font%20Complete%20Mono.ttf
+wget https://github.com/ryanoasis/nerd-fonts/blob/master/patched-fonts/FiraCode/Light/complete/Fira%20Code%20Light%20Nerd%20Font%20Complete%20Mono.ttf
+wget https://github.com/ryanoasis/nerd-fonts/blob/master/patched-fonts/FiraCode/Medium/complete/Fira%20Code%20Medium%20Nerd%20Font%20Complete%20Mono.ttf
+wget https://github.com/ryanoasis/nerd-fonts/blob/master/patched-fonts/FiraCode/Regular/complete/Fira%20Code%20Regular%20Nerd%20Font%20Complete%20Mono.ttf
+wget https://github.com/ryanoasis/nerd-fonts/blob/master/patched-fonts/FiraCode/Retina/complete/Fira%20Code%20Retina%20Nerd%20Font%20Complete%20Mono.ttf
 #+end_src
 
 Doom support ligatures see documantation.
 
-Overpass [[https://github.com/gitfool/nerd-fonts/tree/master/patched-fonts/Overpass][Nerd Font]]
-
-[[http://www.ligafaktur.de/Fontbild-novel.html][Fraktur font novella]]
+** Overpass [[https://github.com/gitfool/nerd-fonts/tree/master/patched-fonts/Overpass][Nerd Font]]
+** [[http://www.ligafaktur.de/Fontbild-novel.html][Fraktur font novella]]
 #+begin_src shell
 wget http://www.ligafaktur.de/LOV.Novellenschrift.ttf
 #+end_src
-
-RobotoMono
+** RobotoMono
 #+begin_src shell
 mkdir ~/RobotoMono
 cd ~/RobotoMono
@@ -152,17 +140,10 @@ wget https://github.com/ryanoasis/nerd-fonts/blob/master/patched-fonts/RobotoMon
 echo "Thin"
 wget https://github.com/ryanoasis/nerd-fonts/blob/master/patched-fonts/RobotoMono/Thin/complete/Roboto%20Mono%20Thin%20Nerd%20Font%20Complete.ttf
 #+end_src
+** [[https://juliamono.netlify.app/][Julia Mono]]
+#+begin_src shell
+brew tap homebrew/cask-fonts
+brew install --cask font-juliamono
+#+end_src
 
-#+RESULTS:
-| Now           | using | node | v10.16.3 | (npm | v6.9.0) |
-| Now           | using | node | v10.16.3 | (npm | v6.9.0) |
-| Bold-Italic   |       |      |          |      |         |
-| Light-Italic  |       |      |          |      |         |
-| Medium-Italic |       |      |          |      |         |
-| Thin-Italic   |       |      |          |      |         |
-| Bold          |       |      |          |      |         |
-| Italic        |       |      |          |      |         |
-| Light         |       |      |          |      |         |
-| Medium        |       |      |          |      |         |
-| Regular       |       |      |          |      |         |
-| Thin          |       |      |          |      |         |
+** [[https://www.ibm.com/plex][Plex]]
