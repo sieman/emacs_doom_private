@@ -83,3 +83,15 @@
   (turn-off-smartparens-strict-mode)
   (smartparens-global-mode -1)
   )
+
+(defun sim/org-edit-special ()
+  "Edits org special blocks and maximize that buffer."
+  (interactive)
+  (org-edit-special)
+  (delete-other-windows))
+
+(defun sim/org-edit-src-exit ()
+  "Exits org special src buffer."
+  (interactive)
+  (org-edit-src-exit)
+  (delete-other-windows))
