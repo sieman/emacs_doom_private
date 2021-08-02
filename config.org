@@ -454,6 +454,22 @@ Ein nützliches Schnippel zum Beschreiben von einzelnen Keymaps von [[https://st
   (smartparens-global-mode -1)
   )
 #+end_src
+
+*** Org Edit Speacial block
+#+begin_src emacs-lisp :tangle autoload.el
+(defun sim/org-edit-special ()
+  "Edits org special blocks and maximize that buffer."
+  (interactive)
+  (org-edit-special)
+  (delete-other-windows))
+
+(defun sim/org-edit-src-exit ()
+  "Exits org special src buffer."
+  (interactive)
+  (org-edit-src-exit)
+  (delete-other-windows))
+#+end_src
+
 * Keybinding
 #+begin_src emacs-lisp
 ;; (defadvice split-window (after move-point-to-new-window activate)
