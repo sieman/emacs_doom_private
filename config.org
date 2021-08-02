@@ -492,7 +492,7 @@ Ein nützliches Schnippel zum Beschreiben von einzelnen Keymaps von [[https://st
 
 (global-unset-key (kbd "s-x"))
 (global-unset-key (kbd "s-C"))
-;; (global-unset-key (kbd "s-w"))
+(global-unset-key (kbd "s-w"))
 (global-unset-key (kbd "s-k"))
 (global-unset-key (kbd "s-e"))
 (global-unset-key (kbd "s-o"))
@@ -614,15 +614,15 @@ Ein nützliches Schnippel zum Beschreiben von einzelnen Keymaps von [[https://st
  ;; 0
 
  ;; x
- "  s-x" #'kill-region
+ "s-x" #'kill-region
  "s-v" #'yank
- "s-V" #'counsel-yank-pop
+ "s-V" #'yank-pop
  ;; l
  "s-l" #'goto-line
  "s-c" (if (featurep 'evil) #'evil-yank #'copy-region-as-kill)
  "s-C" #'comment-line
  "M-s-c" #'comment-or-uncomment-region
- ;; "s-w" #'kill-current-buffer
+ "s-w" #'kill-current-buffer
  "s-W" #'delete-frame
  ;; k
  :desc "Mark previous" "A-s-h" #'mc/mark-previous-like-this
