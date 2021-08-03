@@ -26,6 +26,27 @@ Package loading
 #224FBC Blauer Hintergrund wie Ocean
 
 #+begin_src emacs-lisp
+;; Main theme
+;; (setq doom-theme 'doom-dracula)
+(setq doom-theme 'doom-solarized-light)
+
+(setq display-line-numbers-type nil)
+
+(custom-set-faces
+ '(show-paren-match ((t (:background "black" :foreground "yellow" :inverse-video t :weight bold))))
+ '(region ((t (:foreground "#f1c40f" :background "#2c3e50" :inverse-video t))))
+ `(cursor ((t (:foreground "white" :background "red")))))
+
+(custom-set-variables '(cursor-type 'box))
+
+;; All themes are safe to load
+(setq custom-safe-themes t)
+
+;; Splash image
+(setq +doom-dashboard-banner-dir (concat doom-private-dir "banners/")
+      +doom-dashboard-banner-file "thenwhyworry.png"
+      +doom-dashboard-banner-padding '(0 . 1))
+
 (display-time-mode t)
 (setq display-time-24hr-format t)
 (setq display-line-numbers-type nil)
@@ -33,14 +54,32 @@ Package loading
 (load! "sim-calendar")
 (load! "~/.emacs.secrets")
 (setq fill-column sim-hard-wrap-at)
-;; Theme related things
-(load! "+themes")
 
 ;; Select and raise the frame, always
 (select-frame-set-input-focus (selected-frame))
 
 ;; Hide the menu for as minimalistic a startup screen as possible.
 (remove-hook '+doom-dashboard-functions #'doom-dashboard-widget-shortmenu)
+
+;; Color the border of windows according to the `highlight' color of the doom's theme
+(add-hook! 'doom-load-theme-hook
+           ;; A more visible window border
+           (set-face-attribute 'vertical-border nil :foreground (doom-color 'highlight))
+           ;; Flycheck errors use the color of functions
+           (after! flycheck
+             (set-face-attribute 'flycheck-error nil
+                                 :underline `(:color ,(doom-color 'functions)
+                                              :style wave)))
+           ;; Custom doom-one configuration
+           (when (custom-theme-enabled-p 'doom-one)
+             (after! org
+               ;; Purple boxes for Org BEGIN_SRC and END_SRC
+               (set-face-attribute 'org-block-begin-line nil
+                                   :background "#5c3d5c"
+                                   :foreground "#a16ba1"
+                                   :weight 'bold
+                                   :height 0.9
+                                   :box '(:line-width 2 :color "#5c3d5c")))))
 #+end_src
 *** Prety Symbol Mode Disable
 https://github.com/hlissner/doom-emacs/issues/1807
@@ -99,7 +138,7 @@ https://github.com/hlissner/doom-emacs/issues/1807
   '(font-lock-keyword-face :slant italic))
 #+end_src
 
-** Editor Erweiterungen :editor:
+** Modus Anwendungen :settings:modes:
 *** Rechtschreibprüfung :spell:checking:
 
 npm install dictionary-en-gb
@@ -150,7 +189,6 @@ Dies ist ein Minor-Mode und zeigt die gedrückten Tasten an.
 (load! "+show-keys.el")
 #+end_src
 
-** Modus Anwendungen :settings:modes:
 *** dired - file manager
 #+begin_src emacs-lisp
 (after! dired
@@ -184,10 +222,29 @@ This litle packages provide a export to jira markup.
 #+begin_src emacs-lisp :tangle packages.el
 (package! ox-jira :recipe (:host github :repo "stig/ox-jira.el"))
 #+end_src
+*Org Face*
 #+begin_src emacs-lisp
-(use-package! ox-jira)
+(add-hook! org-mode
+           ;; Document title font
+           (set-face-attribute 'org-document-title nil :height 2.0)
+           (set-face-attribute 'org-level-1 nil :height 1.1)
+           (set-face-attribute 'org-level-2 nil :height 1.1)
+           (set-face-attribute 'org-level-3 nil :height 1.1)
+           (set-face-attribute 'org-level-4 nil :height 1.1)
+           (set-face-attribute 'org-level-5 nil :height 1.1)
+           (set-face-attribute 'org-level-6 nil :height 1.1)
+           (set-face-attribute 'org-level-7 nil :height 1.1)
+           (set-face-attribute 'org-level-8 nil :height 1.1)
+           (set-face-attribute 'org-block nil :height 1.1)
+           ;; Face of keyword DONE (Green like strings)
+           ;; (set-face-attribute 'org-done nil :foreground "#98be65")
+           ;; Face of keyword TODO or [ ] (Purple like keywords)
+           ;; (set-face-attribute 'org-todo nil :foreground "#c678dd")
+           ;; Face of ellipsis symbol (Purple like keywords)
+           (set-face-attribute 'org-ellipsis nil :foreground "#c678dd")
+           ;; Face of the entire headline of a DONE line
+           (set-face-attribute 'org-headline-done nil :foreground nil))
 #+end_src
-
 *Babel Support*
 Ich möchte gerne Ergebnisse aus Clojures Code mit in org-Dateien einfügen.
 [[https://www.orgmode.org/worg/org-contrib/babel/languages/ob-doc-clojure.html][Org-babel support for Clojure]]
@@ -305,6 +362,26 @@ Ich möchte gerne eine Historie für die REPL haben.
   (beacon-mode t)
   )
 #+end_src
+
+*** Latex
+
+Change some font weights for the sections in LaTeX
+#+begin_src emacs-lisp
+(add-hook! LaTeX-mode
+  (set-face-attribute 'font-latex-sectioning-1-face nil :height 1.8 :weight 'bold)
+  (set-face-attribute 'font-latex-sectioning-2-face nil :height 1.6)
+  (set-face-attribute 'font-latex-sectioning-3-face nil :height 1.3)
+  (set-face-attribute 'font-latex-sectioning-4-face nil :height 1.1)
+  (set-face-attribute 'font-latex-sectioning-5-face nil :height 1.1))
+#+end_src
+
+Match the background of latex previews and scale a bit less than the default
+#+begin_src emacs-lisp
+(after! preview
+  (setq preview-scale 1.2)
+  (set-face-attribute 'preview-reference-face nil :background (doom-color 'bg)))
+#+end_src
+
 
 * Funktionen
 Hier stehen Funktionen, die für die Tastenkürzel verwendet werden.
@@ -524,7 +601,7 @@ Ein nützliches Schnippel zum Beschreiben von einzelnen Keymaps von [[https://st
   "s" 'sim/org-edit-special
   "e" 'org-babel-execute-src-block
   "t" 'org-babel-tangle
-)
+  )
 
 (general-def org-src-mode-map
   "s-w" 'sim/org-edit-src-exit)
