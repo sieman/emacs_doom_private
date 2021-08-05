@@ -1,4 +1,3 @@
-
 #+TITLE:A emacs doom configuration
 #+DATE:    Juli 9, 2021
 
@@ -28,12 +27,12 @@ With symbolic links it is easy to change a profile. And ~emacs-switcher.sh~ do c
                (env . (("DOOMDIR" . "~/.e/sieman.doom.d")))))
 
  ("hlissner" . ((user-emacs-directory . "~/.e/others/hlissner.emacs.d")
-               (env . (("DOOMDIR" . "~/.e/others/hlissner.doom.d")))))
+                (env . (("DOOMDIR" . "~/.e/others/hlissner.doom.d")))))
 
  ("doom" . ((user-emacs-directory . "~/.e/others/doom.emacs.d")
-               (env . (("DOOMDIR" . "~/.e/others/doom.doom.d")))))
+            (env . (("DOOMDIR" . "~/.e/others/doom.doom.d")))))
  ("spacemacs" . ((user-emacs-directory . "~/.e/others/spacemacs.emacs.d")
-               (env . (("SPACEMACSDIR" . "~/.e/others/spacemacs.spacemacs.d")))))
+                 (env . (("SPACEMACSDIR" . "~/.e/others/spacemacs.spacemacs.d")))))
  ("magnars" . ((user-emacs-directory . "~/.e/others/magnars.vanilla")))
  ("prelude" . ((user-emacs-directory . "~/.e/others/prelude.distro")))
  ("centaur" . ((user-emacs-directory . "~/.e/others/centaur.distro")))
@@ -49,8 +48,8 @@ With symbolic links it is easy to change a profile. And ~emacs-switcher.sh~ do c
 (setq calendar-location-name "")
 
 (setq projectile-project-search-path '(
-       "~/development/projects"
-       ))
+                                       "~/development/projects"
+                                       ))
 #+end_src
 
 * Programming languages installation
@@ -75,6 +74,18 @@ brew install jq
 npm install -g js-beautify
 npm install -g stylelint
 #+end_src
+
+* Tools installed by brew
+#+begin_src shell
+brew install editorconfig
+brew install rg
+brew install fd
+brew install clojure
+brew install leiningen
+brew install babashka
+brew install hunspell
+brew install wget
+#+end_src
 * Emacs Distro
 ** [[https://github.com/seagle0128/.emacs.d][Centaur Emacs]]
 #+begin_src shell
@@ -93,8 +104,8 @@ mkdir ~/.e/others/spacemacs.spacemacs.d
 ** [[https://typeof.net/Iosevka/][Iosevka]]
 
 #+begin_src shell
- brew tap homebrew/cask-fonts
- brew install font-iosevka-ss04
+brew tap homebrew/cask-fonts
+brew install font-iosevka-ss04
 #+end_src
 ** [[https://github.com/tonsky/FiraCode][Fira Code]]
 just download the zip file and for Mac Os us the _ttf_ folder. [[https://github.com/tonsky/FiraCode/wiki/Emacs-instructions][Emacs instructions]]
