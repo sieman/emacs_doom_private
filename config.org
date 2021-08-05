@@ -222,6 +222,9 @@ This litle packages provide a export to jira markup.
 #+begin_src emacs-lisp :tangle packages.el
 (package! ox-jira :recipe (:host github :repo "stig/ox-jira.el"))
 #+end_src
+#+begin_src emacs-lisp
+(use-package! ox-jira)
+#+end_src
 *Org Face*
 #+begin_src emacs-lisp
 (add-hook! org-mode
