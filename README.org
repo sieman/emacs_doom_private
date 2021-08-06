@@ -59,10 +59,14 @@ Tools like [[https://brew.sh/][brew]] to install additional Software is required
 brew install clojure leiningen
 brew install clojure-lsp/brew/clojure-lsp-native
 brew install borkdude/brew/clj-kondo
+brew install borkdude/brew/babashka
 #+end_src
 ** Javascript
+[[https://github.com/nvm-sh/nvm][Node Version Manager]] for [[https://nodejs.org/en/][node.js]], designed to be installed per-user, and invoked per-shell. After installing node or nvm:
 #+begin_src shell
 npm install -g typescript-language-server
+npm install -g stylelint
+npm install -g js-beautify
 #+end_src
 ** JSON
 jq - Command-line JSON processor
