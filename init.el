@@ -4,13 +4,7 @@
  :completion
  (company           ; the ultimate code completion backend
   +childframe)
-
  (vertico +icons)
- ;; (ivy              ; a search engine for love and life
-  ;; +childframe
-  ;; +prescient
-  ;; +fuzzy
-  ;; +icons)
 
  :ui
  deft              ; notational velocity for Emacs
@@ -48,9 +42,8 @@
  eshell            ; the elisp shell that works everywhere
 
  :checkers
- (syntax              ; tasing you for every semicolon you forget
-  +childframe)
- (spell             ; tasing you for misspelling mispelling
+  syntax              ; tasing you for every semicolon you forget
+  (spell             ; tasing you for misspelling mispelling
   +hunspell
   +flyspell)
 
