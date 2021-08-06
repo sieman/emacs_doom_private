@@ -216,16 +216,18 @@ Dies ist ein Minor-Mode und zeigt die gedrückten Tasten an.
 
 #+end_src
 
-*Jira Export*
+**** Jira Export
 This litle packages provide a export to jira markup.
 
 #+begin_src emacs-lisp :tangle packages.el
 (package! ox-jira :recipe (:host github :repo "stig/ox-jira.el"))
+(package! ox-confluence :recipe (:host github :repo "sdelafond/org-confluence"))
 #+end_src
 #+begin_src emacs-lisp
 (use-package! ox-jira)
+(use-package! ox-confluence)
 #+end_src
-*Org Face*
+**** *Org Face*
 #+begin_src emacs-lisp
 (add-hook! org-mode
            ;; Document title font
