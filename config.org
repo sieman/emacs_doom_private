@@ -354,20 +354,6 @@ Ich möchte gerne eine Historie für die REPL haben.
   (define-key xah-fly-command-map (kbd "SPC") (kbd! "C-c")))
 #+End_src
 
-** Beacon
-#+begin_src emacs-lisp :tangle "packages.el" :comments no
-(package! beacon)
-#+end_src
-
-#+begin_src emacs-lisp
-(use-package! beacon
-  :diminish
-  :config
-  (setq beacon-color "#9a37ff")
-  (beacon-mode t)
-  )
-#+end_src
-
 ** Latex
 
 Change some font weights for the sections in LaTeX
