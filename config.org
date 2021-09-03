@@ -20,8 +20,7 @@ Package loading
 
 #+end_src
 
-* Einstellungen :settings:
-** Darstellung :appearance:
+* Einstellungen Darstellung :appearance:
 
 #224FBC Blauer Hintergrund wie Ocean
 
@@ -81,7 +80,7 @@ Package loading
                                    :height 0.9
                                    :box '(:line-width 2 :color "#5c3d5c")))))
 #+end_src
-*** Prety Symbol Mode Disable
+** Prety Symbol Mode Disable
 https://github.com/hlissner/doom-emacs/issues/1807
 
 #+begin_src emacs-lisp
@@ -90,7 +89,7 @@ https://github.com/hlissner/doom-emacs/issues/1807
                                         ;(remove-hook 'after-change-major-mode-hook #'+pretty-code-init-pretty-symbols-h)
 ;; (setq! +ligatures-composition-alist nil)
 #+end_src
-*** Which Key Mode
+** Which Key Mode
 #+begin_src emacs-lisp
 (after! which-key
   (setq which-key-side-window-max-width 0.44
@@ -99,7 +98,7 @@ https://github.com/hlissner/doom-emacs/issues/1807
         which-key-max-description-length 90)
   (which-key-setup-side-window-right-bottom))
 #+end_src
-*** Modeline
+** Modeline
 #+begin_src emacs-lisp
 (after! doom-modeline
   (require 'doom-modeline)
@@ -113,7 +112,7 @@ https://github.com/hlissner/doom-emacs/issues/1807
 
   (message "doom-modeline is loaded. :-)"))
 #+end_src
-*** Fonts
+** Fonts
 ;; "JetBrains Mono"
 ;; "LFBONovelNetz" "LOB.Novellenschrift" "LOV.Novellenschrift" "LUC.NovellenschriftU1A"
 ;; "Iosevka" "Iosevka Fixed" "Iosevka Term" "Iosevka SS04"
@@ -138,8 +137,8 @@ https://github.com/hlissner/doom-emacs/issues/1807
   '(font-lock-keyword-face :slant italic))
 #+end_src
 
-** Modus Anwendungen :settings:modes:
-*** Rechtschreibprüfung :spell:checking:
+* Einstellungen Modus Anwendungen :settings:modes:
+** Rechtschreibprüfung :spell:checking:
 
 npm install dictionary-en-gb
 
@@ -151,13 +150,13 @@ npm install dictionary-en-gb
         ("en_GB" "~/Library/Spelling/en_GB.aff")
         ))
 #+end_src
-*** Tastaturlayout :keyboard:layout:
+** Tastaturlayout :keyboard:layout:
 #+begin_src emacs-lisp
 (require 'four-modifier)
-(load! "+neo-layout.el")
+;;(load! "+neo-layout.el")
 #+end_src
 
-*** Multiple Cursors
+** Multiple Cursors
 #+begin_src emacs-lisp
 (after! mc-mark-more
   (setq! mc/list-file "~/.e/sieman.doom.d/mc-lists.el")
@@ -166,7 +165,7 @@ npm install dictionary-en-gb
   (message "mc-mark-more loaded")
   )
 #+end_src
-*** Ivy is a generic completion mechanism for Emacs.
+** Ivy is a generic completion mechanism for Emacs.
 #+begin_src emacs-lisp
 (after! ivy
   (ido-mode -1)
@@ -174,7 +173,7 @@ npm install dictionary-en-gb
   ;; (general-define-key "s-x" 'kill-region)
   )
 #+end_src
-*** Navigate Back and Forward, the Better Jump
+** Navigate Back and Forward, the Better Jump
 Ich mag in einem Buffer herumspringen.
 #+begin_src emacs-lisp
 (after! better-jumper
@@ -183,20 +182,20 @@ Ich mag in einem Buffer herumspringen.
   (setq! better-jumper-use-evil-jump-advice nil))
 #+end_src
 
-*** Show Keys
+** Show Keys
 Dies ist ein Minor-Mode und zeigt die gedrückten Tasten an.
 #+begin_src emacs-lisp
 (load! "+show-keys.el")
 #+end_src
 
-*** dired - file manager
+** dired - file manager
 #+begin_src emacs-lisp
 (after! dired
   (add-hook 'dired-mode-hook (lambda () (dired-hide-details-mode 1)))
   (put 'dired-find-alternate-file 'disabled nil))
 #+end_src
 
-*** org-mode :org:
+** org-mode :org:
 #+begin_src emacs-lisp
 ;; (with-eval-after-load 'org
 ;; (add-to-list 'sp-ignore-modes-list #'org-mode))
@@ -216,7 +215,7 @@ Dies ist ein Minor-Mode und zeigt die gedrückten Tasten an.
 
 #+end_src
 
-**** Jira Export
+*** Jira Export
 This litle packages provide a export to jira markup.
 
 #+begin_src emacs-lisp :tangle packages.el
@@ -227,7 +226,7 @@ This litle packages provide a export to jira markup.
 (use-package! ox-jira)
 (use-package! ox-confluence)
 #+end_src
-**** *Org Face*
+*** *Org Face*
 #+begin_src emacs-lisp
 (add-hook! org-mode
            ;; Document title font
@@ -253,7 +252,7 @@ This litle packages provide a export to jira markup.
 *Babel Support*
 Ich möchte gerne Ergebnisse aus Clojures Code mit in org-Dateien einfügen.
 [[https://www.orgmode.org/worg/org-contrib/babel/languages/ob-doc-clojure.html][Org-babel support for Clojure]]
-*** Deft for org-mode
+** Deft for org-mode
 
 #+begin_src emacs-lisp
 (setq deft-extensions '("txt" "tex" "org"))
@@ -262,9 +261,9 @@ Ich möchte gerne Ergebnisse aus Clojures Code mit in org-Dateien einfügen.
 (global-set-key [f8] 'deft)
 #+end_src
 
-*** Terminals
+** Terminals
 
-**** Ansi-Terminal
+*** Ansi-Terminal
 
 C-c C-j (term-line-mode) das Terminal verhält sich wie ein Text-Buffer.
 C-c C-k (term-char-mode) das Terminal verhält fixirt den Cursor auf den Eingabe-Promt.
@@ -297,7 +296,7 @@ Ich benutze die Z-Shell und ich möchte auch nicht mehr nach einer anderen Shell
 (ad-activate 'ansi-term)
 #+end_src
 
-*** Cider Clojure Enviroment
+** Cider Clojure Enviroment
 Ich möchte gerne eine Historie für die REPL haben.
 
 #+begin_src emacs-lisp
@@ -320,7 +319,7 @@ Ich möchte gerne eine Historie für die REPL haben.
   (message "My Clojure config"))
 #+end_src
 
-*** Fly Keys by Xah Lee
+** Fly Keys by Xah Lee
 #+begin_src emacs-lisp
 (after! xah-fly-keys
 
@@ -336,7 +335,8 @@ Ich möchte gerne eine Historie für die REPL haben.
          (custom-set-faces
           `(cursor ((t (:background "red"))))
           )
-         (custom-set-variables '(cursor-type 'box)))
+         (custom-set-variables '(cursor-type 'box))
+         (better-jumper-set-jump))
 
   (add-hook! 'xah-fly-command-mode-activate-hook 'sim/flykeys-indicate-command-mode)
   (add-hook! 'xah-fly-insert-mode-activate-hook  'sim/flykeys-indicate-insert-mode)
@@ -354,7 +354,7 @@ Ich möchte gerne eine Historie für die REPL haben.
   (define-key xah-fly-command-map (kbd "SPC") (kbd! "C-c")))
 #+End_src
 
-*** Beacon
+** Beacon
 #+begin_src emacs-lisp :tangle "packages.el" :comments no
 (package! beacon)
 #+end_src
@@ -368,7 +368,7 @@ Ich möchte gerne eine Historie für die REPL haben.
   )
 #+end_src
 
-*** Latex
+** Latex
 
 Change some font weights for the sections in LaTeX
 #+begin_src emacs-lisp
@@ -387,6 +387,21 @@ Match the background of latex previews and scale a bit less than the default
   (set-face-attribute 'preview-reference-face nil :background (doom-color 'bg)))
 #+end_src
 
+** Dict.cc translate
+[[https://github.com/martenlienen/dictcc.el][Dictcc]] is a emacs interface for the online dictionary [[https://www.dict.cc/][dict.cc]]. At the moment it use ivy ore helm as completion but not vertico. I use it when vertico is supported.
+#+begin_src emacs-lisp :tangle no
+(package! dictcc)
+#+end_src
+
+#+begin_src emacs-lisp :tangle no
+(use-package! dictcc
+  :diminish
+  :config
+  (setq dictcc-source-lang "en"
+        dictcc-destination-lang "de"
+        dictcc-completion-backend 'vertico)
+  )
+#+end_src
 
 * Funktionen
 Hier stehen Funktionen, die für die Tastenkürzel verwendet werden.
@@ -590,15 +605,15 @@ Ein nützliches Schnippel zum Beschreiben von einzelnen Keymaps von [[https://st
   (general-def term-raw-map
     "s-v" 'term-paste))
 
-(map! :prefix "C-c o"
-      :desc "open a ansi Terminal" "t" #'ansi-term)
+;; (map! :prefix "C-c o"
+;;       :desc "open a ansi Terminal" "t" #'ansi-term)
 
 
-(map! :after ivy :map ivy-mode-map :prefix "s-O"
-      :desc "recent files" "r" #'counsel-recentf
-      :desc "open file" "f" #'counsel-find-file
-      "p" #'ns-open-file-using-panel
-      )
+;; (map! :after ivy :map ivy-mode-map :prefix "s-O"
+;;       :desc "recent files" "r" #'counsel-recentf
+;;       :desc "open file" "f" #'counsel-find-file
+;;       "p" #'ns-open-file-using-panel
+;;       )
 
 (general-def org-mode-map
   :prefix "s-O"
@@ -614,7 +629,8 @@ Ein nützliches Schnippel zum Beschreiben von einzelnen Keymaps von [[https://st
 
 (general-define-key
  :keymaps 'org-mode-map
- "s-o" 'counsel-org-goto
+ "s-o" 'consult-org-heading
+                                        ;'counsel-org-goto
  "s-b" 'org-emphasize
  "s-<return>" 'org-meta-return
  )
@@ -765,6 +781,7 @@ Ein nützliches Schnippel zum Beschreiben von einzelnen Keymaps von [[https://st
 
  "s-<up>" #'better-jumper-jump-backward
  "s-<down>" #'better-jumper-jump-forward
+ "s-<f1>" #'better-jumper-jump-newest
  "s-<left>" #'doom/backward-to-bol-or-indent
  "s-<right>" #'doom/forward-to-last-non-comment-or-eol
 
@@ -803,6 +820,6 @@ Ein nützliches Schnippel zum Beschreiben von einzelnen Keymaps von [[https://st
 
 
 * Neues
-Farbige ausgabe von Tastenkürzel.
+Farbige Ausgabe von Tastenkürzel.
 https://www.youtube.com/watch?v=QfN0gNaxE2U
 https://github.com/michael-heerdegen/interaction-log.el
