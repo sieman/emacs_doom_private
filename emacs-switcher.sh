@@ -105,6 +105,9 @@ alias eCountvajhula="eSwitcher countvajhula.vanilla"
 # nasymoa https://github.com/nasyxx/emacs.d.git
 alias eNasymoa='eSwitcher nasymoa.vanilla'
 
+# git clone https://gist.github.com/adam-james-v/7a61612ce0649afc78513f54b337d8c9  adam-james.vanilla
+alias eAdamJames='eSwitcher adam-james.vanilla'
+
 alias eSandbox='eSwitcher sandbox'
 
 alias doup='edoom && cd ~/.e/sieman.doom.d && git fetch && git pull && doom upgrade && doom sync && cd - && e --debug-init && doom doctor'
