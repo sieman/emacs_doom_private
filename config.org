@@ -17,10 +17,9 @@ Package loading
 ;; https://github.com/rougier/elegant-emacs (package! elegant-emacs :recipe (:host github :repo "rougier/elegant-emacs"))
 ;;(package! meow)                         ; is a modal keybinding system like xah-fly-keys and evil
 (package! aggressive-indent-mode)
-
 #+end_src
 
-* Einstellungen Darstellung :appearance:
+* Darstellung :appearance:
 
 #224FBC Blauer Hintergrund wie Ocean
 
@@ -207,8 +206,7 @@ Dies ist ein Minor-Mode und zeigt die gedrückten Tasten an.
   (add-to-list 'org-structure-template-alist '("sc" . "src clojure"))
   (add-to-list 'org-structure-template-alist '("ss" . "src shell"))
 
-  (setq org-use-speed-commands t
-        org-babel-clojure-backend 'cider
+  (setq org-babel-clojure-backend 'cider
         org-hide-emphasis-markers t))
 
 (add-hook! 'org-log-buffer-setup-hook '(require 'org-keys))
@@ -296,7 +294,33 @@ Ich benutze die Z-Shell und ich möchte auch nicht mehr nach einer anderen Shell
 (ad-activate 'ansi-term)
 #+end_src
 
-** Cider Clojure Enviroment
+** Cider
+*Evaluation in buffer:*
+| =C-x C-e=           | cider-eval-last-sexp |
+| =C-c C-e=           |                      |
+| =<localleader> e e= |                      |
+Evaluate the form preceding point and display the result in the echo area and/or
+in an buffer overlay (according to cider-use-overlays). If invoked with a prefix
+argument, insert the result into the current buffer.
+
+| =<localleader> p D= | =cider-pprint-eval-defun-to-comment= |
+Produces an output like this: =;;-> {"dark olive" 1, "vibrant plum" 2}=
+
+*Evaluation to REPL:*
+| =C-c M-e=           | cider-eval-last-sexp-to-repl        |
+| =<localleader> p r= | =cider-pprint-eval-last-sexp-to-repl= |
+Evaluate the form preceding point and output it result to the REPL buffer. If
+invoked with a prefix argument, takes you to the REPL buffer after being
+invoked.
+
+*Evaluation from Source to REPL:*
+| =C-return= | eir-eval-in-cider |
+Copy the expression from buffer and paste it in REPL then evaluates it.
+
+Navigation
+Refactoring
+Editing
+
 Ich möchte gerne eine Historie für die REPL haben.
 
 #+begin_src emacs-lisp
@@ -318,6 +342,17 @@ Ich möchte gerne eine Historie für die REPL haben.
   (add-hook 'clojure-mode-hook #'aggressive-indent-mode)
   (message "My Clojure config"))
 #+end_src
+
+** Eval in the REPL
+#+begin_src emacs-lisp :tangle "packages.el"
+(package! eval-in-repl)
+#+end_src
+#+begin_src emacs-lisp
+(after! cider
+  (require 'eval-in-repl-cider)
+  (define-key clojure-mode-map (kbd "<C-return>") 'eir-eval-in-cider))
+#+end_src
+
 
 ** Fly Keys by Xah Lee
 #+begin_src emacs-lisp
@@ -388,7 +423,6 @@ Match the background of latex previews and scale a bit less than the default
         dictcc-completion-backend 'vertico)
   )
 #+end_src
-
 * Funktionen
 Hier stehen Funktionen, die für die Tastenkürzel verwendet werden.
 *** Ist das Packet das, das ich gebrauche?
@@ -809,3 +843,6 @@ Ein nützliches Schnippel zum Beschreiben von einzelnen Keymaps von [[https://st
 Farbige Ausgabe von Tastenkürzel.
 https://www.youtube.com/watch?v=QfN0gNaxE2U
 https://github.com/michael-heerdegen/interaction-log.el
+
+https://github.com/kaz-yos/eval-in-repl
+
