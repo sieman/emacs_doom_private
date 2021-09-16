@@ -295,7 +295,8 @@ Ich benutze die Z-Shell und ich möchte auch nicht mehr nach einer anderen Shell
 #+end_src
 
 ** Cider
-*Evaluation in buffer:*
+*Evaluation:*
+_in buffer:_
 | =C-x C-e=           | cider-eval-last-sexp |
 | =C-c C-e=           |                      |
 | =<localleader> e e= |                      |
@@ -306,14 +307,14 @@ argument, insert the result into the current buffer.
 | =<localleader> p D= | =cider-pprint-eval-defun-to-comment= |
 Produces an output like this: =;;-> {"dark olive" 1, "vibrant plum" 2}=
 
-*Evaluation to REPL:*
+_to REPL:_
 | =C-c M-e=           | cider-eval-last-sexp-to-repl        |
 | =<localleader> p r= | =cider-pprint-eval-last-sexp-to-repl= |
 Evaluate the form preceding point and output it result to the REPL buffer. If
 invoked with a prefix argument, takes you to the REPL buffer after being
 invoked.
 
-*Evaluation from Source to REPL:*
+_from Source to REPL:_
 | =C-return= | eir-eval-in-cider |
 Copy the expression from buffer and paste it in REPL then evaluates it.
 
