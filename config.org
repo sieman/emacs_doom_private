@@ -594,6 +594,19 @@ Ein nützliches Schnippel zum Beschreiben von einzelnen Keymaps von [[https://st
 ;; "Moves the point to the newly created window after splitting."
 ;; (other-window 1))
 
+;; from https://gist.github.com/3402786
+(defun sim/toggle-maximize-buffer ()
+  "Maximize buffer"
+  (interactive)
+  (save-excursion
+    (if (and (= 1 (length (window-list)))
+             (assoc ?_ register-alist))
+        (jump-to-register ?_)
+      (progn
+        (window-configuration-to-register ?_)
+        (delete-other-windows)))))
+
+
 (defun split-window-right-and-move-there-dammit ()
   (interactive)
   (split-window-right)
@@ -717,8 +730,8 @@ Ein nützliches Schnippel zum Beschreiben von einzelnen Keymaps von [[https://st
  ;; f9
  "S-<f10>" #'highlight-symbol-at-point
  "C-<f10>" #'highlight-phrase
- "C-<f11>" #'sim/disable-alt-modifier
- "s-<f11>" #'sim/enable-alt-modifier
+ "<f11>" #'sim/toggle-maximize-buffer
+ "s-<f11>" #'toggle-frame-fullscreen
  "C-<f12>" #'imenu
 
  "s-1" #'+treemacs/toggle
@@ -743,6 +756,7 @@ Ein nützliches Schnippel zum Beschreiben von einzelnen Keymaps von [[https://st
  "M-s-c" #'comment-or-uncomment-region
  "s-w" #'kill-current-buffer
  "s-W" #'delete-frame
+ "C-c w t" #'sim/toggle-maximize-buffer
  ;; k
  :desc "Mark previous" "A-s-h" #'mc/mark-previous-like-this
  :desc "Mark previous" "s-<" #'mc/mark-previous-like-this
