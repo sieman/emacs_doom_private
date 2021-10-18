@@ -218,7 +218,8 @@ This litle packages provide a export to jira markup.
 
 #+begin_src emacs-lisp :tangle packages.el
 (package! ox-jira :recipe (:host github :repo "stig/ox-jira.el"))
-(package! ox-confluence :recipe (:host github :repo "sdelafond/org-confluence"))
+;; (package! ox-confluence :recipe (:host github :repo "sdelafond/org-confluence"))
+(package! ox-confluence)
 #+end_src
 #+begin_src emacs-lisp
 (use-package! ox-jira)
