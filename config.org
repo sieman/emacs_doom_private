@@ -11,7 +11,7 @@ Package loading
 
 #+begin_src emacs-lisp
 ;; (package! rg) ; not using it at the moment
-(package! xah-fly-keys)
+(package! xah-fly-keys :recipe (:host github :repo "xahlee/xah-fly-keys"))
 (package! four-modifier :recipe (:host github :repo "sieman/four-modifier"))
 (package! neo-layout-fly-keys :recipe (:host github :repo "sieman/neo-layout-fly-keys"))
 ;; https://github.com/rougier/elegant-emacs (package! elegant-emacs :recipe (:host github :repo "rougier/elegant-emacs"))
@@ -45,11 +45,10 @@ Package loading
       +doom-dashboard-banner-file "thenwhyworry.png"
       +doom-dashboard-banner-padding '(0 . 1))
 
-(display-time-mode t)
+;; (display-time-mode t)
 (setq display-time-24hr-format t)
 (setq display-line-numbers-type nil)
-(setq mixed-pitch-variable-pitch-cursor nil)
-(load! "sim-calendar")
+;; (load! "sim-calendar")
 (load! "~/.emacs.secrets")
 (setq fill-column sim-hard-wrap-at)
 
@@ -213,17 +212,16 @@ Dies ist ein Minor-Mode und zeigt die gedrückten Tasten an.
 
 #+end_src
 
-*** Jira Export
-This litle packages provide a export to jira markup.
+*** Atlassian Export
+This litle packages provide a export to jira and confluence  markup.
 
 #+begin_src emacs-lisp :tangle packages.el
 (package! ox-jira :recipe (:host github :repo "stig/ox-jira.el"))
-;; (package! ox-confluence :recipe (:host github :repo "sdelafond/org-confluence"))
-(package! ox-confluence)
+(package! ox-confluence-en :recipe (:host github :repo "correl/ox-confluence-en"))
 #+end_src
 #+begin_src emacs-lisp
 (use-package! ox-jira)
-(use-package! ox-confluence)
+(use-package! ox-confluence-en)
 #+end_src
 *** *Org Face*
 #+begin_src emacs-lisp
