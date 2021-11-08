@@ -390,7 +390,9 @@ Ich möchte gerne eine Historie für die REPL haben.
   (interactive)
   (neo2/flykeys-on)
   (define-key xah-fly-command-map (kbd "SPC") nil)
-  (define-key xah-fly-command-map (kbd "SPC") (kbd! "C-c")))
+  (define-key xah-fly-command-map (kbd "o") nil)
+  (define-key xah-fly-command-map (kbd "SPC") 'xah-insert-space-before)
+  (define-key xah-fly-command-map (kbd "o") (kbd! "C-c")))
 #+End_src
 
 ** Latex
