@@ -153,6 +153,10 @@ npm install dictionary-en-gb
 (require 'four-modifier)
 ;;(load! "+neo-layout.el")
 #+end_src
+** TODO AI Auto Compleation
+[[https://github.com/TommyX12/company-tabnine][Emacs Plugin]]
+TabNine is the all-language autocompleter. It uses machine learning to provide responsive, reliable, and relevant suggestions.
+
 
 ** Multiple Cursors
 #+begin_src emacs-lisp
