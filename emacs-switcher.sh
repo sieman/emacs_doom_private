@@ -51,6 +51,7 @@ alias espacemacs="eDoubleLinker spacemacs.d others/spacemacs"
 alias edoomAloisJanicek="eDoubleLinker doom.d others/AloisJanicek"
 
 alias edoom="eDoubleLinker doom.d sieman"
+alias edoomBoon="eDoubleLinker doom.d others/boon"
 
 # undeadkernel https://github.com/UndeadKernel/emacs_doom_private.git
 alias edoomUndeadkernel="eDoubleLinker doom.d others/undeadkernel"
