@@ -11,6 +11,11 @@
       ["Sonntag" "Montag" "Dienstag" "Mittwoch"
        "Donnerstag" "Freitag" "Samstag"])
 
+(setq calendar-day-abbrev-array
+      ["So" "Mo" "Di" "Mi" "Do" "Fr" "Sa"])
+
+(setq calendar-day-header-array
+      ["So" "Mo" "Di" "Mi" "Do" "Fr" "Sa"])
 
 (setq calendar-month-name-array
       ["Januar" "Februar" "März" "April" "Mai" "Juni"

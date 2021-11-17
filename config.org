@@ -48,7 +48,7 @@ Package loading
 ;; (display-time-mode t)
 (setq display-time-24hr-format t)
 (setq display-line-numbers-type nil)
-;; (load! "sim-calendar")
+
 (load! "~/.emacs.secrets")
 (setq fill-column sim-hard-wrap-at)
 
@@ -136,6 +136,13 @@ https://github.com/hlissner/doom-emacs/issues/1807
 #+end_src
 
 * Einstellungen Modus Anwendungen :settings:modes:
+** Calendar
+#+begin_src emacs-lisp
+(load! "sim-calendar")
+(require 'sim-calendar)
+(set-language-environment "German")
+(set-locale-environment "de_DE.UTF-8")
+#+end_src
 ** Rechtschreibprüfung :spell:checking:
 
 npm install dictionary-en-gb
@@ -205,12 +212,14 @@ Dies ist ein Minor-Mode und zeigt die gedrückten Tasten an.
 ;; (add-to-list 'sp-ignore-modes-list #'org-agenda-mode))
 
 (after! org
+
   (add-to-list 'org-structure-template-alist '("se" . "src emacs-lisp"))
   (add-to-list 'org-structure-template-alist '("sc" . "src clojure"))
   (add-to-list 'org-structure-template-alist '("ss" . "src shell"))
 
   (setq org-babel-clojure-backend 'cider
-        org-hide-emphasis-markers t))
+        org-hide-emphasis-markers t)
+  )
 
 (add-hook! 'org-log-buffer-setup-hook '(require 'org-keys))
 
@@ -428,7 +437,9 @@ Match the background of latex previews and scale a bit less than the default
         dictcc-destination-lang "de"
         dictcc-completion-backend 'vertico)
   )
-#+end_src
+#+end_#+begin_src
+
+      #+end_src
 * Funktionen
 Hier stehen Funktionen, die für die Tastenkürzel verwendet werden.
 *** Ist das Packet das, das ich gebrauche?
