@@ -23,27 +23,47 @@ Package loading
 
 #224FBC Blauer Hintergrund wie Ocean
 
+** Theme
 #+begin_src emacs-lisp
-;; Main theme
-;; (setq doom-theme 'doom-dracula)
 (setq doom-theme 'doom-solarized-light)
-
-(setq display-line-numbers-type nil)
-
 (custom-set-faces
  '(show-paren-match ((t (:background "black" :foreground "yellow" :inverse-video t :weight bold))))
  '(region ((t (:foreground "#f1c40f" :background "#2c3e50" :inverse-video t))))
  `(cursor ((t (:foreground "white" :background "red")))))
-
-(custom-set-variables '(cursor-type 'box))
-
 ;; All themes are safe to load
 (setq custom-safe-themes t)
+;; Color the border of windows according to the `highlight' color of the doom's theme
+(add-hook! 'doom-load-theme-hook
+           ;; A more visible window border
+           ;; (set-face-attribute 'vertical-border nil :foreground (doom-color 'highlight))
+           ;; Flycheck errors use the color of functions
+           (after! flycheck
+             (set-face-attribute 'flycheck-error nil
+                                 :underline `(:color ,(doom-color 'functions)
+                                              :style wave))))
+#+end_src
+** Cursor
+#+begin_src emacs-lisp
+(custom-set-variables '(cursor-type 'box))
+#+end_src
 
+** Dashboard
+#+begin_src emacs-lisp
 ;; Splash image
 (setq +doom-dashboard-banner-dir (concat doom-private-dir "banners/")
       +doom-dashboard-banner-file "thenwhyworry.png"
       +doom-dashboard-banner-padding '(0 . 1))
+
+;; Hide the menu for as minimalistic a startup screen as possible.
+(remove-hook '+doom-dashboard-functions #'doom-dashboard-widget-shortmenu)
+
+#+end_src
+** Buffer
+#+begin_src emacs-lisp
+;; Main theme
+;; (setq doom-theme 'doom-dracula)
+
+(setq display-line-numbers-type nil)
 
 ;; (display-time-mode t)
 (setq display-time-24hr-format t)
@@ -53,30 +73,7 @@ Package loading
 (setq fill-column sim-hard-wrap-at)
 
 ;; Select and raise the frame, always
-(select-frame-set-input-focus (selected-frame))
-
-;; Hide the menu for as minimalistic a startup screen as possible.
-(remove-hook '+doom-dashboard-functions #'doom-dashboard-widget-shortmenu)
-
-;; Color the border of windows according to the `highlight' color of the doom's theme
-(add-hook! 'doom-load-theme-hook
-           ;; A more visible window border
-           (set-face-attribute 'vertical-border nil :foreground (doom-color 'highlight))
-           ;; Flycheck errors use the color of functions
-           (after! flycheck
-             (set-face-attribute 'flycheck-error nil
-                                 :underline `(:color ,(doom-color 'functions)
-                                              :style wave)))
-           ;; Custom doom-one configuration
-           (when (custom-theme-enabled-p 'doom-one)
-             (after! org
-               ;; Purple boxes for Org BEGIN_SRC and END_SRC
-               (set-face-attribute 'org-block-begin-line nil
-                                   :background "#5c3d5c"
-                                   :foreground "#a16ba1"
-                                   :weight 'bold
-                                   :height 0.9
-                                   :box '(:line-width 2 :color "#5c3d5c")))))
+;;(select-frame-set-input-focus (selected-frame))
 #+end_src
 ** Prety Symbol Mode Disable
 https://github.com/hlissner/doom-emacs/issues/1807
