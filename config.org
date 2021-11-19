@@ -373,9 +373,9 @@ Ich möchte gerne eine Historie für die REPL haben.
 
   (defun sim/flykeys-indicate-command-mode () (interactive)
          (custom-set-faces
-          `(cursor ((t (:background "#d87a00"))))
+          `(cursor ((t (:background "#3333ff"))))
           )
-         (custom-set-variables '(cursor-type 'hollow))
+         ;; (custom-set-variables '(cursor-type 'hollow))
          (xah-fly-save-buffer-if-file)
          )
 
