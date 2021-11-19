@@ -19,7 +19,7 @@ Package loading
 (package! aggressive-indent-mode)
 #+end_src
 
-* Darstellung :appearance:
+* Appearance :appearance:
 
 #224FBC Blauer Hintergrund wie Ocean
 
@@ -160,7 +160,6 @@ npm install dictionary-en-gb
 ** TODO AI Auto Compleation
 [[https://github.com/TommyX12/company-tabnine][Emacs Plugin]]
 TabNine is the all-language autocompleter. It uses machine learning to provide responsive, reliable, and relevant suggestions.
-
 
 ** Multiple Cursors
 #+begin_src emacs-lisp
@@ -363,7 +362,6 @@ Ich möchte gerne eine Historie für die REPL haben.
   (define-key clojure-mode-map (kbd "<C-return>") 'eir-eval-in-cider))
 #+end_src
 
-
 ** Fly Keys by Xah Lee
 #+begin_src emacs-lisp
 (after! xah-fly-keys
@@ -439,22 +437,7 @@ Match the background of latex previews and scale a bit less than the default
       #+end_src
 * Funktionen
 Hier stehen Funktionen, die für die Tastenkürzel verwendet werden.
-*** Ist das Packet das, das ich gebrauche?
-(if (require 'tee nil 'noerror)
-(message "Ja ist installiert")
-(message "Nein ist nicht installiert"))
-
-#+begin_src emacs-lisp
-(defun nk/check-package (name fct)
-  "Is package installed then executes fct otherwise give a message."
-  (interactive)
-
-  (if (require  name nil 'noerror)
-      (funcall-interactively fct)
-    (message (concat "neo-keybinding missing package: " (symbol-name name)))))
-#+end_src
-
-*** Duplicate Line Or Region
+** Duplicate Line Or Region
 
 #+begin_src emacs-lisp
 (defun duplicate-line-or-region (&optional n)
@@ -481,7 +464,7 @@ Hier stehen Funktionen, die für die Tastenkürzel verwendet werden.
 
 #+end_src
 
-*** Color Themes
+** Color Themes
 
 #+begin_src emacs-lisp :tangle autoload.el
 (defun sim/after-theme-changed ()
@@ -527,7 +510,7 @@ Hier stehen Funktionen, die für die Tastenkürzel verwendet werden.
   (sim/after-theme-changed)
   )
 #+end_src
-*** Goto Line
+** Goto Line
 - =M-g M-g   = goto line number and shows line numbers
   #+begin_src emacs-lisp :tangle autoload.el
 (defun goto-line-with-feedback ()
@@ -539,7 +522,7 @@ Hier stehen Funktionen, die für die Tastenkürzel verwendet werden.
         (call-interactively 'goto-line))
     (linum-mode -1)))
   #+end_src
-*** Beschreibe Tastenkürzeltabellen Describe Keymap
+** Beschreibe Tastenkürzeltabellen Describe Keymap
 Ein nützliches Schnippel zum Beschreiben von einzelnen Keymaps von [[https://stackoverflow.com/questions/3480173/show-keys-in-emacs-keymap-value][stackoverflow]].
 #+begin_src emacs-lisp :tangle autoload.el
 (defun sim/describe-keymap (keymap)
@@ -560,7 +543,7 @@ Ein nützliches Schnippel zum Beschreiben von einzelnen Keymaps von [[https://st
       (setq help-xref-stack-item (list #'my-describe-keymap keymap)))))
 #+end_src
 
-*** (de)activate Alt Modifier
+** (de)activate Alt Modifier
 #+begin_src emacs-lisp :tangle autoload.el
 (defun sim/disable-alt-modifier ()
   (interactive)
@@ -575,7 +558,7 @@ Ein nützliches Schnippel zum Beschreiben von einzelnen Keymaps von [[https://st
   (message "Modifier Option set to alt"))
 #+end_src
 
-*** smartparens
+** smartparens
 #+begin_src emacs-lisp :tangle autoload.el
 (defun sim/disable-smartparens ()
   "Disable smartparens mode globaly."
@@ -586,7 +569,7 @@ Ein nützliches Schnippel zum Beschreiben von einzelnen Keymaps von [[https://st
   )
 #+end_src
 
-*** Org Edit Speacial block
+** Org Edit Speacial block
 #+begin_src emacs-lisp :tangle autoload.el
 (defun sim/org-edit-special ()
   "Edits org special blocks and maximize that buffer."
@@ -719,10 +702,6 @@ Ein nützliches Schnippel zum Beschreiben von einzelnen Keymaps von [[https://st
  "n" #'mc/insert-numbers
  "l" #'mc/insert-letters
  )
-
-
-(nk/check-package 'flyspell-correct
-                  (lambda () (general-define-key "C-M-," 'flyspell-correct-wrapper)))
 
 (map!
  ;; Buffer-local font scaling
