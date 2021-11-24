@@ -8,16 +8,14 @@ Package loading
 ;; -*- no-byte-compile: t; -*-
 ;;; $DOOMDIR/packages.el
 #+end_src
-
 #+begin_src emacs-lisp
-;; (package! rg) ; not using it at the moment
-(package! xah-fly-keys :recipe (:host github :repo "xahlee/xah-fly-keys"))
 (package! four-modifier :recipe (:host github :repo "sieman/four-modifier"))
-(package! neo-layout-fly-keys :recipe (:host github :repo "sieman/neo-layout-fly-keys"))
-;; https://github.com/rougier/elegant-emacs (package! elegant-emacs :recipe (:host github :repo "rougier/elegant-emacs"))
-;;(package! meow)                         ; is a modal keybinding system like xah-fly-keys and evil
 (package! aggressive-indent-mode)
 #+end_src
+
+;; (package! rg) ; not using it at the moment
+;; https://github.com/rougier/elegant-emacs (package! elegant-emacs :recipe (:host github :repo "rougier/elegant-emacs"))
+;;(package! meow)                         ; is a modal keybinding system like xah-fly-keys and evil
 
 * Appearance :appearance:
 
@@ -363,6 +361,11 @@ Ich möchte gerne eine Historie für die REPL haben.
 #+end_src
 
 ** Fly Keys by Xah Lee
+#+begin_src emacs-lisp :tangle packages.el
+(package! xah-fly-keys :recipe (:host github :repo "xahlee/xah-fly-keys"))
+(package! neo-layout-fly-keys :recipe (:host github :repo "sieman/neo-layout-fly-keys"))
+#+end_src
+
 #+begin_src emacs-lisp
 (after! xah-fly-keys
 

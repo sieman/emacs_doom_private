@@ -2,12 +2,10 @@
 
 (doom!
  :completion
- (company           ; the ultimate code completion backend
-  +childframe)
+ (company +childframe) ; the ultimate code completion backend
  (vertico +icons)
 
  :ui
- deft              ; notational velocity for Emacs
  doom              ; what makes DOOM look the way it does
  doom-dashboard    ; a nifty splash screen for Emacs
  hl-todo           ; highlight TODO/FIXME/NOTE/DEPRECATED/HACK/REVIEW
@@ -20,8 +18,7 @@
  unicode           ; extended unicode support for various languages
  vc-gutter         ; vcs diff in the fringe
  vi-tilde-fringe   ; fringe tildes to mark beyond EOB
- (window-select     ; visually switch windows
-  +switch-window)
+ (window-select +switch-window) ; visually switch windows
  zen               ; distraction-free coding or writing
 
  :editor
@@ -31,34 +28,28 @@
  snippets          ; my elves. They type so I don't have to
 
  :emacs
- (dired             ; making dired pretty [functional]
-  +icons)
+ (dired +icons)    ; making dired pretty [functional]
  electric          ; smarter, keyword-based electric-indent
- ibuffer           ; interactive buffer management
- (undo +tree)              ; persistent, smarter undo for your inevitable mistakes
+ (ibuffer +icons)           ; interactive buffer management
+ (undo +tree)      ; persistent, smarter undo for your inevitable mistakes
  vc                ; version-control and Emacs, sitting in a tree
 
  :term
- eshell            ; the elisp shell that works everywhere
+ ;; eshell            ; the elisp shell that works everywhere
 
  :checkers
-  syntax              ; tasing you for every semicolon you forget
-  (spell             ; tasing you for misspelling mispelling
-  +hunspell
-  +flyspell)
+ syntax            ; tasing you for every semicolon you forget
+ (spell +hunspell +flyspell) ; tasing you for misspelling mispelling
 
  :tools
- (debugger           ; FIXME stepping through code, to help you add bugs
-  +lsp)
+ (debugger +lsp) ; FIXME stepping through code, to help you add bugs
 
  editorconfig      ; let someone else argue about tabs vs spaces
 
  (eval +overlay)     ; run code, run (also, repls)
 
- (lookup           ; navigate your code and its documentation
-  +docsets)
- (lsp
-  +peek)
+ (lookup +dictionary +docsets) ; navigate your code and its documentation
+ (lsp +peek)
  magit             ; a git porcelain for Emacs
 
  :os
