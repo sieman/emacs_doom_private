@@ -742,7 +742,7 @@ Ein nützliches Schnippel zum Beschreiben von einzelnen Keymaps von [[https://st
  "s-v" #'yank
  "s-V" #'yank-pop
  ;; l
- "s-l" #'goto-line
+ "s-l" (if (featurep 'vertico) #'consult-goto-line #'goto-line)
  "s-c" (if (featurep 'evil) #'evil-yank #'copy-region-as-kill)
  "s-C" #'comment-line
  "M-s-c" #'comment-or-uncomment-region
@@ -806,8 +806,8 @@ Ein nützliches Schnippel zum Beschreiben von einzelnen Keymaps von [[https://st
  "C-S-j" #'join-line
  "s-J" #'join-line
 
- "s-<up>" #'better-jumper-jump-backward
- "s-<down>" #'better-jumper-jump-forward
+ "s-<up>" #'consult-global-mark
+ "s-<down>" #'consult-mark
  "s-<f1>" #'better-jumper-jump-newest
  "s-<left>" #'doom/backward-to-bol-or-indent
  "s-<right>" #'doom/forward-to-last-non-comment-or-eol
