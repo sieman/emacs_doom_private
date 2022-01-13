@@ -422,6 +422,7 @@ Ich möchte gerne eine Historie für die REPL haben.
   (define-key xah-fly-command-map (kbd "j") 'xah-next-window-or-frame)
 
   (define-key xah-fly-command-map (kbd "q") nil)
+  (define-key xah-fly-command-map (kbd "q") (kbd! "C-c a"))
 
   (define-key xah-fly-command-map (kbd "1") nil)
   (define-key xah-fly-command-map (kbd "1") 'delete-other-windows)
@@ -435,6 +436,8 @@ Ich möchte gerne eine Historie für die REPL haben.
 
   (define-key xah-fly-command-map (kbd "5") nil)
   (define-key xah-fly-command-map (kbd "5") (kbd! "C-c l"))
+
+  (define-key xah-fly-command-map (kbd "TAB") xah-fly--tab-key-map)
   )
 #+End_src
 
