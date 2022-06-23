@@ -406,24 +406,6 @@ Ich möchte gerne eine Historie für die REPL haben.
 (defun sim/flykeys-on ()
   (interactive)
   (neo2/flykeys-on)
-  (define-key xah-fly-command-map (kbd "SPC") nil)
-  (define-key xah-fly-command-map (kbd "SPC") 'xah-insert-space-before)
-
-  (define-key xah-fly-command-map (kbd "o") nil)
-  (define-key xah-fly-command-map (kbd "o") (kbd! "C-c"))
-
-  (define-key xah-fly-command-map (kbd "O") nil)
-  (define-key xah-fly-command-map (kbd "O") (kbd! "C-x"))
-
-  (define-key xah-fly-command-map (kbd "d") nil)
-  (define-key xah-fly-command-map (kbd "d") 'xah-goto-matching-bracket)
-
-  (define-key xah-fly-command-map (kbd "j") nil)
-  (define-key xah-fly-command-map (kbd "j") 'xah-next-window-or-frame)
-
-  (define-key xah-fly-command-map (kbd "q") nil)
-  (define-key xah-fly-command-map (kbd "q") (kbd! "C-c a"))
-
   (define-key xah-fly-command-map (kbd "1") nil)
   (define-key xah-fly-command-map (kbd "1") 'delete-other-windows)
 
@@ -436,8 +418,36 @@ Ich möchte gerne eine Historie für die REPL haben.
 
   (define-key xah-fly-command-map (kbd "5") nil)
   (define-key xah-fly-command-map (kbd "5") (kbd! "C-c l"))
-
   (define-key xah-fly-command-map (kbd "TAB") xah-fly--tab-key-map)
+
+  (define-key xah-fly-command-map (kbd "8") nil)
+  (define-key xah-fly-command-map (kbd "8") 'xah-select-text-in-quote)
+  (define-key xah-fly-command-map (kbd "9") nil)
+  (define-key xah-fly-command-map (kbd "9") 'xah-extend-selection)
+  (define-key xah-fly-command-map (kbd "q") nil)
+  (define-key xah-fly-command-map (kbd "q") (kbd! "C-c a"))
+
+  (define-key xah-fly-command-map (kbd "o") nil)
+  (define-key xah-fly-command-map (kbd "o") (kbd! "C-c"))
+
+  (define-key xah-fly-command-map (kbd "O") nil)
+  (define-key xah-fly-command-map (kbd "O") (kbd! "C-x"))
+
+  (define-key xah-fly-command-map (kbd "d") nil)
+  (define-key xah-fly-command-map (kbd "d") 'xah-goto-matching-bracket)
+
+  (define-key xah-fly-command-map (kbd ",") nil)
+  (define-key xah-fly-command-map (kbd ",") 'open-line)
+
+  ;; (define-key xah-fly-command-map (kbd ".") nil)
+  ;; (define-key xah-fly-command-map (kbd ".") xah-fly-dot-keymap)
+
+  (define-key xah-fly-command-map (kbd "j") nil)
+  (define-key xah-fly-command-map (kbd "j") 'xah-next-window-or-frame)
+
+  (define-key xah-fly-command-map (kbd "SPC") nil)
+  (define-key xah-fly-command-map (kbd "SPC") 'xah-insert-space-before)
+
   )
 #+End_src
 
