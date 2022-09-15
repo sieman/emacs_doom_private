@@ -17,6 +17,7 @@ Package loading
 (package! ox-epub)
 (package! ox-jira :recipe (:host github :repo "stig/ox-jira.el"))
 (package! xah-fly-keys :recipe (:host github :repo "xahlee/xah-fly-keys"))
+(package! ecb :recipe (:host github :repo "ecb-home/ecb"))
 #+end_src
 
 ;; (package! rg) ; not using it at the moment
@@ -387,7 +388,7 @@ Ich möchte gerne eine Historie für die REPL haben.
 
   (defun sim/flykeys-indicate-command-mode () (interactive)
          (custom-set-faces
-          `(cursor ((t (:background "#3333ff"))))
+          `(cursor ((t (:background "#1ea4ff"))))
           )
          ;; (custom-set-variables '(cursor-type 'hollow))
          (xah-fly-save-buffer-if-file)

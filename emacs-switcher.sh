@@ -6,8 +6,8 @@ function e {
   # EMACS_BIN="/usr/local/Cellar/emacs-plus@27/27.2/Emacs.app"
   # EMACS_BIN="/usr/local/Cellar/emacs-plus@27/27.2/bin/emacs"
   EMACS_BIN="/usr/local/bin/emacs"
-  # EMACS_BIN="/Users/sim/Applications/Emacs.app"
-  # EMACS_BIN="/Users/sim/Applications/Emacs.app"
+  # EMACS_BIN="$HOME/prof/Applications/Emacs.app"
+  # EMACS_BIN="$HOME/prof/Applications/Emacs.app"
   cmd="open -a $EMACS_BIN --args $ARGS"
   echo $cmd
   eval $cmd
