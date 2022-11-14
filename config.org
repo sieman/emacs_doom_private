@@ -18,6 +18,7 @@ Package loading
 (package! ox-jira :recipe (:host github :repo "stig/ox-jira.el"))
 (package! xah-fly-keys :recipe (:host github :repo "xahlee/xah-fly-keys"))
 (package! ecb :recipe (:host github :repo "ecb-home/ecb"))
+(package! fish-mode)
 #+end_src
 
 ;; (package! rg) ; not using it at the moment
@@ -30,7 +31,7 @@ Package loading
 
 ** Theme
 #+begin_src emacs-lisp
-(setq doom-theme 'doom-solarized-light)
+(setq doom-theme 'doom-one)
 (custom-set-faces
  '(show-paren-match ((t (:background "black" :foreground "yellow" :inverse-video t :weight bold))))
  '(region ((t (:foreground "#f1c40f" :background "#2c3e50" :inverse-video t))))
@@ -71,8 +72,8 @@ Package loading
 (setq display-time-24hr-format t)
 (setq display-line-numbers-type nil)
 
-(load! "~/.emacs.secrets")
-(setq fill-column sim-hard-wrap-at)
+;;(load! "~/.emacs.secrets")
+;;(setq fill-column  sim-hard-wrap-at)
 
 ;; Select and raise the frame, always
 ;;(select-frame-set-input-focus (selected-frame))
@@ -213,6 +214,8 @@ Dies ist ein Minor-Mode und zeigt die gedrückten Tasten an.
   (add-to-list 'org-structure-template-alist '("se" . "src emacs-lisp"))
   (add-to-list 'org-structure-template-alist '("sc" . "src clojure"))
   (add-to-list 'org-structure-template-alist '("ss" . "src shell"))
+  (add-to-list 'org-structure-template-alist '("sb" . "src fish :dir ~/ :results output"))
+  (add-to-list 'org-structure-template-alist '("sf" . "src fish :tangle ~/.terminal-settings/config.fish :mkdirp"))
 
   (setq org-babel-clojure-backend 'cider
         org-hide-emphasis-markers t)
@@ -425,7 +428,7 @@ Ich möchte gerne eine Historie für die REPL haben.
 
   (define-key xah-fly-command-map (kbd "5") nil)
   (define-key xah-fly-command-map (kbd "5") (kbd! "C-c l"))
-  (define-key xah-fly-command-map (kbd "TAB") xah-fly--tab-key-map)
+  ;;(define-key xah-fly-command-map (kbd "TAB") xah-fly--tab-key-map)
 
   (define-key xah-fly-command-map (kbd "8") nil)
   (define-key xah-fly-command-map (kbd "8") 'xah-select-text-in-quote)
@@ -906,12 +909,12 @@ Ein nützliches Schnippel zum Beschreiben von einzelnen Keymaps von [[https://st
 
 
 * Neues
-Farbige Ausgabe von Tastenkürzel.
-https://www.youtube.com/watch?v=QfN0gNaxE2U
+Farbige Ausgabe von Tastenkürzel. https://www.youtube.com/watch?v=QfN0gNaxE2U Show your Emacs shortcuts in colour when giving presentations
+
 https://github.com/michael-heerdegen/interaction-log.el
 
-https://github.com/kaz-yos/eval-in-repl
-
+eval in rple just ctr enter https://github.com/kaz-yos/eval-in-repl
+iMenu javascript https://emacs.stackexchange.com/questions/2658/how-to-display-the-list-of-functions-in-imenu-and-collapse-uncollapse-functions
 * Fehlerbehbungen
 ** Dired Dateinamen kopieren mit Zeilenumbruch
 Dieser Fix fügt statt eines Leerzeichens einen Zeilenumbruch ein.
