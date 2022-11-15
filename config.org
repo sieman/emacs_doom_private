@@ -215,7 +215,7 @@ Dies ist ein Minor-Mode und zeigt die gedrückten Tasten an.
   (add-to-list 'org-structure-template-alist '("sc" . "src clojure"))
   (add-to-list 'org-structure-template-alist '("ss" . "src shell"))
   (add-to-list 'org-structure-template-alist '("sb" . "src fish :dir ~/ :results output"))
-  (add-to-list 'org-structure-template-alist '("sf" . "src fish :tangle ~/.terminal-settings/config.fish :mkdirp"))
+  (add-to-list 'org-structure-template-alist '("sf" . "src fish :tangle ~/.terminal-settings/config.fish :mkdirp yes"))
 
   (setq org-babel-clojure-backend 'cider
         org-hide-emphasis-markers t)
