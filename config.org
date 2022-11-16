@@ -18,7 +18,6 @@ Package loading
 (package! ox-jira :recipe (:host github :repo "stig/ox-jira.el"))
 (package! xah-fly-keys :recipe (:host github :repo "xahlee/xah-fly-keys"))
 (package! ecb :recipe (:host github :repo "ecb-home/ecb"))
-(package! fish-mode)
 #+end_src
 
 ;; (package! rg) ; not using it at the moment
@@ -215,7 +214,7 @@ Dies ist ein Minor-Mode und zeigt die gedrückten Tasten an.
   (add-to-list 'org-structure-template-alist '("sc" . "src clojure"))
   (add-to-list 'org-structure-template-alist '("ss" . "src shell"))
   (add-to-list 'org-structure-template-alist '("sb" . "src fish :dir ~/ :results output"))
-  (add-to-list 'org-structure-template-alist '("sf" . "src fish :tangle ~/.terminal-settings/config.fish :mkdirp yes"))
+  (add-to-list 'org-structure-template-alist '("sf" . "src fish :mkdirp yes :tangle ~/.terminal-settings/config.fish"))
 
   (setq org-babel-clojure-backend 'cider
         org-hide-emphasis-markers t)
@@ -300,7 +299,8 @@ Wenn man =exit= ins Terminal eingibt beendet sich das Terminal und der Buffer so
 Ich benutze die Z-Shell und ich möchte auch nicht mehr nach einer anderen Shell gefragt werden.
 
 #+begin_src emacs-lisp
-(defvar my-term-shell "/bin/zsh")
+(defvar my-term-shell "/usr/local/bin/fish")
+(setq shell-file-name "/usr/local/bin/fish")
 (defadvice ansi-term (before force-bash)
   (interactive (list my-term-shell)))
 (ad-activate 'ansi-term)

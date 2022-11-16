@@ -65,7 +65,8 @@
  markdown          ; writing docs for people to ignore
  org               ; organize your plain life in plain text
  (sh               ; she sells {ba,z,fi}sh shells on the C xor
-  +zsh)
+  +fish
+  +lsp)
  (web +lsp)               ; the tubes
 
  :config
