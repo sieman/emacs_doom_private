@@ -9,7 +9,7 @@ Package loading
 ;;; $DOOMDIR/packages.el
 #+end_src
 #+begin_src emacs-lisp
-(package! aggressive-indent-mode)
+;; (package! aggressive-indent-mode)
 (package! eval-in-repl)
 (package! four-modifier :recipe (:host github :repo "sieman/four-modifier"))
 (package! neo-layout-fly-keys :recipe (:host github :repo "sieman/neo-layout-fly-keys"))
@@ -17,7 +17,8 @@ Package loading
 (package! ox-epub)
 (package! ox-jira :recipe (:host github :repo "stig/ox-jira.el"))
 (package! xah-fly-keys :recipe (:host github :repo "xahlee/xah-fly-keys"))
-(package! ecb :recipe (:host github :repo "ecb-home/ecb"))
+(package! dired-hide-dotfiles :recipe (:host github :repo "mattiasb/dired-hide-dotfiles"))
+;; (package! ecb :recipe (:host github :repo "ecb-home/ecb"))
 #+end_src
 
 ;; (package! rg) ; not using it at the moment
@@ -299,6 +300,9 @@ Wenn man =exit= ins Terminal eingibt beendet sich das Terminal und der Buffer so
 Ich benutze die Z-Shell und ich möchte auch nicht mehr nach einer anderen Shell gefragt werden.
 
 #+begin_src emacs-lisp
+;;; add to $DOOMDIR/config.el
+(add-to-list '+org-babel-mode-alist '(fish . shell))
+
 (defvar my-term-shell "/usr/local/bin/fish")
 (setq shell-file-name "/usr/local/bin/fish")
 (defadvice ansi-term (before force-bash)

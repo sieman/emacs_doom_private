@@ -53,6 +53,7 @@
         isearch-repeat-forward
         mode-line-previous-buffer
         org-open-line
+        other-frame
         sim/enable-alt-modifier
         toggle-frame-fullscreen
         ))

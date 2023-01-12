@@ -42,6 +42,7 @@
  (spell +hunspell +flyspell) ; tasing you for misspelling mispelling
 
  :tools
+ lsp
  (debugger +lsp) ; FIXME stepping through code, to help you add bugs
 
  editorconfig      ; let someone else argue about tabs vs spaces
