@@ -18,6 +18,7 @@ Package loading
 (package! ox-jira :recipe (:host github :repo "stig/ox-jira.el"))
 (package! xah-fly-keys :recipe (:host github :repo "xahlee/xah-fly-keys"))
 (package! dired-hide-dotfiles :recipe (:host github :repo "mattiasb/dired-hide-dotfiles"))
+(package! midje-mode :recipe (:host github :repo "dnaumov/midje-mode"))
 ;; (package! ecb :recipe (:host github :repo "ecb-home/ecb"))
 #+end_src
 
