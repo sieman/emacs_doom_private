@@ -69,7 +69,7 @@
   +fish
   +lsp)
  (web +lsp)               ; the tubes
-
+ (java +lsp)
  :config
  literate
  (default +bindings +emacs +emacs-bindings)
