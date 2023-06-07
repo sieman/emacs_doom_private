@@ -18,7 +18,6 @@ Package loading
 (package! ox-jira :recipe (:host github :repo "stig/ox-jira.el"))
 (package! xah-fly-keys :recipe (:host github :repo "xahlee/xah-fly-keys"))
 (package! dired-hide-dotfiles :recipe (:host github :repo "mattiasb/dired-hide-dotfiles"))
-;; (package! midje-mode :recipe (:host github :repo "dnaumov/midje-mode"))
 (package! elisp-bug-hunter :recipe (:host github :repo "Malabarba/elisp-bug-hunter"))
 #+end_src
 
@@ -380,10 +379,6 @@ Ich möchte gerne eine Historie für die REPL haben.
 #+end_src
 
 ** Fly Keys by Xah Lee
-#+begin_src emacs-lisp :tangle packages.el
-(package! xah-fly-keys :recipe (:host github :repo "xahlee/xah-fly-keys"))
-(package! neo-layout-fly-keys :recipe (:host github :repo "sieman/neo-layout-fly-keys"))
-#+end_src
 
 #+begin_src emacs-lisp
 (after! xah-fly-keys
