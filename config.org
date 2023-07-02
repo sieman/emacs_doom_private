@@ -335,17 +335,7 @@ Editing
 Ich möchte gerne eine Historie für die REPL haben.
 
 #+begin_src emacs-lisp
-;; (after! cider
 (set-popup-rule! "^\\*cider-clojuredocs\\*" :side 'right :size 0.5)
-;; )
-;; (after! cider-repl-mode
-;;   (setq cider-repl-history-size 100000
-;;         cider-repl-history-file "~/.organisation/snippedlab/clojure-repl-history"
-;;         ))
-;; (add-hook! 'cider-mode-hook
-;; (setq cider-repl-history-size 10000
-;;        cider-repl-history-file "~/.organisation/snippedlab/clojure-repl-history"
-;; ))
 #+end_src
 
 #+begin_src emacs-lisp
@@ -909,6 +899,7 @@ https://github.com/michael-heerdegen/interaction-log.el
 
 eval in rple just ctr enter https://github.com/kaz-yos/eval-in-repl
 iMenu javascript https://emacs.stackexchange.com/questions/2658/how-to-display-the-list-of-functions-in-imenu-and-collapse-uncollapse-functions
+
 * Fehlerbehbungen
 ** Dired Dateinamen kopieren mit Zeilenumbruch
 Dieser Fix fügt statt eines Leerzeichens einen Zeilenumbruch ein.
