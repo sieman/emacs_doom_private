@@ -48,6 +48,7 @@
 
 (setq mc/cmds-to-run-once
       '(
+        avy-goto-char-2
         counsel-grep-or-swiper
         doom/increase-font-size
         duplicate-line-or-region
