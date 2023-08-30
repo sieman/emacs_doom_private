@@ -820,6 +820,8 @@ Ein nützliches Schnippel zum Beschreiben von einzelnen Keymaps von [[https://st
  "s-n" #'+default/new-buffer
  "s-N" #'make-frame
  ;; r
+ :desc "Replace Buffer RegEx" "C-c r r" #'query-replace-regexp
+ :desc "Replace Buffer" "C-c r s" #'query-replace
  ;; t
  "C-x C-A-t" #'text-scale-decrease
  ;; d

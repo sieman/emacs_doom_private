@@ -48,15 +48,5 @@
 
 (setq mc/cmds-to-run-once
       '(
-        avy-goto-char-2
-        counsel-grep-or-swiper
-        doom/increase-font-size
-        duplicate-line-or-region
-        indent-for-tab-command
-        isearch-repeat-forward
-        mode-line-previous-buffer
-        org-open-line
-        other-frame
-        sim/enable-alt-modifier
-        toggle-frame-fullscreen
+
         ))
