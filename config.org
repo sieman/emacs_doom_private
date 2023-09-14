@@ -63,8 +63,9 @@ The advantage of Fly Keys that this package works with diffrent keybord layouts.
   (add-hook! 'dired-hook 'xah-fly-insert-mode-activate)
   (add-hook! 'color-rg-mode-hook 'xah-fly-insert-mode-activate)
 
-  (global-set-key (kbd "<f19>") 'xah-fly-command-mode-activate)
-  (global-set-key (kbd "ESC ESC") 'xah-fly-command-mode-activate))
+  ;; (global-set-key (kbd "<f19>") 'xah-fly-command-mode-activate)
+  ;; (global-set-key (kbd "ESC ESC") 'xah-fly-command-mode-activate)
+  )
 
 (defun sim/flykeys-on ()
   (interactive)
@@ -542,13 +543,6 @@ I found a solution on https://www.emacswiki.org/emacs/CopyingWholeLines that wor
 
 #+end_src
 
-Keybindings
-
-#+begin_src emacs-lisp
-(global-unset-key (kbd "s-d"))
-(map!  "s-d" #'sim/duplicate-line-or-region)
-#+end_src
-
 ** Goto Line and show line numbers :autoload:el:
 - =M-g M-g   = goto line number and shows line numbers
 
@@ -619,17 +613,17 @@ If I have some split buffers open and I want maximize one and then return to the
 ** Split buffer in half
 
 #+begin_src emacs-lisp :tangle autoload.el
+;;;###autoload
 (defun sim/split-window-right-and-move-there-dammit ()
   (interactive)
   (split-window-right)
   (windmove-right))
 
-
+;;;###autoload
 (defun sim/split-window-below-and-move-there-dammit ()
   (interactive)
   (split-window-below)
   (windmove-down))
-
 #+end_src
 
 #+begin_src emacs-lisp
@@ -711,22 +705,22 @@ xvlcw khgfq ß
 
 uiaeo snrtdy
 
-| Letter | COMMAND                      | DESCRIPTION                           | KEYBINDING | SECTION |
-|--------+------------------------------+---------------------------------------+------------+---------|
-| u      | [[elisp:(helpful-command 'execute-extended-command)][execute-extended-command]]     |                                       | s-u        | [[code]]    |
-| i      | [[elisp:(helpful-command 'indent-region)][indent-region]]                | reformat code                         | s-i        | [[code]]    |
-| a      | [[elisp:(helpful-command 'mark-whole-buffer)][mark-whole-buffer]]            | Select all                            | s-a        | [[edit]]    |
-| e      | [[elisp:(helpful-command 'ido-switch-buffer)][ido-switch-buffer]]            | Switching buffer                      | s-e        |         |
-| E      | [[elisp:(helpful-command 'edit-abbrevs)][edit-abbrevs]]                 |                                       | s-E        |         |
-| o      | [[elisp:(helpful-command 'imenu)][imenu]] or [[elisp:(helpful-command 'consult-org-heading)][consult-org-heading]] | Menu depends on mode (imenu standard) | s-o        |         |
-| s      | [[elisp:(helpful-command 'save-buffer)][save-buffer]]                  | Saves the buffer                      | s-s        |         |
-| S      | [[elisp:(helpful-command 'ns-write-file-using-panel)][ns-write-file-using-panel]]    |                                       | s-S        |         |
-| n      | [[elisp:(helpful-command '+default/new-buffer)][+default/new-buffer]]          |                                       | s-n        |         |
-| N      | [[elisp:(helpful-command 'make-frame)][make-frame]]                   |                                       | s-N        |         |
-| r      | -                            | (Refactoring or Run                   |            |         |
-| t      | [[elisp:(helpful-command 'ns-popup-font-panel)][ns-popup-font-panel]]          | Select a font                         | s-t        |         |
-| d      | [[elisp:(helpful-command 'duplicate-line-or-region)][duplicate-line-or-region]]     | Duplicate a selection or line         | s-d        |         |
-| y      | [[elisp:(helpful-command 'other-frame)][other-frame]]                  |                                       | s-y        |         |
+| Letter | COMMAND                      | DESCRIPTION                           | KEYBINDING | SECTION    |
+|--------+------------------------------+---------------------------------------+------------+------------|
+| u      | [[elisp:(helpful-command 'execute-extended-command)][execute-extended-command]]     |                                       | s-u        | [[code]]       |
+| i      | [[elisp:(helpful-command 'indent-region)][indent-region]]                | reformat code                         | s-i        | [[code]]       |
+| a      | [[elisp:(helpful-command 'mark-whole-buffer)][mark-whole-buffer]]            | Select all                            | s-a        | [[edit]]       |
+| e      | [[elisp:(helpful-command 'ido-switch-buffer)][ido-switch-buffer]]            | Switching buffer                      | s-e        | [[buffers]]    |
+| E      | [[elisp:(helpful-command 'edit-abbrevs)][edit-abbrevs]]                 |                                       | s-E        |            |
+| o      | [[elisp:(helpful-command 'imenu)][imenu]] or [[elisp:(helpful-command 'consult-org-heading)][consult-org-heading]] | Menu depends on mode (imenu standard) | s-o        | [[navigation]] |
+| s      | [[elisp:(helpful-command 'save-buffer)][save-buffer]]                  | Saves the buffer                      | s-s        |            |
+| S      | [[elisp:(helpful-command 'ns-write-file-using-panel)][ns-write-file-using-panel]]    |                                       | s-S        |            |
+| n      | [[elisp:(helpful-command '+default/new-buffer)][+default/new-buffer]]          |                                       | s-n        |            |
+| N      | [[elisp:(helpful-command 'make-frame)][make-frame]]                   |                                       | s-N        |            |
+| r      | -                            | (Refactoring or Run                   |            |            |
+| t      | [[elisp:(helpful-command 'ns-popup-font-panel)][ns-popup-font-panel]]          | Select a font                         | s-t        |            |
+| d      | [[elisp:(helpful-command 'duplicate-line-or-region)][duplicate-line-or-region]]     | Duplicate a selection or line         | s-d        | [[edit]]       |
+| y      | [[elisp:(helpful-command 'other-frame)][other-frame]]                  |                                       | s-y        |            |
 
 ** Mapping for ü to j Row
 
@@ -745,7 +739,7 @@ uiaeo snrtdy
 | ,      | [[elisp:(helpful-command 'customize)][customize]]               |                              |            |         |
 | .      | -                       |                              |            |         |
 | j      | [[elisp:(helpful-command 'exchange-point-and-mark)][exchange-point-and-mark]] |                              |            |         |
-| J      | [[elisp:(helpful-command 'join-line)][join-line]]               |                              |            |         |
+| J      | [[elisp:(helpful-command 'join-line)][join-line]]               |                              |            | [[edit]]    |
 
 ** Mapping for F0 to F12 Row
 
@@ -764,6 +758,20 @@ uiaeo snrtdy
 | F10    |         |                     |            |         |
 | F11    |         | full screen         |            |         |
 | F12    |         |                     |            |         |
+
+** Cursor up down left right
+| Letter | COMMAND        | DESCRIPTION | KEYBINDING  | SECTION |
+|--------+----------------+-------------+-------------+---------|
+| up     | windmove-up    |             | C-s-<up>    | [[buffers]] |
+|        |                |             |             |         |
+|        |                |             |             |         |
+|        |                |             |             |         |
+| down   | windmove-down  |             | C-s-<down>  | [[buffers]] |
+| left   | windmove-left  |             | C-s-<left>  | [[buffers]] |
+| right  | windmove-right |             | C-s-<right> | [[buffers]] |
+|        |                |             |             |         |
+
+
 
 ** Unset key
 
@@ -799,6 +807,13 @@ uiaeo snrtdy
  "s-h" #'set-mark-command
  "s-k" #'er/expand-region
  "s-K" #'er/contract-region
+ "s-d" #'sim/duplicate-line-or-region
+ "s-J" #'join-line
+
+ "s-S-<up>"  #'drag-stuff-up
+ "s-S-<down>"  #'drag-stuff-down
+ "s-S-<left>"  #'drag-stuff-left
+ "s-S-<right>"  #'drag-stuff-right
  )
 #+end_src
 
@@ -835,13 +850,17 @@ uiaeo snrtdy
 #+end_src
 
 ** <<buffers>> Buffer and Frame Handling
-#+begin_src emacs-lisp :tangle no
+#+begin_src emacs-lisp
 (map!
-
-
- )
-
-
+ "s-e" #'ido-switch-buffer
+ "s-w" #'kill-current-buffer
+ "s-W" #'doom/delete-frame-with-prompt
+ "s-h" #'set-mark-command
+ "C-s-<up>" #'windmove-up
+ "C-s-<down>" #'windmove-down
+ "C-s-<left>" #'windmove-left
+ "C-s-<right>" #'windmove-right
+)
 #+end_src
 ** <<navigation>> Navigation in Textfile and Code
 #+begin_src emacs-lisp
@@ -849,8 +868,17 @@ uiaeo snrtdy
  "s-l" #'consult-goto-line
  "s-<up>" #'consult-global-mark
  "s-<down>" #'consult-mark
-
+ "s-<left>" #'doom/backward-to-bol-or-indent
+ "s-<right>" #'doom/forward-to-last-non-comment-or-eol
+ "s-o" #'imenu
  )
+
+(general-def
+  :keymaps 'org-mode-map
+  "s-o" 'consult-org-heading
+  "s-b" 'org-emphasize
+  ;; "s-<return>" 'org-meta-return
+  )
 #+end_src
 * ...
 #+begin_src emacs-lisp
@@ -858,4 +886,9 @@ uiaeo snrtdy
 
 
  )
+#+end_src
+* Last Action
+
+#+begin_src emacs-lisp
+(sim/flykeys-on)
 #+end_src
