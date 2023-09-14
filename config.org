@@ -708,6 +708,7 @@ uiaeo snrtdy
 | Letter | COMMAND                      | DESCRIPTION                           | KEYBINDING | SECTION    |
 |--------+------------------------------+---------------------------------------+------------+------------|
 | u      | [[elisp:(helpful-command 'execute-extended-command)][execute-extended-command]]     |                                       | s-u        | [[code]]       |
+| U      | [[elisp:(helpful-command 'revert-buffer)][revert-buffer]]                |                                       | s-U        |            |
 | i      | [[elisp:(helpful-command 'indent-region)][indent-region]]                | reformat code                         | s-i        | [[code]]       |
 | a      | [[elisp:(helpful-command 'mark-whole-buffer)][mark-whole-buffer]]            | Select all                            | s-a        | [[edit]]       |
 | e      | [[elisp:(helpful-command 'ido-switch-buffer)][ido-switch-buffer]]            | Switching buffer                      | s-e        | [[buffers]]    |
@@ -842,6 +843,7 @@ uiaeo snrtdy
  "s-i" #'indent-region
  "s-C" #'comment-line
  "s-u" #'execute-extended-command
+ "s-U" #'revert-buffer
  "s-ß" #'hippie-expand
  "s-ẞ" #'+company/complete
  "s-ſ" #'completion-at-point
