@@ -3,7 +3,7 @@
 (doom!
  :completion
  (company +childframe) ; the ultimate code completion backend
- (vertico +icons)
+ (vertico +icons +childframe)
 
  :ui
  doom              ; what makes DOOM look the way it does
@@ -15,6 +15,7 @@
  ophints           ; highlight the region an operation acts on
  (popup +defaults)   ; tame sudden yet inevitable temporary windows
   treemacs          ; a project drawer, like neotree but cooler
+  neotree
  unicode           ; extended unicode support for various languages
  vc-gutter         ; vcs diff in the fringe
  vi-tilde-fringe   ; fringe tildes to mark beyond EOB

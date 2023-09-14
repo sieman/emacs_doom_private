@@ -1,33 +1,177 @@
- #+TITLE: Einstellungen Configuration
-* package.el
-Package loading
+#+TITLE: SiM's Doom Emacs Config
+#+AUTHOR: Siegmar Mantei
+#+DESCRIPTION: SiM's personal Doom Emacs config.
+#+STARTUP: showeverything
+
+* ABOUT THIS CONFIG
+This is my personal Doom Emacs config. Doom Emacs is a distribution of Emacs that offers the "evil" keybindings (Vim keybindings) and the standard keybindings. And Doom includes a number of nice extensions and a bit of configuration out of the box. The Vim keybindings are made for US keyboard layout. I use a german layout [[https://neo-layout.org/][Neo2]]. Therefore I use the standard keybindings plus xah fly keys and customized it for Neo2.
+
+(The [[https://gitlab.com/dwt1/dotfiles/-/tree/master/.config/doom][config]] from Distro Tube, D. Taylor inspired me. So I refactored my config.)
+
+* Four modifier
+Using four modifier in emacs is possible if you are using right and left super  or control key to provide meta, control, hyper and super modifier keys. You can use [[https://karabiner-elements.pqrs.org/][Karabiner-Elements]] a stable keyboard customizer for macOS.
+
+And it is also a basic modifier setup, that works well for me.
+
+[[https://github.com/sieman/four-modifier][Github Sieman Four Modifier]]
 #+begin_src emacs-lisp :tangle "packages.el"
-(package! eval-in-repl)
 (package! four-modifier :recipe (:host github :repo "sieman/four-modifier"))
-(package! neo-layout-fly-keys :recipe (:host github :repo "sieman/neo-layout-fly-keys"))
-(package! ox-confluence-en :recipe (:host github :repo "correl/ox-confluence-en"))
-(package! ox-epub)
-(package! ox-jira :recipe (:host github :repo "stig/ox-jira.el"))
+#+end_src
+
+#+begin_src emacs-lisp
+(require 'four-modifier)
+#+end_src
+
+* Xah Fly Keys
+I like to use a modal editing mode like vim but the fly keys keybinding system is more ergonmic and can be used on diffrent keyboard layouts.
+
+https://github.com/xahlee/xah-fly-keys
+http://xahlee.info/emacs/misc/xah-fly-keys.html
+
+#+begin_src emacs-lisp :tangle "packages.el"
 (package! xah-fly-keys :recipe (:host github :repo "xahlee/xah-fly-keys"))
-(package! dired-hide-dotfiles :recipe (:host github :repo "mattiasb/dired-hide-dotfiles"))
-(package! elisp-bug-hunter :recipe (:host github :repo "Malabarba/elisp-bug-hunter"))
+(package! neo-layout-fly-keys :recipe (:host github :repo "sieman/neo-layout-fly-keys"))
+#+end_src
+
+
+[[https://github.com/sieman/neo-layout-fly-keys][Neo Layout Fly Keys]]
+The advantage of Fly Keys that this package works with diffrent keybord layouts. And this is the adaption for Neo2 layout.
+
+#+begin_src emacs-lisp
+(after! xah-fly-keys
+  (defun sim/flykeys-indicate-command-mode () (interactive)
+         (custom-set-faces
+          `(cursor ((t (:background "SeaGreen4"))))
+          ;; `(cursor ((t (:background "#1ea4ff"))))
+          )
+         (custom-set-variables '(cursor-type 'box))
+         (blink-cursor-mode 1)
+         (xah-fly-save-buffer-if-file)
+         )
+
+  (defun sim/flykeys-indicate-insert-mode () (interactive)
+         (custom-set-faces
+          `(cursor ((t (:background "red"))))
+          )
+         (custom-set-variables '(cursor-type 'hollow))
+         (blink-cursor-mode 0)
+         (better-jumper-set-jump))
+
+  (add-hook! 'xah-fly-command-mode-activate-hook 'sim/flykeys-indicate-command-mode)
+  (add-hook! 'xah-fly-insert-mode-activate-hook  'sim/flykeys-indicate-insert-mode)
+  (add-hook! 'magit-mode-hook 'xah-fly-insert-mode-activate)
+  (add-hook! 'dired-hook 'xah-fly-insert-mode-activate)
+  (add-hook! 'color-rg-mode-hook 'xah-fly-insert-mode-activate)
+
+  (global-set-key (kbd "<f19>") 'xah-fly-command-mode-activate)
+  (global-set-key (kbd "ESC ESC") 'xah-fly-command-mode-activate))
+
+(defun sim/flykeys-on ()
+  (interactive)
+  (neo2/flykeys-on)
+  (define-key xah-fly-command-map (kbd "1") nil)
+  (define-key xah-fly-command-map (kbd "1") 'delete-other-windows)
+
+  (define-key xah-fly-command-map (kbd "2") nil)
+  (define-key xah-fly-command-map (kbd "2") 'sim/split-window-below-and-move-there-dammit)
+  (define-key xah-fly-command-map (kbd "3") nil)
+  (define-key xah-fly-command-map (kbd "3") 'sim/split-window-right-and-move-there-dammit)
+  (define-key xah-fly-command-map (kbd "4") nil)
+  (define-key xah-fly-command-map (kbd "4") 'delete-window)
+
+  (define-key xah-fly-command-map (kbd "5") nil)
+  (define-key xah-fly-command-map (kbd "5") (kbd! "C-c l"))
+  ;;(define-key xah-fly-command-map (kbd "TAB") xah-fly--tab-key-map)
+
+  (define-key xah-fly-command-map (kbd "8") nil)
+  (define-key xah-fly-command-map (kbd "8") 'xah-select-text-in-quote)
+  (define-key xah-fly-command-map (kbd "9") nil)
+  (define-key xah-fly-command-map (kbd "9") 'xah-extend-selection)
+  (define-key xah-fly-command-map (kbd "q") nil)
+  (define-key xah-fly-command-map (kbd "q") (kbd! "C-c a"))
+
+  (define-key xah-fly-command-map (kbd "o") nil)
+  (define-key xah-fly-command-map (kbd "o") (kbd! "C-c"))
+
+  (define-key xah-fly-command-map (kbd "O") nil)
+  (define-key xah-fly-command-map (kbd "O") (kbd! "C-x"))
+
+  (define-key xah-fly-command-map (kbd "d") nil)
+  (define-key xah-fly-command-map (kbd "d") 'xah-goto-matching-bracket)
+
+  (define-key xah-fly-command-map (kbd ",") nil)
+  (define-key xah-fly-command-map (kbd ",") 'open-line)
+
+  ;; (define-key xah-fly-command-map (kbd ".") nil)
+  ;; (define-key xah-fly-command-map (kbd ".") xah-fly-dot-keymap)
+
+  (define-key xah-fly-command-map (kbd "j") nil)
+  (define-key xah-fly-command-map (kbd "j") 'xah-next-window-or-frame)
+
+  (define-key xah-fly-command-map (kbd "SPC") nil)
+  (define-key xah-fly-command-map (kbd "SPC") 'xah-insert-space-before)
+
+  )
+#+End_src
+
+
+* Dired
+
+** Peep Dired a file preview
+https://github.com/asok/peep-dired
+
+A file preview, when you browsing files in dired.
+
+#+begin_src emacs-lisp :tangle "packages.el"
 (package! peep-dired)
 #+end_src
 
-* Appearance :appearance:
+** Hide Dot file
+Most of the time I'm not interested to see all dotfiles. This package hides the dotfiles.
+https://github.com/mattiasb/dired-hide-dotfiles
+#+begin_src emacs-lisp :tangle "packages.el"
+(package! dired-hide-dotfiles :recipe (:host github :repo "mattiasb/dired-hide-dotfiles"))
+#+end_src
 
-#224FBC Blauer Hintergrund wie Ocean
+* Elisp Bug Hunter :language:
+I think that is useful to find bugs in elisp. I have to expore that package!
 
-** Theme
+https://github.com/Malabarba/elisp-bug-hunter
+#+begin_src emacs-lisp :tangle "packages.el"
+(package! elisp-bug-hunter :recipe (:host github :repo "Malabarba/elisp-bug-hunter"))
+#+end_src
+
+* Theme :appearance:
 #+begin_src emacs-lisp
+;; load this theme at startup
 (setq doom-theme 'doom-one)
+;; All themes are safe to load
+(setq custom-safe-themes t)
+#+end_src
+
+* TODO I like to check the [[https://github.com/ronisbr/doom-nano-modeline][nano]] port for doom.
+
+* Appearance Cursor Parentheses Region :appearance:
+#+begin_src emacs-lisp
 (custom-set-faces
  '(show-paren-match ((t (:background "black" :foreground "yellow" :inverse-video t :weight bold))))
  '(region ((t (:foreground "#f1c40f" :background "#2c3e50" :inverse-video t))))
  `(cursor ((t (:foreground "white" :background "red")))))
-;; All themes are safe to load
-(setq custom-safe-themes t)
-;; Color the border of windows according to the `highlight' color of the doom's theme
+
+(custom-set-variables '(cursor-type 'box))
+#+end_src
+* Dashboard and Splash Image :appearance:
+#+begin_src emacs-lisp
+;; Splash image
+(setq fancy-splash-image (concat doom-private-dir "thenwhyworry.png")
+      +doom-dashboard-banner-padding '(0 . 1))
+;; Hide the menu for as minimalistic a startup screen as possible.
+(remove-hook '+doom-dashboard-functions #'doom-dashboard-widget-shortmenu)
+#+end_src
+
+
+* Fly Check
+#+begin_src emacs-lisp
 (add-hook! 'doom-load-theme-hook
            ;; A more visible window border
            ;; (set-face-attribute 'vertical-border nil :foreground (doom-color 'highlight))
@@ -37,44 +181,14 @@ Package loading
                                  :underline `(:color ,(doom-color 'functions)
                                               :style wave))))
 #+end_src
-** Cursor
-#+begin_src emacs-lisp
-(custom-set-variables '(cursor-type 'box))
-#+end_src
 
-** Dashboard
+* Clock and Line Number
 #+begin_src emacs-lisp
-;; Splash image
-(setq fancy-splash-image (concat doom-private-dir "thenwhyworry.png")
-      +doom-dashboard-banner-padding '(0 . 1))
-;; Hide the menu for as minimalistic a startup screen as possible.
-(remove-hook '+doom-dashboard-functions #'doom-dashboard-widget-shortmenu)
-#+end_src
-** Buffer
-#+begin_src emacs-lisp
-;; Main theme
-;; (setq doom-theme 'doom-dracula)
-
 (setq display-line-numbers-type nil)
-
-;; (display-time-mode t)
 (setq display-time-24hr-format t)
-(setq display-line-numbers-type nil)
-;;(setq fill-column  sim-hard-wrap-at)
-
-;; Select and raise the frame, always
-;;(select-frame-set-input-focus (selected-frame))
 #+end_src
-** Prety Symbol Mode Disable
-https://github.com/hlissner/doom-emacs/issues/1807
 
-#+begin_src emacs-lisp
-                                        ;(setq +pretty-code-enabled-modes nil)
-;; or
-                                        ;(remove-hook 'after-change-major-mode-hook #'+pretty-code-init-pretty-symbols-h)
-;; (setq! +ligatures-composition-alist nil)
-#+end_src
-** Which Key Mode
+* Which Key Mode
 #+begin_src emacs-lisp
 (after! which-key
   (setq which-key-side-window-max-width 0.44
@@ -83,8 +197,10 @@ https://github.com/hlissner/doom-emacs/issues/1807
         which-key-max-description-length 90)
   (which-key-setup-side-window-right-bottom))
 #+end_src
-** Modeline
-#+begin_src emacs-lisp
+* Modeline
+Check if this fixs needed!?
+
+#+begin_src emacs-lisp :tangle no
 (after! doom-modeline
   (require 'doom-modeline)
   (setq doom-modeline-modal-icon nil)
@@ -98,7 +214,7 @@ https://github.com/hlissner/doom-emacs/issues/1807
   (message "doom-modeline is loaded. :-)"))
 #+end_src
 
-** Fonts
+* Fonts
 ;; "JetBrains Mono"
 ;; "LFBONovelNetz" "LOB.Novellenschrift" "LOV.Novellenschrift" "LUC.NovellenschriftU1A"
 ;; "Iosevka" "Iosevka Fixed" "Iosevka Term" "Iosevka SS04"
@@ -122,15 +238,14 @@ https://github.com/hlissner/doom-emacs/issues/1807
   '(font-lock-keyword-face :slant italic))
 #+end_src
 
-* Einstellungen Modus Anwendungen :settings:modes:
-** Calendar
+* Calendar
 #+begin_src emacs-lisp
 (load! "sim-calendar")
 (require 'sim-calendar)
 (set-language-environment "German")
 (set-locale-environment "de_DE.UTF-8")
 #+end_src
-** Rechtschreibprüfung :spell:checking:
+* Rechtschreibprüfung :spell:checking:
 
 npm install dictionary-en-gb
 
@@ -142,16 +257,11 @@ npm install dictionary-en-gb
         ("en_GB" "~/.e/sieman.doom.d/spelling/en_GB.aff")
         ))
 #+end_src
-** Tastaturlayout :keyboard:layout:
-#+begin_src emacs-lisp
-(require 'four-modifier)
-;;(load! "+neo-layout.el")
-#+end_src
-** TODO AI Auto Compleation
+* TODO AI Auto Compleation
 [[https://github.com/TommyX12/company-tabnine][Emacs Plugin]]
 TabNine is the all-language autocompleter. It uses machine learning to provide responsive, reliable, and relevant suggestions.
 
-** Multiple Cursors
+* Multiple Cursors
 #+begin_src emacs-lisp
 (after! mc-mark-more
   (setq! mc/list-file "~/.e/sieman.doom.d/mc-lists.el")
@@ -160,15 +270,7 @@ TabNine is the all-language autocompleter. It uses machine learning to provide r
   (message "mc-mark-more loaded")
   )
 #+end_src
-** Ivy is a generic completion mechanism for Emacs.
-#+begin_src emacs-lisp
-(after! ivy
-  (ido-mode -1)
-  ;; (global-unset-key (kbd "s-x"))
-  ;; (general-define-key "s-x" 'kill-region)
-  )
-#+end_src
-** Navigate Back and Forward, the Better Jump
+* TODO Navigate Back and Forward, the Better Jump
 Ich mag in einem Buffer herumspringen.
 #+begin_src emacs-lisp
 (after! better-jumper
@@ -177,30 +279,26 @@ Ich mag in einem Buffer herumspringen.
   (setq! better-jumper-use-evil-jump-advice nil))
 #+end_src
 
-** Show Keys
+* Show Keys
 Dies ist ein Minor-Mode und zeigt die gedrückten Tasten an.
 #+begin_src emacs-lisp
 (load! "+show-keys.el")
 #+end_src
 
-** dired - file manager
+* dired - file manager
 #+begin_src emacs-lisp
 (after! dired
   (add-hook 'dired-mode-hook (lambda () (dired-hide-details-mode 1)))
   (put 'dired-find-alternate-file 'disabled nil))
 #+end_src
 
-** org-mode :org:
+* Org mode
+https://orgmode.org/
 #+begin_src emacs-lisp
-;; (with-eval-after-load 'org
-;; (add-to-list 'sp-ignore-modes-list #'org-mode))
-;; (with-eval-after-load 'org-agenda
-;; (add-to-list 'sp-ignore-modes-list #'org-agenda-mode))
-
 (after! org
 
   (add-to-list 'org-structure-template-alist '("se" . "src emacs-lisp"))
-  (add-to-list 'org-structure-template-alist '("sa" . "src emacs-lisp :tangle autoload.el"))
+  (add-to-list 'org-structure-template-alist '("sea" . "src emacs-lisp :tangle autoload.el"))
   (add-to-list 'org-structure-template-alist '("sc" . "src clojure"))
   (add-to-list 'org-structure-template-alist '("ss" . "src shell"))
   (add-to-list 'org-structure-template-alist '("sb" . "src fish :dir ~/ :results output"))
@@ -214,20 +312,23 @@ Dies ist ein Minor-Mode und zeigt die gedrückten Tasten an.
 
 #+end_src
 
-
-
-*** Atlassian Export
+** Org mode exporters OX
 This litle packages provide a export to jira and confluence  markup.
-
-#+begin_src emacs-lisp :tangle packages.el
-(package! ox-jira :recipe (:host github :repo "stig/ox-jira.el"))
+#+begin_src emacs-lisp :tangle "packages.el"
 (package! ox-confluence-en :recipe (:host github :repo "correl/ox-confluence-en"))
+(package! ox-jira :recipe (:host github :repo "stig/ox-jira.el"))
 #+end_src
+
 #+begin_src emacs-lisp
 (use-package! ox-jira)
 (use-package! ox-confluence-en)
 #+end_src
-*** *Org Face*
+
+This package provide an export to e - book format epub. I like it to make readable texts for mobile phones :-)
+#+begin_src emacs-lisp :tangle packages.el
+(package! ox-epub)
+#+end_src
+** *Org Face* :org:appearance:
 #+begin_src emacs-lisp
 (add-hook! org-mode
            ;; Document title font
@@ -250,11 +351,9 @@ This litle packages provide a export to jira and confluence  markup.
            ;; Face of the entire headline of a DONE line
            (set-face-attribute 'org-headline-done nil :foreground nil))
 #+end_src
-*Babel Support*
-Ich möchte gerne Ergebnisse aus Clojures Code mit in org-Dateien einfügen.
-[[https://www.orgmode.org/worg/org-contrib/babel/languages/ob-doc-clojure.html][Org-babel support for Clojure]]
-** Deft for org-mode
 
+** Deft for org-mode :org:
+Deft is not installed!
 #+begin_src emacs-lisp
 (setq deft-extensions '("txt" "tex" "org"))
 (setq deft-directory "~/Documents/orgs")
@@ -262,9 +361,9 @@ Ich möchte gerne Ergebnisse aus Clojures Code mit in org-Dateien einfügen.
 (global-set-key [f8] 'deft)
 #+end_src
 
-** Terminals
+* Terminals
 
-*** Ansi-Terminal
+** Ansi-Terminal
 
 C-c C-j (term-line-mode) das Terminal verhält sich wie ein Text-Buffer.
 C-c C-k (term-char-mode) das Terminal verhält fixirt den Cursor auf den Eingabe-Promt.
@@ -288,8 +387,7 @@ Wenn man =exit= ins Terminal eingibt beendet sich das Terminal und der Buffer so
 (ad-activate 'term-sentinel)
 #+end_src
 
-Ich benutze die Z-Shell und ich möchte auch nicht mehr nach einer anderen Shell gefragt werden.
-
+I use the fish shell.
 #+begin_src emacs-lisp
 ;;; add to $DOOMDIR/config.el
 (add-to-list '+org-babel-mode-alist '(fish . shell))
@@ -301,7 +399,8 @@ Ich benutze die Z-Shell und ich möchte auch nicht mehr nach einer anderen Shell
 (ad-activate 'ansi-term)
 #+end_src
 
-** Cider
+
+* Cider
 *Evaluation:*
 _in buffer:_
 | =C-x C-e=           | cider-eval-last-sexp |
@@ -355,99 +454,25 @@ Ich möchte gerne eine Historie für die REPL haben.
   )
 #+end_src
 
-** Eval in the REPL
+* Eval in repl
+You can use C-RET in a source file to start up an appropriate REPL (except cider, which needs manual M-x cider-jack-in) and evaluate a line, selected region or the current expression depending on the context.
+
+https://github.com/kaz-yos/eval-in-repl
+
 #+begin_src emacs-lisp :tangle "packages.el"
 (package! eval-in-repl)
 #+end_src
+
 #+begin_src emacs-lisp
 (after! cider
   (require 'eval-in-repl-cider)
   (define-key clojure-mode-map (kbd "<C-return>") 'eir-eval-in-cider))
 #+end_src
 
-** Fly Keys by Xah Lee
 
-#+begin_src emacs-lisp
-(after! xah-fly-keys
-
-  (defun sim/flykeys-indicate-command-mode () (interactive)
-         (custom-set-faces
-          `(cursor ((t (:background "SeaGreen4"))))
-          ;; `(cursor ((t (:background "#1ea4ff"))))
-          )
-         (custom-set-variables '(cursor-type 'box))
-         (blink-cursor-mode 1)
-         (xah-fly-save-buffer-if-file)
-         )
-
-  (defun sim/flykeys-indicate-insert-mode () (interactive)
-         (custom-set-faces
-          `(cursor ((t (:background "red"))))
-          )
-         (custom-set-variables '(cursor-type 'hollow))
-         (blink-cursor-mode 0)
-         (better-jumper-set-jump))
-
-  (add-hook! 'xah-fly-command-mode-activate-hook 'sim/flykeys-indicate-command-mode)
-  (add-hook! 'xah-fly-insert-mode-activate-hook  'sim/flykeys-indicate-insert-mode)
-  (add-hook! 'magit-mode-hook 'xah-fly-insert-mode-activate)
-  (add-hook! 'dired-hook 'xah-fly-insert-mode-activate)
-  (add-hook! 'color-rg-mode-hook 'xah-fly-insert-mode-activate)
-
-  (global-set-key (kbd "<f19>") 'xah-fly-command-mode-activate)
-  (global-set-key (kbd "ESC ESC") 'xah-fly-command-mode-activate))
-
-(defun sim/flykeys-on ()
-  (interactive)
-  (neo2/flykeys-on)
-  (define-key xah-fly-command-map (kbd "1") nil)
-  (define-key xah-fly-command-map (kbd "1") 'delete-other-windows)
-
-  (define-key xah-fly-command-map (kbd "2") nil)
-  (define-key xah-fly-command-map (kbd "2") 'split-window-below-and-move-there-dammit)
-  (define-key xah-fly-command-map (kbd "3") nil)
-  (define-key xah-fly-command-map (kbd "3") 'split-window-right-and-move-there-dammit)
-  (define-key xah-fly-command-map (kbd "4") nil)
-  (define-key xah-fly-command-map (kbd "4") 'delete-window)
-
-  (define-key xah-fly-command-map (kbd "5") nil)
-  (define-key xah-fly-command-map (kbd "5") (kbd! "C-c l"))
-  ;;(define-key xah-fly-command-map (kbd "TAB") xah-fly--tab-key-map)
-
-  (define-key xah-fly-command-map (kbd "8") nil)
-  (define-key xah-fly-command-map (kbd "8") 'xah-select-text-in-quote)
-  (define-key xah-fly-command-map (kbd "9") nil)
-  (define-key xah-fly-command-map (kbd "9") 'xah-extend-selection)
-  (define-key xah-fly-command-map (kbd "q") nil)
-  (define-key xah-fly-command-map (kbd "q") (kbd! "C-c a"))
-
-  (define-key xah-fly-command-map (kbd "o") nil)
-  (define-key xah-fly-command-map (kbd "o") (kbd! "C-c"))
-
-  (define-key xah-fly-command-map (kbd "O") nil)
-  (define-key xah-fly-command-map (kbd "O") (kbd! "C-x"))
-
-  (define-key xah-fly-command-map (kbd "d") nil)
-  (define-key xah-fly-command-map (kbd "d") 'xah-goto-matching-bracket)
-
-  (define-key xah-fly-command-map (kbd ",") nil)
-  (define-key xah-fly-command-map (kbd ",") 'open-line)
-
-  ;; (define-key xah-fly-command-map (kbd ".") nil)
-  ;; (define-key xah-fly-command-map (kbd ".") xah-fly-dot-keymap)
-
-  (define-key xah-fly-command-map (kbd "j") nil)
-  (define-key xah-fly-command-map (kbd "j") 'xah-next-window-or-frame)
-
-  (define-key xah-fly-command-map (kbd "SPC") nil)
-  (define-key xah-fly-command-map (kbd "SPC") 'xah-insert-space-before)
-
-  )
-#+End_src
-
-** Latex
-
+* Latex
 Change some font weights for the sections in LaTeX
+
 #+begin_src emacs-lisp
 (add-hook! LaTeX-mode
   (set-face-attribute 'font-latex-sectioning-1-face nil :height 1.8 :weight 'bold)
@@ -458,13 +483,14 @@ Change some font weights for the sections in LaTeX
 #+end_src
 
 Match the background of latex previews and scale a bit less than the default
+
 #+begin_src emacs-lisp
 (after! preview
   (setq preview-scale 1.2)
   (set-face-attribute 'preview-reference-face nil :background (doom-color 'bg)))
 #+end_src
 
-** HOLD Dict.cc translate
+* HOLD Dict.cc translate
 [[https://github.com/martenlienen/dictcc.el][Dictcc]] is a emacs interface for the online dictionary [[https://www.dict.cc/][dict.cc]]. At the moment it use ivy ore helm as completion but not vertico. I use it when vertico is supported.
 #+begin_src emacs-lisp :tangle no
 (package! dictcc)
@@ -479,12 +505,20 @@ Match the background of latex previews and scale a bit less than the default
         dictcc-completion-backend 'vertico)
   )
 #+end_src
-* Funktionen
-Hier stehen Funktionen, die für die Tastenkürzel verwendet werden.
-** Duplicate Line Or Region
 
-#+begin_src emacs-lisp
-(defun duplicate-line-or-region (&optional n)
+* SiM functions that tangled into autoload.el :autoload:el:
+Adds the the header of autoload.el
+#+begin_src emacs-lisp :tangle autoload.el
+;;; autoload.el -*- lexical-binding: t; -*-
+#+end_src
+
+** Duplicate Line Or Region :autoload:el:
+This feature duplicate a line ore a region I realy like in Intellij Idea. So why not have in Emacs?
+I found a solution on https://www.emacswiki.org/emacs/CopyingWholeLines that works for best.
+
+#+begin_src emacs-lisp :tangle autoload.el
+;;;###autoload
+(defun sim/duplicate-line-or-region (&optional n)
   "Duplicate current line, or region if active.
       With argument N, make N copies.
       With negative N, comment out original line and use the absolute value."
@@ -508,56 +542,19 @@ Hier stehen Funktionen, die für die Tastenkürzel verwendet werden.
 
 #+end_src
 
-** Color Themes :depricated:
+Keybindings
+
+#+begin_src emacs-lisp
+(global-unset-key (kbd "s-d"))
+(map!  "s-d" #'sim/duplicate-line-or-region)
+#+end_src
+
+** Goto Line and show line numbers :autoload:el:
+- =M-g M-g   = goto line number and shows line numbers
 
 #+begin_src emacs-lisp :tangle autoload.el
-(defun sim/after-theme-changed ()
-  "Custom face settings after theme changed."
-  (interactive)
-                                        ;(org-bullets-mode nil)
-                                        ;(org-bullets-mode t)
-                                        ;(set-face-attribute 'mode-line nil :font "JetBrains Mono 12")
-  (custom-set-faces
-   '(show-paren-match ((t (:background "black" :foreground "yellow" :inverse-video t :weight bold))))
-   '(region ((t (:foreground "#f1c40f" :background "#2c3e50" :inverse-video t))))
-   `(cursor ((t (:foreground "white" :background "red"))))
-   )
-  (custom-set-variables '(cursor-type 'box))
-  (set-frame-parameter (selected-frame) 'alpha '(100 . 100))
-  (message "sim/after-theme-changed done")
-  )
-
-(defun sim/disable-all-custom-themes ()
-  "Disable all themes and then load a single theme interactively."
-  (interactive)
-  (while custom-enabled-themes
-    (disable-theme (car custom-enabled-themes))))
-
-(defun sim/theme-blue ()
-  (interactive)
-  (load-theme 'deeper-blue t)
-  (set-background-color "#224FBC")
-  (set-frame-parameter (selected-frame) 'alpha '(88 . 88)))
-
-(defun sim/elegant-theme ()
-  (interactive)
-  (sim/disable-all-custom-themes)
-  (if doom-modeline-mode
-      (doom-modeline-mode))
-  ;; (provide 'elegance)
-  (if (require 'elegance nil 'noerror)
-      (message "elegance is loaded")
-    (progn
-      (load "./.local/straight/build-27.1/elegant-emacs/sanity.elc")
-      (load "./.local/straight/build-27.1/elegant-emacs/elegance.elc"))
-    )
-  (sim/after-theme-changed)
-  )
-#+end_src
-** Goto Line
-- =M-g M-g   = goto line number and shows line numbers
-  #+begin_src emacs-lisp :tangle autoload.el
-(defun goto-line-with-feedback ()
+;;;###autoload
+(defun sim/goto-line-with-feedback ()
   "Show line numbers temporarily, while prompting for the line number input"
   (interactive)
   (unwind-protect
@@ -565,76 +562,44 @@ Hier stehen Funktionen, die für die Tastenkürzel verwendet werden.
         (linum-mode 1)
         (call-interactively 'goto-line))
     (linum-mode -1)))
-  #+end_src
-** Beschreibe Tastenkürzeltabellen Describe Keymap
-Ein nützliches Schnippel zum Beschreiben von einzelnen Keymaps von [[https://stackoverflow.com/questions/3480173/show-keys-in-emacs-keymap-value][stackoverflow]].
-#+begin_src emacs-lisp :tangle autoload.el
-(defun sim/describe-keymap (keymap)
-  "Describe a keymap using `substitute-command-keys'."
-  (interactive
-   (list (completing-read
-          "Keymap: " (let (maps)
-                       (mapatoms (lambda (sym)
-                                   (and (boundp sym)
-                                        (keymapp (symbol-value sym))
-                                        (push sym maps))))
-                       maps)
-          nil t)))
-  (with-output-to-temp-buffer (format "*keymap: %s*" keymap)
-    (princ (format "%s\n\n" keymap))
-    (princ (substitute-command-keys (format "\\{%s}" keymap)))
-    (with-current-buffer standard-output ;; temp buffer
-      (setq help-xref-stack-item (list #'my-describe-keymap keymap)))))
 #+end_src
 
-** (de)activate Alt Modifier
-#+begin_src emacs-lisp :tangle autoload.el
-(defun sim/disable-alt-modifier ()
-  (interactive)
-  (setq mac-option-modifier 'none
-        mac-right-option-modifier 'none)
-  (message "Modifier Option set to none"))
+  
+| COMMAND   | DESCRIPTION                                             | KEYBINDING |
+|-----------+---------------------------------------------------------+------------|
+| goto-line | displays line numbers and ask where the cursor can jump | s - l      |
 
-(defun sim/enable-alt-modifier ()
-  (interactive)
-  (setq mac-option-modifier 'alt
-        mac-right-option-modifier 'alt)
-  (message "Modifier Option set to alt"))
-#+end_src
-
-** smartparens
-#+begin_src emacs-lisp :tangle autoload.el
-(defun sim/disable-smartparens ()
-  "Disable smartparens mode globaly."
-  (interactive)
-  (turn-off-smartparens-mode)
-  (turn-off-smartparens-strict-mode)
-  (smartparens-global-mode -1)
-  )
-#+end_src
-
-** Org Edit Speacial block
-#+begin_src emacs-lisp :tangle autoload.el
-(defun sim/org-edit-special ()
-  "Edits org special blocks and maximize that buffer."
-  (interactive)
-  (org-edit-special)
-  (delete-other-windows))
-
-(defun sim/org-edit-src-exit ()
-  "Exits org special src buffer."
-  (interactive)
-  (org-edit-src-exit)
-  (delete-other-windows))
-#+end_src
-
-* Keybinding
 #+begin_src emacs-lisp
-;; (defadvice split-window (after move-point-to-new-window activate)
-;; "Moves the point to the newly created window after splitting."
-;; (other-window 1))
+(global-set-key [remap goto-line] 'goto-line-with-feedback)
+(map!  "s-l" (if (featurep 'vertico) #'consult-goto-line #'goto-line))
+#+end_src
 
-;; from https://gist.github.com/3402786
+** Transparency :autoload:el:
+https://www.emacswiki.org/emacs/TransparentEmacs
+#+begin_src emacs-lisp :tangle autoload.el
+;;;###autoload
+(defun sim/toggle-transparency ()
+  (interactive)
+  (let ((alpha (frame-parameter nil 'alpha)))
+    (set-frame-parameter
+     nil 'alpha
+     (if (eql (cond ((numberp alpha) alpha)
+                    ((numberp (cdr alpha)) (cdr alpha))
+                    ;; Also handle undocumented (<active> <inactive>) form.
+                    ((numberp (cadr alpha)) (cadr alpha)))
+              100)
+         '(94 . 50) '(100 . 100)))))
+#+end_src
+
+#+begin_src emacs-lisp
+(global-set-key (kbd "C-c t t") 'sim/toggle-transparency)
+#+end_src
+
+** Maximize buffer temporarily
+If I have some split buffers open and I want maximize one and then return to the split buffers. How that works, I found a solution on this gist https://gist.github.com/3402786
+
+#+begin_src emacs-lisp :tangle autoload.el
+;;;###autoload
 (defun sim/toggle-maximize-buffer ()
   "Maximize buffer"
   (interactive)
@@ -645,294 +610,252 @@ Ein nützliches Schnippel zum Beschreiben von einzelnen Keymaps von [[https://st
       (progn
         (window-configuration-to-register ?_)
         (delete-other-windows)))))
+#+end_src
 
+#+begin_src emacs-lisp
+(map!  "<f11>" #'sim/toggle-maximize-buffer)
+#+end_src
 
-(defun split-window-right-and-move-there-dammit ()
+** Split buffer in half
+
+#+begin_src emacs-lisp :tangle autoload.el
+(defun sim/split-window-right-and-move-there-dammit ()
   (interactive)
   (split-window-right)
   (windmove-right))
 
-(global-set-key (kbd "C-x 3") 'split-window-right-and-move-there-dammit)
 
-(defun split-window-below-and-move-there-dammit ()
+(defun sim/split-window-below-and-move-there-dammit ()
   (interactive)
   (split-window-below)
   (windmove-down))
 
-(global-set-key (kbd "C-x 2") 'split-window-below-and-move-there-dammit)
+#+end_src
 
-(global-unset-key (kbd "s-x"))
-(global-unset-key (kbd "s-C"))
-(global-unset-key (kbd "s-w"))
-(global-unset-key (kbd "s-k"))
-(global-unset-key (kbd "s-e"))
-(global-unset-key (kbd "s-o"))
-(global-unset-key (kbd "s-d"))
+#+begin_src emacs-lisp
+(global-set-key (kbd "C-x 3") 'sim/split-window-right-and-move-there-dammit)
+(global-set-key (kbd "C-x 2") 'sim/split-window-below-and-move-there-dammit)
+#+end_src
+
+* Super Keybindings
+My preferred way of using super key.
+
+** Mapping for Sign Row
+
+… _ [ ] ^ < > = &
+\ / { } * ? ( ) - : @
+# $ | ~ ` + % " ' ;
+
+| Letter | COMMAND                    | DESCRIPTION | KEYBINDING | SECTION |
+|--------+----------------------------+-------------+------------+---------|
+| -      | [[elisp:(helpful-command 'doom/decrease-font-size)][doom/decrease-font-size]]    |             | s--        | [[tick]]    |
+| +      | [[elisp:(helpful-command 'doom/reset-font-size)][doom/reset-font-size]]       |             | s-+        | [[tick]]    |
+| =      | [[elisp:(helpful-command 'doom/increase-font-size)][doom/increase-font-size]]    |             | s-=        | [[tick]]    |
+| ^      | kill-some-buffers          |             | s-^        |         |
+| <      | mc/mark-previous-like-this |             |            |         |
+| >      | mc/mark-next-like-this     |             |            |         |
+| ?      |                            |             |            |         |
+| :      | ispell                     |             |            |         |
+
+
+** Mapping for Number Row
+
+1234567890
+
+| Letter | COMMAND                                     | DESCRIPTION                           | KEYBINDING    | SECTION     |
+|--------+---------------------------------------------+---------------------------------------+---------------+-------------|
+| 1      | [[elisp:(helpful-command '+treemacs/toggle)][+treemacs/toggle]]                            | shows current folder of buffer        | s-1           | [[s-0-9]]       |
+| 2      |                                             |                                       |               | [[s-0-9]]       |
+| 3      |                                             |                                       |               | [[s-0-9]]       |
+| 4      |                                             |                                       |               | [[s-0-9]]       |
+| 5      |                                             |                                       |               | [[s-0-9]]       |
+| 6      |                                             |                                       |               | [[s-0-9]]       |
+| 7      |                                             |                                       |               | [[s-0-9]]       |
+| 8      |                                             |                                       |               | [[s-0-9]]       |
+| 9      | [[elisp:(helpful-command 'magit-status)][magit-status]]                                | opens git UI magit                    | s-9           | [[s-0-9]]       |
+| 0      | [[elisp:(helpful-command 'text-scale-adjust)][text-scale-adjust]]                           | zoom in out Text                      | s-0           | [[s-0-9]]       |
+| `      | [[elisp:(helpful-command 'org-self-insert-command)][org-self-insert-command]] self-insert-command | ???                                   |               |             |
+| Del    | [[elisp:(helpful-command 'doom/backward-kill-to-bol-and-indent)][doom/backward-kill-to-bol-and-indent]]        |                                       | s-<backspace> |             |
+
+** Mapping for x to ß Row
+
+xvlcw khgfq ß
+
+| Letter | COMMAND                       | DESCRIPTION               | KEYBINDING | SECTION    |
+|--------+-------------------------------+---------------------------+------------+------------|
+| x      | [[elisp:(helpful-command 'kill-region)][kill-region]]                   | cut                       | s-x        | [[edit]]       |
+| v      | [[elisp:(helpful-command 'yank)][yank]]                          | paste                     | s-v        | [[edit]]       |
+| V      | [[elisp:(helpful-command 'yank-pop)][yank-pop]]                      | paste history             | s-V        | [[edit]]       |
+| l      | [[elisp:(helpful-command 'sim/goto-line-with-feedback)][sim/goto-line-with-feedback]]   |                           | s-l        | [[navigation]] |
+| L      | [[elisp:(helpful-command 'shell-command)][shell-command]]                 |                           | s-L        |            |
+| c      | [[elisp:(helpful-command 'copy-region-as-kill)][copy-region-as-kill]]           | copy                      | s-c        | [[edit]]       |
+| C      | [[elisp:(helpful-command 'comment-line)][comment-line]]                  | // a comment              | s-C        | [[code]]       |
+| w      | [[elisp:(helpful-command 'kill-current-buffer)][kill-current-buffer]]           | close buffer              | s-w        | [[buffers]]    |
+| W      | [[elisp:(helpful-command 'doom/delete-frame-with-prompt)][doom/delete-frame-with-prompt]] | close frame               | s-W        | [[buffers]]    |
+| k      | [[elisp:(helpful-command 'er/expand-region)][er/expand-region]]              |                           | s-k        | [[edit]]       |
+| K      | [[elisp:(helpful-command 'er/contract-region)][er/contract-region]]            |                           | s-K        | [[edit]]       |
+| h      | [[elisp:(helpful-command 'set-mark-command)][set-mark-command]]              |                           | s-h        | [[edit]]       |
+| g      | [[elisp:(helpful-command 'isearch-repeat-forward)][isearch-repeat-forward]]        | Search                    | s-g        |            |
+| G      | [[elisp:(helpful-command 'isearch-repeat-backward)][isearch-repeat-backward]]       | Search                    | s-G        |            |
+| f      | [[elisp:(helpful-command 'consult-line)][consult-line]]                  | Search the current Buffer | s-f        |            |
+| F      | [[elisp:(helpful-command 'isearch-backward)][isearch-backward]]              |                           | s-F        |            |
+| q      | [[elisp:(helpful-command 'save-buffers-kill-terminal)][save-buffers-kill-terminal]]    | Quite Emacs               | s-q        |            |
+| ß      | [[elisp:(helpful-command 'hippie-expand)][hippie-expand]]                 | completion                | s-ß        | [[code]]       |
+| ẞ      | [[elisp:(helpful-command '+company/complete)][+company/complete]]             | Show a complition list    | s-ẞ        | [[code]]       |
+| ſ      | [[elisp:(helpful-command 'completion-at-point)][completion-at-point]]           | completion                | s-ſ        | [[code]]       |
+| ς      | [[elisp:(helpful-command 'completion-help-at-point)][completion-help-at-point]]      | completion help           | s-ς        | [[code]]       |
+
+
+
+** Mapping for u to y Row
+
+uiaeo snrtdy
+
+| Letter | COMMAND                      | DESCRIPTION                           | KEYBINDING | SECTION |
+|--------+------------------------------+---------------------------------------+------------+---------|
+| u      | [[elisp:(helpful-command 'execute-extended-command)][execute-extended-command]]     |                                       | s-u        | [[code]]    |
+| i      | [[elisp:(helpful-command 'indent-region)][indent-region]]                | reformat code                         | s-i        | [[code]]    |
+| a      | [[elisp:(helpful-command 'mark-whole-buffer)][mark-whole-buffer]]            | Select all                            | s-a        | [[edit]]    |
+| e      | [[elisp:(helpful-command 'ido-switch-buffer)][ido-switch-buffer]]            | Switching buffer                      | s-e        |         |
+| E      | [[elisp:(helpful-command 'edit-abbrevs)][edit-abbrevs]]                 |                                       | s-E        |         |
+| o      | [[elisp:(helpful-command 'imenu)][imenu]] or [[elisp:(helpful-command 'consult-org-heading)][consult-org-heading]] | Menu depends on mode (imenu standard) | s-o        |         |
+| s      | [[elisp:(helpful-command 'save-buffer)][save-buffer]]                  | Saves the buffer                      | s-s        |         |
+| S      | [[elisp:(helpful-command 'ns-write-file-using-panel)][ns-write-file-using-panel]]    |                                       | s-S        |         |
+| n      | [[elisp:(helpful-command '+default/new-buffer)][+default/new-buffer]]          |                                       | s-n        |         |
+| N      | [[elisp:(helpful-command 'make-frame)][make-frame]]                   |                                       | s-N        |         |
+| r      | -                            | (Refactoring or Run                   |            |         |
+| t      | [[elisp:(helpful-command 'ns-popup-font-panel)][ns-popup-font-panel]]          | Select a font                         | s-t        |         |
+| d      | [[elisp:(helpful-command 'duplicate-line-or-region)][duplicate-line-or-region]]     | Duplicate a selection or line         | s-d        |         |
+| y      | [[elisp:(helpful-command 'other-frame)][other-frame]]                  |                                       | s-y        |         |
+
+** Mapping for ü to j Row
+
+üöäpz bm,.j
+
+| Letter | COMMAND                 | DESCRIPTION                  | KEYBINDING | SECTION |
+|--------+-------------------------+------------------------------+------------+---------|
+| ü      | -                       |                              |            |         |
+| ö      | -                       |                              |            |         |
+| ä      | [[elisp:(helpful-command 'avy-goto-char-2)][avy-goto-char-2]]         |                              | s-ä        |         |
+| p      | [[elisp:(helpful-command 'ns-print-buffer)][ns-print-buffer]]         |                              | s-p        |         |
+| z      | [[elisp:(helpful-command 'undo-tree-undo)][undo-tree-undo]]          | undo                         | s-z        |         |
+| Z      | [[elisp:(helpful-command 'undo-tree-redo)][undo-tree-redo]]          | redo                         |            |         |
+| b      | [[elisp:(helpful-command 'org-emphasize)][org-emphasize]]           | Org-Mode Bold Underline Code | s-b        |         |
+| m      | [[elisp:(helpful-command 'iconify-frame)][iconify-frame]]           |                              |            |         |
+| ,      | [[elisp:(helpful-command 'customize)][customize]]               |                              |            |         |
+| .      | -                       |                              |            |         |
+| j      | [[elisp:(helpful-command 'exchange-point-and-mark)][exchange-point-and-mark]] |                              |            |         |
+| J      | [[elisp:(helpful-command 'join-line)][join-line]]               |                              |            |         |
+
+** Mapping for F0 to F12 Row
+
+| Letter | COMMAND | DESCRIPTION         | KEYBINDING | SECTION |
+|--------+---------+---------------------+------------+---------|
+| F0     |         |                     |            |         |
+| F1     |         |                     |            |         |
+| F2     |         |                     |            |         |
+| F3     |         |                     |            |         |
+| F4     |         |                     |            |         |
+| F5     |         | voice over (mac os) |            |         |
+| F6     |         |                     |            |         |
+| F7     |         |                     |            |         |
+| F8     |         |                     |            |         |
+| F9     |         |                     |            |         |
+| F10    |         |                     |            |         |
+| F11    |         | full screen         |            |         |
+| F12    |         |                     |            |         |
+
+** Unset key
+
+#+begin_src emacs-lisp
 (global-unset-key (kbd "A-<tab>"))
 (global-unset-key (kbd "C-@"))
-(global-unset-key (kbd "M-SPC"))
 (global-unset-key (kbd "M-@"))
+(global-unset-key (kbd "M-SPC"))
+(global-unset-key (kbd "s-+"))
+(global-unset-key (kbd "s--"))
+(global-unset-key (kbd "s-="))
+(global-unset-key (kbd "s-d"))
+(global-unset-key (kbd "s-e"))
+(global-unset-key (kbd "s-h"))
+(global-unset-key (kbd "s-k"))
 (global-unset-key (kbd "s-n"))
-(global-set-key [remap goto-line] 'goto-line-with-feedback)
+(global-unset-key (kbd "s-o"))
+(global-unset-key (kbd "s-w"))
+(global-unset-key (kbd "s-x"))
+#+end_src
 
-(after! term
-  (general-def term-raw-map
-    "s-v" 'term-paste))
+** <<edit>> Cut Copy Paste Undo Redo :keybindings:
 
-;; (map! :prefix "C-c o"
-;;       :desc "open a ansi Terminal" "t" #'ansi-term)
-
-
-;; (map! :after ivy :map ivy-mode-map :prefix "s-O"
-;;       :desc "recent files" "r" #'counsel-recentf
-;;       :desc "open file" "f" #'counsel-find-file
-;;       "p" #'ns-open-file-using-panel
-;;       )
-
-(general-def org-mode-map
-  :prefix "s-O"
-  "o" 'org-open-at-point
-  "s" 'sim/org-edit-special
-  "e" 'org-babel-execute-src-block
-  "t" 'org-babel-tangle
-  )
-
-(general-def org-src-mode-map
-  "s-w" 'sim/org-edit-src-exit)
-
-
-(general-define-key
- :keymaps 'org-mode-map
- "s-o" 'consult-org-heading
-                                        ;'counsel-org-goto
- "s-b" 'org-emphasize
- "s-<return>" 'org-meta-return
- )
-
-(general-def cider-repl-mode-map
-  "s-o" 'cider-repl-history
-  "s-s" 'cider-repl-history-save
-  )
-
-
+#+begin_src emacs-lisp
 (map!
-
- "H-<mouse-1>" #'mc/add-cursor-on-click
- ;;"" #'mc/add-cursors-to-all-matches
- "H-l" #'mc/edit-lines
- "H-w" #'mc/mark-all-words-like-this
- "H-h" #'mc/mark-previous-symbol-like-this
- "H-g" #'mc/mark-previous-word-like-this
- "H-f" #'mc/mark-next-symbol-like-this
-
- "H-s" #'mc/edit-beginnings-of-lines
- "H-n" #'mc/mark-previous-like-this
- "H-N" #'mc/unmark-previous-like-this ; doom default
- "H-r" #'mc/mark-next-word-like-this
- "H-t" #'mc/mark-next-like-this
- "H-T" #'mc/unmark-next-like-this ; doom default
- "H-d" #'mc/mark-all-like-this-in-defun ; doom default
- "H-y" #'mc/edit-ends-of-lines
-
- "H-b" #'mc/mark-all-symbols-like-this
- "H-m" #'mc/mark-all-dwim
- "H-M" #'mc/mark-all-like-this-dwim ; doom default
- "H-," #'mc/mark-all-in-region
- "H-e" #'mc/mark-more-like-this-extended
-
- "H-z" #'mc/reverse-regions
- "H-a" #'mc/sort-regions
- :prefix "H-0"
- "n" #'mc/insert-numbers
- "l" #'mc/insert-letters
- )
-
-(map!
- ;; Buffer-local font scaling
- "s-+" #'doom/reset-font-size
- ;; "s-=" #'doom/increase-font-size
- "s--" #'doom/decrease-font-size
- ;; Conventional text-editing keys & motions
- "s-/" (cmd! (save-excursion (comment-line 1)))
-
- ;; f1
- ;; f2
- ;; f3
- ;; f4
- "<f5>" #'next-error
- ;; f6
- ;; f7
- ;; f8
- ;; f9
- "S-<f10>" #'highlight-symbol-at-point
- "C-<f10>" #'highlight-phrase
- "<f11>" #'sim/toggle-maximize-buffer
- "s-<f11>" #'toggle-frame-fullscreen
- "C-<f12>" #'imenu
-
- "s-1" #'+treemacs/toggle
- ;; 2
- ;; 3
- ;; 4
- ;; 5
- ;; 6
- ;; 7
- ;; 8
- "s-9" #'magit-status
- ;; 0
-
- ;; x
  "s-x" #'kill-region
  "s-v" #'yank
  "s-V" #'yank-pop
- ;; l
- "s-l" (if (featurep 'vertico) #'consult-goto-line #'goto-line)
  "s-c" (if (featurep 'evil) #'evil-yank #'copy-region-as-kill)
- "s-C" #'comment-line
- "M-s-c" #'comment-or-uncomment-region
- "s-w" #'kill-current-buffer
- "s-W" #'delete-frame
- "C-c w t" #'sim/toggle-maximize-buffer
- ;; k
- :desc "Mark previous" "A-s-h" #'mc/mark-previous-like-this
- :desc "Mark previous" "s-<" #'mc/mark-previous-like-this
- :desc "Mark next" "s->" #'mc/mark-next-like-this
- :desc "Mark next" "A-s-g" #'mc/mark-next-like-this
- :desc "Unmark previous" "A-C-h" #'mc/unmark-previous-like-this
- :desc "Unmark previous" "C-<" #'mc/unmark-previous-like-this
- :desc "Unmark next" "C->" #'mc/unmark-next-like-this
- :desc "Unmark next" "A-C-g" #'mc/unmark-next-like-this
- "s-G" #'isearch-repeat-backward
- "s-f" #'consult-line
- ;; q
- "s-q" (if (daemonp) #'delete-frame #'save-buffers-kill-terminal)
- ;; ß
-
- ;; u
- :desc "Reformat Source Code" "s-i" #'indent-region
- "s-a" #'mark-whole-buffer
- "s-A" #'execute-extended-command
- "s-e" #'ido-switch-buffer
- ;; o
- ;; s
- "s-s" #'save-buffer
- ;; n
- "s-n" #'+default/new-buffer
- "s-N" #'make-frame
- ;; r
- :desc "Replace Buffer RegEx" "C-c r r" #'query-replace-regexp
- :desc "Replace Buffer" "C-c r s" #'query-replace
- ;; t
- "C-x C-A-t" #'text-scale-decrease
- ;; d
- "s-d" #'duplicate-line-or-region
- "s-y" #'other-frame  ; fix frame-switching
-
- ;; ü
- ;; ö
- ;; ä
- "s-ä" #'avy-goto-char-2
- "s-Ä c" #'avy-goto-char
- "s-Ä l" #'avy-goto-line
- "s-Ä w" #'avy-goto-word-1
- "s-Ä o" #'avy-org-goto-heading-timer
- ;; p
- ;; z
  "s-z" #'undo
  "s-Z" #'redo
- ;; b
- "C-x C-b" #'ibuffer
- "C-x b" #'ido-switch-buffer
- "C-x C-A-b" #'text-scale-increase
- ;; m
- ;; ,
- ;; .
- :desc "Jumps to next error" "C-•" #'next-error
- ;; j
- "C-S-j" #'join-line
- "s-J" #'join-line
-
- "s-<up>" #'consult-global-mark
- "s-<down>" #'consult-mark
- "s-<f1>" #'better-jumper-jump-newest
- "s-<left>" #'doom/backward-to-bol-or-indent
- "s-<right>" #'doom/forward-to-last-non-comment-or-eol
-
- "C-s-<up>" #'windmove-up
- "C-s-<down>" #'windmove-down
- "C-s-<left>" #'windmove-left
- "C-s-<right>" #'windmove-right
-
- "s-S-<up>"  #'drag-stuff-up
- "s-S-<down>"  #'drag-stuff-down
- "s-S-<left>"  #'drag-stuff-left
- "s-S-<right>"  #'drag-stuff-right
-
- "A-<up>"  #'er/expand-region
- "A-<down>" #'er/contract-region
- "A-<left>" #'left-word
- "A-<right>" #'right-word
-
- "S-s-SPC a" #'mc/mark-all-like-this
- "S-s-SPC l" #'mc/edit-lines
- :desc "Mark Paragraph"   "S-s-SPC p" #'mark-paragraph
- :desc "Mark Symbol"   "S-s-SPC s" #'er/mark-symbol
- :desc "Mark Prefix S."   "S-s-SPC S" #'er/mark-symbol-with-prefix
- :desc "Mark Word"   "S-s-SPC w" #'er/mark-word
- :desc "Mark Function"   "S-s-SPC f" #'er/mark-defun
- :desc "Mark Comment"   "S-s-SPC c" #'er/mark-comment
- :desc "Mark URL"   "S-s-SPC u" #'er/mark-url
- :desc "Mark ins Pairs"   "S-s-SPC i" #'er/mark-inside-pairs
- :desc "Mark ins Quotes"   "S-s-SPC I" #'er/mark-inside-quotes
- :desc "Mark out Pairs"   "S-s-SPC o" #'er/mark-outside-pairs
- :desc "Mark out Quotes"   "S-s-SPC O" #'er/mark-outside-quotes
- :desc "Mark Email"   "S-s-SPC e" #'er/mark-email
+ "s-a" #'mark-whole-buffer
+ "s-h" #'set-mark-command
+ "s-k" #'er/expand-region
+ "s-K" #'er/contract-region
  )
-(sim/flykeys-on)
 #+end_src
 
-
-* Neues
-Farbige Ausgabe von Tastenkürzel. https://www.youtube.com/watch?v=QfN0gNaxE2U Show your Emacs shortcuts in colour when giving presentations
-
-https://github.com/michael-heerdegen/interaction-log.el
-
-eval in rple just ctr enter https://github.com/kaz-yos/eval-in-repl
-iMenu javascript https://emacs.stackexchange.com/questions/2658/how-to-display-the-list-of-functions-in-imenu-and-collapse-uncollapse-functions
-
-* Fehlerbehbungen
-** Dired Dateinamen kopieren mit Zeilenumbruch
-Dieser Fix fügt statt eines Leerzeichens einen Zeilenumbruch ein.
-
+** <<tick>> Font size increase and decrease
 #+begin_src emacs-lisp
-(defun dired-copy-filename-as-kill (&optional arg)
-  "Copy names of marked (or next ARG) files into the kill ring.
-The names are separated by a space.
-With a zero prefix arg, use the absolute file name of each marked file.
-With \\[universal-argument], use the file name relative to the Dired buffer's
-`default-directory'.  (This still may contain slashes if in a subdirectory.)
+(map!
+ "s-=" #'doom/reset-font-size
+ "s--" #'doom/decrease-font-size
+ "s-+" #'doom/increase-font-size
+ )
+#+end_src
 
-If on a subdir headerline, use absolute subdirname instead;
-prefix arg and marked files are ignored in this case.
+** <<s-0-9>> Super Numbers
+#+begin_src emacs-lisp
+(map!
+ "s-1" #'+treemacs/toggle
+ "s-9" #'magit-status
+ "s-0" #'text-scale-adjust
+ )
+#+end_src
 
-You can then feed the file name(s) to other commands with \\[yank]."
-  (interactive "P")
-  (let ((string
-         (or (dired-get-subdir)
-             (mapconcat #'identity
-                        (if arg
-                            (cond ((zerop (prefix-numeric-value arg))
-                                   (dired-get-marked-files))
-                                  ((consp arg)
-                                   (dired-get-marked-files t))
-                                  (t
-                                   (dired-get-marked-files
-				    'no-dir (prefix-numeric-value arg))))
-                          (dired-get-marked-files 'no-dir))
-                        "\n"))))
-    (unless (string= string "")
-      (if (eq last-command 'kill-region)
-          (kill-append string nil)
-        (kill-new string))
-      (message "%s" string))))
+** <<code>> Basic Code Editing
+#+begin_src emacs-lisp
+(global-unset-key (kbd "s-C"))
+(map!
+ "s-i" #'indent-region
+ "s-C" #'comment-line
+ "s-u" #'execute-extended-command
+ "s-ß" #'hippie-expand
+ "s-ẞ" #'+company/complete
+ "s-ſ" #'completion-at-point
+ "s-ς" #'completion-help-at-point
+ )
+#+end_src
+
+** <<buffers>> Buffer and Frame Handling
+#+begin_src emacs-lisp :tangle no
+(map!
+
+
+ )
+
+
+#+end_src
+** <<navigation>> Navigation in Textfile and Code
+#+begin_src emacs-lisp
+(map!
+ "s-l" #'consult-goto-line
+ "s-<up>" #'consult-global-mark
+ "s-<down>" #'consult-mark
+
+ )
+#+end_src
+* ...
+#+begin_src emacs-lisp
+(map!
+
+
+ )
 #+end_src

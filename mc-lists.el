@@ -44,9 +44,9 @@
         xah-paste-or-paste-previous
         xah-select-line
         xah-shrink-whitespaces
+        xah-toggle-letter-case
         ))
 
 (setq mc/cmds-to-run-once
       '(
-
         ))
