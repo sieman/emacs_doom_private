@@ -322,7 +322,6 @@ This litle packages provide a export to jira and confluence  markup.
 
 #+begin_src emacs-lisp
 (use-package! ox-jira)
-(use-package! ox-confluence-en)
 #+end_src
 
 This package provide an export to e - book format epub. I like it to make readable texts for mobile phones :-)
