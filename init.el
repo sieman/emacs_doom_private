@@ -3,7 +3,7 @@
 (doom!
  :completion
  (company +childframe) ; the ultimate code completion backend
- (vertico +icons +childframe)
+ (vertico +icons)
 
  :ui
  doom              ; what makes DOOM look the way it does
@@ -43,8 +43,10 @@
  (spell +hunspell +flyspell) ; tasing you for misspelling mispelling
 
  :tools
- lsp
- (debugger +lsp) ; FIXME stepping through code, to help you add bugs
+ ;; lsp
+ ;; (debugger ) ; FIXME stepping through code, to help you add bugs
+ debugger
+ tree-sitter
 
  editorconfig      ; let someone else argue about tabs vs spaces
 
@@ -58,19 +60,18 @@
  (:if IS-MAC macos)  ; improve compatibility with macOS
 
  :lang
- (clojure +lsp)           ; java with a lisp
+ (clojure +tree-sitter)           ; java with a lisp
  data              ; config/data formats
  emacs-lisp        ; drown in parentheses
- (json +lsp)              ; At least it ain't XML
- (javascript +lsp)        ; all(hope(abandon(ye(who(enter(here))))))
+ (json +tree-sitter)              ; At least it ain't XML
+ (javascript +tree-sitter)        ; all(hope(abandon(ye(who(enter(here))))))
  latex             ; writing papers in Emacs has never been so fun
  markdown          ; writing docs for people to ignore
  org               ; organize your plain life in plain text
  (sh               ; she sells {ba,z,fi}sh shells on the C xor
-  +fish
-  +lsp)
- (web +lsp)               ; the tubes
- (java +lsp)
+  +fish)
+ (web +tree-sitter)               ; the tubes
+ (java +tree-sitter)
  :config
  literate
  (default +bindings +emacs +emacs-bindings)

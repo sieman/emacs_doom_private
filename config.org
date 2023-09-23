@@ -7,6 +7,27 @@
 This is my personal Doom Emacs config. Doom Emacs is a distribution of Emacs that offers the "evil" keybindings (Vim keybindings) and the standard keybindings. And Doom includes a number of nice extensions and a bit of configuration out of the box. The Vim keybindings are made for US keyboard layout. I use a german layout [[https://neo-layout.org/][Neo2]]. Therefore I use the standard keybindings plus xah fly keys and customized it for Neo2.
 
 (The [[https://gitlab.com/dwt1/dotfiles/-/tree/master/.config/doom][config]] from Distro Tube, D. Taylor inspired me. So I refactored my config.)
+* Fish Shell User
+From doom documentation .emacs.d/lisp/cli/doctor.el:
+
+Fish (and possibly other non-POSIX shells) is known to inject garbage
+output into some of the child processes that Emacs spawns. Many Emacs
+packages/utilities will choke on this output, causing unpredictable issues.
+
+To get around this, either:
+  - Add the following to $DOOMDIR/config.el:
+    =(setq shell-file-name (executable-find \bash\))=
+  - Or change your default shell to a POSIX shell (like bash or zsh)
+    and explicitly configure your terminal apps to use the shell you
+    want.
+
+If you opt for option 1 and use one of Emacs' terminal emulators, you
+will also need to configure them to use Fish, e.g.
+  =(setq-default vterm-shell (executable-find \fish\))=
+  =(setq-default explicit-shell-file-name (executable-find \fish\))=
+#+begin_src emacs-lisp
+ (setq shell-file-name (executable-find "bash"))
+#+end_src
 
 * Four modifier
 Using four modifier in emacs is possible if you are using right and left super  or control key to provide meta, control, hyper and super modifier keys. You can use [[https://karabiner-elements.pqrs.org/][Karabiner-Elements]] a stable keyboard customizer for macOS.
@@ -169,7 +190,15 @@ https://github.com/Malabarba/elisp-bug-hunter
 ;; Hide the menu for as minimalistic a startup screen as possible.
 (remove-hook '+doom-dashboard-functions #'doom-dashboard-widget-shortmenu)
 #+end_src
+* Projectile
 
+Your $HOME is recognized as a project root! Emacs will assume $HOME is the root of any project living under $HOME. If this
+isn't desired, you will need to remove ".git" from `projectile-project-root-files-bottom-up' (a variable)
+
+#+begin_src emacs-lisp
+(after! projectile
+  (setq projectile-project-root-files-bottom-up (remove ".git" projectile-project-root-files-bottom-up)))
+#+end_src
 
 * Fly Check
 #+begin_src emacs-lisp
@@ -322,7 +351,6 @@ This litle packages provide a export to jira and confluence  markup.
 
 #+begin_src emacs-lisp
 (use-package! ox-jira)
-(use-package! ox-confluence-en)
 #+end_src
 
 This package provide an export to e - book format epub. I like it to make readable texts for mobile phones :-)
@@ -394,7 +422,6 @@ I use the fish shell.
 (add-to-list '+org-babel-mode-alist '(fish . shell))
 
 (defvar my-term-shell "/usr/local/bin/fish")
-(setq shell-file-name "/usr/local/bin/fish")
 (defadvice ansi-term (before force-bash)
   (interactive (list my-term-shell)))
 (ad-activate 'ansi-term)
@@ -718,7 +745,7 @@ uiaeo snrtdy
 | S      | [[elisp:(helpful-command 'ns-write-file-using-panel)][ns-write-file-using-panel]]    |                                       | s-S        |            |
 | n      | [[elisp:(helpful-command '+default/new-buffer)][+default/new-buffer]]          |                                       | s-n        |            |
 | N      | [[elisp:(helpful-command 'make-frame)][make-frame]]                   |                                       | s-N        |            |
-| r      | -                            | (Refactoring or Run                   |            |            |
+| r      | prefix (menu)                | Refactoring, Run, replace             | s-r        |            |
 | t      | [[elisp:(helpful-command 'ns-popup-font-panel)][ns-popup-font-panel]]          | Select a font                         | s-t        |            |
 | d      | [[elisp:(helpful-command 'duplicate-line-or-region)][duplicate-line-or-region]]     | Duplicate a selection or line         | s-d        | [[edit]]       |
 | y      | [[elisp:(helpful-command 'other-frame)][other-frame]]                  |                                       | s-y        |            |
@@ -810,7 +837,8 @@ uiaeo snrtdy
  "s-K" #'er/contract-region
  "s-d" #'sim/duplicate-line-or-region
  "s-J" #'join-line
-
+ :desc "Replace Buffer RegEx" "s-r r" #'query-replace-regexp
+ :desc "Replace Buffer" "s-r s" #'query-replace
  "s-S-<up>"  #'drag-stuff-up
  "s-S-<down>"  #'drag-stuff-down
  "s-S-<left>"  #'drag-stuff-left
