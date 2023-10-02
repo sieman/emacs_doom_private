@@ -7,6 +7,7 @@
 This is my personal Doom Emacs config. Doom Emacs is a distribution of Emacs that offers the "evil" keybindings (Vim keybindings) and the standard keybindings. And Doom includes a number of nice extensions and a bit of configuration out of the box. The Vim keybindings are made for US keyboard layout. I use a german layout [[https://neo-layout.org/][Neo2]]. Therefore I use the standard keybindings plus xah fly keys and customized it for Neo2.
 
 (The [[https://gitlab.com/dwt1/dotfiles/-/tree/master/.config/doom][config]] from Distro Tube, D. Taylor inspired me. So I refactored my config.)
+
 * Fish Shell User
 From doom documentation .emacs.d/lisp/cli/doctor.el:
 
@@ -16,17 +17,19 @@ packages/utilities will choke on this output, causing unpredictable issues.
 
 To get around this, either:
   - Add the following to $DOOMDIR/config.el:
-    =(setq shell-file-name (executable-find \bash\))=
+    =(setq shell-file-name (executable-find "bash"))=
   - Or change your default shell to a POSIX shell (like bash or zsh)
     and explicitly configure your terminal apps to use the shell you
     want.
 
 If you opt for option 1 and use one of Emacs' terminal emulators, you
 will also need to configure them to use Fish, e.g.
-  =(setq-default vterm-shell (executable-find \fish\))=
-  =(setq-default explicit-shell-file-name (executable-find \fish\))=
+  =(setq-default vterm-shell (executable-find "fish"))=
+  =(setq-default explicit-shell-file-name (executable-find "fish"))=
 #+begin_src emacs-lisp
- (setq shell-file-name (executable-find "bash"))
+(setq shell-file-name (executable-find "bash" ))
+(setq-default vterm-shell (executable-find "fish" ))
+(setq-default explicit-shell-file-name (executable-find "fish" ))
 #+end_src
 
 * Four modifier
@@ -683,20 +686,20 @@ My preferred way of using super key.
 
 1234567890
 
-| Letter | COMMAND                                     | DESCRIPTION                           | KEYBINDING    | SECTION     |
-|--------+---------------------------------------------+---------------------------------------+---------------+-------------|
-| 1      | [[elisp:(helpful-command '+treemacs/toggle)][+treemacs/toggle]]                            | shows current folder of buffer        | s-1           | [[s-0-9]]       |
-| 2      |                                             |                                       |               | [[s-0-9]]       |
-| 3      |                                             |                                       |               | [[s-0-9]]       |
-| 4      |                                             |                                       |               | [[s-0-9]]       |
-| 5      |                                             |                                       |               | [[s-0-9]]       |
-| 6      |                                             |                                       |               | [[s-0-9]]       |
-| 7      |                                             |                                       |               | [[s-0-9]]       |
-| 8      |                                             |                                       |               | [[s-0-9]]       |
-| 9      | [[elisp:(helpful-command 'magit-status)][magit-status]]                                | opens git UI magit                    | s-9           | [[s-0-9]]       |
-| 0      | [[elisp:(helpful-command 'text-scale-adjust)][text-scale-adjust]]                           | zoom in out Text                      | s-0           | [[s-0-9]]       |
-| `      | [[elisp:(helpful-command 'org-self-insert-command)][org-self-insert-command]] self-insert-command | ???                                   |               |             |
-| Del    | [[elisp:(helpful-command 'doom/backward-kill-to-bol-and-indent)][doom/backward-kill-to-bol-and-indent]]        |                                       | s-<backspace> |             |
+| Letter | COMMAND                                     | DESCRIPTION                    | KEYBINDING    | SECTION |
+|--------+---------------------------------------------+--------------------------------+---------------+---------|
+|      1 | [[elisp:(helpful-command '+treemacs/toggle)][+treemacs/toggle]]                            | shows current folder of buffer | s-1           | [[s-0-9]]   |
+|      2 |                                             |                                |               | [[s-0-9]]   |
+|      3 |                                             |                                |               | [[s-0-9]]   |
+|      4 |                                             |                                |               | [[s-0-9]]   |
+|      5 |                                             |                                |               | [[s-0-9]]   |
+|      6 |                                             |                                |               | [[s-0-9]]   |
+|      7 |                                             |                                |               | [[s-0-9]]   |
+|      8 |                                             |                                |               | [[s-0-9]]   |
+|      9 | [[elisp:(helpful-command 'magit-status)][magit-status]]                                | opens git UI magit             | s-9           | [[s-0-9]]   |
+|      0 | [[elisp:(helpful-command 'text-scale-adjust)][text-scale-adjust]]                           | zoom in out Text               | s-0           | [[s-0-9]]   |
+|      ` | [[elisp:(helpful-command 'org-self-insert-command)][org-self-insert-command]] self-insert-command | ???                            |               |         |
+|    Del | [[elisp:(helpful-command 'doom/backward-kill-to-bol-and-indent)][doom/backward-kill-to-bol-and-indent]]        |                                | s-<backspace> |         |
 
 ** Mapping for x to ß Row
 
@@ -754,20 +757,21 @@ uiaeo snrtdy
 
 üöäpz bm,.j
 
-| Letter | COMMAND                 | DESCRIPTION                  | KEYBINDING | SECTION |
-|--------+-------------------------+------------------------------+------------+---------|
-| ü      | -                       |                              |            |         |
-| ö      | -                       |                              |            |         |
-| ä      | [[elisp:(helpful-command 'avy-goto-char-2)][avy-goto-char-2]]         |                              | s-ä        |         |
-| p      | [[elisp:(helpful-command 'ns-print-buffer)][ns-print-buffer]]         |                              | s-p        |         |
-| z      | [[elisp:(helpful-command 'undo-tree-undo)][undo-tree-undo]]          | undo                         | s-z        |         |
-| Z      | [[elisp:(helpful-command 'undo-tree-redo)][undo-tree-redo]]          | redo                         |            |         |
-| b      | [[elisp:(helpful-command 'org-emphasize)][org-emphasize]]           | Org-Mode Bold Underline Code | s-b        |         |
-| m      | [[elisp:(helpful-command 'iconify-frame)][iconify-frame]]           |                              |            |         |
-| ,      | [[elisp:(helpful-command 'customize)][customize]]               |                              |            |         |
-| .      | -                       |                              |            |         |
-| j      | [[elisp:(helpful-command 'exchange-point-and-mark)][exchange-point-and-mark]] |                              |            |         |
-| J      | [[elisp:(helpful-command 'join-line)][join-line]]               |                              |            | [[edit]]    |
+| Letter | COMMAND                    | DESCRIPTION                  | KEYBINDING | SECTION    |
+|--------+----------------------------+------------------------------+------------+------------|
+| ü      | [[elisp:(helpful-command 'avy-goto-char-2)][avy-goto-char-2]]            |                              | s-ü        | [[navigation]] |
+| ö      |                            |                              |            | [[code]]       |
+| ä      | mc/mark-next-like-this     |                              | s-ä        |            |
+| Ä      |                            | multiple-cursors key map     | s-Ä        |            |
+| p      | mc/mark-previous-like-this |                              | s-p        |            |
+| z      | [[elisp:(helpful-command 'undo-tree-undo)][undo-tree-undo]]             | undo                         | s-z        |            |
+| Z      | [[elisp:(helpful-command 'undo-tree-redo)][undo-tree-redo]]             | redo                         |            |            |
+| b      | [[elisp:(helpful-command 'org-emphasize)][org-emphasize]]              | Org-Mode Bold Underline Code | s-b        |            |
+| m      | [[elisp:(helpful-command 'iconify-frame)][iconify-frame]]              |                              |            |            |
+| ,      | [[elisp:(helpful-command 'customize)][customize]]                  |                              |            |            |
+| .      | -                          |                              |            |            |
+| j      | [[elisp:(helpful-command 'exchange-point-and-mark)][exchange-point-and-mark]]    |                              |            |            |
+| J      | [[elisp:(helpful-command 'join-line)][join-line]]                  |                              |            | [[edit]]       |
 
 ** Mapping for F0 to F12 Row
 
@@ -788,16 +792,16 @@ uiaeo snrtdy
 | F12    |         |                     |            |         |
 
 ** Cursor up down left right
-| Letter | COMMAND        | DESCRIPTION | KEYBINDING  | SECTION |
-|--------+----------------+-------------+-------------+---------|
-| up     | windmove-up    |             | C-s-<up>    | [[buffers]] |
-|        |                |             |             |         |
-|        |                |             |             |         |
-|        |                |             |             |         |
-| down   | windmove-down  |             | C-s-<down>  | [[buffers]] |
-| left   | windmove-left  |             | C-s-<left>  | [[buffers]] |
-| right  | windmove-right |             | C-s-<right> | [[buffers]] |
-|        |                |             |             |         |
+| Letter | COMMAND                 | DESCRIPTION | KEYBINDING  | SECTION |
+|--------+-------------------------+-------------+-------------+---------|
+| up     | windmove-up             |             | C-s-<up>    | [[buffers]] |
+|        |                         |             |             |         |
+|        |                         |             |             |         |
+|        |                         |             |             |         |
+| down   | windmove-down           |             | C-s-<down>  | [[buffers]] |
+| left   | windmove-left           |             | C-s-<left>  | [[buffers]] |
+| right  | windmove-right          |             | C-s-<right> | [[buffers]] |
+| Space  | company-complete-common |             | s-SPC       |         |
 
 
 
@@ -872,10 +876,52 @@ uiaeo snrtdy
  "s-C" #'comment-line
  "s-u" #'execute-extended-command
  "s-U" #'revert-buffer
- "s-ß" #'hippie-expand
- "s-ẞ" #'+company/complete
- "s-ſ" #'completion-at-point
- "s-ς" #'completion-help-at-point
+ "s-SPC" #'+company/complete
+
+ ;; Omni-completion
+ (:when (modulep! :completion company)
+   (:prefix "s-S-SPC"
+            "l" #'+company/whole-lines
+            "k" #'+company/dict-or-keywords
+            "f" #'company-files
+            "e" #'company-etags
+            "i" #'company-ispell
+            "y" #'company-yasnippet
+            "c" #'company-capf
+            "a" #'+company/dabbrev
+            "p" #'+company/dabbrev-code-previous
+            "h" #'hippie-expand
+            ))
+ (:when (fboundp 'avy-goto-char-2 )
+   "s-ü" #'avy-goto-char-2
+     :prefix-map ("s-Ü" . "jumping-to-visible-tex")
+     "r" #'avy-resume
+     "l" #'avy-goto-line
+     "e" #'avy-goto-word-0
+     "w" #'avy-goto-word-1
+     "s" #'avy-goto-subword-0
+   )
+
+
+ :when (modulep! :editor multiple-cursors)
+ (
+  :desc "Mark next"          "s-ä"         #'mc/mark-next-like-this
+  :desc "Mark previous"      "s-p"         #'mc/mark-previous-like-this
+  :desc "Unmark previous"    "s-P"         #'mc/unmark-previous-like-this
+
+  :prefix-map ("s-Ä" . "multiple-cursors")
+  :desc "Edit lines"         "l"         #'mc/edit-lines
+  :desc "Mark next"          "n"         #'mc/mark-next-like-this
+  :desc "Unmark next"        "N"         #'mc/unmark-next-like-this
+  :desc "Mark previous"      "p"         #'mc/mark-previous-like-this
+  :desc "Unmark previous"    "P"         #'mc/unmark-previous-like-this
+  :desc "Mark all"           "t"         #'mc/mark-all-like-this
+  :desc "Mark all DWIM"      "m"         #'mc/mark-all-like-this-dwim
+  :desc "Edit line endings"  "e"         #'mc/edit-ends-of-lines
+  :desc "Edit line starts"   "a"         #'mc/edit-beginnings-of-lines
+  :desc "Mark tag"           "s"         #'mc/mark-sgml-tag-pair
+  :desc "Mark in defun"      "d"         #'mc/mark-all-like-this-in-defun
+  :desc "Add cursor w/mouse" "<mouse-1>" #'mc/add-cursor-on-click)
  )
 #+end_src
 

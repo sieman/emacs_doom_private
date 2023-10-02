@@ -36,7 +36,8 @@
  vc                ; version-control and Emacs, sitting in a tree
 
  :term
- ;; eshell            ; the elisp shell that works everywhere
+ eshell            ; the elisp shell that works everywhere
+ vterm
 
  :checkers
  syntax            ; tasing you for every semicolon you forget
