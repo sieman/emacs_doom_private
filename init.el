@@ -48,7 +48,7 @@
  ;; (debugger ) ; FIXME stepping through code, to help you add bugs
  debugger
  tree-sitter
-
+ lookup
  editorconfig      ; let someone else argue about tabs vs spaces
 
  (eval +overlay)     ; run code, run (also, repls)

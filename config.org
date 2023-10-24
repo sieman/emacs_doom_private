@@ -8,7 +8,7 @@ This is my personal Doom Emacs config. Doom Emacs is a distribution of Emacs tha
 
 (The [[https://gitlab.com/dwt1/dotfiles/-/tree/master/.config/doom][config]] from Distro Tube, D. Taylor inspired me. So I refactored my config.)
 
-* Fish Shell User
+* Shell User
 From doom documentation .emacs.d/lisp/cli/doctor.el:
 
 Fish (and possibly other non-POSIX shells) is known to inject garbage
@@ -28,8 +28,8 @@ will also need to configure them to use Fish, e.g.
   =(setq-default explicit-shell-file-name (executable-find "fish"))=
 #+begin_src emacs-lisp
 (setq shell-file-name (executable-find "bash" ))
-(setq-default vterm-shell (executable-find "fish" ))
-(setq-default explicit-shell-file-name (executable-find "fish" ))
+(setq-default vterm-shell (executable-find "zsh" ))
+(setq-default explicit-shell-file-name (executable-find "zsh" ))
 #+end_src
 
 * Four modifier
@@ -336,6 +336,7 @@ https://orgmode.org/
   (add-to-list 'org-structure-template-alist '("ss" . "src shell"))
   (add-to-list 'org-structure-template-alist '("sb" . "src fish :dir ~/ :results output"))
   (add-to-list 'org-structure-template-alist '("sf" . "src fish :mkdirp yes :tangle ~/.terminal-settings/config.fish"))
+  (add-to-list 'org-structure-template-alist '("sz" . "src zsh :mkdirp yes :tangle ~/.zshrc"))
 
   (setq org-babel-clojure-backend 'cider
         org-hide-emphasis-markers t)
@@ -392,44 +393,6 @@ Deft is not installed!
 (setq deft-recursive t)
 (global-set-key [f8] 'deft)
 #+end_src
-
-* Terminals
-
-** Ansi-Terminal
-
-C-c C-j (term-line-mode) das Terminal verhält sich wie ein Text-Buffer.
-C-c C-k (term-char-mode) das Terminal verhält fixirt den Cursor auf den Eingabe-Promt.
-
-C-c C-q (term-pager-toggle)
-
-C-c C-c (term-send-raw)
-C-c C-x (term-send-raw)
-
-
-https://echosa.github.io/blog/2012/06/06/improving-ansi-term/
-Wenn man =exit= ins Terminal eingibt beendet sich das Terminal und der Buffer soll sich dabei auch schießen.
-
-#+begin_src emacs-lisp
-(defadvice term-sentinel (around my-advice-term-sentinel (proc msg))
-  (if (memq (process-status proc) '(signal exit))
-      (let ((buffer (process-buffer proc)))
-        ad-do-it
-        (kill-buffer buffer))
-    ad-do-it))
-(ad-activate 'term-sentinel)
-#+end_src
-
-I use the fish shell.
-#+begin_src emacs-lisp
-;;; add to $DOOMDIR/config.el
-(add-to-list '+org-babel-mode-alist '(fish . shell))
-
-(defvar my-term-shell "/usr/local/bin/fish")
-(defadvice ansi-term (before force-bash)
-  (interactive (list my-term-shell)))
-(ad-activate 'ansi-term)
-#+end_src
-
 
 * Cider
 *Evaluation:*
