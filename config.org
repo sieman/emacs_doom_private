@@ -919,13 +919,8 @@ uiaeo snrtdy
   ;; "s-<return>" 'org-meta-return
   )
 #+end_src
-* ...
-#+begin_src emacs-lisp
-(map!
 
 
- )
-#+end_src
 * Last Action
 
 #+begin_src emacs-lisp
