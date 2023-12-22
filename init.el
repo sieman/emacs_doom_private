@@ -21,6 +21,7 @@
  vi-tilde-fringe   ; fringe tildes to mark beyond EOB
  (window-select +switch-window) ; visually switch windows
  zen               ; distraction-free coding or writing
+ tabs              ;
 
  :editor
  file-templates    ; auto-snippets for empty files
