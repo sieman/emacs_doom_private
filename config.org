@@ -234,23 +234,20 @@ isn't desired, you will need to remove ".git" from `projectile-project-root-file
         which-key-max-description-length 90)
   (which-key-setup-side-window-right-bottom))
 #+end_src
-* Modeline
+* Modeline and Taps
+
+I like the clearness of that [[https://github.com/rougier/nano-emacs][Rougier Nano-Emacs]] and the [[https://github.com/ronisbr/doom-nano-themes][Ronisbr Doom - Nano - Theme]] version. But at the moment Ronisbr implementation support only evil user.
+
+My workaround is to use [[https://github.com/ema2159/centaur-tabs][Taps]] and hide the modeline. Hear comes some keybindings that helps
+
 
 #+begin_src emacs-lisp
 (map!
- "C-c t m" #'global-hide-mode-line-mode
- "C-c t M" #'hide-mode-line-mode
- "C-c f i" #'pwd
+ :desc "Modeline toggle view" "C-c t m" #'global-hide-mode-line-mode
+ :desc "Print working Directory pwd" "C-c f i" #'pwd
  )
 #+end_src
 
-When centaur tabs used, the file name is not needed at modeline.
-#+begin_src emacs-lisp :tangle no
-(after! doom-modeline
-  (setq doom-modeline-buffer-name nil) ;; Whether display the buffer name.
-  ;;(setq doom-modeline-major-mode-icon t) ;; Whether display the icon for `major-mode'. It respects option `doom-modeline-icon'.
-  )
-#+end_src
 * Fonts
 ;; "JetBrains Mono"
 ;; "LFBONovelNetz" "LOB.Novellenschrift" "LOV.Novellenschrift" "LUC.NovellenschriftU1A"
