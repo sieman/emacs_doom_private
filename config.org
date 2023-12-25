@@ -249,19 +249,28 @@ My workaround is to use [[https://github.com/ema2159/centaur-tabs][Taps]] and hi
 #+end_src
 
 * Fonts
-;; "JetBrains Mono"
-;; "LFBONovelNetz" "LOB.Novellenschrift" "LOV.Novellenschrift" "LUC.NovellenschriftU1A"
-;; "Iosevka" "Iosevka Fixed" "Iosevka Term" "Iosevka SS04"
-;; "Source Code Variable"
-;; "Overpass Nerd Font"
-;; https://github.com/Lindydancer/font-lock-studio debugging font
-;; https://tecosaur.github.io/emacs-config/config.html#font-face
-#+begin_src emacs-lisp
-;; (print (font-family-list))
 
+Fraktur Schriftart
+http://www.ligafaktur.de/LOV.Novellenschrift.ttf
+
+
+Iosevka
+#+begin_src emacs-lisp :tangle no
 (setq doom-font (font-spec :family "Iosevka SS04" :style "Thin" :size 13)
-      ;; doom-variable-pitch-font (font-spec :family "LOV.Novellenschrift" :size 20)
-      doom-big-font (font-spec :family "Iosevka SS04" :style "Bold" :size 20))
+      doom-variable-pitch-font (font-spec :family "LOV.Novellenschrift" :size 20))
+#+end_src
+
+Which fonts can emacs display on your machine? -> =(print (font-family-list))=
+
+#+begin_src shell
+brew tap homebrew/cask-fonts && brew install --cask font-jetbrains-mono-nerd-font
+brew tap homebrew/cask-fonts && brew install --cask font-open-dyslexic-nerd-font
+#+end_src
+
+#+begin_src emacs-lisp
+(setq doom-font (font-spec :family "JetBrainsMono Nerd Font" :size 12 :weight 'light)
+      doom-variable-pitch-font (font-spec :family "OpenDyslexic" :size 13)
+      )
 
 (after! doom-themes
   (setq doom-themes-enable-bold t

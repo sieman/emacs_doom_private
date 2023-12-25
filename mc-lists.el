@@ -49,4 +49,8 @@
 
 (setq mc/cmds-to-run-once
       '(
+        next-buffer
+        org-babel-tangle
+        vterm--self-insert
+        vterm-mouse-set-point
         ))
