@@ -3,54 +3,12 @@
 
 (setq mc/cmds-to-run-for-all
       '(
-        LaTeX-babel-insert-hyphen
-        LaTeX-insert-left-brace
-        TeX-insert-backslash
-        TeX-newline
-        beginning-of-visual-line
-        copy-region-as-kill
-        counsel-M-x
-        doom/backward-to-bol-or-indent
-        doom/forward-to-last-non-comment-or-eol
-        end-of-visual-line
-        ibuffer-mark-for-delete
-        kill-region
-        mc/mark-all-in-region
-        mouse-drag-mode-line
-        neo2/insert-mode
-        ns-do-hide-others
-        ns-paste-secondary
-        org-beginning-of-line
-        org-cycle
-        org-edit-special
-        org-end-of-line
-        org-force-self-insert
-        org-meta-return
-        org-return
-        org-self-insert-command
-        org-yank
-        undo-fu-only-undo
-        xah-backward-punct
-        xah-copy-line-or-region
-        xah-cut-line-or-region
-        xah-cycle-hyphen-underscore-space
-        xah-extend-selection
         xah-fly-command-mode-activate
         xah-fly-insert-mode-activate
-        xah-forward-punct
-        xah-forward-right-bracket
         xah-insert-space-before
-        xah-kill-word
-        xah-paste-or-paste-previous
-        xah-select-line
-        xah-shrink-whitespaces
-        xah-toggle-letter-case
         ))
 
 (setq mc/cmds-to-run-once
       '(
-        next-buffer
-        org-babel-tangle
-        vterm--self-insert
-        vterm-mouse-set-point
+
         ))

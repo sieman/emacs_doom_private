@@ -262,7 +262,7 @@ Iosevka
 
 Which fonts can emacs display on your machine? -> =(print (font-family-list))=
 
-#+begin_src shell
+#+begin_src shell :tangle no
 brew tap homebrew/cask-fonts && brew install --cask font-jetbrains-mono-nerd-font
 brew tap homebrew/cask-fonts && brew install --cask font-open-dyslexic-nerd-font
 #+end_src
@@ -334,6 +334,18 @@ Dies ist ein Minor-Mode und zeigt die gedrückten Tasten an.
   (add-hook 'dired-mode-hook (lambda () (dired-hide-details-mode 1)))
   (put 'dired-find-alternate-file 'disabled nil))
 #+end_src
+* Reading Books
+A eBook viewer for emas.
+
+[[https://depp.brause.cc/nov.el/][Nov]] Major mode for reading EPUBs in Emacs
+#+begin_src emacs-lisp :tangle "packages.el"
+(package! nov)
+#+end_src
+
+#+begin_src emacs-lisp
+(use-package! nov
+  :config (add-to-list 'auto-mode-alist '("\\.epub\\'" . nov-mode)))
+#+end_src
 
 * Org mode
 https://orgmode.org/
@@ -351,7 +363,6 @@ https://orgmode.org/
   (setq org-babel-clojure-backend 'cider
         org-hide-emphasis-markers t)
   )
-
 (add-hook! 'org-log-buffer-setup-hook '(require 'org-keys))
 
 #+end_src
