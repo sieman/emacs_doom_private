@@ -3,12 +3,14 @@
 
 (setq mc/cmds-to-run-for-all
       '(
+        org-self-insert-command
+        xah-end-of-line-or-block
         xah-fly-command-mode-activate
         xah-fly-insert-mode-activate
         xah-insert-space-before
+        xah-paste-or-paste-previous
         ))
 
 (setq mc/cmds-to-run-once
       '(
-
         ))
