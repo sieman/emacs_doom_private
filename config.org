@@ -360,11 +360,39 @@ https://orgmode.org/
   (add-to-list 'org-structure-template-alist '("sf" . "src fish :mkdirp yes :tangle ~/.terminal-settings/config.fish"))
   (add-to-list 'org-structure-template-alist '("sz" . "src zsh :mkdirp yes :tangle ~/.zshrc"))
 
+  ;; active Babel languages
+  (org-babel-do-load-languages
+   'org-babel-load-languages
+   '((shell . t)))
+
   (setq org-babel-clojure-backend 'cider
         org-hide-emphasis-markers t)
   )
 (add-hook! 'org-log-buffer-setup-hook '(require 'org-keys))
 
+(after! ox-latex
+  (load! "ox-koma-letter")
+  (add-to-list 'org-latex-classes
+               '("brief"
+                 "\\documentclass{scrlttr2}
+\[NO-DEFAULT-PACKAGES]
+\[NO-PACKAGES]
+\[NO-EXTRA]
+\\KOMAoption{fontsize}{12pt}
+\\KOMAoption{parskip}{half}
+\\KOMAoption{paper}{A4}
+\\KOMAoption{fromalign}{right}
+\\usepackage[utf8]{inputenc}
+\\usepackage{eurosym}
+\\usepackage[ngerman]{babel}
+\\usepackage{pdfpages}
+\\usepackage[hidelinks]{hyperref}
+\\setkomavar*{enclseparator}{Anlagen}
+\\DeclareUnicodeCharacter{202D}{}
+\\DeclareUnicodeCharacter{202C}{}
+"))
+  (setq org-koma-letter-default-class "brief")
+  )
 #+end_src
 
 ** Org mode exporters OX
@@ -948,4 +976,16 @@ uiaeo snrtdy
 (sim/flykeys-on)
  (after! doom-modeline
    (global-hide-mode-line-mode))
+#+end_src
+
+#+begin_src emacs-lisp :tangle no
+(after! ox
+  (load! "ox-koma-letter"))
+
+(after! ox-koma-letter
+  '(progn
+
+
+     (setq org-koma-letter-default-class "brief")))
+
 #+end_src
