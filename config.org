@@ -392,6 +392,7 @@ https://orgmode.org/
 \\DeclareUnicodeCharacter{202C}{}
 "))
   (setq org-koma-letter-default-class "brief")
+  (setq org-export-default-language "de")
   )
 #+end_src
 
@@ -739,7 +740,7 @@ xvlcw khgfq ß
 | ß      | [[elisp:(helpful-command 'hippie-expand)][hippie-expand]]                 | completion                | s-ß        | [[code]]       |
 | ẞ      | [[elisp:(helpful-command '+company/complete)][+company/complete]]             | Show a complition list    | s-ẞ        | [[code]]       |
 | ſ      | [[elisp:(helpful-command 'completion-at-point)][completion-at-point]]           | completion                | s-ſ        | [[code]]       |
-| ς      | [[elisp:(helpful-command 'completion-help-at-point)][completion-help-at-point]]      | completion help           | s-ς        | [[code]]       |
+| ς      | [[elisp:(helpful-command 'completion-help-at-point)][completion-help-at-point]]      | completion help           | s-ς        | [[code]]        |
 
 
 
