@@ -86,7 +86,7 @@ The advantage of Fly Keys that this package works with diffrent keybord layouts.
   (add-hook! 'magit-mode-hook 'xah-fly-insert-mode-activate)
   (add-hook! 'dired-hook 'xah-fly-insert-mode-activate)
   (add-hook! 'color-rg-mode-hook 'xah-fly-insert-mode-activate)
-
+  (add-hook! 'vterm-mode-hook 'xah-fly-insert-mode-activate)
   ;; (global-set-key (kbd "<f19>") 'xah-fly-command-mode-activate)
   ;; (global-set-key (kbd "ESC ESC") 'xah-fly-command-mode-activate)
   )
@@ -127,8 +127,8 @@ The advantage of Fly Keys that this package works with diffrent keybord layouts.
   (define-key xah-fly-command-map (kbd ",") nil)
   (define-key xah-fly-command-map (kbd ",") 'open-line)
 
-  ;; (define-key xah-fly-command-map (kbd ".") nil)
-  ;; (define-key xah-fly-command-map (kbd ".") xah-fly-dot-keymap)
+  (define-key xah-fly-command-map (kbd ".") nil)
+  (define-key xah-fly-command-map (kbd ".") xah-fly-leader-key-map)
 
   (define-key xah-fly-command-map (kbd "j") nil)
   (define-key xah-fly-command-map (kbd "j") 'xah-next-window-or-frame)
@@ -268,7 +268,7 @@ brew tap homebrew/cask-fonts && brew install --cask font-open-dyslexic-nerd-font
 #+end_src
 
 #+begin_src emacs-lisp
-(setq doom-font (font-spec :family "JetBrainsMono Nerd Font" :size 12 :weight 'light)
+(setq doom-font (font-spec :family "JetBrainsMono Nerd Font" :size 12 :weight 'medium)
       doom-variable-pitch-font (font-spec :family "OpenDyslexic" :size 13)
       )
 
@@ -299,7 +299,11 @@ npm install dictionary-en-gb
         ("de_DE" "~/.e/sieman.doom.d/spelling/de_DE.aff")
         ("en_GB" "~/.e/sieman.doom.d/spelling/en_GB.aff")
         ))
+(after! flyspell-mode
+  (flyspell-mode 0))
+;; (setq company-global-modes '(not text-mode org-mode))
 #+end_src
+
 * TODO AI Auto Compleation
 [[https://github.com/TommyX12/company-tabnine][Emacs Plugin]]
 TabNine is the all-language autocompleter. It uses machine learning to provide responsive, reliable, and relevant suggestions.
@@ -513,6 +517,8 @@ https://github.com/kaz-yos/eval-in-repl
   (define-key clojure-mode-map (kbd "<C-return>") 'eir-eval-in-cider))
 #+end_src
 
+* EDIFF
+empty
 
 * Latex
 Change some font weights for the sections in LaTeX

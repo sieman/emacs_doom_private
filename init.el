@@ -55,7 +55,7 @@
  (eval +overlay)     ; run code, run (also, repls)
 
  (lookup +dictionary +docsets) ; navigate your code and its documentation
- (lsp +peek)
+ ;; (lsp +peek)
  magit             ; a git porcelain for Emacs
 
  :os
@@ -68,8 +68,7 @@
  (json +tree-sitter)              ; At least it ain't XML
  (javascript +tree-sitter)        ; all(hope(abandon(ye(who(enter(here))))))
  latex             ; writing papers in Emacs has never been so fun
- markdown          ; writing docs for people to ignore
- org               ; organize your plain life in plain text
+ (org +dragndrop)               ; organize your plain life in plain text
  (sh               ; she sells {ba,z,fi}sh shells on the C xor
   +fish)
  (web +tree-sitter)               ; the tubes
