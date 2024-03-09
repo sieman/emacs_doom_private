@@ -420,7 +420,7 @@ This package provide an export to e - book format epub. I like it to make readab
 (add-hook! org-mode
            ;; Document title font
            (set-face-attribute 'org-document-title nil :height 2.0)
-           (set-face-attribute 'org-level-1 nil :height 1.1)
+           (set-face-attribute 'org-level-1 nil :height 1.2)
            (set-face-attribute 'org-level-2 nil :height 1.1)
            (set-face-attribute 'org-level-3 nil :height 1.1)
            (set-face-attribute 'org-level-4 nil :height 1.1)
@@ -429,16 +429,48 @@ This package provide an export to e - book format epub. I like it to make readab
            (set-face-attribute 'org-level-7 nil :height 1.1)
            (set-face-attribute 'org-level-8 nil :height 1.1)
            (set-face-attribute 'org-block nil :height 1.1)
-           ;; Face of keyword DONE (Green like strings)
-           ;; (set-face-attribute 'org-done nil :foreground "#98be65")
-           ;; Face of keyword TODO or [ ] (Purple like keywords)
-           ;; (set-face-attribute 'org-todo nil :foreground "#c678dd")
-           ;; Face of ellipsis symbol (Purple like keywords)
-           (set-face-attribute 'org-ellipsis nil :foreground "#c678dd")
-           ;; Face of the entire headline of a DONE line
-           (set-face-attribute 'org-headline-done nil :foreground nil))
+
+           )
 #+end_src
 
+** Modern Org Style
+#+begin_src emacs-lisp :tangle "packages.el"
+(package! org-modern)
+#+end_src
+
+#+begin_src emacs-lisp
+(use-package! org-modern
+    :config
+  ;; Minimal UI
+
+  (setq
+   ;; Edit settings
+   org-auto-align-tags nil
+   org-tags-column 0
+   org-catch-invisible-edits 'show-and-error
+   org-special-ctrl-a/e t
+   org-insert-heading-respect-content t
+
+   ;; Org styling, hide markup etc.
+   org-hide-emphasis-markers t
+   org-pretty-entities t
+   org-ellipsis "…"
+
+   ;; Agenda styling
+   org-agenda-tags-column 0
+   org-agenda-block-separator ?─
+   org-agenda-time-grid
+   '((daily today require-timed)
+     (800 1000 1200 1400 1600 1800 2000)
+     " ┄┄┄┄┄ " "┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄")
+   org-agenda-current-time-string
+   "◀── now ─────────────────────────────────────────────────")
+  )
+
+(map!
+ :desc "Modern Lock Org Mode" "C-c t o" #'org-modern-mode
+ )
+#+end_src
 ** Deft for org-mode :org:
 Deft is not installed!
 #+begin_src emacs-lisp
