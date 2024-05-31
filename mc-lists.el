@@ -3,7 +3,13 @@
 
 (setq mc/cmds-to-run-for-all
       '(
+        general-simulate-C-c
+        kill-region
+        mc--insert-number-and-increase
+        org-end-of-line
+        org-return
         org-self-insert-command
+        org-yank
         wdired--self-insert
         xah-end-of-line-or-block
         xah-fly-command-mode-activate
@@ -14,4 +20,7 @@
 
 (setq mc/cmds-to-run-once
       '(
+        general-simulate-C-c
+        org-cycle
+        text-scale-adjust
         ))

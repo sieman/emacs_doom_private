@@ -84,10 +84,12 @@ The advantage of Fly Keys that this package works with diffrent keybord layouts.
   (add-hook! 'xah-fly-command-mode-activate-hook 'sim/flykeys-indicate-command-mode)
   (add-hook! 'xah-fly-insert-mode-activate-hook  'sim/flykeys-indicate-insert-mode)
   (add-hook! 'magit-mode-hook 'xah-fly-insert-mode-activate)
+  (add-hook! 'magit-popup-mode-hook 'xah-fly-insert-mode-activate)
   (add-hook! 'dired-hook 'xah-fly-insert-mode-activate)
   (add-hook! 'color-rg-mode-hook 'xah-fly-insert-mode-activate)
   (add-hook! 'vterm-mode-hook 'xah-fly-insert-mode-activate)
-  ;; (global-set-key (kbd "<f19>") 'xah-fly-command-mode-activate)
+  (add-hook! 'vterm-copy-mode-hook 'xah-fly-insert-mode-activate)
+  ;; (global-set-key (kbd "H-<left>") 'xah-fly-command-mode-activate)
   ;; (global-set-key (kbd "ESC ESC") 'xah-fly-command-mode-activate)
   )
 
@@ -120,6 +122,9 @@ The advantage of Fly Keys that this package works with diffrent keybord layouts.
 
   (define-key xah-fly-command-map (kbd "O") nil)
   (define-key xah-fly-command-map (kbd "O") (kbd! "C-x"))
+
+  (define-key xah-fly-command-map (kbd "-") 'org-next-visible-heading)
+  (define-key xah-fly-command-map (kbd "(") 'org-previous-visible-heading)
 
   (define-key xah-fly-command-map (kbd "d") nil)
   (define-key xah-fly-command-map (kbd "d") 'xah-goto-matching-bracket)
@@ -262,7 +267,7 @@ Iosevka
 
 Which fonts can emacs display on your machine? -> =(print (font-family-list))=
 
-#+begin_src shell :tangle no
+#+begin_src sh :tangle no
 brew tap homebrew/cask-fonts && brew install --cask font-jetbrains-mono-nerd-font
 brew tap homebrew/cask-fonts && brew install --cask font-open-dyslexic-nerd-font
 #+end_src
@@ -365,9 +370,7 @@ https://orgmode.org/
   (add-to-list 'org-structure-template-alist '("sz" . "src zsh :mkdirp yes :tangle ~/.zshrc"))
 
   ;; active Babel languages
-  (org-babel-do-load-languages
-   'org-babel-load-languages
-   '((shell . t)))
+  ;; (org-babel-do-load-languages 'org-babel-load-languages '((shell . t))) ; use babel packages instead
 
   (setq org-babel-clojure-backend 'cider
         org-hide-emphasis-markers t)
@@ -420,10 +423,10 @@ This package provide an export to e - book format epub. I like it to make readab
 (add-hook! org-mode
            ;; Document title font
            (set-face-attribute 'org-document-title nil :height 2.0)
-           (set-face-attribute 'org-level-1 nil :height 1.2)
-           (set-face-attribute 'org-level-2 nil :height 1.1)
-           (set-face-attribute 'org-level-3 nil :height 1.1)
-           (set-face-attribute 'org-level-4 nil :height 1.1)
+           (set-face-attribute 'org-level-1 nil :height 1.8)
+           (set-face-attribute 'org-level-2 nil :height 1.6)
+           (set-face-attribute 'org-level-3 nil :height 1.4)
+           (set-face-attribute 'org-level-4 nil :height 1.2)
            (set-face-attribute 'org-level-5 nil :height 1.1)
            (set-face-attribute 'org-level-6 nil :height 1.1)
            (set-face-attribute 'org-level-7 nil :height 1.1)
@@ -479,6 +482,14 @@ Deft is not installed!
 (setq deft-recursive t)
 (global-set-key [f8] 'deft)
 #+end_src
+
+** TODO AI Assistance
+[[https://github.com/rksm/org-ai?tab=readme-ov-file#installation][Org AI]]
+#+begin_src emacs-lisp :tangle "packages.el"
+;; https://github.com/rksm/org-ai
+(package! org-ai :recipe (:host github :repo "rksm/org-ai"))
+#+end_src
+
 
 * Cider
 *Evaluation:*
@@ -1012,9 +1023,9 @@ uiaeo snrtdy
 * Last Action
 
 #+begin_src emacs-lisp
-(sim/flykeys-on)
  (after! doom-modeline
    (global-hide-mode-line-mode))
+(sim/flykeys-on)
 #+end_src
 
 #+begin_src emacs-lisp :tangle no
@@ -1023,8 +1034,5 @@ uiaeo snrtdy
 
 (after! ox-koma-letter
   '(progn
-
-
      (setq org-koma-letter-default-class "brief")))
-
 #+end_src
