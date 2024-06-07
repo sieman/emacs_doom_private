@@ -163,6 +163,23 @@ https://github.com/mattiasb/dired-hide-dotfiles
 (package! dired-hide-dotfiles :recipe (:host github :repo "mattiasb/dired-hide-dotfiles"))
 #+end_src
 
+** Show Help with Casual Dired
+https://github.com/kickingvegas/casual-dired
+
+To provide a keyboard-driven menu UI to Dired.
+To provide casual access to common file manager operations.
+
+#+begin_src emacs-lisp :tangle "packages.el"
+(package! casual-dired)
+#+end_src
+
+#+begin_src emacs-lisp
+(use-package! casual-dired
+  :ensure t
+  :bind (:map dired-mode-map ("C-o" . #'casual-dired-tmenu))
+  )
+#+end_src
+
 * Elisp Bug Hunter :language:
 I think that is useful to find bugs in elisp. I have to expore that package!
 
