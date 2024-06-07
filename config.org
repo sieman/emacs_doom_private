@@ -146,6 +146,12 @@ The advantage of Fly Keys that this package works with diffrent keybord layouts.
 
 
 * Dired
+** dired - file manager
+#+begin_src emacs-lisp
+(after! dired
+  (add-hook 'dired-mode-hook (lambda () (dired-hide-details-mode 1)))
+  (put 'dired-find-alternate-file 'disabled nil))
+#+end_src
 
 ** Peep Dired a file preview
 https://github.com/asok/peep-dired
@@ -161,23 +167,6 @@ Most of the time I'm not interested to see all dotfiles. This package hides the 
 https://github.com/mattiasb/dired-hide-dotfiles
 #+begin_src emacs-lisp :tangle "packages.el"
 (package! dired-hide-dotfiles :recipe (:host github :repo "mattiasb/dired-hide-dotfiles"))
-#+end_src
-
-** Show Help with Casual Dired
-https://github.com/kickingvegas/casual-dired
-
-To provide a keyboard-driven menu UI to Dired.
-To provide casual access to common file manager operations.
-
-#+begin_src emacs-lisp :tangle "packages.el"
-(package! casual-dired)
-#+end_src
-
-#+begin_src emacs-lisp
-(use-package! casual-dired
-  :ensure t
-  :bind (:map dired-mode-map ("C-o" . #'casual-dired-tmenu))
-  )
 #+end_src
 
 * Elisp Bug Hunter :language:
@@ -347,6 +336,38 @@ Ich mag in einem Buffer herumspringen.
   (setq! better-jumper-use-savehist t)
   (setq! better-jumper-use-evil-jump-advice nil))
 #+end_src
+* Casual dired avy info calc isearch
+
+https://github.com/kickingvegas/casual-suite
+
+#+begin_src emacs-lisp :tangle "packages.el"
+(package! casual-suite  :recipe (:host github :repo "kickingvegas/casual-suite"))
+#+end_src
+
+#+begin_src emacs-lisp
+(after! casual-suite
+  ;; (require 'casual-suite)
+  (use-package! casual
+    :ensure t
+    :bind (:map calc-mode-map ("C-o" . 'casual-calc-tmenu)))
+
+  (use-package! casual-info
+    :ensure t
+    :bind (:map Info-mode-map ("C-o" . 'casual-info-tmenu)))
+
+  (use-package! casual-dired
+    :ensure t
+    :bind (:map dired-mode-map ("C-o" . 'casual-dired-tmenu)))
+
+  (use-package! casual-avy
+    :ensure t
+    :bind ("M-g" . casual-avy-tmenu))
+
+  (use-package! cc-isearch-menu
+    :ensure t
+    :bind (:map isearch-mode-map ("<f2>" . 'cc-isearch-menu-transient)))
+  )
+#+end_src
 
 * Show Keys
 Dies ist ein Minor-Mode und zeigt die gedrückten Tasten an.
@@ -354,12 +375,6 @@ Dies ist ein Minor-Mode und zeigt die gedrückten Tasten an.
 (load! "+show-keys.el")
 #+end_src
 
-* dired - file manager
-#+begin_src emacs-lisp
-(after! dired
-  (add-hook 'dired-mode-hook (lambda () (dired-hide-details-mode 1)))
-  (put 'dired-find-alternate-file 'disabled nil))
-#+end_src
 * Reading Books
 A eBook viewer for emas.
 
