@@ -3,6 +3,7 @@
 
 (setq mc/cmds-to-run-for-all
       '(
+        doom/forward-to-last-non-comment-or-eol
         general-simulate-C-c
         kill-region
         mc--insert-number-and-increase
@@ -16,6 +17,7 @@
         xah-fly-insert-mode-activate
         xah-insert-space-before
         xah-paste-or-paste-previous
+        xah-toggle-letter-case
         ))
 
 (setq mc/cmds-to-run-once

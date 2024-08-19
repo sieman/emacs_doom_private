@@ -2,7 +2,8 @@
 
 (doom!
  :completion
- (company +childframe) ; the ultimate code completion backend
+ ;(company +childframe) ; the ultimate code completion backend
+ (corfu +orderless +icons)
  (vertico +icons)
 
  :ui

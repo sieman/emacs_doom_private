@@ -117,11 +117,21 @@ The advantage of Fly Keys that this package works with diffrent keybord layouts.
   (define-key xah-fly-command-map (kbd "q") nil)
   (define-key xah-fly-command-map (kbd "q") (kbd! "C-c a"))
 
+  (define-key xah-fly-command-map (kbd "U") 'eval-expression)
+
   (define-key xah-fly-command-map (kbd "o") nil)
   (define-key xah-fly-command-map (kbd "o") (kbd! "C-c"))
 
   (define-key xah-fly-command-map (kbd "O") nil)
   (define-key xah-fly-command-map (kbd "O") (kbd! "C-x"))
+
+  (define-key xah-fly-command-map (kbd "S") '(lambda () (interactive) (xah-fly-insert-mode-activate) (casual-avy-tmenu)))
+
+  ;; (define-key xah-fly-command-map (kbd "S") '(neo2/insert-mode-f "casual-avy-tmenu"))
+
+  (define-key xah-fly-command-map (kbd "B") '(lambda () (interactive) (xah-fly-insert-mode-activate) (cc-isearch-menu-transient)))
+
+  ;; (define-key xah-fly-command-map (kbd "B") '(neo2/insert-mode-f 'cc-isearch-menu-transient))
 
   (define-key xah-fly-command-map (kbd "-") 'org-next-visible-heading)
   (define-key xah-fly-command-map (kbd "(") 'org-previous-visible-heading)
@@ -141,6 +151,12 @@ The advantage of Fly Keys that this package works with diffrent keybord layouts.
   (define-key xah-fly-command-map (kbd "SPC") nil)
   (define-key xah-fly-command-map (kbd "SPC") 'xah-insert-space-before)
 
+; Wrong type argument: commandp, (neo2/insert-mode-f 'casual-avy-tmenu)
+(defun neo2/insert-mode-f (func)
+"Go to insert mode and execute giffen func function."
+(interactive)
+(xah-fly-insert-mode-activate)
+(funcall func))
   )
 #+End_src
 
@@ -390,7 +406,18 @@ A eBook viewer for emas.
 
 * Org mode
 https://orgmode.org/
+
+
 #+begin_src emacs-lisp
+;;; :lang org
+(setq +org-roam-auto-backlinks-buffer t
+      org-directory "~/Documents/orgs"
+      org-roam-directory org-directory
+      org-roam-db-location (concat org-directory ".org-roam.db")
+      org-roam-dailies-directory "journal/"
+      org-archive-location (concat org-directory ".archive/%s::")
+      org-agenda-files org-directory)
+
 (after! org
 
   (add-to-list 'org-structure-template-alist '("se" . "src emacs-lisp"))
