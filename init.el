@@ -68,7 +68,7 @@
  (json +tree-sitter)              ; At least it ain't XML
  (javascript +tree-sitter)        ; all(hope(abandon(ye(who(enter(here))))))
  latex             ; writing papers in Emacs has never been so fun
- (org +dragndrop)               ; organize your plain life in plain text
+ (org +dragndrop +roam2)               ; organize your plain life in plain text
  (sh               ; she sells {ba,z,fi}sh shells on the C xor
   +fish
   +tree-sitter)

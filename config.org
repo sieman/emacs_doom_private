@@ -411,7 +411,7 @@ https://orgmode.org/
 #+begin_src emacs-lisp
 ;;; :lang org
 (setq +org-roam-auto-backlinks-buffer t
-      org-directory "~/Documents/orgs"
+      org-directory "~///Documents/org-roam"
       org-roam-directory org-directory
       org-roam-db-location (concat org-directory ".org-roam.db")
       org-roam-dailies-directory "journal/"
