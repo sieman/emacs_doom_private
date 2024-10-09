@@ -12,6 +12,8 @@
         org-self-insert-command
         org-yank
         wdired--self-insert
+        wdired-next-line
+        wdired-previous-line
         xah-end-of-line-or-block
         xah-fly-command-mode-activate
         xah-fly-insert-mode-activate
@@ -25,4 +27,6 @@
         general-simulate-C-c
         org-cycle
         text-scale-adjust
+        wdired-change-to-wdired-mode
+        wdired-finish-edit
         ))
