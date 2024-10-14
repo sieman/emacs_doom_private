@@ -3,6 +3,7 @@
 
 (setq mc/cmds-to-run-for-all
       '(
+        doom/backward-to-bol-or-indent
         doom/forward-to-last-non-comment-or-eol
         general-simulate-C-c
         kill-region
