@@ -51,6 +51,7 @@
  tree-sitter
  lookup
  editorconfig      ; let someone else argue about tabs vs spaces
+ pdf
 
  (eval +overlay)     ; run code, run (also, repls)
 
