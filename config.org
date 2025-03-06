@@ -89,6 +89,7 @@ The advantage of Fly Keys that this package works with diffrent keybord layouts.
   (add-hook! 'color-rg-mode-hook 'xah-fly-insert-mode-activate)
   (add-hook! 'vterm-mode-hook 'xah-fly-insert-mode-activate)
   (add-hook! 'vterm-copy-mode-hook 'xah-fly-insert-mode-activate)
+  (add-hook! 'pdf-view-mode 'xah-fly-insert-mode-activate)
   ;; (global-set-key (kbd "H-<left>") 'xah-fly-command-mode-activate)
   ;; (global-set-key (kbd "ESC ESC") 'xah-fly-command-mode-activate)
   )
@@ -165,8 +166,17 @@ The advantage of Fly Keys that this package works with diffrent keybord layouts.
 ** dired - file manager
 #+begin_src emacs-lisp
 (after! dired
-  (add-hook 'dired-mode-hook (lambda () (dired-hide-details-mode 1)))
-  (put 'dired-find-alternate-file 'disabled nil))
+  (add-hook 'dired-mode-hook
+            (lambda ()
+              (dired-hide-details-mode 1)
+              (map!
+               :mode 'dired-mode
+               :desc "Displays file content DIRED" "C-c t p" #'peep-dired
+               :desc "Hides files, dirs details DIRED" "C-c t d" #'dired-hide-details-mode
+               :desc "Hides dotfiles DIRED" "C-c t h" #'dired-hide-dotfiles-mode))
+            )
+  (put 'dired-find-alternate-file 'disabled nil)
+  )
 #+end_src
 
 ** Peep Dired a file preview
@@ -330,6 +340,13 @@ npm install dictionary-en-gb
   (flyspell-mode 0))
 ;; (setq company-global-modes '(not text-mode org-mode))
 #+end_src
+* ELLAMA
+[[https://github.com/s-kostyaev/ellama][Ellama]] is a tool for interacting with large language models from Emacs.  You need to have ‘ollama’ installed on your computer to use ‘ellama’ in Emacs.  You need to pull in any LLMs that you want to have available for use.  For example, if you want to be able to use Llama 3.1, then you need to run ‘ollama pull llama3.1’.
+
+
+https://gitlab.com/dwt1/dotfiles/-/blob/master/.config/emacs/config.org?ref_type=heads#ellama
+
+
 
 * TODO AI Auto Compleation
 [[https://github.com/TommyX12/company-tabnine][Emacs Plugin]]
@@ -529,7 +546,7 @@ This package provide an export to e - book format epub. I like it to make readab
   )
 
 (map!
- :desc "Modern Lock Org Mode" "C-c t o" #'org-modern-mode
+ :desc "Modern Look Org Mode" "C-c t o" #'org-modern-mode
  )
 #+end_src
 ** Deft for org-mode :org:
@@ -780,7 +797,6 @@ If I have some split buffers open and I want maximize one and then return to the
 (global-set-key (kbd "C-x 3") 'sim/split-window-right-and-move-there-dammit)
 (global-set-key (kbd "C-x 2") 'sim/split-window-below-and-move-there-dammit)
 #+end_src
-
 * Super Keybindings
 My preferred way of using super key.
 
@@ -1077,6 +1093,17 @@ uiaeo snrtdy
   )
 #+end_src
 
+
+* Keyboard Macros
+This Section defines some Macros for reuse.
+
+#+begin_src emacs-lisp
+(after! xah-fly-keys
+  (defalias 'sim/org-h3-date
+    (xah-fly-command-mode-activate)
+    (kmacro "r * * * SPC C-c . <return> <left> S-<up> <right> SPC"))
+  )
+#+end_src
 
 * Last Action
 

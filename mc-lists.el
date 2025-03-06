@@ -8,6 +8,7 @@
         general-simulate-C-c
         kill-region
         mc--insert-number-and-increase
+        org-beginning-of-line
         org-end-of-line
         org-return
         org-self-insert-command
@@ -15,6 +16,7 @@
         wdired--self-insert
         wdired-next-line
         wdired-previous-line
+        xah-copy-line-or-region
         xah-end-of-line-or-block
         xah-fly-command-mode-activate
         xah-fly-insert-mode-activate
@@ -26,7 +28,9 @@
 (setq mc/cmds-to-run-once
       '(
         general-simulate-C-c
+        ido-switch-buffer
         org-cycle
+        org-shiftleft
         text-scale-adjust
         wdired-change-to-wdired-mode
         wdired-finish-edit
