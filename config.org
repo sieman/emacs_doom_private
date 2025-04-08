@@ -346,6 +346,9 @@ npm install dictionary-en-gb
 
 https://gitlab.com/dwt1/dotfiles/-/blob/master/.config/emacs/config.org?ref_type=heads#ellama
 
+#+begin_src emacs-lisp :tangle "packages.el"
+(package! ollama :recipe (:host github :repo "niklasbuehler/ollama.el"))
+#+end_src
 
 
 * TODO AI Auto Compleation
