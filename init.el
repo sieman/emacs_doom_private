@@ -2,9 +2,9 @@
 
 (doom!
  :completion
- ;(company +childframe) ; the ultimate code completion backend
  (corfu +orderless +icons)
  (vertico +icons)
+
 
  :ui
  doom              ; what makes DOOM look the way it does
@@ -31,7 +31,7 @@
  snippets          ; my elves. They type so I don't have to
 
  :emacs
- (dired +icons)    ; making dired pretty [functional]
+ (dired +icons +dirvish)    ; making dired pretty [functional]
  electric          ; smarter, keyword-based electric-indent
  (ibuffer +icons)           ; interactive buffer management
  (undo +tree)      ; persistent, smarter undo for your inevitable mistakes
