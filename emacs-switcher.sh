@@ -46,7 +46,8 @@ function chemacs {
 }
 alias edoom="eDoubleLinker doom.d sieman"
 # hlissner https://github.com/hlissner/doom-emacs-private
-alias edoomHlissner="eDoubleLinker doom.d others/hlissner"
+#alias edoomHlissner="eDoubleLinker doom.d others/hlissner"
+alias edoomDefault="eDoubleLinker doom.d others/default"
 # magnars.vanilla https://github.com/magnars/.emacs.d.git
 alias em="eSwitcher magnars.vanilla"
 alias ee="eSwitcher elegant.vanilla"

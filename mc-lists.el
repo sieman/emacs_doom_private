@@ -16,6 +16,7 @@
         wdired--self-insert
         wdired-next-line
         wdired-previous-line
+        xah-backward-left-bracket
         xah-copy-line-or-region
         xah-end-of-line-or-block
         xah-fly-command-mode-activate
@@ -34,4 +35,5 @@
         text-scale-adjust
         wdired-change-to-wdired-mode
         wdired-finish-edit
+        xah-forward-right-bracket
         ))
