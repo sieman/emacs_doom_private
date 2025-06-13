@@ -67,6 +67,7 @@ The advantage of Fly Keys that this package works with diffrent keybord layouts.
          (custom-set-faces
           `(cursor ((t (:background "SeaGreen4"))))
           ;; `(cursor ((t (:background "#1ea4ff"))))
+          ;; `(dirvish-hl-line ((t (:box (:line-width 2 :color "white")))))
           )
          (custom-set-variables '(cursor-type 'box))
          (blink-cursor-mode 1)
@@ -81,15 +82,16 @@ The advantage of Fly Keys that this package works with diffrent keybord layouts.
          (blink-cursor-mode 0)
          (better-jumper-set-jump))
 
-  (add-hook! 'xah-fly-command-mode-activate-hook 'sim/flykeys-indicate-command-mode)
-  (add-hook! 'xah-fly-insert-mode-activate-hook  'sim/flykeys-indicate-insert-mode)
+  (add-hook! 'color-rg-mode-hook 'xah-fly-insert-mode-activate)
+  (add-hook! 'dired-hook 'xah-fly-insert-mode-activate)
+  (add-hook! 'dirvish-setup-hook 'xah-fly-insert-mode-activate)
   (add-hook! 'magit-mode-hook 'xah-fly-insert-mode-activate)
   (add-hook! 'magit-popup-mode-hook 'xah-fly-insert-mode-activate)
-  (add-hook! 'dired-hook 'xah-fly-insert-mode-activate)
-  (add-hook! 'color-rg-mode-hook 'xah-fly-insert-mode-activate)
-  (add-hook! 'vterm-mode-hook 'xah-fly-insert-mode-activate)
-  (add-hook! 'vterm-copy-mode-hook 'xah-fly-insert-mode-activate)
   (add-hook! 'pdf-view-mode 'xah-fly-insert-mode-activate)
+  (add-hook! 'vterm-copy-mode-hook 'xah-fly-insert-mode-activate)
+  (add-hook! 'vterm-mode-hook 'xah-fly-insert-mode-activate)
+  (add-hook! 'xah-fly-insert-mode-activate-hook  'sim/flykeys-indicate-insert-mode)
+  (add-hook! 'xah-fly-command-mode-activate-hook 'sim/flykeys-indicate-command-mode)
   ;; (global-set-key (kbd "H-<left>") 'xah-fly-command-mode-activate)
   ;; (global-set-key (kbd "ESC ESC") 'xah-fly-command-mode-activate)
   )
@@ -143,8 +145,8 @@ The advantage of Fly Keys that this package works with diffrent keybord layouts.
   (define-key xah-fly-command-map (kbd ",") nil)
   (define-key xah-fly-command-map (kbd ",") 'open-line)
 
-  (define-key xah-fly-command-map (kbd ".") nil)
-  (define-key xah-fly-command-map (kbd ".") xah-fly-leader-key-map)
+  ;; (define-key xah-fly-command-map (kbd ".") nil)
+  ;; (define-key xah-fly-command-map (kbd ".") xah-fly-leader-key-map)
 
   (define-key xah-fly-command-map (kbd "j") nil)
   (define-key xah-fly-command-map (kbd "j") 'xah-next-window-or-frame)
@@ -152,12 +154,12 @@ The advantage of Fly Keys that this package works with diffrent keybord layouts.
   (define-key xah-fly-command-map (kbd "SPC") nil)
   (define-key xah-fly-command-map (kbd "SPC") 'xah-insert-space-before)
 
-; Wrong type argument: commandp, (neo2/insert-mode-f 'casual-avy-tmenu)
-(defun neo2/insert-mode-f (func)
-"Go to insert mode and execute giffen func function."
-(interactive)
-(xah-fly-insert-mode-activate)
-(funcall func))
+                                        ; Wrong type argument: commandp, (neo2/insert-mode-f 'casual-avy-tmenu)
+  (defun neo2/insert-mode-f (func)
+    "Go to insert mode and execute giffen func function."
+    (interactive)
+    (xah-fly-insert-mode-activate)
+    (funcall func))
   )
 #+End_src
 
@@ -173,19 +175,10 @@ The advantage of Fly Keys that this package works with diffrent keybord layouts.
                :mode 'dired-mode
                :desc "Displays file content DIRED" "C-c t p" #'peep-dired
                :desc "Hides files, dirs details DIRED" "C-c t d" #'dired-hide-details-mode
-               :desc "Hides dotfiles DIRED" "C-c t h" #'dired-hide-dotfiles-mode))
+               :desc "Hides dotfiles DIRED" "C-c t ." #'dired-hide-dotfiles-mode))
             )
   (put 'dired-find-alternate-file 'disabled nil)
   )
-#+end_src
-
-** Peep Dired a file preview
-https://github.com/asok/peep-dired
-
-A file preview, when you browsing files in dired.
-
-#+begin_src emacs-lisp :tangle "packages.el"
-(package! peep-dired)
 #+end_src
 
 ** Hide Dot file
@@ -197,16 +190,28 @@ https://github.com/mattiasb/dired-hide-dotfiles
 ** DirVish
 https://github.com/alexluigit/dirvish?tab=readme-ov-file
 https://github.com/alexluigit/dirvish/blob/main/docs/EMACS-NEWCOMERS.org
+
 #+begin_src emacs-lisp
-(after! dirvish
-  (setq! dirvish-quick-access-entries
-         `(("h" "~/"                          "Home")
-           ("e" ,user-emacs-directory         "Emacs user directory")
-           ("c" "~/Code/"                     "Code")
-           ("d" "~/Downloads/"                "Downloads")
-           ("m" "/mnt/"                       "Mounted drives")
-           ("t" "~/.local/share/Trash/files/" "Trash"))))
-#+end_src
+ (after! dirvish
+   (setq! dirvish-quick-access-entries
+         `(
+           ("c" "~/Documents/Code/" "Code")
+           ("d" "~/Desktop/" "Desktop")
+           ("e" ,user-emacs-directory "Emacs user directory")
+           ("k" "~/Documents/EinnahmenAusgaben/Kontoauszuege" "Kontoauszuege")
+           ("l" "~/Downloads/" "Downloads")
+           ("o" "~/Documents/" "Documents")
+           ("p" "~/Pictures/"  "Pictures")
+           ("s" "~/Documents/EinnahmenAusgaben/Steuer" "Steuer")
+           ("h" "~/" "Home")
+           ;; ("" "~/" "")
+           ))
+  (map! :map dired-mode-map
+        "ü" #'dirvish-mode-map
+        "ä" #'dirvish-quick-access)
+  )
+ #+end_src
+
 
 * Elisp Bug Hunter :language:
 I think that is useful to find bugs in elisp. I have to expore that package!
@@ -448,7 +453,9 @@ https://orgmode.org/
       org-roam-db-location (file-name-concat org-directory ".org-roam.db")
       org-roam-dailies-directory "journal/"
       org-archive-location (file-name-concat org-directory ".archive/%s::")
-      org-agenda-files (list org-directory))
+      org-agenda-files (list org-directory)
+      org-startup-with-inline-images t
+      )
 
 (after! org
 
@@ -1012,7 +1019,7 @@ uiaeo snrtdy
 #+end_src
 
 ** <<s-0-9>> Super Numbers
-#+begin_src emacs-lisp
+#+begin_src emacs-lisp :tangle no
 (map!
  "s-1" #'+treemacs/toggle
  "s-9" #'magit-status
