@@ -207,6 +207,7 @@ https://github.com/alexluigit/dirvish/blob/main/docs/EMACS-NEWCOMERS.org
            ;; ("" "~/" "")
            ))
   (map! :map dired-mode-map
+        "ß" #'dired-omit-mode
         "ü" #'dirvish-mode-map
         "ä" #'dirvish-quick-access)
   )
