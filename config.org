@@ -16,16 +16,16 @@ output into some of the child processes that Emacs spawns. Many Emacs
 packages/utilities will choke on this output, causing unpredictable issues.
 
 To get around this, either:
-  - Add the following to $DOOMDIR/config.el:
-    =(setq shell-file-name (executable-find "bash"))=
-  - Or change your default shell to a POSIX shell (like bash or zsh)
-    and explicitly configure your terminal apps to use the shell you
-    want.
+- Add the following to $DOOMDIR/config.el:
+  =(setq shell-file-name (executable-find "bash"))=
+- Or change your default shell to a POSIX shell (like bash or zsh)
+  and explicitly configure your terminal apps to use the shell you
+  want.
 
 If you opt for option 1 and use one of Emacs' terminal emulators, you
 will also need to configure them to use Fish, e.g.
-  =(setq-default vterm-shell (executable-find "fish"))=
-  =(setq-default explicit-shell-file-name (executable-find "fish"))=
+=(setq-default vterm-shell (executable-find "fish"))=
+=(setq-default explicit-shell-file-name (executable-find "fish"))=
 #+begin_src emacs-lisp
 (setq shell-file-name (executable-find "bash" ))
 (setq-default vterm-shell (executable-find "zsh" ))
@@ -92,6 +92,7 @@ The advantage of Fly Keys that this package works with diffrent keybord layouts.
   (add-hook! 'vterm-mode-hook 'xah-fly-insert-mode-activate)
   (add-hook! 'xah-fly-insert-mode-activate-hook  'sim/flykeys-indicate-insert-mode)
   (add-hook! 'xah-fly-command-mode-activate-hook 'sim/flykeys-indicate-command-mode)
+  (add-hook! 'pdf-view-mode-hook 'sim/flykeys-indicate-command-mode)
   ;; (global-set-key (kbd "H-<left>") 'xah-fly-command-mode-activate)
   ;; (global-set-key (kbd "ESC ESC") 'xah-fly-command-mode-activate)
   )
@@ -173,8 +174,6 @@ The advantage of Fly Keys that this package works with diffrent keybord layouts.
               (dired-hide-details-mode 1)
               (map!
                :mode 'dired-mode
-               :desc "Displays file content DIRED" "C-c t p" #'peep-dired
-               :desc "Hides files, dirs details DIRED" "C-c t d" #'dired-hide-details-mode
                :desc "Hides dotfiles DIRED" "C-c t ." #'dired-hide-dotfiles-mode))
             )
   (put 'dired-find-alternate-file 'disabled nil)
@@ -192,8 +191,8 @@ https://github.com/alexluigit/dirvish?tab=readme-ov-file
 https://github.com/alexluigit/dirvish/blob/main/docs/EMACS-NEWCOMERS.org
 
 #+begin_src emacs-lisp
- (after! dirvish
-   (setq! dirvish-quick-access-entries
+(after! dirvish
+  (setq! dirvish-quick-access-entries
          `(
            ("c" "~/Documents/Code/" "Code")
            ("d" "~/Desktop/" "Desktop")
@@ -202,16 +201,20 @@ https://github.com/alexluigit/dirvish/blob/main/docs/EMACS-NEWCOMERS.org
            ("l" "~/Downloads/" "Downloads")
            ("o" "~/Documents/" "Documents")
            ("p" "~/Pictures/"  "Pictures")
+           ("r" "~/Documents/orgs/" "Org Files")
            ("s" "~/Documents/EinnahmenAusgaben/Steuer" "Steuer")
            ("h" "~/" "Home")
            ;; ("" "~/" "")
-           ))
+           )
+         )
   (map! :map dired-mode-map
         "ß" #'dired-omit-mode
         "ü" #'dirvish-mode-map
         "ä" #'dirvish-quick-access)
+  ;; (setq! dirvish-hide-details t)
+  (setq! dirvish-preview-dired-sync-omit t)
   )
- #+end_src
+#+end_src
 
 
 * Elisp Bug Hunter :language:
@@ -391,6 +394,7 @@ Ich mag in einem Buffer herumspringen.
   (setq! better-jumper-use-savehist t)
   (setq! better-jumper-use-evil-jump-advice nil))
 #+end_src
+
 * Casual dired avy info calc isearch
 
 https://github.com/kickingvegas/casual-suite
@@ -542,7 +546,7 @@ This package provide an export to e - book format epub. I like it to make readab
 
 #+begin_src emacs-lisp
 (use-package! org-modern
-    :config
+  :config
   ;; Minimal UI
 
   (setq
@@ -1054,12 +1058,12 @@ uiaeo snrtdy
             ))
  (:when (fboundp 'avy-goto-char-2 )
    "s-ü" #'avy-goto-char-2
-     :prefix-map ("s-Ü" . "jumping-to-visible-tex")
-     "r" #'avy-resume
-     "l" #'avy-goto-line
-     "e" #'avy-goto-word-0
-     "w" #'avy-goto-word-1
-     "s" #'avy-goto-subword-0
+   :prefix-map ("s-Ü" . "jumping-to-visible-tex")
+   "r" #'avy-resume
+   "l" #'avy-goto-line
+   "e" #'avy-goto-word-0
+   "w" #'avy-goto-word-1
+   "s" #'avy-goto-subword-0
    )
 
 
@@ -1096,7 +1100,7 @@ uiaeo snrtdy
  "C-s-<down>" #'windmove-down
  "C-s-<left>" #'windmove-left
  "C-s-<right>" #'windmove-right
-)
+ )
 #+end_src
 ** <<navigation>> Navigation in Textfile and Code
 #+begin_src emacs-lisp
@@ -1132,8 +1136,8 @@ This Section defines some Macros for reuse.
 * Last Action
 
 #+begin_src emacs-lisp
- (after! doom-modeline
-   (global-hide-mode-line-mode))
+;; (after! doom-modeline
+;; (global-hide-mode-line-mode))
 (sim/flykeys-on)
 #+end_src
 
