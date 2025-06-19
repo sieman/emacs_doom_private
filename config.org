@@ -97,6 +97,11 @@ The advantage of Fly Keys that this package works with diffrent keybord layouts.
   ;; (global-set-key (kbd "ESC ESC") 'xah-fly-command-mode-activate)
   )
 
+(defun sim/fly-to-avy-tmenu ()
+  (interactive)
+  (xah-fly-insert-mode-activate)
+  (casual-avy-tmenu))
+
 (defun sim/flykeys-on ()
   (interactive)
   (neo2/flykeys-on)
@@ -129,13 +134,13 @@ The advantage of Fly Keys that this package works with diffrent keybord layouts.
   (define-key xah-fly-command-map (kbd "O") nil)
   (define-key xah-fly-command-map (kbd "O") (kbd! "C-x"))
 
-  (define-key xah-fly-command-map (kbd "S") '(lambda () (interactive) (xah-fly-insert-mode-activate) (casual-avy-tmenu)))
+  (define-key xah-fly-command-map (kbd "S") 'sim/fly-to-avy-tmenu)
 
   ;; (define-key xah-fly-command-map (kbd "S") '(neo2/insert-mode-f "casual-avy-tmenu"))
 
-  (define-key xah-fly-command-map (kbd "B") '(lambda () (interactive) (xah-fly-insert-mode-activate) (cc-isearch-menu-transient)))
+  (define-key xah-fly-command-map (kbd "B") '(lambda () (interactive) (xah-fly-insert-mode-activate) (casual-isearch-tmenu)))
 
-  ;; (define-key xah-fly-command-map (kbd "B") '(neo2/insert-mode-f 'cc-isearch-menu-transient))
+  ;; (define-key xah-fly-command-map (kbd "B") '(neo2/insert-mode-f 'casual-isearch-tmenu))
 
   (define-key xah-fly-command-map (kbd "-") 'org-next-visible-heading)
   (define-key xah-fly-command-map (kbd "(") 'org-previous-visible-heading)
@@ -1058,12 +1063,8 @@ uiaeo snrtdy
             ))
  (:when (fboundp 'avy-goto-char-2 )
    "s-ü" #'avy-goto-char-2
-   :prefix-map ("s-Ü" . "jumping-to-visible-tex")
-   "r" #'avy-resume
-   "l" #'avy-goto-line
-   "e" #'avy-goto-word-0
-   "w" #'avy-goto-word-1
-   "s" #'avy-goto-subword-0
+   "s-Ü" #'sim/fly-to-avy-tmenu
+
    )
 
 
