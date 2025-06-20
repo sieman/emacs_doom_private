@@ -124,7 +124,7 @@ The advantage of Fly Keys that this package works with diffrent keybord layouts.
   (define-key xah-fly-command-map (kbd "9") nil)
   (define-key xah-fly-command-map (kbd "9") 'xah-extend-selection)
   (define-key xah-fly-command-map (kbd "q") nil)
-  (define-key xah-fly-command-map (kbd "q") (kbd! "C-c a"))
+  (define-key xah-fly-command-map (kbd "q") (kbd! "<f7>"))
 
   (define-key xah-fly-command-map (kbd "U") 'eval-expression)
 
@@ -136,11 +136,7 @@ The advantage of Fly Keys that this package works with diffrent keybord layouts.
 
   (define-key xah-fly-command-map (kbd "S") 'sim/fly-to-avy-tmenu)
 
-  ;; (define-key xah-fly-command-map (kbd "S") '(neo2/insert-mode-f "casual-avy-tmenu"))
-
   (define-key xah-fly-command-map (kbd "B") '(lambda () (interactive) (xah-fly-insert-mode-activate) (casual-isearch-tmenu)))
-
-  ;; (define-key xah-fly-command-map (kbd "B") '(neo2/insert-mode-f 'casual-isearch-tmenu))
 
   (define-key xah-fly-command-map (kbd "-") 'org-next-visible-heading)
   (define-key xah-fly-command-map (kbd "(") 'org-previous-visible-heading)
@@ -893,11 +889,7 @@ xvlcw khgfq ß
 | f      | [[elisp:(helpful-command 'consult-line)][consult-line]]                  | Search the current Buffer | s-f        |            |
 | F      | [[elisp:(helpful-command 'isearch-backward)][isearch-backward]]              |                           | s-F        |            |
 | q      | [[elisp:(helpful-command 'save-buffers-kill-terminal)][save-buffers-kill-terminal]]    | Quite Emacs               | s-q        |            |
-| ß      | [[elisp:(helpful-command 'hippie-expand)][hippie-expand]]                 | completion                | s-ß        | [[code]]       |
-| ẞ      | [[elisp:(helpful-command '+company/complete)][+company/complete]]             | Show a complition list    | s-ẞ        | [[code]]       |
-| ſ      | [[elisp:(helpful-command 'completion-at-point)][completion-at-point]]           | completion                | s-ſ        | [[code]]       |
-| ς      | [[elisp:(helpful-command 'completion-help-at-point)][completion-help-at-point]]      | completion help           | s-ς        | [[code]]        |
-
+| ß      | [[elisp:(helpful-command 'completion-help-at-point)][completion-help-at-point]]      | completion help           | s-ß       | [[code]]       |
 
 
 ** Mapping for u to y Row
@@ -961,17 +953,16 @@ uiaeo snrtdy
 | F12    |         |                     |            |         |
 
 ** Cursor up down left right
-| Letter | COMMAND                 | DESCRIPTION | KEYBINDING  | SECTION |
-|--------+-------------------------+-------------+-------------+---------|
-| up     | windmove-up             |             | C-s-<up>    | [[buffers]] |
-|        |                         |             |             |         |
-|        |                         |             |             |         |
-|        |                         |             |             |         |
-| down   | windmove-down           |             | C-s-<down>  | [[buffers]] |
-| left   | windmove-left           |             | C-s-<left>  | [[buffers]] |
-| right  | windmove-right          |             | C-s-<right> | [[buffers]] |
-| Space  | company-complete-common |             | s-SPC       |         |
-
+| Letter | COMMAND        | DESCRIPTION | KEYBINDING  | SECTION |
+|--------+----------------+-------------+-------------+---------|
+| up     | windmove-up    |             | C-s-<up>    | [[buffers]] |
+|        |                |             |             |         |
+|        |                |             |             |         |
+|        |                |             |             |         |
+| down   | windmove-down  |             | C-s-<down>  | [[buffers]] |
+| left   | windmove-left  |             | C-s-<left>  | [[buffers]] |
+| right  | windmove-right |             | C-s-<right> | [[buffers]] |
+| Space  | [[elisp:(helpful-command 'hippie-expand)][hippie-expand]]  |             | s-SPC       |         |
 
 
 ** Unset key
