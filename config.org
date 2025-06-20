@@ -1045,10 +1045,12 @@ uiaeo snrtdy
  "s-C" #'comment-line
  "s-u" #'execute-extended-command
  "s-U" #'revert-buffer
- "s-SPC" #'+company/complete
+ "s-SPC" #'hippie-expand
+ "s-ß" #'completion-help-at-point
 
  ;; Omni-completion
  (:when (modulep! :completion company)
+   "s-SPC" #'+company/complete
    (:prefix "s-S-SPC"
             "l" #'+company/whole-lines
             "k" #'+company/dict-or-keywords
