@@ -15,20 +15,20 @@
  nav-flash         ; blink cursor line after big motions
  ophints           ; highlight the region an operation acts on
  (popup +defaults)   ; tame sudden yet inevitable temporary windows
-  treemacs          ; a project drawer, like neotree but cooler
-  neotree
+
  unicode           ; extended unicode support for various languages
  vc-gutter         ; vcs diff in the fringe
  vi-tilde-fringe   ; fringe tildes to mark beyond EOB
  (window-select +switch-window) ; visually switch windows
  zen               ; distraction-free coding or writing
- tabs              ;
+ tabs              ; Zentauer
 
  :editor
  file-templates    ; auto-snippets for empty files
  fold              ; (nigh) universal code folding
  multiple-cursors  ; editing in many places at once
  snippets          ; my elves. They type so I don't have to
+ format
 
  :emacs
  (dired +icons +dirvish)    ; making dired pretty [functional]
@@ -45,11 +45,9 @@
  (spell +hunspell +flyspell) ; tasing you for misspelling mispelling
 
  :tools
- ;; lsp
- ;; (debugger ) ; FIXME stepping through code, to help you add bugs
  debugger
  tree-sitter
- lookup
+ (lookup +dictionary)
  editorconfig      ; let someone else argue about tabs vs spaces
  pdf
 

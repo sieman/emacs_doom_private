@@ -82,25 +82,24 @@ The advantage of Fly Keys that this package works with diffrent keybord layouts.
          (blink-cursor-mode 0)
          (better-jumper-set-jump))
 
-  (add-hook! 'color-rg-mode-hook 'xah-fly-insert-mode-activate)
-  (add-hook! 'dired-hook 'xah-fly-insert-mode-activate)
-  (add-hook! 'dirvish-setup-hook 'xah-fly-insert-mode-activate)
-  (add-hook! 'magit-mode-hook 'xah-fly-insert-mode-activate)
-  (add-hook! 'magit-popup-mode-hook 'xah-fly-insert-mode-activate)
-  (add-hook! 'pdf-view-mode 'xah-fly-insert-mode-activate)
-  (add-hook! 'vterm-copy-mode-hook 'xah-fly-insert-mode-activate)
-  (add-hook! 'vterm-mode-hook 'xah-fly-insert-mode-activate)
   (add-hook! 'xah-fly-insert-mode-activate-hook  'sim/flykeys-indicate-insert-mode)
   (add-hook! 'xah-fly-command-mode-activate-hook 'sim/flykeys-indicate-command-mode)
-  (add-hook! 'pdf-view-mode-hook 'sim/flykeys-indicate-command-mode)
+
+  (add-hook! '(color-rg-mode-hook
+               dired-hook
+               dirvish-setup-hook
+               eshell-mode-hook
+               magit-mode-hook
+               magit-popup-mode-hook
+               pdf-view-mode
+               pdf-view-mode-hook
+               transient-mark-mode-hook
+               transient-setup-buffer-hook)
+             #'xah-fly-insert-mode-activate)
   ;; (global-set-key (kbd "H-<left>") 'xah-fly-command-mode-activate)
   ;; (global-set-key (kbd "ESC ESC") 'xah-fly-command-mode-activate)
   )
 
-(defun sim/fly-to-avy-tmenu ()
-  (interactive)
-  (xah-fly-insert-mode-activate)
-  (casual-avy-tmenu))
 
 (defun sim/flykeys-on ()
   (interactive)
@@ -124,7 +123,7 @@ The advantage of Fly Keys that this package works with diffrent keybord layouts.
   (define-key xah-fly-command-map (kbd "9") nil)
   (define-key xah-fly-command-map (kbd "9") 'xah-extend-selection)
   (define-key xah-fly-command-map (kbd "q") nil)
-  (define-key xah-fly-command-map (kbd "q") (kbd! "<f7>"))
+  (define-key xah-fly-command-map (kbd "q") 'exchange-point-and-mark)
 
   (define-key xah-fly-command-map (kbd "U") 'eval-expression)
 
@@ -134,7 +133,7 @@ The advantage of Fly Keys that this package works with diffrent keybord layouts.
   (define-key xah-fly-command-map (kbd "O") nil)
   (define-key xah-fly-command-map (kbd "O") (kbd! "C-x"))
 
-  (define-key xah-fly-command-map (kbd "S") 'sim/fly-to-avy-tmenu)
+  (define-key xah-fly-command-map (kbd "S") 'casual-avy-tmenu)
 
   (define-key xah-fly-command-map (kbd "B") '(lambda () (interactive) (xah-fly-insert-mode-activate) (casual-isearch-tmenu)))
 
@@ -147,8 +146,8 @@ The advantage of Fly Keys that this package works with diffrent keybord layouts.
   (define-key xah-fly-command-map (kbd ",") nil)
   (define-key xah-fly-command-map (kbd ",") 'open-line)
 
-  ;; (define-key xah-fly-command-map (kbd ".") nil)
-  ;; (define-key xah-fly-command-map (kbd ".") xah-fly-leader-key-map)
+  (define-key xah-fly-command-map (kbd ".") nil)
+  (define-key xah-fly-command-map (kbd ".") (kbd! "<f7>"))
 
   (define-key xah-fly-command-map (kbd "j") nil)
   (define-key xah-fly-command-map (kbd "j") 'xah-next-window-or-frame)
@@ -156,12 +155,12 @@ The advantage of Fly Keys that this package works with diffrent keybord layouts.
   (define-key xah-fly-command-map (kbd "SPC") nil)
   (define-key xah-fly-command-map (kbd "SPC") 'xah-insert-space-before)
 
-                                        ; Wrong type argument: commandp, (neo2/insert-mode-f 'casual-avy-tmenu)
-  (defun neo2/insert-mode-f (func)
-    "Go to insert mode and execute giffen func function."
-    (interactive)
-    (xah-fly-insert-mode-activate)
-    (funcall func))
+  ;;Wrong type argument: commandp, (neo2/insert-mode-f 'casual-avy-tmenu)
+  ;; (defun neo2/insert-mode-f (func)
+  ;;   "Go to insert mode and execute giffen func function."
+  ;;   (interactive)
+  ;;   (xah-fly-insert-mode-activate)
+  ;;   (funcall func))
   )
 #+End_src
 
@@ -197,7 +196,7 @@ https://github.com/alexluigit/dirvish/blob/main/docs/EMACS-NEWCOMERS.org
          `(
            ("c" "~/Documents/Code/" "Code")
            ("d" "~/Desktop/" "Desktop")
-           ("e" ,user-emacs-directory "Emacs user directory")
+           ("e" ,"~/.config/" "Emacs or Config Folder")
            ("k" "~/Documents/EinnahmenAusgaben/Kontoauszuege" "Kontoauszuege")
            ("l" "~/Downloads/" "Downloads")
            ("o" "~/Documents/" "Documents")
@@ -356,14 +355,14 @@ npm install dictionary-en-gb
 (setq ispell-dictionary "de_DE")
 (setq ispell-hunspell-dict-paths-alist
       '(
-        ("de_DE" "~/.e/sieman.doom.d/spelling/de_DE.aff")
-        ("en_GB" "~/.e/sieman.doom.d/spelling/en_GB.aff")
+        ("de_DE" (file-name-concat doom-user-dir "spelling/de_DE.aff"))
+        ("en_GB" (file-name-concat doom-user-dir "spelling/en_GB.aff"))
         ))
 (after! flyspell-mode
   (flyspell-mode 0))
 ;; (setq company-global-modes '(not text-mode org-mode))
 #+end_src
-* ELLAMA
+* TODO ELLAMA
 [[https://github.com/s-kostyaev/ellama][Ellama]] is a tool for interacting with large language models from Emacs.  You need to have ‘ollama’ installed on your computer to use ‘ellama’ in Emacs.  You need to pull in any LLMs that you want to have available for use.  For example, if you want to be able to use Llama 3.1, then you need to run ‘ollama pull llama3.1’.
 
 
@@ -381,7 +380,7 @@ TabNine is the all-language autocompleter. It uses machine learning to provide r
 * Multiple Cursors
 #+begin_src emacs-lisp
 (after! mc-mark-more
-  (setq! mc/list-file "~/.e/sieman.doom.d/mc-lists.el")
+  (setq! mc/list-file (file-name-concat doom-user-dir "mc-lists.el"))
   (setq! mc/match-cursor-style t)
   (define-key mc/keymap (kbd "<return>") nil)
   (message "mc-mark-more loaded")
@@ -1056,7 +1055,7 @@ uiaeo snrtdy
             ))
  (:when (fboundp 'avy-goto-char-2 )
    "s-ü" #'avy-goto-char-2
-   "s-Ü" #'sim/fly-to-avy-tmenu
+   "s-Ü" #'casual-avy-tmenu
 
    )
 
@@ -1120,11 +1119,8 @@ uiaeo snrtdy
 This Section defines some Macros for reuse.
 
 #+begin_src emacs-lisp
-(after! xah-fly-keys
-  (defalias 'sim/org-h3-date
-    (xah-fly-command-mode-activate)
-    (kmacro "r * * * SPC C-c . <return> <left> S-<up> <right> SPC"))
-  )
+(defalias 'sim/org-h3-date
+  (kmacro "r * * * SPC C-c . <return> <left> S-<up> <right> SPC"))
 #+end_src
 
 * Last Action

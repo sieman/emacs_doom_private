@@ -5,35 +5,15 @@
       '(
         doom/backward-to-bol-or-indent
         doom/forward-to-last-non-comment-or-eol
-        general-simulate-C-c
-        kill-region
-        mc--insert-number-and-increase
-        org-beginning-of-line
-        org-end-of-line
+        org-open-line
         org-return
         org-self-insert-command
-        org-yank
         wdired--self-insert
-        wdired-next-line
-        wdired-previous-line
-        xah-backward-left-bracket
-        xah-copy-line-or-region
-        xah-end-of-line-or-block
         xah-fly-command-mode-activate
         xah-fly-insert-mode-activate
-        xah-insert-space-before
-        xah-paste-or-paste-previous
-        xah-toggle-letter-case
         ))
 
 (setq mc/cmds-to-run-once
       '(
-        general-simulate-C-c
-        ido-switch-buffer
-        org-cycle
-        org-shiftleft
-        text-scale-adjust
-        wdired-change-to-wdired-mode
-        wdired-finish-edit
-        xah-forward-right-bracket
+        consult-yank-pop
         ))
