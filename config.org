@@ -701,6 +701,18 @@ Match the background of latex previews and scale a bit less than the default
         dictcc-completion-backend 'vertico)
   )
 #+end_src
+* Repeat Mode
+Allows repeating via =C-x z= (pressing z multiple tiemes keeps repearting) or by pressing last keybinding of previaos command.
+
+#+begin_src emacs-lisp
+(use-package! repeat
+  :ensure nil
+  :hook (after-init . repeat-mode)
+  :custom
+  (repeat-too-dangerous '(kill-this-buffer))
+  (repeat-exit-timeout 6))
+#+end_src
+
 
 * SiM functions that tangled into autoload.el :autoload:el:
 Adds the the header of autoload.el
