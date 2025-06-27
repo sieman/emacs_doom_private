@@ -3,14 +3,24 @@
 
 (setq mc/cmds-to-run-for-all
       '(
+        copy-region-as-kill
         doom/backward-to-bol-or-indent
         doom/forward-to-last-non-comment-or-eol
+        org-beginning-of-line
+        org-end-of-line
         org-open-line
         org-return
         org-self-insert-command
         wdired--self-insert
+        xah-comment-dwim
+        xah-copy-line-or-region
+        xah-extend-selection
         xah-fly-command-mode-activate
         xah-fly-insert-mode-activate
+        xah-insert-space-before
+        xah-next-window-or-frame
+        xah-select-line
+        xah-toggle-letter-case
         ))
 
 (setq mc/cmds-to-run-once

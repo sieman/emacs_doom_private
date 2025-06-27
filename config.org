@@ -976,48 +976,29 @@ uiaeo snrtdy
 | Space  | [[elisp:(helpful-command 'hippie-expand)][hippie-expand]]  |             | s-SPC       |         |
 
 
-** Unset key
-
-#+begin_src emacs-lisp
-(global-unset-key (kbd "A-<tab>"))
-(global-unset-key (kbd "C-@"))
-(global-unset-key (kbd "M-@"))
-(global-unset-key (kbd "M-SPC"))
-(global-unset-key (kbd "s-+"))
-(global-unset-key (kbd "s--"))
-(global-unset-key (kbd "s-="))
-(global-unset-key (kbd "s-d"))
-(global-unset-key (kbd "s-e"))
-(global-unset-key (kbd "s-h"))
-(global-unset-key (kbd "s-k"))
-(global-unset-key (kbd "s-n"))
-(global-unset-key (kbd "s-o"))
-(global-unset-key (kbd "s-w"))
-(global-unset-key (kbd "s-x"))
-#+end_src
 
 ** <<edit>> Cut Copy Paste Undo Redo :keybindings:
 
 #+begin_src emacs-lisp
 (map!
- "s-x" #'kill-region
- "s-v" #'yank
- "s-V" #'yank-pop
- "s-c" (if (featurep 'evil) #'evil-yank #'copy-region-as-kill)
- "s-z" #'undo
- "s-Z" #'redo
- "s-a" #'mark-whole-buffer
- "s-h" #'set-mark-command
- "s-k" #'er/expand-region
- "s-K" #'er/contract-region
- "s-d" #'sim/duplicate-line-or-region
- "s-J" #'join-line
- :desc "Replace Buffer RegEx" "s-r r" #'query-replace-regexp
- :desc "Replace Buffer" "s-r s" #'query-replace
- "s-S-<up>"  #'drag-stuff-up
- "s-S-<down>"  #'drag-stuff-down
- "s-S-<left>"  #'drag-stuff-left
- "s-S-<right>"  #'drag-stuff-right
+ "s-x" #'kill-region                    ; Edit Commands
+ "s-v" #'yank                           ; Edit Commands
+ "s-V" #'yank-pop                       ; Edit Commands
+ "s-c" (if (featurep 'evil) #'evil-yank #'copy-region-as-kill) ; Edit Commands
+ "s-z" #'undo                                                  ; Edit Commands
+ "s-Z" #'redo                                                  ; Edit Commands
+ "s-a" #'mark-whole-buffer                                     ; Edit Commands
+ "s-h" #'set-mark-command                                      ; Edit Commands
+ "s-k" #'er/expand-region                                      ; Edit Commands
+ "s-K" #'er/contract-region                                    ; Edit Commands
+ "s-d" #'sim/duplicate-line-or-region                          ; Edit Commands
+ "s-J" #'join-line                                             ; Edit Commands
+ :desc "Replace Buffer RegEx" "s-r r" #'query-replace-regexp   ; Edit Commands
+ :desc "Replace Buffer" "s-r s" #'query-replace                ; Edit Commands
+ "s-S-<up>"  #'drag-stuff-up                                   ; Edit Commands
+ "s-S-<down>"  #'drag-stuff-down                               ; Edit Commands
+ "s-S-<left>"  #'drag-stuff-left                               ; Edit Commands
+ "s-S-<right>"  #'drag-stuff-right                             ; Edit Commands
  )
 #+end_src
 
