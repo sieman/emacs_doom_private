@@ -840,278 +840,286 @@ If I have some split buffers open and I want maximize one and then return to the
 * Super Keybindings
 My preferred way of using super key.
 
-** Mapping for Sign Row
+| Letter | COMMAND                                     | DESCRIPTION                           | KEYBINDING    |
+|--------+---------------------------------------------+---------------------------------------+---------------|
+| -      | [[elisp:(helpful-command 'doom/decrease-font-size)][doom/decrease-font-size]]                     |                                       | s--           |
+| +      | [[elisp:(helpful-command 'doom/reset-font-size)][doom/reset-font-size]]                        |                                       | s-+           |
+| =      | [[elisp:(helpful-command 'doom/increase-font-size)][doom/increase-font-size]]                     |                                       | s-=           |
+| ^      | kill-some-buffers                           |                                       | s-^           |
+| <      | mc/mark-previous-like-this                  |                                       |               |
+| >      | mc/mark-next-like-this                      |                                       |               |
+| ?      |                                             |                                       |               |
+| :      | ispell                                      |                                       |               |
+|--------+---------------------------------------------+---------------------------------------+---------------|
+| 1      | [[elisp:(helpful-command '+treemacs/toggle)][+treemacs/toggle]]                            | shows current folder of buffer        | s-1           |
+| 2      |                                             |                                       |               |
+| 3      |                                             |                                       |               |
+| 4      |                                             |                                       |               |
+| 5      |                                             |                                       |               |
+| 6      |                                             |                                       |               |
+| 7      |                                             |                                       |               |
+| 8      |                                             |                                       |               |
+| 9      | [[elisp:(helpful-command 'magit-status)][magit-status]]                                | opens git UI magit                    | s-9           |
+| 0      | [[elisp:(helpful-command 'text-scale-adjust)][text-scale-adjust]]                           | zoom in out Text                      | s-0           |
+| `      | [[elisp:(helpful-command 'org-self-insert-command)][org-self-insert-command]] self-insert-command | ???                                   |               |
+| Del    | [[elisp:(helpful-command 'doom/backward-kill-to-bol-and-indent)][doom/backward-kill-to-bol-and-indent]]        |                                       | s-<backspace> |
+|--------+---------------------------------------------+---------------------------------------+---------------|
+| x      | [[elisp:(helpful-command 'kill-region)][kill-region]]                                 | cut                                   | s-x           |
+| v      | [[elisp:(helpful-command 'yank)][yank]]                                        | paste                                 | s-v           |
+| V      | [[elisp:(helpful-command 'yank-pop)][yank-pop]]                                    | paste history                         | s-V           |
+| l      | [[elisp:(helpful-command 'sim/goto-line-with-feedback)][sim/goto-line-with-feedback]]                 |                                       | s-l           |
+| L      | [[elisp:(helpful-command 'shell-command)][shell-command]]                               |                                       | s-L           |
+| c      | [[elisp:(helpful-command 'copy-region-as-kill)][copy-region-as-kill]]                         | copy                                  | s-c           |
+| C      | [[elisp:(helpful-command 'comment-line)][comment-line]]                                | // a comment                          | s-C           |
+| w      | [[elisp:(helpful-command 'kill-current-buffer)][kill-current-buffer]]                         | close buffer                          | s-w           |
+| W      | [[elisp:(helpful-command 'doom/delete-frame-with-prompt)][doom/delete-frame-with-prompt]]               | close frame                           | s-W           |
+| k      | [[elisp:(helpful-command 'er/expand-region)][er/expand-region]]                            |                                       | s-k           |
+| K      | [[elisp:(helpful-command 'er/contract-region)][er/contract-region]]                          |                                       | s-K           |
+| h      | [[elisp:(helpful-command 'set-mark-command)][set-mark-command]]                            |                                       | s-h           |
+| g      | [[elisp:(helpful-command 'isearch-repeat-forward)][isearch-repeat-forward]]                      | Search                                | s-g           |
+| G      | [[elisp:(helpful-command 'isearch-repeat-backward)][isearch-repeat-backward]]                     | Search                                | s-G           |
+| f      | [[elisp:(helpful-command 'consult-line)][consult-line]]                                | Search the current Buffer             | s-f           |
+| F      | [[elisp:(helpful-command 'isearch-backward)][isearch-backward]]                            |                                       | s-F           |
+| q      | [[elisp:(helpful-command 'save-buffers-kill-terminal)][save-buffers-kill-terminal]]                  | Quite Emacs                           | s-q           |
+| ß      | [[elisp:(helpful-command 'completion-help-at-point)][completion-help-at-point]]                    | completion help                       | s-ß           |
+|--------+---------------------------------------------+---------------------------------------+---------------|
+| u      | [[elisp:(helpful-command 'execute-extended-command)][execute-extended-command]]                    |                                       | s-u           |
+| U      | [[elisp:(helpful-command 'revert-buffer)][revert-buffer]]                               |                                       | s-U           |
+| i      | [[elisp:(helpful-command 'indent-region)][indent-region]]                               | reformat code                         | s-i           |
+| a      | [[elisp:(helpful-command 'mark-whole-buffer)][mark-whole-buffer]]                           | Select all                            | s-a           |
+| e      | [[elisp:(helpful-command 'ido-switch-buffer)][ido-switch-buffer]]                           | Switching buffer                      | s-e           |
+| E      | [[elisp:(helpful-command 'edit-abbrevs)][edit-abbrevs]]                                |                                       | s-E           |
+| o      | [[elisp:(helpful-command 'imenu)][imenu]] or [[elisp:(helpful-command 'consult-org-heading)][consult-org-heading]]                | Menu depends on mode (imenu standard) | s-o           |
+| s      | [[elisp:(helpful-command 'save-buffer)][save-buffer]]                                 | Saves the buffer                      | s-s           |
+| S      | [[elisp:(helpful-command 'ns-write-file-using-panel)][ns-write-file-using-panel]]                   |                                       | s-S           |
+| n      | [[elisp:(helpful-command '+default/new-buffer)][+default/new-buffer]]                         |                                       | s-n           |
+| N      | [[elisp:(helpful-command 'make-frame)][make-frame]]                                  |                                       | s-N           |
+| r      | prefix (menu)                               | Refactoring, Run, replace             | s-r           |
+| t      | [[elisp:(helpful-command 'ns-popup-font-panel)][ns-popup-font-panel]]                         | Select a font                         | s-t           |
+| d      | [[elisp:(helpful-command 'duplicate-line-or-region)][duplicate-line-or-region]]                    | Duplicate a selection or line         | s-d           |
+| y      | [[elisp:(helpful-command 'other-frame)][other-frame]]                                 |                                       | s-y           |
+|--------+---------------------------------------------+---------------------------------------+---------------|
+| ü      | [[elisp:(helpful-command 'avy-goto-char-2)][avy-goto-char-2]]                             |                                       | s-ü           |
+| ö      |                                             |                                       |               |
+| ä      | mc/mark-next-like-this                      |                                       | s-ä           |
+| Ä      |                                             | multiple-cursors key map              | s-Ä           |
+| p      | mc/mark-previous-like-this                  |                                       | s-p           |
+| z      | [[elisp:(helpful-command 'undo-tree-undo)][undo-tree-undo]]                              | undo                                  | s-z           |
+| Z      | [[elisp:(helpful-command 'undo-tree-redo)][undo-tree-redo]]                              | redo                                  |               |
+| b      | [[elisp:(helpful-command 'org-emphasize)][org-emphasize]]                               | Org-Mode Bold Underline Code          | s-b           |
+| m      | [[elisp:(helpful-command 'iconify-frame)][iconify-frame]]                               |                                       |               |
+| ,      | [[elisp:(helpful-command 'customize)][customize]]                                   |                                       |               |
+| .      | -                                           |                                       |               |
+| j      | [[elisp:(helpful-command 'exchange-point-and-mark)][exchange-point-and-mark]]                     |                                       |               |
+| J      | [[elisp:(helpful-command 'join-line)][join-line]]                                   |                                       |               |
+|--------+---------------------------------------------+---------------------------------------+---------------|
+| F0     |                                             |                                       |               |
+| F1     |                                             |                                       |               |
+| F2     |                                             |                                       |               |
+| F3     |                                             |                                       |               |
+| F4     |                                             |                                       |               |
+| F5     |                                             | voice over (mac os)                   |               |
+| F6     |                                             |                                       |               |
+| F7     |                                             |                                       |               |
+| F8     |                                             |                                       |               |
+| F9     |                                             |                                       |               |
+| F10    |                                             |                                       |               |
+| F11    |                                             | full screen                           |               |
+| F12    |                                             |                                       |               |
+|--------+---------------------------------------------+---------------------------------------+---------------|
+| up     | windmove-up                                 |                                       | C-s-<up>      |
+| down   | windmove-down                               |                                       | C-s-<down>    |
+| left   | windmove-left                               |                                       | C-s-<left>    |
+| right  | windmove-right                              |                                       | C-s-<right>   |
+| Space  | [[elisp:(helpful-command 'hippie-expand)][hippie-expand]]                               |                                       | s-SPC         |
 
-… _ [ ] ^ < > = &
-\ / { } * ? ( ) - : @
-# $ | ~ ` + % " ' ;
+#+begin_src emacs-lisp :tangle +superkeys.el
+;;; $DOOMDIR/+superkeys.el -*- lexical-binding: t; -*-
+(global-unset-key (kbd "A-<tab>"))
+(global-unset-key (kbd "C-@"))
+(global-unset-key (kbd "M-@"))
+(global-unset-key (kbd "M-SPC"))
+(global-unset-key (kbd "s-+"))
+(global-unset-key (kbd "s--"))
+(global-unset-key (kbd "s-="))
+(global-unset-key (kbd "s-C"))
+(global-unset-key (kbd "s-d"))
+(global-unset-key (kbd "s-e"))
+(global-unset-key (kbd "s-h"))
+(global-unset-key (kbd "s-k"))
+(global-unset-key (kbd "s-n"))
+(global-unset-key (kbd "s-o"))
+(global-unset-key (kbd "s-w"))
+(global-unset-key (kbd "s-x"))
 
-| Letter | COMMAND                    | DESCRIPTION | KEYBINDING | SECTION |
-|--------+----------------------------+-------------+------------+---------|
-| -      | [[elisp:(helpful-command 'doom/decrease-font-size)][doom/decrease-font-size]]    |             | s--        | [[tick]]    |
-| +      | [[elisp:(helpful-command 'doom/reset-font-size)][doom/reset-font-size]]       |             | s-+        | [[tick]]    |
-| =      | [[elisp:(helpful-command 'doom/increase-font-size)][doom/increase-font-size]]    |             | s-=        | [[tick]]    |
-| ^      | kill-some-buffers          |             | s-^        |         |
-| <      | mc/mark-previous-like-this |             |            |         |
-| >      | mc/mark-next-like-this     |             |            |         |
-| ?      |                            |             |            |         |
-| :      | ispell                     |             |            |         |
-
-
-** Mapping for Number Row
-
-1234567890
-
-| Letter | COMMAND                                     | DESCRIPTION                    | KEYBINDING    | SECTION |
-|--------+---------------------------------------------+--------------------------------+---------------+---------|
-|      1 | [[elisp:(helpful-command '+treemacs/toggle)][+treemacs/toggle]]                            | shows current folder of buffer | s-1           | [[s-0-9]]   |
-|      2 |                                             |                                |               | [[s-0-9]]   |
-|      3 |                                             |                                |               | [[s-0-9]]   |
-|      4 |                                             |                                |               | [[s-0-9]]   |
-|      5 |                                             |                                |               | [[s-0-9]]   |
-|      6 |                                             |                                |               | [[s-0-9]]   |
-|      7 |                                             |                                |               | [[s-0-9]]   |
-|      8 |                                             |                                |               | [[s-0-9]]   |
-|      9 | [[elisp:(helpful-command 'magit-status)][magit-status]]                                | opens git UI magit             | s-9           | [[s-0-9]]   |
-|      0 | [[elisp:(helpful-command 'text-scale-adjust)][text-scale-adjust]]                           | zoom in out Text               | s-0           | [[s-0-9]]   |
-|      ` | [[elisp:(helpful-command 'org-self-insert-command)][org-self-insert-command]] self-insert-command | ???                            |               |         |
-|    Del | [[elisp:(helpful-command 'doom/backward-kill-to-bol-and-indent)][doom/backward-kill-to-bol-and-indent]]        |                                | s-<backspace> |         |
-
-** Mapping for x to ß Row
-
-xvlcw khgfq ß
-
-| Letter | COMMAND                       | DESCRIPTION               | KEYBINDING | SECTION    |
-|--------+-------------------------------+---------------------------+------------+------------|
-| x      | [[elisp:(helpful-command 'kill-region)][kill-region]]                   | cut                       | s-x        | [[edit]]       |
-| v      | [[elisp:(helpful-command 'yank)][yank]]                          | paste                     | s-v        | [[edit]]       |
-| V      | [[elisp:(helpful-command 'yank-pop)][yank-pop]]                      | paste history             | s-V        | [[edit]]       |
-| l      | [[elisp:(helpful-command 'sim/goto-line-with-feedback)][sim/goto-line-with-feedback]]   |                           | s-l        | [[navigation]] |
-| L      | [[elisp:(helpful-command 'shell-command)][shell-command]]                 |                           | s-L        |            |
-| c      | [[elisp:(helpful-command 'copy-region-as-kill)][copy-region-as-kill]]           | copy                      | s-c        | [[edit]]       |
-| C      | [[elisp:(helpful-command 'comment-line)][comment-line]]                  | // a comment              | s-C        | [[code]]       |
-| w      | [[elisp:(helpful-command 'kill-current-buffer)][kill-current-buffer]]           | close buffer              | s-w        | [[buffers]]    |
-| W      | [[elisp:(helpful-command 'doom/delete-frame-with-prompt)][doom/delete-frame-with-prompt]] | close frame               | s-W        | [[buffers]]    |
-| k      | [[elisp:(helpful-command 'er/expand-region)][er/expand-region]]              |                           | s-k        | [[edit]]       |
-| K      | [[elisp:(helpful-command 'er/contract-region)][er/contract-region]]            |                           | s-K        | [[edit]]       |
-| h      | [[elisp:(helpful-command 'set-mark-command)][set-mark-command]]              |                           | s-h        | [[edit]]       |
-| g      | [[elisp:(helpful-command 'isearch-repeat-forward)][isearch-repeat-forward]]        | Search                    | s-g        |            |
-| G      | [[elisp:(helpful-command 'isearch-repeat-backward)][isearch-repeat-backward]]       | Search                    | s-G        |            |
-| f      | [[elisp:(helpful-command 'consult-line)][consult-line]]                  | Search the current Buffer | s-f        |            |
-| F      | [[elisp:(helpful-command 'isearch-backward)][isearch-backward]]              |                           | s-F        |            |
-| q      | [[elisp:(helpful-command 'save-buffers-kill-terminal)][save-buffers-kill-terminal]]    | Quite Emacs               | s-q        |            |
-| ß      | [[elisp:(helpful-command 'completion-help-at-point)][completion-help-at-point]]      | completion help           | s-ß       | [[code]]       |
-
-
-** Mapping for u to y Row
-
-uiaeo snrtdy
-
-| Letter | COMMAND                      | DESCRIPTION                           | KEYBINDING | SECTION    |
-|--------+------------------------------+---------------------------------------+------------+------------|
-| u      | [[elisp:(helpful-command 'execute-extended-command)][execute-extended-command]]     |                                       | s-u        | [[code]]       |
-| U      | [[elisp:(helpful-command 'revert-buffer)][revert-buffer]]                |                                       | s-U        |            |
-| i      | [[elisp:(helpful-command 'indent-region)][indent-region]]                | reformat code                         | s-i        | [[code]]       |
-| a      | [[elisp:(helpful-command 'mark-whole-buffer)][mark-whole-buffer]]            | Select all                            | s-a        | [[edit]]       |
-| e      | [[elisp:(helpful-command 'ido-switch-buffer)][ido-switch-buffer]]            | Switching buffer                      | s-e        | [[buffers]]    |
-| E      | [[elisp:(helpful-command 'edit-abbrevs)][edit-abbrevs]]                 |                                       | s-E        |            |
-| o      | [[elisp:(helpful-command 'imenu)][imenu]] or [[elisp:(helpful-command 'consult-org-heading)][consult-org-heading]] | Menu depends on mode (imenu standard) | s-o        | [[navigation]] |
-| s      | [[elisp:(helpful-command 'save-buffer)][save-buffer]]                  | Saves the buffer                      | s-s        |            |
-| S      | [[elisp:(helpful-command 'ns-write-file-using-panel)][ns-write-file-using-panel]]    |                                       | s-S        |            |
-| n      | [[elisp:(helpful-command '+default/new-buffer)][+default/new-buffer]]          |                                       | s-n        |            |
-| N      | [[elisp:(helpful-command 'make-frame)][make-frame]]                   |                                       | s-N        |            |
-| r      | prefix (menu)                | Refactoring, Run, replace             | s-r        |            |
-| t      | [[elisp:(helpful-command 'ns-popup-font-panel)][ns-popup-font-panel]]          | Select a font                         | s-t        |            |
-| d      | [[elisp:(helpful-command 'duplicate-line-or-region)][duplicate-line-or-region]]     | Duplicate a selection or line         | s-d        | [[edit]]       |
-| y      | [[elisp:(helpful-command 'other-frame)][other-frame]]                  |                                       | s-y        |            |
-
-** Mapping for ü to j Row
-
-üöäpz bm,.j
-
-| Letter | COMMAND                    | DESCRIPTION                  | KEYBINDING | SECTION    |
-|--------+----------------------------+------------------------------+------------+------------|
-| ü      | [[elisp:(helpful-command 'avy-goto-char-2)][avy-goto-char-2]]            |                              | s-ü        | [[navigation]] |
-| ö      |                            |                              |            | [[code]]       |
-| ä      | mc/mark-next-like-this     |                              | s-ä        |            |
-| Ä      |                            | multiple-cursors key map     | s-Ä        |            |
-| p      | mc/mark-previous-like-this |                              | s-p        |            |
-| z      | [[elisp:(helpful-command 'undo-tree-undo)][undo-tree-undo]]             | undo                         | s-z        |            |
-| Z      | [[elisp:(helpful-command 'undo-tree-redo)][undo-tree-redo]]             | redo                         |            |            |
-| b      | [[elisp:(helpful-command 'org-emphasize)][org-emphasize]]              | Org-Mode Bold Underline Code | s-b        |            |
-| m      | [[elisp:(helpful-command 'iconify-frame)][iconify-frame]]              |                              |            |            |
-| ,      | [[elisp:(helpful-command 'customize)][customize]]                  |                              |            |            |
-| .      | -                          |                              |            |            |
-| j      | [[elisp:(helpful-command 'exchange-point-and-mark)][exchange-point-and-mark]]    |                              |            |            |
-| J      | [[elisp:(helpful-command 'join-line)][join-line]]                  |                              |            | [[edit]]       |
-
-** Mapping for F0 to F12 Row
-
-| Letter | COMMAND | DESCRIPTION         | KEYBINDING | SECTION |
-|--------+---------+---------------------+------------+---------|
-| F0     |         |                     |            |         |
-| F1     |         |                     |            |         |
-| F2     |         |                     |            |         |
-| F3     |         |                     |            |         |
-| F4     |         |                     |            |         |
-| F5     |         | voice over (mac os) |            |         |
-| F6     |         |                     |            |         |
-| F7     |         |                     |            |         |
-| F8     |         |                     |            |         |
-| F9     |         |                     |            |         |
-| F10    |         |                     |            |         |
-| F11    |         | full screen         |            |         |
-| F12    |         |                     |            |         |
-
-** Cursor up down left right
-| Letter | COMMAND        | DESCRIPTION | KEYBINDING  | SECTION |
-|--------+----------------+-------------+-------------+---------|
-| up     | windmove-up    |             | C-s-<up>    | [[buffers]] |
-|        |                |             |             |         |
-|        |                |             |             |         |
-|        |                |             |             |         |
-| down   | windmove-down  |             | C-s-<down>  | [[buffers]] |
-| left   | windmove-left  |             | C-s-<left>  | [[buffers]] |
-| right  | windmove-right |             | C-s-<right> | [[buffers]] |
-| Space  | [[elisp:(helpful-command 'hippie-expand)][hippie-expand]]  |             | s-SPC       |         |
-
-
-
-** <<edit>> Cut Copy Paste Undo Redo :keybindings:
-
-#+begin_src emacs-lisp
-(map!
- "s-x" #'kill-region                    ; Edit Commands
- "s-v" #'yank                           ; Edit Commands
- "s-V" #'yank-pop                       ; Edit Commands
- "s-c" (if (featurep 'evil) #'evil-yank #'copy-region-as-kill) ; Edit Commands
- "s-z" #'undo                                                  ; Edit Commands
- "s-Z" #'redo                                                  ; Edit Commands
- "s-a" #'mark-whole-buffer                                     ; Edit Commands
- "s-h" #'set-mark-command                                      ; Edit Commands
- "s-k" #'er/expand-region                                      ; Edit Commands
- "s-K" #'er/contract-region                                    ; Edit Commands
- "s-d" #'sim/duplicate-line-or-region                          ; Edit Commands
- "s-J" #'join-line                                             ; Edit Commands
- :desc "Replace Buffer RegEx" "s-r r" #'query-replace-regexp   ; Edit Commands
- :desc "Replace Buffer" "s-r s" #'query-replace                ; Edit Commands
- "s-S-<up>"  #'drag-stuff-up                                   ; Edit Commands
- "s-S-<down>"  #'drag-stuff-down                               ; Edit Commands
- "s-S-<left>"  #'drag-stuff-left                               ; Edit Commands
- "s-S-<right>"  #'drag-stuff-right                             ; Edit Commands
- )
-#+end_src
-
-** <<tick>> Font size increase and decrease
-#+begin_src emacs-lisp
-(map!
- "s-=" #'doom/reset-font-size
- "s--" #'doom/decrease-font-size
- "s-+" #'doom/increase-font-size
- )
-#+end_src
-
-** <<s-0-9>> Super Numbers
-#+begin_src emacs-lisp :tangle no
 (map!
  "s-1" #'+treemacs/toggle
  "s-9" #'magit-status
  "s-0" #'text-scale-adjust
- )
-#+end_src
 
-** <<code>> Basic Code Editing
-#+begin_src emacs-lisp
-(global-unset-key (kbd "s-C"))
-(map!
- "s-i" #'indent-region
+ ;; x X …
+ "s-x" #'kill-region                    ; Edit Commands
+
+ ;; v V _
+ "s-v" #'yank                           ; Edit Commands
+ "s-V" #'yank-pop                       ; Edit Commands
+
+ ;; l L [
+ "s-l" #'consult-goto-line
+ ;; s-L shell-command
+
+ ;; c C ]
+ "s-c" (if (featurep 'evil) #'evil-yank #'copy-region-as-kill) ; Edit Commands
  "s-C" #'comment-line
- "s-u" #'execute-extended-command
- "s-U" #'revert-buffer
- "s-SPC" #'hippie-expand
- "s-ß" #'completion-help-at-point
 
- ;; Omni-completion
- (:when (modulep! :completion company)
-   "s-SPC" #'+company/complete
-   (:prefix "s-S-SPC"
-            "l" #'+company/whole-lines
-            "k" #'+company/dict-or-keywords
-            "f" #'company-files
-            "e" #'company-etags
-            "i" #'company-ispell
-            "y" #'company-yasnippet
-            "c" #'company-capf
-            "a" #'+company/dabbrev
-            "p" #'+company/dabbrev-code-previous
-            "h" #'hippie-expand
-            ))
- (:when (fboundp 'avy-goto-char-2 )
-   "s-ü" #'avy-goto-char-2
-   "s-Ü" #'casual-avy-tmenu
-
-   )
-
-
- :when (modulep! :editor multiple-cursors)
- (
-  :desc "Mark next"          "s-ä"         #'mc/mark-next-like-this
-  :desc "Mark previous"      "s-p"         #'mc/mark-previous-like-this
-  :desc "Unmark previous"    "s-P"         #'mc/unmark-previous-like-this
-
-  :prefix-map ("s-Ä" . "multiple-cursors")
-  :desc "Edit lines"         "l"         #'mc/edit-lines
-  :desc "Mark next"          "n"         #'mc/mark-next-like-this
-  :desc "Unmark next"        "N"         #'mc/unmark-next-like-this
-  :desc "Mark previous"      "p"         #'mc/mark-previous-like-this
-  :desc "Unmark previous"    "P"         #'mc/unmark-previous-like-this
-  :desc "Mark all"           "t"         #'mc/mark-all-like-this
-  :desc "Mark all DWIM"      "m"         #'mc/mark-all-like-this-dwim
-  :desc "Edit line endings"  "e"         #'mc/edit-ends-of-lines
-  :desc "Edit line starts"   "a"         #'mc/edit-beginnings-of-lines
-  :desc "Mark tag"           "s"         #'mc/mark-sgml-tag-pair
-  :desc "Mark in defun"      "d"         #'mc/mark-all-like-this-in-defun
-  :desc "Add cursor w/mouse" "<mouse-1>" #'mc/add-cursor-on-click)
- )
-#+end_src
-
-** <<buffers>> Buffer and Frame Handling
-#+begin_src emacs-lisp
-(map!
- "s-e" #'ido-switch-buffer
+ ;; w W ^
  "s-w" #'kill-current-buffer
  "s-W" #'doom/delete-frame-with-prompt
- "s-h" #'set-mark-command
- "C-s-<up>" #'windmove-up
- "C-s-<down>" #'windmove-down
- "C-s-<left>" #'windmove-left
- "C-s-<right>" #'windmove-right
- )
-#+end_src
-** <<navigation>> Navigation in Textfile and Code
-#+begin_src emacs-lisp
-(map!
- "s-l" #'consult-goto-line
+
+ ;; k K !
+ "s-k" #'er/expand-region                                      ; Edit Commands
+ "s-K" #'er/contract-region                                    ; Edit Commands
+
+ ;; h H <
+ "s-h" #'set-mark-command                                      ; Edit Commands
+ ;; s-H ns-do-hide-others
+
+ ;; g G >
+ ;; s-g isearch-repeat-forward
+ ;; s-G
+
+ ;; f F =
+ ;; s-f consult-line
+ ;; s-F isearch-backward
+ "s-=" #'doom/reset-font-size
+
+ ;; q Q &
+ ;; s-q save-buffers-kill-terminal
+ ;; s-Q MACOS ABMELDEN
+ ;; s-& kill-current-buffer
+
+ ;; ß ẞ ſ
+ "s-ß" #'completion-help-at-point
+
+ ;; u U \
+ "s-u" #'execute-extended-command
+ "s-U" #'revert-buffer
+
+ ;; i I /
+ "s-i" #'indent-region
+
+ ;; a A {
+ "s-a" #'mark-whole-buffer                                     ; Edit Commands
+
+ ;; e E }
+ "s-e" #'ido-switch-buffer
+ ;; s-E edit-abbrevs
+
+ ;; o O *
+ "s-o" #'imenu
+
+ ;; s S ?
+ ;; s-s save-buffer
+ ;; s-S ns-write-file-using-panel
+ ;; s-? info
+
+ ;; n N (
+ ;; s-n +default/new-buffer
+ ;; s-N make-frame
+
+ ;; r R )
+ :desc "Replace Buffer" "s-r s" #'query-replace                ; Edit Commands
+ :desc "Replace Buffer RegEx" "s-r r" #'query-replace-regexp   ; Edit Commands
+
+ ;; t T -
+ ;; s-t menu-set-font
+ "s--" #'doom/decrease-font-size
+
+ ;; d D :
+ "s-d" #'sim/duplicate-line-or-region                          ; Edit Commands
+ ;; s-D dired
+ ;; s-: ispell
+
+ ;; y Y @
+ ;; s-y ns-paste-secondary
+
+ ;; ü Ü #
+ (:when (fboundp 'avy-goto-char-2 )
+   "s-ü" #'avy-goto-char-2
+   "s-Ü" #'casual-avy-tmenu)
+ ;; ö Ö $
+
+ ;; ä Ä |
+ ;; s-| shell-command-on-region
+ ;; p P ~
+ ;; s-~ pre-frame
+ (:when (modulep! :editor multiple-cursors)
+   :desc "Mark next"          "s-ä"         #'mc/mark-next-like-this
+   :desc "Mark previous"      "s-p"         #'mc/mark-previous-like-this
+   :desc "Unmark previous"    "s-P"         #'mc/unmark-previous-like-this
+   :prefix-map ("s-Ä" . "multiple-cursors")
+   :desc "Edit lines"         "l"         #'mc/edit-lines
+   :desc "Mark next"          "n"         #'mc/mark-next-like-this
+   :desc "Unmark next"        "N"         #'mc/unmark-next-like-this
+   :desc "Mark previous"      "p"         #'mc/mark-previous-like-this
+   :desc "Unmark previous"    "P"         #'mc/unmark-previous-like-this
+   :desc "Mark all"           "t"         #'mc/mark-all-like-this
+   :desc "Mark all DWIM"      "m"         #'mc/mark-all-like-this-dwim
+   :desc "Edit line endings"  "e"         #'mc/edit-ends-of-lines
+   :desc "Edit line starts"   "a"         #'mc/edit-beginnings-of-lines
+   :desc "Mark tag"           "s"         #'mc/mark-sgml-tag-pair
+   :desc "Mark in defun"      "d"         #'mc/mark-all-like-this-in-defun
+   :desc "Add cursor w/mouse" "<mouse-1>" #'mc/add-cursor-on-click)
+
+ ;; z Z `
+ "s-z" #'undo                                                  ; Edit Commands
+ "s-Z" #'redo                                                  ; Edit Commands
+ ;; s-` other-frame
+
+ ;; b B +
+ (:when (modulep! :lang org)
+   :map org-mode-map
+   "s-o" 'consult-org-heading
+   "s-b" 'org-emphasize)
+ "s-+" #'doom/increase-font-size
+
+ ;; m M %
+ ;; s-m iconify-frame
+ ;; s-M manual-entry
+
+ ;; , – "
+ ;; s-, customize
+
+ ;; . • '
+ ;; s-' next-window-any-frame '
+
+ ;; j J ;
+ ;; s-j exchange-point-and-mark
+ "s-J" #'join-line                                             ; Edit Commands
+
+ "s-SPC" #'hippie-expand
+
  "s-<up>" #'consult-global-mark
  "s-<down>" #'consult-mark
  "s-<left>" #'doom/backward-to-bol-or-indent
  "s-<right>" #'doom/forward-to-last-non-comment-or-eol
- "s-o" #'imenu
+
+ "s-S-<up>"  #'drag-stuff-up                                   ; Edit Commands
+ "s-S-<down>"  #'drag-stuff-down                               ; Edit Commands
+ "s-S-<left>"  #'drag-stuff-left                               ; Edit Commands
+ "s-S-<right>"  #'drag-stuff-right                             ; Edit Commands
+
+ "C-s-<up>" #'windmove-up               ; Navigation buffer
+ "C-s-<down>" #'windmove-down           ; Navigation buffer
+ "C-s-<left>" #'windmove-left           ; Navigation buffer
+ "C-s-<right>" #'windmove-right         ; Navigation buffer
  )
-
-(general-def
-  :keymaps 'org-mode-map
-  "s-o" 'consult-org-heading
-  "s-b" 'org-emphasize
-  ;; "s-<return>" 'org-meta-return
-  )
 #+end_src
-
 
 * Keyboard Macros
 This Section defines some Macros for reuse.
 
-#+begin_src emacs-lisp
+#+begin_src emacs-lisp  :tangle +superkeys.el
 (defalias 'sim/org-h3-date
   (kmacro "r * * * SPC C-c . <return> <left> S-<up> <right> SPC"))
 #+end_src
@@ -1121,6 +1129,7 @@ This Section defines some Macros for reuse.
 #+begin_src emacs-lisp
 ;; (after! doom-modeline
 ;; (global-hide-mode-line-mode))
+(load! "+superkeys.el")
 (sim/flykeys-on)
 #+end_src
 
