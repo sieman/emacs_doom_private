@@ -31,6 +31,19 @@ will also need to configure them to use Fish, e.g.
 (setq-default vterm-shell (executable-find "zsh" ))
 (setq-default explicit-shell-file-name (executable-find "zsh" ))
 #+end_src
+* TODO
+* Bookmarks
+Settings for Bookmark are stored in this folder
+/Users/sim/.config/emacs/.local/etc
+
+
+#+begin_comment
+(use-package eshell-bookmark
+  :ensure t
+  :after eshell
+  :hook (eshell-mode . eshell-bookmark-setup))
+#+end_comment
+
 
 * Four modifier
 Using four modifier in emacs is possible if you are using right and left super  or control key to provide meta, control, hyper and super modifier keys. You can use [[https://karabiner-elements.pqrs.org/][Karabiner-Elements]] a stable keyboard customizer for macOS.
@@ -133,9 +146,10 @@ The advantage of Fly Keys that this package works with diffrent keybord layouts.
   (define-key xah-fly-command-map (kbd "O") nil)
   (define-key xah-fly-command-map (kbd "O") (kbd! "C-x"))
 
-  (define-key xah-fly-command-map (kbd "S") 'casual-avy-tmenu)
-
-  (define-key xah-fly-command-map (kbd "B") '(lambda () (interactive) (xah-fly-insert-mode-activate) (casual-isearch-tmenu)))
+  (define-key xah-fly-command-map (kbd "s") (kbd! "C-c l"))
+  (define-key xah-fly-command-map (kbd "b") 'avy-goto-char-2)
+  (define-key xah-fly-command-map (kbd "A") 'casual-avy-tmenu)
+  (define-key xah-fly-command-map (kbd "I") 'casual-isearch-tmenu)
 
   (define-key xah-fly-command-map (kbd "-") 'org-next-visible-heading)
   (define-key xah-fly-command-map (kbd "(") 'org-previous-visible-heading)
@@ -145,6 +159,8 @@ The advantage of Fly Keys that this package works with diffrent keybord layouts.
 
   (define-key xah-fly-command-map (kbd ",") nil)
   (define-key xah-fly-command-map (kbd ",") 'open-line)
+  (define-key xah-fly-command-map (kbd "–") nil)
+  (define-key xah-fly-command-map (kbd "–") 'xah-shrink-whitespaces)
 
   (define-key xah-fly-command-map (kbd ".") nil)
   (define-key xah-fly-command-map (kbd ".") (kbd! "<f7>"))
@@ -196,7 +212,8 @@ https://github.com/alexluigit/dirvish/blob/main/docs/EMACS-NEWCOMERS.org
          `(
            ("c" "~/Documents/Code/" "Code")
            ("d" "~/Desktop/" "Desktop")
-           ("e" ,"~/.config/" "Emacs or Config Folder")
+           ("e" ,"~/.config/" "Config Folder")
+           ("f" ,"~/.config/emacs/.local/etc/" "Emacs local")
            ("k" "~/Documents/EinnahmenAusgaben/Kontoauszuege" "Kontoauszuege")
            ("l" "~/Downloads/" "Downloads")
            ("o" "~/Documents/" "Documents")
@@ -380,7 +397,7 @@ TabNine is the all-language autocompleter. It uses machine learning to provide r
 * Multiple Cursors
 #+begin_src emacs-lisp
 (after! mc-mark-more
-  (setq! mc/list-file (file-name-concat doom-user-dir "mc-lists.el"))
+ ;; (setq! mc/list-file (file-name-concat doom-user-dir "mc-lists.el"))
   (setq! mc/match-cursor-style t)
   (define-key mc/keymap (kbd "<return>") nil)
   (message "mc-mark-more loaded")
@@ -678,14 +695,6 @@ Change some font weights for the sections in LaTeX
   (set-face-attribute 'font-latex-sectioning-5-face nil :height 1.1))
 #+end_src
 
-Match the background of latex previews and scale a bit less than the default
-
-#+begin_src emacs-lisp
-(after! preview
-  (setq preview-scale 1.2)
-  (set-face-attribute 'preview-reference-face nil :background (doom-color 'bg)))
-#+end_src
-
 * HOLD Dict.cc translate
 [[https://github.com/martenlienen/dictcc.el][Dictcc]] is a emacs interface for the online dictionary [[https://www.dict.cc/][dict.cc]]. At the moment it use ivy ore helm as completion but not vertico. I use it when vertico is supported.
 #+begin_src emacs-lisp :tangle no
@@ -705,7 +714,7 @@ Match the background of latex previews and scale a bit less than the default
 Allows repeating via =C-x z= (pressing z multiple tiemes keeps repearting) or by pressing last keybinding of previaos command.
 
 #+begin_src emacs-lisp
-(use-package! repeat
+(use-package repeat
   :ensure nil
   :hook (after-init . repeat-mode)
   :custom
@@ -748,31 +757,6 @@ I found a solution on https://www.emacswiki.org/emacs/CopyingWholeLines that wor
         (forward-line 1)
         (forward-char pos)))))
 
-#+end_src
-
-** Goto Line and show line numbers :autoload:el:
-- =M-g M-g   = goto line number and shows line numbers
-
-#+begin_src emacs-lisp :tangle autoload.el
-;;;###autoload
-(defun sim/goto-line-with-feedback ()
-  "Show line numbers temporarily, while prompting for the line number input"
-  (interactive)
-  (unwind-protect
-      (progn
-        (linum-mode 1)
-        (call-interactively 'goto-line))
-    (linum-mode -1)))
-#+end_src
-
-  
-| COMMAND   | DESCRIPTION                                             | KEYBINDING |
-|-----------+---------------------------------------------------------+------------|
-| goto-line | displays line numbers and ask where the cursor can jump | s - l      |
-
-#+begin_src emacs-lisp
-(global-set-key [remap goto-line] 'goto-line-with-feedback)
-(map!  "s-l" (if (featurep 'vertico) #'consult-goto-line #'goto-line))
 #+end_src
 
 ** Transparency :autoload:el:
@@ -849,6 +833,7 @@ My preferred way of using super key.
 | <      | mc/mark-previous-like-this                  |                                       |               |
 | >      | mc/mark-next-like-this                      |                                       |               |
 | ?      |                                             |                                       |               |
+| \      | [[elisp:(helpful-command 'shell-command)][shell-command]]                               |                                       | s-\           |
 | :      | ispell                                      |                                       |               |
 |--------+---------------------------------------------+---------------------------------------+---------------|
 | 1      | [[elisp:(helpful-command '+treemacs/toggle)][+treemacs/toggle]]                            | shows current folder of buffer        | s-1           |
@@ -867,8 +852,8 @@ My preferred way of using super key.
 | x      | [[elisp:(helpful-command 'kill-region)][kill-region]]                                 | cut                                   | s-x           |
 | v      | [[elisp:(helpful-command 'yank)][yank]]                                        | paste                                 | s-v           |
 | V      | [[elisp:(helpful-command 'yank-pop)][yank-pop]]                                    | paste history                         | s-V           |
-| l      | [[elisp:(helpful-command 'sim/goto-line-with-feedback)][sim/goto-line-with-feedback]]                 |                                       | s-l           |
-| L      | [[elisp:(helpful-command 'shell-command)][shell-command]]                               |                                       | s-L           |
+| l      | (kbd! "C-c l")                              | opens local leader                    | s-l           |
+| L      | [[elisp:(helpful-command 'consult-goto-line)][consult-goto-line]]                           |                                       | s-L           |
 | c      | [[elisp:(helpful-command 'copy-region-as-kill)][copy-region-as-kill]]                         | copy                                  | s-c           |
 | C      | [[elisp:(helpful-command 'comment-line)][comment-line]]                                | // a comment                          | s-C           |
 | w      | [[elisp:(helpful-command 'kill-current-buffer)][kill-current-buffer]]                         | close buffer                          | s-w           |
@@ -884,7 +869,7 @@ My preferred way of using super key.
 | ß      | [[elisp:(helpful-command 'completion-help-at-point)][completion-help-at-point]]                    | completion help                       | s-ß           |
 |--------+---------------------------------------------+---------------------------------------+---------------|
 | u      | [[elisp:(helpful-command 'execute-extended-command)][execute-extended-command]]                    |                                       | s-u           |
-| U      | [[elisp:(helpful-command 'revert-buffer)][revert-buffer]]                               |                                       | s-U           |
+| U      | [[elisp:(helpful-command 'eval-expression)][eval-expression]]                             |                                       | s-U           |
 | i      | [[elisp:(helpful-command 'indent-region)][indent-region]]                               | reformat code                         | s-i           |
 | a      | [[elisp:(helpful-command 'mark-whole-buffer)][mark-whole-buffer]]                           | Select all                            | s-a           |
 | e      | [[elisp:(helpful-command 'ido-switch-buffer)][ido-switch-buffer]]                           | Switching buffer                      | s-e           |
@@ -965,7 +950,8 @@ My preferred way of using super key.
  "s-V" #'yank-pop                       ; Edit Commands
 
  ;; l L [
- "s-l" #'consult-goto-line
+ "s-l" (kbd! "C-c l")
+ "s-L" #'consult-goto-line
  ;; s-L shell-command
 
  ;; c C ]
@@ -1003,20 +989,27 @@ My preferred way of using super key.
 
  ;; u U \
  "s-u" #'execute-extended-command
- "s-U" #'revert-buffer
+ "s-U" #'eval-expression
+ "s-\\" #'shell-command
+
 
  ;; i I /
  "s-i" #'indent-region
+ "s-I" #'casual-isearch-tmenu
 
  ;; a A {
  "s-a" #'mark-whole-buffer                                     ; Edit Commands
-
+ (:when (fboundp 'avy-goto-char-2 ) "s-A" #'casual-avy-tmenu)
  ;; e E }
  "s-e" #'ido-switch-buffer
  ;; s-E edit-abbrevs
 
  ;; o O *
  "s-o" #'imenu
+ (:when (modulep! :lang org)
+   :map org-mode-map
+   "s-o" 'consult-org-heading
+   "s-ü" 'org-emphasize)
 
  ;; s S ?
  ;; s-s save-buffer
@@ -1030,6 +1023,7 @@ My preferred way of using super key.
  ;; r R )
  :desc "Replace Buffer" "s-r s" #'query-replace                ; Edit Commands
  :desc "Replace Buffer RegEx" "s-r r" #'query-replace-regexp   ; Edit Commands
+ :desc "Revert current buffer" "s-r l" #'revert-buffer   ; Edit Commands
 
  ;; t T -
  ;; s-t menu-set-font
@@ -1044,9 +1038,8 @@ My preferred way of using super key.
  ;; s-y ns-paste-secondary
 
  ;; ü Ü #
- (:when (fboundp 'avy-goto-char-2 )
-   "s-ü" #'avy-goto-char-2
-   "s-Ü" #'casual-avy-tmenu)
+                                        ; org-emphasize see s-o
+
  ;; ö Ö $
 
  ;; ä Ä |
@@ -1076,11 +1069,9 @@ My preferred way of using super key.
  "s-Z" #'redo                                                  ; Edit Commands
  ;; s-` other-frame
 
+
  ;; b B +
- (:when (modulep! :lang org)
-   :map org-mode-map
-   "s-o" 'consult-org-heading
-   "s-b" 'org-emphasize)
+ (:when (fboundp 'avy-goto-char-2 ) "s-b" #'avy-goto-char-2)
  "s-+" #'doom/increase-font-size
 
  ;; m M %
