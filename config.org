@@ -157,6 +157,8 @@ The advantage of Fly Keys that this package works with diffrent keybord layouts.
   (define-key xah-fly-command-map (kbd "d") nil)
   (define-key xah-fly-command-map (kbd "d") 'xah-goto-matching-bracket)
 
+  (define-key xah-fly-command-map (kbd "m") nil)
+
   (define-key xah-fly-command-map (kbd ",") nil)
   (define-key xah-fly-command-map (kbd ",") 'open-line)
   (define-key xah-fly-command-map (kbd "–") nil)
@@ -421,32 +423,26 @@ https://github.com/kickingvegas/casual-suite
 #+end_src
 
 #+begin_src emacs-lisp
-(after! casual-suite
-  ;; (require 'casual-suite)
-  (use-package! casual
-    :ensure t
-    :bind (:map calc-mode-map ("C-o" . 'casual-calc-tmenu)))
-
-  (use-package! casual-info
-    :ensure t
-    :bind (:map Info-mode-map ("C-o" . 'casual-info-tmenu)))
-
-  (use-package! casual-dired
-    :ensure t
-    :bind (:map dired-mode-map ("C-o" . 'casual-dired-tmenu)))
-
-  (use-package! casual-avy
-    :ensure t
-    :bind ("M-g" . casual-avy-tmenu))
-
-  (use-package! cc-isearch-menu
-    :ensure t
-    :bind (:map isearch-mode-map ("<f2>" . 'cc-isearch-menu-transient)))
-  )
+(use-package casual-suite
+  :config
+  (keymap-set calc-mode-map "s-m" #'casual-calc-tmenu)
+  (keymap-set dired-mode-map "s-m" #'casual-dired-tmenu)
+  (keymap-set isearch-mode-map "s-m" #'casual-isearch-tmenu)
+  (keymap-set ibuffer-mode-map "s-m" #'casual-ibuffer-tmenu)
+  (keymap-set ibuffer-mode-map "F" #'casual-ibuffer-filter-tmenu)
+  (keymap-set ibuffer-mode-map "s" #'casual-ibuffer-sortby-tmenu)
+  (keymap-set Info-mode-map "s-m" #'casual-info-tmenu)
+  (keymap-set reb-mode-map "s-m" #'casual-re-builder-tmenu)
+  (keymap-set reb-lisp-mode-map "s-m" #'casual-re-builder-tmenu)
+  (keymap-set bookmark-bmenu-mode-map "s-m" #'casual-bookmarks-tmenu)
+  (keymap-set org-agenda-mode-map "s-m" #'casual-agenda-tmenu)
+  (keymap-set symbol-overlay-map "s-m" #'casual-symbol-overlay-tmenu)
+  (keymap-global-set "s-m" #'casual-editkit-main-tmenu))
 #+end_src
 
 * Show Keys
 Dies ist ein Minor-Mode und zeigt die gedrückten Tasten an.
+
 #+begin_src emacs-lisp
 (load! "+show-keys.el")
 #+end_src
@@ -1006,10 +1002,7 @@ My preferred way of using super key.
 
  ;; o O *
  "s-o" #'imenu
- (:when (modulep! :lang org)
-   :map org-mode-map
-   "s-o" 'consult-org-heading
-   "s-ü" 'org-emphasize)
+ (:when (modulep! :lang org) :map org-mode-map "s-o" 'consult-org-heading)
 
  ;; s S ?
  ;; s-s save-buffer
@@ -1038,7 +1031,7 @@ My preferred way of using super key.
  ;; s-y ns-paste-secondary
 
  ;; ü Ü #
-                                        ; org-emphasize see s-o
+ (:when (modulep! :lang org) :map org-mode-map "s-ü" 'org-emphasize)
 
  ;; ö Ö $
 
