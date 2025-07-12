@@ -329,6 +329,45 @@ My workaround is to use [[https://github.com/ema2159/centaur-tabs][Taps]] and hi
   (setq! doom-modeline-modal-modern-icon nil)
   (setq! doom-modeline-modal-icon nil))
 #+end_src
+* Modeline Keycast
+#+begin_src emacs-lisp :tangle packages.el
+(package! keycast :recipe (:host github :repo "tarsius/keycast"))
+#+end_src
+
+Try to add this to doom-modeline.
+
+#+begin_src emacs-lisp
+(after! doom-modeline
+  (define-minor-mode keycast-mode
+    "Show current command and its key binding in the mode line (modified for doom-modeline use)."
+    :global t
+    (if keycast-mode
+        (progn
+	  (add-hook 'pre-command-hook 'keycast--update t)
+	  (add-to-list 'global-mode-string '("" keycast-mode-line)))
+      (progn
+	(remove-hook 'pre-command-hook 'keycast--update)
+	(setq global-mode-string (remove '("" keycast-mode-line) global-mode-string)))))
+  )
+(global-set-key (kbd "C-c t k") 'keycast-mode)
+#+end_src
+
+;; Show current command in modeline
+(use-package keycast
+  :straight t
+  :hook (after-init . keycast-mode)
+  :config
+  (define-minor-mode keycast-mode
+    "Show current command and its key binding in the mode line (modified for doom-modeline use)."
+    :global t
+    (if keycast-mode
+      (progn
+	(add-hook 'pre-command-hook 'keycast--update t)
+	(add-to-list 'global-mode-string '("" keycast-mode-line)))
+      (progn
+	(remove-hook 'pre-command-hook 'keycast--update)
+	(setq global-mode-string (remove '("" keycast-mode-line) global-mode-string))))))
+
 * not used Modeline Telephone
 
 https://github.com/dbordak/telephone-line
