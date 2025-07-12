@@ -36,8 +36,7 @@ function e {
 # }
 
 
-alias emacs='emacs --profile default'
-# alias edoom="e --profile default"
-alias efu="emacs --profile fu"
-# alias doup='edoom && cd ~/.e/sieman.doom.d && git fetch && git pull && doom upgrade && doom sync && cd - && e --debug-init && doom doctor'
+alias doom="nohup emacs --profile default &"
+alias efu="nohup emacs --profile fu &"
+alias erigpa="nohup emacs --profile rigpa &"
 # alias dose='doom sync && e --debug-init'

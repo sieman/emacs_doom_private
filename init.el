@@ -14,14 +14,15 @@
  modeline          ; snazzy, Atom-inspired modeline, plus API
  nav-flash         ; blink cursor line after big motions
  ophints           ; highlight the region an operation acts on
+ emoji
  (popup +defaults)   ; tame sudden yet inevitable temporary windows
-
  unicode           ; extended unicode support for various languages
  vc-gutter         ; vcs diff in the fringe
  vi-tilde-fringe   ; fringe tildes to mark beyond EOB
  (window-select +switch-window) ; visually switch windows
  zen               ; distraction-free coding or writing
  tabs              ; Zentauer
+ smooth-scroll
 
  :editor
  file-templates    ; auto-snippets for empty files

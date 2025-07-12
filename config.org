@@ -17,7 +17,7 @@ packages/utilities will choke on this output, causing unpredictable issues.
 
 To get around this, either:
 - Add the following to $DOOMDIR/config.el:
-  =(setq shell-file-name (executable-find "bash"))=
+  =(setq! shell-file-name (executable-find "bash"))=
 - Or change your default shell to a POSIX shell (like bash or zsh)
   and explicitly configure your terminal apps to use the shell you
   want.
@@ -27,11 +27,12 @@ will also need to configure them to use Fish, e.g.
 =(setq-default vterm-shell (executable-find "fish"))=
 =(setq-default explicit-shell-file-name (executable-find "fish"))=
 #+begin_src emacs-lisp
-(setq shell-file-name (executable-find "bash" ))
+(setq! shell-file-name (executable-find "bash" ))
 (setq-default vterm-shell (executable-find "zsh" ))
 (setq-default explicit-shell-file-name (executable-find "zsh" ))
 #+end_src
-* TODO
+
+
 * Bookmarks
 Settings for Bookmark are stored in this folder
 /Users/sim/.config/emacs/.local/etc
@@ -249,11 +250,11 @@ https://github.com/Malabarba/elisp-bug-hunter
 Solarized improved version is oksolar :-)
 #+begin_src emacs-lisp
 ;; load this theme at startup
-;; (setq doom-theme 'doom-one)
-;; (setq doom-theme 'doom-oksolar-dark)
-(setq doom-theme 'doom-oksolar-light)
+;; (setq! doom-theme 'doom-one)
+(setq! doom-theme 'doom-oksolar-dark)
+;; (setq! doom-theme 'doom-oksolar-light)
 ;; All themes are safe to load
-(setq custom-safe-themes t)
+(setq! custom-safe-themes t)
 #+end_src
 
 * TODO I like to check the [[https://github.com/ronisbr/doom-nano-modeline][nano]] port for doom.
@@ -270,7 +271,7 @@ Solarized improved version is oksolar :-)
 * Dashboard and Splash Image :appearance:
 #+begin_src emacs-lisp
 ;; Splash image
-(setq fancy-splash-image (concat doom-private-dir "thenwhyworry.png")
+(setq! fancy-splash-image (concat doom-private-dir "thenwhyworry.png")
       +doom-dashboard-banner-padding '(0 . 1))
 ;; Hide the menu for as minimalistic a startup screen as possible.
 (remove-hook '+doom-dashboard-functions #'doom-dashboard-widget-shortmenu)
@@ -282,7 +283,7 @@ isn't desired, you will need to remove ".git" from `projectile-project-root-file
 
 #+begin_src emacs-lisp
 (after! projectile
-  (setq projectile-project-root-files-bottom-up (remove ".git" projectile-project-root-files-bottom-up)))
+  (setq! projectile-project-root-files-bottom-up (remove ".git" projectile-project-root-files-bottom-up)))
 #+end_src
 
 * Fly Check
@@ -299,14 +300,14 @@ isn't desired, you will need to remove ".git" from `projectile-project-root-file
 
 * Clock and Line Number
 #+begin_src emacs-lisp
-(setq display-line-numbers-type nil)
-(setq display-time-24hr-format t)
+(setq! display-line-numbers-type nil)
+(setq! display-time-24hr-format t)
 #+end_src
 
 * Which Key Mode
 #+begin_src emacs-lisp
 (after! which-key
-  (setq which-key-side-window-max-width 0.44
+  (setq! which-key-side-window-max-width 0.44
         which-key-max-display-columns 2
         which-key-side-window-max-height 0.26
         which-key-max-description-length 90)
@@ -322,10 +323,24 @@ My workaround is to use [[https://github.com/ema2159/centaur-tabs][Taps]] and hi
 #+begin_src emacs-lisp
 (map!
  :desc "Modeline toggle view" "C-c t m" #'global-hide-mode-line-mode
- :desc "Print working Directory pwd" "C-c f i" #'pwd
- )
+ :desc "Print working Directory pwd" "C-c f i" #'pwd)
+
+(after! doom-modeline
+  (setq! doom-modeline-modal-modern-icon nil)
+  (setq! doom-modeline-modal-icon nil))
+#+end_src
+* Modeline Telephone
+
+https://github.com/dbordak/telephone-line
+
+#+begin_src emacs-lisp :tangle "packages.el"
+(package! telephone-line :recipe (:host github :repo"dbordak/telephone-line"))
 #+end_src
 
+#+begin_src emacs-lisp :tangle no
+(after! telephone-line
+  (telephone-line-mode 1))
+#+end_src
 * Fonts
 
 Fraktur Schriftart
@@ -334,7 +349,7 @@ http://www.ligafaktur.de/LOV.Novellenschrift.ttf
 
 Iosevka
 #+begin_src emacs-lisp :tangle no
-(setq doom-font (font-spec :family "Iosevka SS04" :style "Thin" :size 13)
+(setq! doom-font (font-spec :family "Iosevka SS04" :style "Thin" :size 13)
       doom-variable-pitch-font (font-spec :family "LOV.Novellenschrift" :size 20))
 #+end_src
 
@@ -346,12 +361,12 @@ brew tap homebrew/cask-fonts && brew install --cask font-open-dyslexic-nerd-font
 #+end_src
 
 #+begin_src emacs-lisp
-(setq doom-font (font-spec :family "JetBrainsMono Nerd Font" :size 12 :weight 'medium)
+(setq! doom-font (font-spec :family "JetBrainsMono Nerd Font" :size 12 :weight 'medium)
       doom-variable-pitch-font (font-spec :family "OpenDyslexic" :size 13)
       )
 
 (after! doom-themes
-  (setq doom-themes-enable-bold t
+  (setq! doom-themes-enable-bold t
         doom-themes-enable-italic t))
 
 (custom-set-faces!
@@ -368,18 +383,17 @@ brew tap homebrew/cask-fonts && brew install --cask font-open-dyslexic-nerd-font
 #+end_src
 * Rechtschreibprüfung :spell:checking:
 
-npm install dictionary-en-gb
+=npm install dictionary-en-gb=
 
 #+begin_src emacs-lisp
-(setq ispell-dictionary "de_DE")
-(setq ispell-hunspell-dict-paths-alist
-      '(
-        ("de_DE" (file-name-concat doom-user-dir "spelling/de_DE.aff"))
-        ("en_GB" (file-name-concat doom-user-dir "spelling/en_GB.aff"))
-        ))
 (after! flyspell-mode
+  (setq! ispell-dictionary "de_DE")
+  (setq! ispell-hunspell-dict-paths-alist
+         `(
+           ("de_DE" ,(file-name-concat doom-user-dir "spelling/de_DE.aff"))
+           ("en_GB" ,(file-name-concat doom-user-dir "spelling/en_GB.aff"))
+           ))
   (flyspell-mode 0))
-;; (setq company-global-modes '(not text-mode org-mode))
 #+end_src
 * TODO ELLAMA
 [[https://github.com/s-kostyaev/ellama][Ellama]] is a tool for interacting with large language models from Emacs.  You need to have ‘ollama’ installed on your computer to use ‘ellama’ in Emacs.  You need to pull in any LLMs that you want to have available for use.  For example, if you want to be able to use Llama 3.1, then you need to run ‘ollama pull llama3.1’.
@@ -423,7 +437,7 @@ https://github.com/kickingvegas/casual-suite
 #+end_src
 
 #+begin_src emacs-lisp
-(use-package casual-suite
+(use-package! casual-suite
   :config
   (keymap-set calc-mode-map "s-m" #'casual-calc-tmenu)
   (keymap-set dired-mode-map "s-m" #'casual-dired-tmenu)
@@ -465,31 +479,29 @@ https://orgmode.org/
 
 
 #+begin_src emacs-lisp
-;;; :lang org
-(setq org-directory "~///Documents/org-roam"
-      org-roam-directory org-directory
-      org-roam-db-location (file-name-concat org-directory ".org-roam.db")
-      org-roam-dailies-directory "journal/"
-      org-archive-location (file-name-concat org-directory ".archive/%s::")
-      org-agenda-files (list org-directory)
-      org-startup-with-inline-images t
-      )
-
 (after! org
+
+  (setq! org-directory "~///Documents/org-roam"
+         org-roam-directory org-directory
+         org-roam-db-location (file-name-concat org-directory ".org-roam.db")
+         org-roam-dailies-directory "journal/"
+         org-archive-location (file-name-concat org-directory ".archive/%s::")
+         org-agenda-files (list org-directory)
+         org-startup-with-inline-images t
+         )
 
   (add-to-list 'org-structure-template-alist '("se" . "src emacs-lisp"))
   (add-to-list 'org-structure-template-alist '("sea" . "src emacs-lisp :tangle autoload.el"))
+  (add-to-list 'org-structure-template-alist '("sep" . "src emacs-lisp :tangle packages.el"))
   (add-to-list 'org-structure-template-alist '("sc" . "src clojure"))
   (add-to-list 'org-structure-template-alist '("ss" . "src shell"))
-  (add-to-list 'org-structure-template-alist '("sb" . "src fish :dir ~/ :results output"))
-  (add-to-list 'org-structure-template-alist '("sf" . "src fish :mkdirp yes :tangle ~/.terminal-settings/config.fish"))
   (add-to-list 'org-structure-template-alist '("sz" . "src zsh :mkdirp yes :tangle ~/.zshrc"))
 
   ;; active Babel languages
   ;; (org-babel-do-load-languages 'org-babel-load-languages '((shell . t))) ; use babel packages instead
 
-  (setq org-babel-clojure-backend 'cider
-        org-hide-emphasis-markers t)
+  (setq! org-babel-clojure-backend 'cider
+         org-hide-emphasis-markers t)
   )
 (add-hook! 'org-log-buffer-setup-hook '(require 'org-keys))
 
@@ -514,8 +526,8 @@ https://orgmode.org/
 \\DeclareUnicodeCharacter{202D}{}
 \\DeclareUnicodeCharacter{202C}{}
 "))
-  (setq org-koma-letter-default-class "brief")
-  (setq org-export-default-language "de")
+  (setq! org-koma-letter-default-class "brief")
+  (setq! org-export-default-language "de")
   )
 #+end_src
 
@@ -562,7 +574,7 @@ This package provide an export to e - book format epub. I like it to make readab
   :config
   ;; Minimal UI
 
-  (setq
+  (setq!
    ;; Edit settings
    org-auto-align-tags nil
    org-tags-column 0
@@ -593,9 +605,9 @@ This package provide an export to e - book format epub. I like it to make readab
 ** Deft for org-mode :org:
 Deft is not installed!
 #+begin_src emacs-lisp
-(setq deft-extensions '("txt" "tex" "org"))
-(setq deft-directory "~/Documents/orgs")
-(setq deft-recursive t)
+(setq! deft-extensions '("txt" "tex" "org"))
+(setq! deft-directory "~/Documents/orgs")
+(setq! deft-recursive t)
 (global-set-key [f8] 'deft)
 #+end_src
 
@@ -701,7 +713,7 @@ Change some font weights for the sections in LaTeX
 (use-package! dictcc
   :diminish
   :config
-  (setq dictcc-source-lang "en"
+  (setq! dictcc-source-lang "en"
         dictcc-destination-lang "de"
         dictcc-completion-backend 'vertico)
   )
@@ -710,7 +722,7 @@ Change some font weights for the sections in LaTeX
 Allows repeating via =C-x z= (pressing z multiple tiemes keeps repearting) or by pressing last keybinding of previaos command.
 
 #+begin_src emacs-lisp
-(use-package repeat
+(use-package! repeat
   :ensure nil
   :hook (after-init . repeat-mode)
   :custom
@@ -1115,6 +1127,8 @@ This Section defines some Macros for reuse.
 ;; (global-hide-mode-line-mode))
 (load! "+superkeys.el")
 (sim/flykeys-on)
+(doom/increase-font-size 1)
+(display-time-mode t)
 #+end_src
 
 #+begin_src emacs-lisp :tangle no
@@ -1123,5 +1137,6 @@ This Section defines some Macros for reuse.
 
 (after! ox-koma-letter
   '(progn
-     (setq org-koma-letter-default-class "brief")))
+     (setq! org-koma-letter-default-class "brief")))
+(load! "/Users/sim/.emacs.secrets.el")
 #+end_src
