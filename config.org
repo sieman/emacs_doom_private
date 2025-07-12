@@ -329,11 +329,11 @@ My workaround is to use [[https://github.com/ema2159/centaur-tabs][Taps]] and hi
   (setq! doom-modeline-modal-modern-icon nil)
   (setq! doom-modeline-modal-icon nil))
 #+end_src
-* Modeline Telephone
+* not used Modeline Telephone
 
 https://github.com/dbordak/telephone-line
 
-#+begin_src emacs-lisp :tangle "packages.el"
+#+begin_src emacs-lisp :tangle no
 (package! telephone-line :recipe (:host github :repo"dbordak/telephone-line"))
 #+end_src
 
@@ -1129,7 +1129,11 @@ This Section defines some Macros for reuse.
 (sim/flykeys-on)
 (doom/increase-font-size 1)
 (display-time-mode t)
+(load! "emacs.secrets.el")
 #+end_src
+
+
+This is not loaded!
 
 #+begin_src emacs-lisp :tangle no
 (after! ox
