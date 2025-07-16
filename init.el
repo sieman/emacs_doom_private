@@ -70,8 +70,7 @@
  latex             ; writing papers in Emacs has never been so fun
  (org +dragndrop +roam2)               ; organize your plain life in plain text
  (sh               ; she sells {ba,z,fi}sh shells on the C xor
-  +fish
-  +tree-sitter)
+   +tree-sitter)
  (web +tree-sitter)               ; the tubes
  (java +tree-sitter)
  :config

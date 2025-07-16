@@ -352,22 +352,6 @@ Try to add this to doom-modeline.
 (global-set-key (kbd "C-c t k") 'keycast-mode)
 #+end_src
 
-;; Show current command in modeline
-(use-package keycast
-  :straight t
-  :hook (after-init . keycast-mode)
-  :config
-  (define-minor-mode keycast-mode
-    "Show current command and its key binding in the mode line (modified for doom-modeline use)."
-    :global t
-    (if keycast-mode
-      (progn
-	(add-hook 'pre-command-hook 'keycast--update t)
-	(add-to-list 'global-mode-string '("" keycast-mode-line)))
-      (progn
-	(remove-hook 'pre-command-hook 'keycast--update)
-	(setq global-mode-string (remove '("" keycast-mode-line) global-mode-string))))))
-
 * not used Modeline Telephone
 
 https://github.com/dbordak/telephone-line
