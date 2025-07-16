@@ -503,15 +503,10 @@ https://orgmode.org/
 
 #+begin_src emacs-lisp
 (after! org
-
-  (setq! org-directory "~///Documents/org-roam"
-         org-roam-directory org-directory
-         org-roam-db-location (file-name-concat org-directory ".org-roam.db")
-         org-roam-dailies-directory "journal/"
-         org-archive-location (file-name-concat org-directory ".archive/%s::")
-         org-agenda-files (list org-directory)
-         org-startup-with-inline-images t
-         )
+   org-directory "~/Documents/orgs"
+   org-archive-location (file-name-concat org-directory ".archive/%s::")
+   org-agenda-files (list org-directory)
+   org-startup-with-inline-images t
 
   (add-to-list 'org-structure-template-alist '("se" . "src emacs-lisp"))
   (add-to-list 'org-structure-template-alist '("sea" . "src emacs-lisp :tangle autoload.el"))
@@ -554,6 +549,21 @@ https://orgmode.org/
   )
 #+end_src
 
+** Org Roam
+[[https://www.orgroam.com/manual.html][Org Roam Docu]]
+#+begin_src emacs-lisp
+(after! org-roam
+  (setq!
+   org-roam-directory "~/Documents/org-roam"
+   org-roam-db-location (file-name-concat org-directory ".org-roam.db")
+   org-roam-dailies-directory "journal/"
+
+   ;; org-roam-dailies-capture-templates '(("d" "default" entry
+   ;; "* %?"
+   ;; :target (file+head "%<%Y-%m-%d>.org"
+   ;; "#+title: %<%Y-%m-%d>\n")))
+   ))
+#+end_src
 ** Org mode exporters OX
 This litle packages provide a export to jira and confluence  markup.
 #+begin_src emacs-lisp :tangle "packages.el"
@@ -955,6 +965,7 @@ My preferred way of using super key.
 (global-unset-key (kbd "C-@"))
 (global-unset-key (kbd "M-@"))
 (global-unset-key (kbd "M-SPC"))
+(global-unset-key (kbd "C-SPC"))
 (global-unset-key (kbd "s-+"))
 (global-unset-key (kbd "s--"))
 (global-unset-key (kbd "s-="))
@@ -966,6 +977,7 @@ My preferred way of using super key.
 (global-unset-key (kbd "s-n"))
 (global-unset-key (kbd "s-o"))
 (global-unset-key (kbd "s-w"))
+(global-unset-key (kbd "s-x"))
 (global-unset-key (kbd "s-x"))
 
 (map!
@@ -1117,6 +1129,8 @@ My preferred way of using super key.
  "s-J" #'join-line                                             ; Edit Commands
 
  "s-SPC" #'hippie-expand
+ "C-SPC" #'completion-at-point
+ "M-SPC" #'completion-help-at-point
 
  "s-<up>" #'consult-global-mark
  "s-<down>" #'consult-mark
