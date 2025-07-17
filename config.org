@@ -156,6 +156,7 @@ The advantage of Fly Keys that this package works with diffrent keybord layouts.
   (define-key xah-fly-command-map (kbd "(") 'org-previous-visible-heading)
 
   (define-key xah-fly-command-map (kbd "d") nil)
+  (define-key xah-fly-command-map (kbd ")") 'repeat)
   (define-key xah-fly-command-map (kbd "d") 'xah-goto-matching-bracket)
 
   (define-key xah-fly-command-map (kbd "m") nil)
