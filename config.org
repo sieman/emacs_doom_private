@@ -427,11 +427,11 @@ brew tap homebrew/cask-fonts && brew install --cask font-open-dyslexic-nerd-font
 ** Githubs Copilot Chat
 [[https://github.com/chep/copilot-chat.el][Plugin Page]]
 
-#+begin_src emacs-lisp :tangle packages.el
+#+begin_src emacs-lisp :tangle no
 (package! copilot-chat :recipe (:host github :repo "chep/copilot-chat.el" :files ("*.el")))
 #+end_src
 
-#+begin_src emacs-lisp
+#+begin_src emacs-lisp :tangle no
 (use-package! copilot-chat
   :after (request org markdown-mode))
 #+end_src
@@ -473,18 +473,15 @@ https://gitlab.com/dwt1/dotfiles/-/blob/master/.config/emacs/config.org?ref_type
 #+end_src
 
 
-** TODO Tabine AI Auto Compleation
-[[https://github.com/TommyX12/company-tabnine][Emacs Plugin]] https://github.com/shuxiao9058/tabnine/
-TabNine is the all-language autocompleter. It uses machine learning to provide responsive, reliable, and relevant suggestions.
-
 ** TODO ORG-AI Assistance
 [[https://github.com/rksm/org-ai?tab=readme-ov-file#installation][Org AI]]
 #+begin_src emacs-lisp :tangle no
 (package! org-ai :recipe (:host github :repo "rksm/org-ai"))
 #+end_src
+
 ** TODO GPtel Chat Client for GPT
 [[https://github.com/karthink/gptel][Plugin Page]]
-
+[[https://www.blogbyben.com/2024/08/gptel-mindblowing-integration-between.html][Mindblowing integration between Emacs and ChatGPT]]
 #+begin_src emacs-lisp :tangle no
 (package! gptel :recipe (:nonrecursive t))
 #+end_src
