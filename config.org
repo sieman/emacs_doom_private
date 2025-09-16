@@ -252,8 +252,10 @@ Solarized improved version is oksolar :-)
 #+begin_src emacs-lisp
 ;; load this theme at startup
 ;; (setq! doom-theme 'doom-one)
-(setq! doom-theme 'doom-oksolar-dark)
+;; (setq! doom-theme 'doom-oksolar-dark)
 ;; (setq! doom-theme 'doom-oksolar-light)
+(setq! doom-theme 'doom-earl-grey)
+;; (setq! doom-theme 'modus-operandi-tritanopia)
 ;; All themes are safe to load
 (setq! custom-safe-themes t)
 #+end_src
@@ -419,7 +421,48 @@ brew tap homebrew/cask-fonts && brew install --cask font-open-dyslexic-nerd-font
            ))
   (flyspell-mode 0))
 #+end_src
-* TODO ELLAMA
+
+
+* AI
+** Githubs Copilot Chat
+[[https://github.com/chep/copilot-chat.el][Plugin Page]]
+
+#+begin_src emacs-lisp :tangle packages.el
+(package! copilot-chat :recipe (:host github :repo "chep/copilot-chat.el" :files ("*.el")))
+#+end_src
+
+#+begin_src emacs-lisp
+(use-package! copilot-chat
+  :after (request org markdown-mode))
+#+end_src
+** TODO Githubs Copilot Completion
+[[https://github.com/copilot-emacs/copilot.el][Plugin Page]]
+#+begin_src emacs-lisp :tangle no
+(package! copilot
+  :recipe (:host github :repo "copilot-emacs/copilot.el" :files ("*.el")))
+#+end_src
+
+#+begin_src emacs-lisp
+(use-package! copilot
+  :hook (prog-mode . copilot-mode)
+  :bind (:map copilot-completion-map
+              ("<tab>" . 'copilot-accept-completion)
+              ("TAB" . 'copilot-accept-completion)
+              ("C-TAB" . 'copilot-accept-completion-by-word)
+              ("C-<tab>" . 'copilot-accept-completion-by-word)
+              ("C-n" . 'copilot-next-completion)
+              ("C-p" . 'copilot-previous-completion))
+
+  :config
+  (add-to-list 'copilot-indentation-alist '(prog-mode 2))
+  (add-to-list 'copilot-indentation-alist '(org-mode 2))
+  (add-to-list 'copilot-indentation-alist '(text-mode 2))
+  (add-to-list 'copilot-indentation-alist '(closure-mode 2))
+  (add-to-list 'copilot-indentation-alist '(emacs-lisp-mode 2)))
+#+end_src
+
+
+** TODO ELLAMA
 [[https://github.com/s-kostyaev/ellama][Ellama]] is a tool for interacting with large language models from Emacs.  You need to have ‘ollama’ installed on your computer to use ‘ellama’ in Emacs.  You need to pull in any LLMs that you want to have available for use.  For example, if you want to be able to use Llama 3.1, then you need to run ‘ollama pull llama3.1’.
 
 
@@ -430,9 +473,27 @@ https://gitlab.com/dwt1/dotfiles/-/blob/master/.config/emacs/config.org?ref_type
 #+end_src
 
 
-* TODO AI Auto Compleation
+** TODO Tabine AI Auto Compleation
 [[https://github.com/TommyX12/company-tabnine][Emacs Plugin]] https://github.com/shuxiao9058/tabnine/
 TabNine is the all-language autocompleter. It uses machine learning to provide responsive, reliable, and relevant suggestions.
+
+** TODO ORG-AI Assistance
+[[https://github.com/rksm/org-ai?tab=readme-ov-file#installation][Org AI]]
+#+begin_src emacs-lisp :tangle no
+(package! org-ai :recipe (:host github :repo "rksm/org-ai"))
+#+end_src
+** TODO GPtel Chat Client for GPT
+[[https://github.com/karthink/gptel][Plugin Page]]
+
+#+begin_src emacs-lisp :tangle no
+(package! gptel :recipe (:nonrecursive t))
+#+end_src
+
+#+begin_src emacs-lisp :tangle no
+(use-package! gptel
+ :config
+ (setq! gptel-api-key "your key"))
+#+end_src
 
 * Multiple Cursors
 #+begin_src emacs-lisp
@@ -503,6 +564,8 @@ https://orgmode.org/
 
 
 #+begin_src emacs-lisp
+(setq org-directory "~/sim/Documents/orgs/")
+(setq org-journal-dir "~/sim/Documents/orgs/")
 (after! org
    org-directory "~/Documents/orgs"
    org-archive-location (file-name-concat org-directory ".archive/%s::")
@@ -645,11 +708,15 @@ Deft is not installed!
 (global-set-key [f8] 'deft)
 #+end_src
 
-** TODO AI Assistance
-[[https://github.com/rksm/org-ai?tab=readme-ov-file#installation][Org AI]]
-#+begin_src emacs-lisp :tangle "packages.el"
-;; https://github.com/rksm/org-ai
-(package! org-ai :recipe (:host github :repo "rksm/org-ai"))
+** Anki
+see [[https://github.com/anki-editor/anki-editor][Anki Editor]]
+
+#+begin_src emacs-lisp :tangle packages.el
+(package! anki-editor :recipe (:host github :repo "anki-editor/anki-editor"))
+#+end_src
+
+#+begin_src emacs-lisp
+(use-package! anki-editor)
 #+end_src
 
 
@@ -1165,7 +1232,6 @@ This Section defines some Macros for reuse.
 ;; (global-hide-mode-line-mode))
 (load! "+superkeys.el")
 (sim/flykeys-on)
-(doom/increase-font-size 1)
 (display-time-mode t)
 (load! "emacs.secrets.el")
 #+end_src

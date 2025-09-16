@@ -23,6 +23,7 @@
  zen               ; distraction-free coding or writing
  tabs              ; Zentauer
  smooth-scroll
+ deft
 
  :editor
  file-templates    ; auto-snippets for empty files
@@ -51,11 +52,9 @@
  (lookup +dictionary)
  editorconfig      ; let someone else argue about tabs vs spaces
  pdf
-
  (eval +overlay)     ; run code, run (also, repls)
-
  (lookup +dictionary +docsets) ; navigate your code and its documentation
- ;; (lsp +peek)
+ (lsp +peek)                   ; for latex
  magit             ; a git porcelain for Emacs
 
  :os
@@ -67,8 +66,8 @@
  emacs-lisp        ; drown in parentheses
  (json +tree-sitter)              ; At least it ain't XML
  (javascript +tree-sitter)        ; all(hope(abandon(ye(who(enter(here))))))
- latex             ; writing papers in Emacs has never been so fun
- (org +dragndrop +roam2)               ; organize your plain life in plain text
+ (latex +lsp)             ; writing papers in Emacs has never been so fun
+ (org +dragndrop +roam2 +journal)               ; organize your plain life in plain text
  (sh               ; she sells {ba,z,fi}sh shells on the C xor
    +tree-sitter)
  (web +tree-sitter)               ; the tubes
