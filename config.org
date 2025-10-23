@@ -102,6 +102,8 @@ The advantage of Fly Keys that this package works with diffrent keybord layouts.
   (add-hook! '(color-rg-mode-hook
                dired-hook
                dirvish-setup-hook
+               dirvish-mode-hook
+               consult--filter-find-file-hook
                eshell-mode-hook
                magit-mode-hook
                magit-popup-mode-hook
@@ -153,6 +155,7 @@ The advantage of Fly Keys that this package works with diffrent keybord layouts.
   (define-key xah-fly-command-map (kbd "I") 'casual-isearch-tmenu)
 
   (define-key xah-fly-command-map (kbd "-") 'org-next-visible-heading)
+  (define-key xah-fly-command-map (kbd "J") 'other-frame)
   (define-key xah-fly-command-map (kbd "(") 'org-previous-visible-heading)
 
   (define-key xah-fly-command-map (kbd "d") nil)
@@ -442,7 +445,7 @@ brew tap homebrew/cask-fonts && brew install --cask font-open-dyslexic-nerd-font
   :recipe (:host github :repo "copilot-emacs/copilot.el" :files ("*.el")))
 #+end_src
 
-#+begin_src emacs-lisp
+#+begin_src emacs-lisp :tangle no
 (use-package! copilot
   :hook (prog-mode . copilot-mode)
   :bind (:map copilot-completion-map
@@ -468,7 +471,7 @@ brew tap homebrew/cask-fonts && brew install --cask font-open-dyslexic-nerd-font
 
 https://gitlab.com/dwt1/dotfiles/-/blob/master/.config/emacs/config.org?ref_type=heads#ellama
 
-#+begin_src emacs-lisp :tangle "packages.el"
+#+begin_src emacs-lisp :tangle no 
 (package! ollama :recipe (:host github :repo "niklasbuehler/ollama.el"))
 #+end_src
 
@@ -585,7 +588,7 @@ https://orgmode.org/
 (add-hook! 'org-log-buffer-setup-hook '(require 'org-keys))
 
 (after! ox-latex
-  (load! "ox-koma-letter")
+  ;; (load! "ox-koma-letter")
   (add-to-list 'org-latex-classes
                '("brief"
                  "\\documentclass{scrlttr2}
@@ -609,6 +612,8 @@ https://orgmode.org/
   (setq! org-export-default-language "de")
   )
 #+end_src
+
+#+RESULTS:
 
 ** Org Roam
 [[https://www.orgroam.com/manual.html][Org Roam Docu]]
@@ -1237,11 +1242,11 @@ This Section defines some Macros for reuse.
 This is not loaded!
 
 #+begin_src emacs-lisp :tangle no
-(after! ox
-  (load! "ox-koma-letter"))
+;; (after! ox
+;;   (load! "ox-koma-letter"))
 
-(after! ox-koma-letter
-  '(progn
-     (setq! org-koma-letter-default-class "brief")))
+;; (after! ox-koma-letter
+;;   '(progn
+;;      (setq! org-koma-letter-default-class "brief")))
 (load! "/Users/sim/.emacs.secrets.el")
 #+end_src

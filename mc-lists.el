@@ -25,5 +25,5 @@
 
 (setq mc/cmds-to-run-once
       '(
-        consult-yank-pop
+
         ))
