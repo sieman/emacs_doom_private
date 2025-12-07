@@ -763,6 +763,17 @@ Allows repeating via =C-x z= (pressing z multiple tiemes keeps repearting) or by
   (repeat-exit-timeout 6))
 #+end_src
 
+* KMonad
+[[https://github.com/kmonad/kmonad][KMonad]] is an advanced tool that lets you infinitely customize and extend the functionalities of almost any keyboard.
+
+An Emacs major-mode for syntax highlighting kmonad's .kbd files ([[https://github.com/kmonad/kbd-mode][see]]). 
+#+begin_src emacs-lisp :tangle packages.el
+(package! kbd-mode :recipe (:host github :repo "kmonad/kbd-mode"))
+#+end_src
+
+#+begin_src emacs-lisp
+(use-package! kbd-mode)
+#+end_src
 
 * SiM functions that tangled into autoload.el :autoload:el:
 Adds the the header of autoload.el
