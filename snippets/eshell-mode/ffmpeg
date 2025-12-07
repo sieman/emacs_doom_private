@@ -1,0 +1,8 @@
+# -*- mode: snippet -*-
+# -*- coding: utf-8 -*-
+# name: ffmpeg
+# key: ffm- 
+# condition: t
+# --
+ffmpeg -i ${1:`(read-from-minibuffer "Insert video file name: ")`}.mov -filter:v "fps=30" -c:a copy $1-klein.mov
+n

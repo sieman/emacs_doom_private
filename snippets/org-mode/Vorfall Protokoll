@@ -1,0 +1,13 @@
+# -*- mode: snippet -*-
+# name: Vorfall Protokoll
+# key: vorfall
+# --
+
+VORFALL #000
+Datum/Zeit: `(current-time-string)`
+ORT: 
+Anwesend: Fanny, Siegmar, Tamo, Ella 
+Ereignis:
+Meine Reaktion:
+Fannys Reaktion:
+
