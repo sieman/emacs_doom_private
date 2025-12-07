@@ -32,11 +32,9 @@ will also need to configure them to use Fish, e.g.
 (setq-default explicit-shell-file-name (executable-find "zsh" ))
 #+end_src
 
-
 * Bookmarks
 Settings for Bookmark are stored in this folder
 /Users/sim/.config/emacs/.local/etc
-
 
 #+begin_comment
 (use-package eshell-bookmark
@@ -44,7 +42,6 @@ Settings for Bookmark are stored in this folder
   :after eshell
   :hook (eshell-mode . eshell-bookmark-setup))
 #+end_comment
-
 
 * Four modifier
 Using four modifier in emacs is possible if you are using right and left super  or control key to provide meta, control, hyper and super modifier keys. You can use [[https://karabiner-elements.pqrs.org/][Karabiner-Elements]] a stable keyboard customizer for macOS.
