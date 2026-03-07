@@ -24,6 +24,8 @@
  tabs                           ; Zentauer
  smooth-scroll
  deft
+ treemacs
+ 
 
  :editor
  file-templates                         ; auto-snippets for empty files
