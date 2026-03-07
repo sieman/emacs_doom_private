@@ -3,11 +3,14 @@
 # key: vorfall
 # --
 
-VORFALL #000
-Datum/Zeit: `(current-time-string)`
-ORT: 
-Anwesend: Fanny, Siegmar, Tamo, Ella 
-Ereignis:
-Meine Reaktion:
-Fannys Reaktion:
+**** `(format-time-string "\[%Y-%m-%d %a %H:%M\]")`    :vorfall:
+
+*ORT:*
+
+*Anwesend:*  Fanny Mantei, Siegmar Mantei, Tamo, Ella 
+
+*Ereignis:* 
+*Meine Reaktion:* 
+*Fannys Reaktion:* 
+
 
