@@ -1158,6 +1158,14 @@ My preferred way of using super key.
  "C-s-<right>" #'windmove-right         ; Navigation buffer
  )
 #+end_src
+* Control Keybindings
+
+#+begin_src emacs-lisp :tangle +controlkeys.el
+(map!
+ (:prefix "C-c w"
+  :desc "Select frame by number"        "w" #'ace-select-window  ))
+#+end_src
+
 
 * Keyboard Macros
 This Section defines some Macros for reuse.
@@ -1173,6 +1181,7 @@ This Section defines some Macros for reuse.
 ;; (after! doom-modeline
 ;; (global-hide-mode-line-mode))
 (load! "+superkeys.el")
+(load! "+controlkeys.el")
 (sim/flykeys-on)
 (display-time-mode t)
 (load! "emacs.secrets.el")
