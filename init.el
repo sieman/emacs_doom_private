@@ -33,6 +33,7 @@
  snippets                               ; my elves. They type so I don't have to
  format
  lispy
+ xah-fly-keys
  
  :emacs
  (dired +icons +dirvish) ; making dired pretty [functional]

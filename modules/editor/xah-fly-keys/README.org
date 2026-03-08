@@ -1,0 +1,56 @@
+#+title:    :editor Xah Fly Keys
+#+created:  March 8, 2026
+#+since:    v26.04.0-pre
+
+* Description :unfold:
+Adds [[doom-package:xah-fly-keys]] support to Doom Emacs, allowing for entering commands without modifier keys, similar to Vim's modality, separating command mode and insert
+mode.
+
+---- 
+I like to use a modal editing mode like vim but the fly keys keybinding system is more ergonmic and can be used on diffrent keyboard layouts.
+
+https://github.com/xahlee/xah-fly-keys
+http://xahlee.info/emacs/misc/xah-fly-keys.html
+
+
+** Maintainers
+*This module needs a maintainer.* [[doom-contrib-maintainer:][Become a maintainer?]]
+
+** Module flags
+/This module has no flags./
+
+** Packages
+- [[doom-package:god-mode]]
+
+** Hacks
+/No hacks documented for this module./
+
+** TODO Changelog
+# This section will be machine generated. Don't edit it by hand.
+/This module does not have a changelog yet./
+
+* Installation
+[[id:01cffea4-3329-45e2-a892-95a384ab2338][Enable this module in your ~doom!~ block.]]
+
+/This module has no external requirements./
+
+* Usage
+#+begin_quote
+ 󱌣 This module has no usage documentation yet. [[doom-contrib-module:][Write some?]]
+#+end_quote
+
+* Configuration
+#+begin_quote
+ 󱌣 This module has no configuration documentation yet. [[doom-contrib-module:][Write some?]]
+#+end_quote
+
+* Troubleshooting
+/There are no known problems with this module./ [[doom-report:][Report one?]]
+
+* Frequently asked questions
+/This module has no FAQs yet./ [[doom-suggest-faq:][Ask one?]]
+
+* Appendix
+#+begin_quote
+ 󱌣 This module has no appendix yet. [[doom-contrib-module:][Write one?]]
+#+end_quote
