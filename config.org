@@ -1163,7 +1163,7 @@ My preferred way of using super key.
 #+begin_src emacs-lisp :tangle +controlkeys.el
 (map!
  (:prefix "C-c w"
-  :desc "Select frame by number"        "w" #'ace-select-window  ))
+  :desc "Select frame by number" "w" #'ace-select-window  ))
 #+end_src
 
 
