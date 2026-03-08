@@ -2,30 +2,29 @@
 
 (doom!
  :completion
- (corfu +orderless +icons)
+ (corfu +orderless +icons +dabbrev)
  (vertico +icons)
 
 
  :ui
- doom                     ; what makes DOOM look the way it does
+ deft
+ (doom +tabs)                     ; what makes DOOM look the way it does
  doom-dashboard           ; a nifty splash screen for Emacs
+ emoji
  hl-todo                  ; highlight TODO/FIXME/NOTE/DEPRECATED/HACK/REVIEW
  ligatures                ; ligatures and symbols to make your code pretty again
  modeline                 ; snazzy, Atom-inspired modeline, plus API
  nav-flash                ; blink cursor line after big motions
  ophints                  ; highlight the region an operation acts on
- emoji
  (popup +defaults)              ; tame sudden yet inevitable temporary windows
+ smooth-scroll
+ tabs                           ; Zentauer
+ treemacs
  unicode                        ; extended unicode support for various languages
- vc-gutter                      ; vcs diff in the fringe
+ (vc-gutter +pretty)                      ; vcs diff in the fringe
  vi-tilde-fringe                ; fringe tildes to mark beyond EOB
  (window-select +switch-window) ; visually switch windows
  zen                            ; distraction-free coding or writing
- tabs                           ; Zentauer
- smooth-scroll
- deft
- treemacs
- 
 
  :editor
  file-templates                         ; auto-snippets for empty files

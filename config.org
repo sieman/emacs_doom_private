@@ -990,6 +990,7 @@ My preferred way of using super key.
 
 (map!
  "s-1" #'+treemacs/toggle
+ "s-°" #'treemacs-find-file
  "s-9" #'magit-status
  "s-0" #'text-scale-adjust
 
@@ -1050,7 +1051,7 @@ My preferred way of using super key.
 
  ;; a A {
  "s-a" #'mark-whole-buffer                                     ; Edit Commands
- (:when (fboundp 'avy-goto-char-2 ) "s-A" #'casual-avy-tmenu)
+
  ;; e E }
  "s-e" #'ido-switch-buffer
  ;; s-E edit-abbrevs
@@ -1120,6 +1121,7 @@ My preferred way of using super key.
 
  ;; b B +
  (:when (fboundp 'avy-goto-char-2 ) "s-b" #'avy-goto-char-2)
+ (:when (fboundp 'avy-goto-char-2 ) "s-B" #'casual-avy-tmenu)
  "s-+" #'doom/increase-font-size
 
  ;; m M %
