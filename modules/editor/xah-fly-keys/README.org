@@ -13,6 +13,11 @@ https://github.com/xahlee/xah-fly-keys
 http://xahlee.info/emacs/misc/xah-fly-keys.html
 
 
+[[https://github.com/sieman/neo-layout-fly-keys][Neo Layout Fly Keys]]
+The advantage of Fly Keys that this package works with diffrent keybord layouts. And this is the adaption for Neo2 layout.
+
+
+
 ** Maintainers
 *This module needs a maintainer.* [[doom-contrib-maintainer:][Become a maintainer?]]
 
